@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Socapex - Evol Online all.mp3-5cb28af41b4145bb1ee72bc741429c79.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online all.mp3"
+dest_files=[ "res://.import/Socapex - Evol Online all.mp3-5cb28af41b4145bb1ee72bc741429c79.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
