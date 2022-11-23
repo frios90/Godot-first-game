@@ -1,6 +1,8 @@
 extends KinematicBody2D
+
+export (int) var gravity = 500
 const maxSpeed   = 26
-const gravity    = 500
+
 const up         = Vector2(0, -1)
 const ptsDead    = 300
 var life         = 10
@@ -58,7 +60,6 @@ func _on_KillArea_area_entered(area):
 func applySoundSword ():
 	if useRandSound == 0:
 		$DamageSwordSound.playing  = true
-
 	else:
 		$DamageSwordSound2.playing  = true
 

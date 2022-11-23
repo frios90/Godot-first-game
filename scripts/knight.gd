@@ -5,6 +5,12 @@ const maxSpeed   = 140
 const dashSpeed   = 135
 const jumpHeight = -450
 const GRAVITY    = 1500
+
+var collision_position_x = 0
+var collision_position_y = 0
+var collision_scale_x = 1.6
+var collision_scale_y = -0.45
+
 const UP         = Vector2(0, -1)
 var dead   = false
 var timer_dead = 0
@@ -26,8 +32,7 @@ func _ready():
 	state_machine = $AnimationTree.get("parameters/playback")
 	
 		
-func _process(delta):
-	
+func _process(delta):	
 	if not dead:
 		motion.x = 0
 		fall(delta)
@@ -53,6 +58,8 @@ func fall(delta):
 		is_jumping = false	
 
 func move():	
+
+		
 	if Input.is_action_pressed("ui_right"):	
 		motion.x = moveSpeed + ATTACK
 		state_machine.travel("walk")
@@ -64,6 +71,8 @@ func move():
 		elif timer_sount_walk == 0:
 			$SoundWalk.playing  = true
 		timer_sount_walk += 1
+		
+	
 
 	elif Input.is_action_pressed("ui_left"):
 		motion.x = -moveSpeed + ATTACK
@@ -76,19 +85,25 @@ func move():
 		elif timer_sount_walk == 0:
 			$SoundWalk.playing  = true			
 		timer_sount_walk += 1
-			
-
+	
 	else:  
 		state_machine.travel("idle")			
 		motion.x = 0
 	
-func dash():
-	
-	if Input.is_action_just_pressed("dash"):
+func dash():	
+	if Input.is_action_pressed("dash"):
 		$SoundWalk.playing  = false
 		timer_sount_walk    = 0
 		state_machine.travel("dash")	
-		
+		$CollisionShape2D.position.x = 1
+		$CollisionShape2D.position.y = 16
+		$CollisionShape2D.scale.x    = 4
+		$CollisionShape2D.scale.y    = 0.1		
+	if Input.is_action_just_released("dash"):			
+		$CollisionShape2D.position.x = collision_position_x
+		$CollisionShape2D.position.y = collision_position_y
+		$CollisionShape2D.scale.x    = collision_scale_x
+		$CollisionShape2D.scale.y    = collision_scale_y	
 		
 func jump():
 	
@@ -100,7 +115,6 @@ func jump():
 		motion.y = jumpHeight
 	if Input.is_action_just_released("jump") and motion.y < 0:
 		motion.y = 0
-	
 		
 func attack():
 	
@@ -133,13 +147,5 @@ func _on_DeadArea_area_entered(area):
 			if Env.current_life <= 0:
 				$AnimationPlayer.play("death")
 				dead = true
-	
-	
-		
-
-	
-	
-
-	
 
 

@@ -2,6 +2,7 @@ extends CanvasLayer
 
 func _ready () :
 	get_parent().get_node("SfxBg").playing = true
+	get_parent().get_node("SfxBg02").playing = true
 	$LabelTotalCoins.text = String(Env.coins)
 	$LabelExp.text        = String(Env.experience)
 	$LabelLevel.text      = String(Env.level)

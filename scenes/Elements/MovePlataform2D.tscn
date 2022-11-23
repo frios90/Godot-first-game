@@ -6,6 +6,8 @@
 extents = Vector2( 63, 7 )
 
 [node name="MovePlataforma2D" type="KinematicBody2D"]
+collision_layer = 16
+collision_mask = 3
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
