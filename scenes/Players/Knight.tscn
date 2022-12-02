@@ -1,14 +1,19 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=102 format=2]
 
+[ext_resource path="res://assets/Sounds/player-dead.mp3" type="AudioStream" id=1]
+[ext_resource path="res://assets/Sounds/melee sounds/sword sound.wav" type="AudioStream" id=2]
 [ext_resource path="res://scripts/knight.gd" type="Script" id=3]
+[ext_resource path="res://assets/Sounds/sound-air-attack.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/Sounds/dolorplayer.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/Sounds/bottle.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/Characters/Player/sprite-player.png" type="Texture" id=8]
 [ext_resource path="res://assets/Sounds/Retro FootStep Mud 01.wav" type="AudioStream" id=9]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 4.37545, 49.407 )
+extents = Vector2( 10.3125, 70 )
 
 [sub_resource type="RectangleShape2D" id=93]
-extents = Vector2( 11.875, 25.5 )
+extents = Vector2( 15.9688, 31.125 )
 
 [sub_resource type="Animation" id=120]
 length = 0.001
@@ -22,13 +27,88 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 39 ]
+"values": [ 62 ]
+}
+
+[sub_resource type="Animation" id=165]
+resource_name = "air-attack"
+length = 0.2
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 14, 15, 22 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.133333 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodFinishAirAttack"
+} ]
+}
+
+[sub_resource type="Animation" id=169]
+resource_name = "air-attack-impact"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 23, 30, 31, 38 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodFinishAirAttackImpact"
+} ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("SountAirAttack")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0 )
 }
 
 [sub_resource type="Animation" id=125]
 resource_name = "attack"
-length = 0.4
-step = 0.04
+length = 0.16
+step = 0.03125
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -36,16 +116,189 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.031, 0.062, 0.09375, 0.124 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SoundSword:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.062 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.124 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodFinishAttack"
+} ]
+}
+
+[sub_resource type="Animation" id=222]
+resource_name = "attack1.5"
+length = 0.0625
+step = 0.03125
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.0416667, -0.03125, 0, 0.03125 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SoundSword:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.062 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodFinishAttack"
+} ]
+}
+
+[sub_resource type="Animation" id=176]
+resource_name = "attack2"
+length = 0.15625
+step = 0.03125
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.03125, 0.0625, 0.09375, 0.125 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 105, 106, 107, 108, 109 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SoundSword:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.155 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodFinishAttack"
+} ]
+}
+
+[sub_resource type="Animation" id=177]
+resource_name = "attack3"
+length = 0.136364
+step = 0.0227273
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0227273, 0.0454545, 0.0681818, 0.0909091, 0.113636 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 110, 111, 112, 113, 114, 115 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SoundSword:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0227273 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.0909091 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodFinishAttack3"
+} ]
+}
+
+[sub_resource type="Animation" id=275]
+resource_name = "climb"
+length = 0.833333
+loop = true
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25, 0.375, 0.5, 0.666667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 62, 63, 70, 71, 78, 79 ]
 }
 
 [sub_resource type="Animation" id=144]
 resource_name = "dash"
-length = 0.333333
-step = 0.0333333
+length = 0.190476
+step = 0.0238095
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -53,10 +306,24 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3 ),
+"times": PoolRealArray( 0, 0.0238095, 0.047619, 0.0714286, 0.0952381, 0.119048, 0.142857, 0.166667, 0.5, 0.55 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 72, 73, 74, 75, 80, 81, 82, 83, 88, 89 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.119048 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodFinishDash"
+} ]
 }
 
 [sub_resource type="Animation" id=157]
@@ -75,6 +342,49 @@ tracks/0/keys = {
 "values": [ 46, 47, 54, 55, 55, 55 ]
 }
 
+[sub_resource type="Animation" id=269]
+resource_name = "health"
+length = 0.416667
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.125, 0.166667, 0.208333, 0.25, 0.291667, 0.333333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 20, 21, 28, 29, 36, 37 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SoundHealth:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.0833333 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.42 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodFinishHeath"
+} ]
+}
+
 [sub_resource type="Animation" id=150]
 resource_name = "hurt"
 length = 0.3
@@ -86,7 +396,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
+"times": PoolRealArray( -0.1, 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 76, 77, 84 ]
@@ -108,9 +418,24 @@ tracks/0/keys = {
 "values": [ 40, 41, 48, 49, 56, 57, 64, 65 ]
 }
 
+[sub_resource type="Animation" id=179]
+resource_name = "init"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
 [sub_resource type="Animation" id=126]
 resource_name = "jump"
-length = 0.5
+length = 0.7
 step = 0.0625
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -119,15 +444,32 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375 ),
+"times": PoolRealArray( 0, 0.0625, 0.125, 0.378, 0.441, 0.504, 0.567, 0.63 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 44, 45, 52, 53, 60, 61, 68, 69 ]
 }
 
+[sub_resource type="Animation" id=173]
+resource_name = "pray"
+length = 3.0
+step = 0.0277778
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.472222, 0.522222, 0.572222, 0.622222, 0.672222, 0.722222, 0.772222, 0.833333, 0.883333, 0.933333, 0.983333, 1.03333, 1.08333, 1.13333, 1.22222, 1.27222, 1.32222, 1.37222, 1.42222, 1.49444, 1.54444, 1.59444, 1.64444, 1.69444, 1.74444, 1.79444, 1.85556, 1.90556, 1.95556, 2.00556, 2.05556, 2.10556, 2.15556, 2.27778, 2.32778, 2.37778, 2.42778, 2.47778, 2.52778, 2.604, 2.688 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 19, 24, 25, 26, 27, 32, 18, 19, 24, 25, 26, 27, 32, 18, 19, 24, 25, 26, 27, 32, 24, 25, 26, 27, 32, 18, 19, 24, 25, 26, 27, 32, 18, 19, 24, 25, 26, 27, 32, 19, 24, 25, 26, 27, 32, 34, 35 ]
+}
+
 [sub_resource type="Animation" id=127]
 resource_name = "walk"
-length = 0.8
+length = 0.6
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -141,157 +483,321 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 42, 43, 50, 58, 66, 67, 51 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("SoundWalk:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
 
-[sub_resource type="AnimationNodeAnimation" id=128]
+[sub_resource type="AnimationNodeAnimation" id=230]
+animation = "air-attack-impact"
+
+[sub_resource type="AnimationNodeAnimation" id=231]
+animation = "air-attack"
+
+[sub_resource type="AnimationNodeAnimation" id=180]
 animation = "attack"
 
-[sub_resource type="AnimationNodeAnimation" id=145]
+[sub_resource type="AnimationNodeAnimation" id=182]
+animation = "attack3"
+
+[sub_resource type="AnimationNodeAnimation" id=276]
+animation = "climb"
+
+[sub_resource type="AnimationNodeAnimation" id=206]
 animation = "dash"
 
-[sub_resource type="AnimationNodeAnimation" id=158]
+[sub_resource type="AnimationNodeAnimation" id=232]
 animation = "death"
 
-[sub_resource type="AnimationNodeAnimation" id=151]
+[sub_resource type="AnimationNodeAnimation" id=270]
+animation = "health"
+
+[sub_resource type="AnimationNodeAnimation" id=233]
 animation = "hurt"
 
-[sub_resource type="AnimationNodeAnimation" id=129]
+[sub_resource type="AnimationNodeAnimation" id=183]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=130]
+[sub_resource type="AnimationNodeAnimation" id=184]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=185]
 animation = "jump"
 
-[sub_resource type="AnimationNodeAnimation" id=131]
+[sub_resource type="AnimationNodeAnimation" id=234]
+animation = "pray"
+
+[sub_resource type="AnimationNodeAnimation" id=186]
 animation = "walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=132]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=133]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=134]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=135]
+[sub_resource type="AnimationNodeStateMachineTransition" id=187]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=136]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=137]
+[sub_resource type="AnimationNodeStateMachineTransition" id=188]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=138]
+[sub_resource type="AnimationNodeStateMachineTransition" id=189]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=139]
+[sub_resource type="AnimationNodeStateMachineTransition" id=190]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=191]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=192]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=193]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=194]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=195]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=198]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=199]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=200]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=201]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=202]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=207]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=208]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=211]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=212]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=213]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=216]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=220]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=236]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=237]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=238]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=239]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=240]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=242]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=244]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=140]
+[sub_resource type="AnimationNodeStateMachineTransition" id=245]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=141]
+[sub_resource type="AnimationNodeStateMachineTransition" id=247]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=248]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=142]
+[sub_resource type="AnimationNodeStateMachineTransition" id=249]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=143]
+[sub_resource type="AnimationNodeStateMachineTransition" id=250]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=253]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=254]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=255]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=146]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=147]
+[sub_resource type="AnimationNodeStateMachineTransition" id=256]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=148]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=149]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=152]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=153]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=154]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=155]
+[sub_resource type="AnimationNodeStateMachineTransition" id=259]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=164]
-auto_advance = true
+[sub_resource type="AnimationNodeStateMachineTransition" id=260]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id=123]
-states/attack/node = SubResource( 128 )
-states/attack/position = Vector2( 177, 56 )
-states/dash/node = SubResource( 145 )
-states/dash/position = Vector2( 942.747, 228.667 )
-states/death/node = SubResource( 158 )
-states/death/position = Vector2( 976.645, -71.2493 )
-states/hurt/node = SubResource( 151 )
-states/hurt/position = Vector2( 379.08, 284.568 )
-states/idle/node = SubResource( 129 )
-states/idle/position = Vector2( 177, 222 )
-states/jump/node = SubResource( 130 )
-states/jump/position = Vector2( 552.778, -70.1101 )
-states/walk/node = SubResource( 131 )
-states/walk/position = Vector2( 554, 222 )
-transitions = [ "idle", "walk", SubResource( 132 ), "walk", "idle", SubResource( 133 ), "idle", "attack", SubResource( 134 ), "attack", "idle", SubResource( 135 ), "idle", "jump", SubResource( 136 ), "jump", "idle", SubResource( 137 ), "walk", "jump", SubResource( 138 ), "jump", "walk", SubResource( 139 ), "jump", "attack", SubResource( 140 ), "attack", "jump", SubResource( 141 ), "walk", "attack", SubResource( 142 ), "attack", "walk", SubResource( 143 ), "walk", "dash", SubResource( 146 ), "dash", "walk", SubResource( 147 ), "dash", "attack", SubResource( 148 ), "attack", "dash", SubResource( 149 ), "jump", "hurt", SubResource( 152 ), "walk", "hurt", SubResource( 153 ), "idle", "hurt", SubResource( 154 ), "hurt", "idle", SubResource( 155 ), "hurt", "death", SubResource( 164 ) ]
+[sub_resource type="AnimationNodeStateMachineTransition" id=261]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=262]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=263]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=264]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=265]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=266]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=267]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=268]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=271]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=272]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=273]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=274]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=277]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=278]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=279]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=280]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=281]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=282]
+
+[sub_resource type="AnimationNodeStateMachine" id=196]
+states/air-attack/node = SubResource( 231 )
+states/air-attack/position = Vector2( 103.279, 138.951 )
+states/air-attack-impact/node = SubResource( 230 )
+states/air-attack-impact/position = Vector2( 103.976, 252.333 )
+states/attack/node = SubResource( 180 )
+states/attack/position = Vector2( 1057.67, 13.9629 )
+states/attack3/node = SubResource( 182 )
+states/attack3/position = Vector2( 1056.98, 120.333 )
+states/climb/node = SubResource( 276 )
+states/climb/position = Vector2( 462.083, 67.113 )
+states/dash/node = SubResource( 206 )
+states/dash/position = Vector2( 445.667, 283.197 )
+states/death/node = SubResource( 232 )
+states/death/position = Vector2( 1161.67, 352.778 )
+states/health/node = SubResource( 270 )
+states/health/position = Vector2( 16.0831, 61.113 )
+states/hurt/node = SubResource( 233 )
+states/hurt/position = Vector2( 968.334, 352.778 )
+states/idle/node = SubResource( 184 )
+states/idle/position = Vector2( 409.667, 168.63 )
+"states/idle 2/node" = SubResource( 183 )
+"states/idle 2/position" = Vector2( 117.667, -5.44443 )
+states/jump/node = SubResource( 185 )
+states/jump/position = Vector2( 373.666, -49 )
+states/pray/node = SubResource( 234 )
+states/pray/position = Vector2( 1083, 213.222 )
+states/walk/node = SubResource( 186 )
+states/walk/position = Vector2( 281.666, 344.333 )
+transitions = [ "idle 2", "idle", SubResource( 187 ), "idle", "idle 2", SubResource( 188 ), "walk", "idle", SubResource( 189 ), "idle", "walk", SubResource( 190 ), "idle 2", "walk", SubResource( 191 ), "idle", "jump", SubResource( 192 ), "walk", "jump", SubResource( 193 ), "idle 2", "jump", SubResource( 194 ), "jump", "idle", SubResource( 195 ), "walk", "attack", SubResource( 198 ), "idle", "attack", SubResource( 199 ), "jump", "attack", SubResource( 200 ), "attack", "idle", SubResource( 201 ), "idle 2", "attack", SubResource( 202 ), "walk", "dash", SubResource( 207 ), "dash", "idle", SubResource( 208 ), "idle", "attack3", SubResource( 211 ), "jump", "attack3", SubResource( 212 ), "idle 2", "attack3", SubResource( 213 ), "walk", "attack3", SubResource( 216 ), "attack3", "idle", SubResource( 220 ), "idle", "hurt", SubResource( 236 ), "walk", "hurt", SubResource( 237 ), "idle 2", "hurt", SubResource( 238 ), "jump", "hurt", SubResource( 239 ), "attack", "hurt", SubResource( 240 ), "attack3", "hurt", SubResource( 242 ), "hurt", "idle", SubResource( 244 ), "air-attack", "jump", SubResource( 245 ), "air-attack", "air-attack-impact", SubResource( 247 ), "air-attack-impact", "idle", SubResource( 248 ), "hurt", "death", SubResource( 249 ), "attack", "pray", SubResource( 250 ), "attack3", "pray", SubResource( 253 ), "idle", "pray", SubResource( 254 ), "pray", "idle", SubResource( 255 ), "attack", "jump", SubResource( 256 ), "attack3", "jump", SubResource( 259 ), "jump", "idle 2", SubResource( 260 ), "jump", "walk", SubResource( 261 ), "jump", "air-attack", SubResource( 262 ), "dash", "walk", SubResource( 263 ), "dash", "idle 2", SubResource( 264 ), "idle", "dash", SubResource( 265 ), "idle 2", "dash", SubResource( 266 ), "dash", "jump", SubResource( 267 ), "jump", "dash", SubResource( 268 ), "health", "idle 2", SubResource( 271 ), "idle 2", "health", SubResource( 272 ), "health", "idle", SubResource( 273 ), "idle", "health", SubResource( 274 ), "climb", "idle 2", SubResource( 277 ), "idle 2", "climb", SubResource( 278 ), "climb", "idle", SubResource( 279 ), "idle", "climb", SubResource( 280 ), "jump", "climb", SubResource( 281 ), "climb", "jump", SubResource( 282 ) ]
 start_node = "idle"
-graph_offset = Vector2( -31.6606, 65.1806 )
+end_node = "death"
+graph_offset = Vector2( -61.9169, -83.4106 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=124]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=197]
 
 [sub_resource type="RectangleShape2D" id=156]
-extents = Vector2( 4, 14 )
+extents = Vector2( 5, 21.5 )
 
 [node name="knight" type="KinematicBody2D" groups=["Player"]]
-collision_mask = 16
+collision_mask = 144
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 2.22782e-05, -1.74999 )
+position = Vector2( 2.53518e-06, 3 )
 rotation = -3.14159
-scale = Vector2( 1.59983, -0.450341 )
+scale = Vector2( 1, 0.5 )
 shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -9 )
+scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 8 )
 hframes = 8
-vframes = 12
-frame = 39
+vframes = 15
+frame = 62
 
 [node name="AttackArea" type="Area2D" parent="." groups=["Sword"]]
 position = Vector2( 35, 37 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( -12, -43 )
+position = Vector2( -7.96875, -38.125 )
 shape = SubResource( 93 )
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "idle"
 anims/RESET = SubResource( 120 )
+anims/air-attack = SubResource( 165 )
+anims/air-attack-impact = SubResource( 169 )
 anims/attack = SubResource( 125 )
+anims/attack1.5 = SubResource( 222 )
+anims/attack2 = SubResource( 176 )
+anims/attack3 = SubResource( 177 )
+anims/climb = SubResource( 275 )
 anims/dash = SubResource( 144 )
 anims/death = SubResource( 157 )
+anims/health = SubResource( 269 )
 anims/hurt = SubResource( 150 )
 anims/idle = SubResource( 121 )
+anims/init = SubResource( 179 )
 anims/jump = SubResource( 126 )
+anims/pray = SubResource( 173 )
 anims/walk = SubResource( 127 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 123 )
+tree_root = SubResource( 196 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 124 )
+parameters/playback = SubResource( 197 )
 
 [node name="DeadArea" type="Area2D" parent="." groups=["Player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
-position = Vector2( 2, -1 )
+position = Vector2( 2, -1.5 )
 shape = SubResource( 156 )
 
-[node name="SoundWalk" type="AudioStreamPlayer2D" parent="."]
+[node name="SoundWalk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-volume_db = -22.0
+volume_db = -35.0
 
+[node name="SoundDead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+
+[node name="SoundSword" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -15.0
+
+[node name="SountAirAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+
+[node name="SoundHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
+
+[node name="SoundHealth" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -10.187
+pitch_scale = 0.61
+
+[connection signal="area_entered" from="AttackArea" to="." method="_on_AttackArea_area_entered"]
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]
+[connection signal="area_exited" from="DeadArea" to="." method="_on_DeadArea_area_exited"]

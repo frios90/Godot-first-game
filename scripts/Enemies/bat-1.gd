@@ -29,7 +29,7 @@ func _flip():
 		timer_to_flip = 0
 	timer_to_flip += 1
 
-func _process(delta):
+func _process(_delta):
 	_flip()
 	
 	if not dead:		
@@ -47,7 +47,9 @@ func _process(delta):
 func applySoundSword ():
 	if useRandSound == 0:
 		$DamageSwordSound.playing  = true
+		$DamageSwordSound2.playing  = false
 	else:
+		$DamageSwordSound.false  = true
 		$DamageSwordSound2.playing  = true
 
 

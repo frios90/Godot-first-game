@@ -67,7 +67,6 @@ position = Vector2( -4, -4 )
 shape = SubResource( 5 )
 
 [node name="DamageSwordSound" type="AudioStreamPlayer2D" parent="."]
-visible = false
 stream = ExtResource( 3 )
 
 [node name="DamageSwordSound2" type="AudioStreamPlayer2D" parent="."]
