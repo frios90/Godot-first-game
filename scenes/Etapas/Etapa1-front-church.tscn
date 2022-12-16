@@ -1,0 +1,446 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://scripts/StageCollitions/ChangeZone.gd" type="Script" id=1]
+[ext_resource path="res://scenes/CanvasLayer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/tiles/Final/Tiles.png" type="Texture" id=3]
+[ext_resource path="res://assets/MapElements/castledoors.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Players/Knight.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/tiles/Final/Background_0.png" type="Texture" id=6]
+[ext_resource path="res://assets/tiles/tile-church/tileset.png" type="Texture" id=7]
+[ext_resource path="res://scenes/Elements/Laver.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scripts/Etapas/Etapa1-front-church.gd" type="Script" id=9]
+
+[sub_resource type="ConvexPolygonShape2D" id=16]
+points = PoolVector2Array( 0, 32, 32, 32, 32, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=17]
+points = PoolVector2Array( 0, 32, 32, 32, 32, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=18]
+points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=19]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 32, 0, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=20]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 32, 0, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=21]
+points = PoolVector2Array( 0, 17.9985, 32, 0, 32, 7.95154, 0.40123, 24.836 )
+
+[sub_resource type="ConvexPolygonShape2D" id=22]
+points = PoolVector2Array( 0, 64, 0, 32, 32, 32, 32, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=23]
+points = PoolVector2Array( 0, 64, 64, 32, 96, 32, 32, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=24]
+points = PoolVector2Array( 0, 32, 32, 32, 96, 64, 64, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=25]
+points = PoolVector2Array( 0, 32, 32, 32, 32, 64, 0, 64 )
+
+[sub_resource type="ConvexPolygonShape2D" id=26]
+points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=27]
+points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=28]
+points = PoolVector2Array( 0, 0, 32, 0, 32, 69, 0, 69 )
+
+[sub_resource type="TileSet" id=3]
+0/name = "Tiles.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 128, 0, 32, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 16 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 16 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
+1/name = "Tiles.png 1"
+1/texture = ExtResource( 3 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 192, 0, 32, 64 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 17 )
+1/shape_one_way = false
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 17 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+1/z_index = 0
+2/name = "Tiles.png 2"
+2/texture = ExtResource( 3 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 160, -32, 32, 96 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "Tiles.png 3"
+3/texture = ExtResource( 3 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 160, 0, 32, 64 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape = SubResource( 22 )
+3/shape_one_way = false
+3/shape_one_way_margin = 1.0
+3/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 22 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+3/z_index = 0
+4/name = "Tiles.png 4"
+4/texture = ExtResource( 3 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 160, 128, 96, 96 )
+4/tile_mode = 0
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape = SubResource( 23 )
+4/shape_one_way = false
+4/shape_one_way_margin = 1.0
+4/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 23 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+4/z_index = 0
+5/name = "Tiles.png 5"
+5/texture = ExtResource( 3 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 224, 128, 96, 96 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape = SubResource( 24 )
+5/shape_one_way = false
+5/shape_one_way_margin = 1.0
+5/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 24 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+5/z_index = 0
+6/name = "Tiles.png 6"
+6/texture = ExtResource( 3 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 224, 128, 32, 64 )
+6/tile_mode = 0
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape = SubResource( 25 )
+6/shape_one_way = false
+6/shape_one_way_margin = 1.0
+6/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 25 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+6/z_index = 0
+7/name = "tileset.png 7"
+7/texture = ExtResource( 7 )
+7/tex_offset = Vector2( 0, 0 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 16, 112, 32, 32 )
+7/tile_mode = 0
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape = SubResource( 26 )
+7/shape_one_way = false
+7/shape_one_way_margin = 1.0
+7/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 26 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+7/z_index = 0
+8/name = "tileset.png 8"
+8/texture = ExtResource( 7 )
+8/tex_offset = Vector2( 0, 0 )
+8/modulate = Color( 1, 1, 1, 1 )
+8/region = Rect2( 64, 112, 32, 32 )
+8/tile_mode = 0
+8/occluder_offset = Vector2( 0, 0 )
+8/navigation_offset = Vector2( 0, 0 )
+8/shape_offset = Vector2( 0, 0 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+8/shape = SubResource( 27 )
+8/shape_one_way = false
+8/shape_one_way_margin = 1.0
+8/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 27 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+8/z_index = 0
+9/name = "tileset.png 9"
+9/texture = ExtResource( 7 )
+9/tex_offset = Vector2( 0, 0 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 112, 75, 32, 69 )
+9/tile_mode = 0
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape = SubResource( 28 )
+9/shape_one_way = false
+9/shape_one_way_margin = 1.0
+9/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 28 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+9/z_index = 0
+10/name = "tileset.png 10"
+10/texture = ExtResource( 7 )
+10/tex_offset = Vector2( 0, 0 )
+10/modulate = Color( 1, 1, 1, 1 )
+10/region = Rect2( 48, 32, 32, 32 )
+10/tile_mode = 0
+10/occluder_offset = Vector2( 0, 0 )
+10/navigation_offset = Vector2( 0, 0 )
+10/shape_offset = Vector2( 0, 0 )
+10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+10/shape = SubResource( 18 )
+10/shape_one_way = false
+10/shape_one_way_margin = 1.0
+10/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 18 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+10/z_index = 0
+11/name = "tileset.png 11"
+11/texture = ExtResource( 7 )
+11/tex_offset = Vector2( 0, 0 )
+11/modulate = Color( 1, 1, 1, 1 )
+11/region = Rect2( 16, 32, 16, 32 )
+11/tile_mode = 0
+11/occluder_offset = Vector2( 0, 0 )
+11/navigation_offset = Vector2( 0, 0 )
+11/shape_offset = Vector2( 0, 0 )
+11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+11/shape = SubResource( 19 )
+11/shape_one_way = false
+11/shape_one_way_margin = 1.0
+11/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 19 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+11/z_index = 0
+12/name = "tileset.png 12"
+12/texture = ExtResource( 7 )
+12/tex_offset = Vector2( 0, 0 )
+12/modulate = Color( 1, 1, 1, 1 )
+12/region = Rect2( 96, 32, 16, 32 )
+12/tile_mode = 0
+12/occluder_offset = Vector2( 0, 0 )
+12/navigation_offset = Vector2( 0, 0 )
+12/shape_offset = Vector2( 0, 0 )
+12/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+12/shape = SubResource( 20 )
+12/shape_one_way = false
+12/shape_one_way_margin = 1.0
+12/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 20 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+12/z_index = 0
+13/name = "castledoors.png 13"
+13/texture = ExtResource( 4 )
+13/tex_offset = Vector2( 0, 0 )
+13/modulate = Color( 1, 1, 1, 1 )
+13/region = Rect2( 0, 15, 64, 80 )
+13/tile_mode = 0
+13/occluder_offset = Vector2( 0, 0 )
+13/navigation_offset = Vector2( 0, 0 )
+13/shape_offset = Vector2( 0, 0 )
+13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+13/shape_one_way = false
+13/shape_one_way_margin = 0.0
+13/shapes = [  ]
+13/z_index = 0
+14/name = "tileset.png 14"
+14/texture = ExtResource( 7 )
+14/tex_offset = Vector2( 0, 0 )
+14/modulate = Color( 1, 1, 1, 1 )
+14/region = Rect2( 192, 160, 32, 32 )
+14/tile_mode = 0
+14/occluder_offset = Vector2( 0, 0 )
+14/navigation_offset = Vector2( 0, 0 )
+14/shape_offset = Vector2( 0, 0 )
+14/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+14/shape = SubResource( 21 )
+14/shape_one_way = false
+14/shape_one_way_margin = 1.0
+14/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 21 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+14/z_index = 0
+15/name = "tileset.png 15"
+15/texture = ExtResource( 7 )
+15/tex_offset = Vector2( 0, 0 )
+15/modulate = Color( 1, 1, 1, 1 )
+15/region = Rect2( 237, 157, 6, 22 )
+15/tile_mode = 0
+15/occluder_offset = Vector2( 0, 0 )
+15/navigation_offset = Vector2( 0, 0 )
+15/shape_offset = Vector2( 0, 0 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+15/shape_one_way = false
+15/shape_one_way_margin = 0.0
+15/shapes = [  ]
+15/z_index = 0
+
+[sub_resource type="SegmentShape2D" id=15]
+a = Vector2( 96, -297 )
+b = Vector2( 97, 314 )
+
+[node name="Etapa1-front-church" type="Node2D"]
+position = Vector2( 8, 258 )
+script = ExtResource( 9 )
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 2 )]
+
+[node name="back-01" type="TileMap" parent="."]
+format = 1
+
+[node name="back-00" type="TileMap" parent="."]
+format = 1
+
+[node name="middle" type="TileMap" parent="."]
+format = 1
+
+[node name="collision" type="TileMap" parent="."]
+position = Vector2( -9, 22 )
+tile_set = SubResource( 3 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 528
+collision_mask = 3
+format = 1
+tile_data = PoolIntArray( -2293600, 7, 0, -2293598, 7, 0, -2293596, 536870919, 0, -2162528, 8, 0, -2162526, 8, 0, -2162524, 536870919, 0, -2031456, 8, 0, -2031454, 8, 0, -2031452, 536870919, 0, -1900384, 8, 0, -1900382, 8, 0, -1900380, 536870919, 0, -1900322, 1610612743, 0, -1900320, 1610612743, 0, -1900318, 1610612743, 0, -1900316, 10, 0, -1900314, 10, 0, -1900312, 10, 0, -1900310, 10, 0, -1900308, 10, 0, -1900306, 10, 0, -1834788, 1610612743, 0, -1769312, 8, 0, -1769310, 8, 0, -1769308, 536870919, 0, -1769254, 1610612743, 0, -1769233, -1073741816, 0, -1703720, 1610612743, 0, -1638240, 8, 0, -1638238, 8, 0, -1638236, 7, 0, -1638186, 1610612743, 0, -1638161, -1073741816, 0, -1572652, 1610612743, 0, -1507168, 8, 0, -1507166, 8, 0, -1507164, 7, 0, -1507118, 1610612743, 0, -1507089, -1073741816, 0, -1441584, 1610612743, 0, -1376096, 8, 0, -1376094, 8, 0, -1376092, 7, 0, -1376050, 1610612743, 0, -1376017, -1073741816, 0, -1310516, 1610612743, 0, -1245024, 8, 0, -1245022, 8, 0, -1245020, 7, 0, -1245018, 10, 0, -1245016, 10, 0, -1245014, 10, 0, -1245012, 10, 0, -1245010, 10, 0, -1245008, 10, 0, -1245006, 10, 0, -1245004, 10, 0, -1245002, 536870922, 0, -1245000, 10, 0, -1244998, 10, 0, -1244996, 10, 0, -1244994, 10, 0, -1244992, 10, 0, -1244990, 10, 0, -1244988, 10, 0, -1244986, 10, 0, -1244984, 10, 0, -1244982, 10, 0, -1244945, -1073741816, 0, -1179416, 13, 0, -1113873, -1073741816, 0, -982801, -1073741816, 0, -851741, 14, 0, -851739, 9, 0, -851737, 9, 0, -851735, 9, 0, -851733, 9, 0, -851731, 9, 0, -851729, 9, 0, -786207, 14, 0, -720673, 14, 0, -655139, 14, 0, -589605, 14, 0, -524071, 14, 0, -458619, 4, 0, -458613, 6, 0, -458611, 6, 0, -458609, 536870918, 0, -458607, 6, 0, -458605, 536870918, 0, -458603, 6, 0, -458601, 536870918, 0, -458599, 6, 0, -458597, 536870918, 0, -458595, 6, 0, -458593, 6, 0, -458537, 14, 0, -393055, 536870921, 0, -393053, 536870921, 0, -393051, 536870921, 0, -393049, 536870921, 0, -393047, 536870921, 0, -393045, 536870921, 0, -393043, 536870921, 0, -393041, 536870921, 0, -393039, 536870921, 0, -393037, 536870921, 0, -393035, 536870921, 0, -393033, 9, 0, -393031, 9, 0, -393029, 536870921, 0, -393027, 9, 0, -393025, 536870921, 0, -393023, 9, 0, -393021, 9, 0, -393019, 9, 0, -393017, 536870921, 0, -393015, 536870921, 0, -393013, 9, 0, -393011, 9, 0, -393009, 9, 0, -393007, 536870921, 0, -393005, 536870921, 0, -393003, 9, 0, -327553, 4, 0, -196487, 4, 0, -65486, 4, 0, -65480, 6, 0, -65478, 3, 0, -65476, 536870915, 0, -65474, 536870918, 0, -65472, 536870918, 0, -65470, 536870918, 0, -65468, 536870916, 0, -65421, 4, 0, 65538, 536870912, 0, 65540, 536870912, 0, 65542, 536870912, 0, 65544, 0, 0, 65546, 536870912, 0, 65548, 0, 0, 65550, 536870912, 0, 65552, 536870913, 0, 65554, 1, 0, 65556, 536870913, 0, 65558, 536870912, 0, 65560, 536870912, 0, 65562, 536870912, 0, 65564, 0, 0, 65566, 0, 0, 65568, 1, 0, 65570, 536870913, 0, 65572, 536870913, 0, 65574, 536870913, 0, 65576, 536870915, 0, 65578, 3, 0, 65580, 3, 0, 65582, 1, 0, 65584, 1, 0, 65610, 536870916, 0, 65645, 4, 0, 196688, 536870918, 0, 196689, 536870918, 0, 196691, 536870918, 0, 196693, 6, 0, 196695, 536870918, 0, 196697, 536870918, 0, 196698, 536870918, 0, 196700, 6, 0, 196702, 6, 0, 196704, 6, 0, 196706, 536870918, 0, 196707, 536870918, 0, 196709, 6, 0, 196711, 6, 0, 196713, 536870918, 0, 196715, 536870918, 0 )
+
+[node name="knight" parent="." instance=ExtResource( 5 )]
+position = Vector2( 3520, -183 )
+
+[node name="Camera2D" type="Camera2D" parent="knight"]
+position = Vector2( 165, -79 )
+current = true
+zoom = Vector2( 0.5, 0.5 )
+limit_left = 1
+limit_top = -10000011
+limit_right = 10000001
+offset_h = -0.31
+offset_v = 1.0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="knight/Camera2D"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="knight/Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0 )
+motion_offset = Vector2( -450, -450 )
+motion_mirroring = Vector2( 1536, 832 )
+
+[node name="Sprite" type="Sprite" parent="knight/Camera2D/ParallaxBackground/ParallaxLayer"]
+position = Vector2( -61, 5 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="front-00" type="TileMap" parent="."]
+format = 1
+
+[node name="front-01" type="TileMap" parent="."]
+format = 1
+
+[node name="LaverPullLadder" parent="." instance=ExtResource( 8 )]
+position = Vector2( 3797, -215 )
+
+[node name="Areas" type="Node2D" parent="."]
+
+[node name="ReturnToBridgeFromFrontChurch" type="Area2D" parent="Areas"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/ReturnToBridgeFromFrontChurch"]
+shape = SubResource( 15 )
+
+[connection signal="body_entered" from="Areas/ReturnToBridgeFromFrontChurch" to="Areas/ReturnToBridgeFromFrontChurch" method="_on_ReturnToBridgeFromFrontChurch_body_entered"]

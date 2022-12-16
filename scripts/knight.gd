@@ -1,83 +1,85 @@
 extends KinematicBody2D
 
-const moveSpeed  = 195
-const dashSpeed   = 600
-const jumpHeight = -890
-const gravity    = 1400
+var moveSpeed    = Env.speed * 10
+const dashSpeed  = 600
+const jumpHeight = -930
+const gravity    = 1600
 const mase       = 1.8      
-
+const UP         = Vector2(0, -1)
 var attack_area_position_y = -43
 var attack_area_position_x = -12
 
 var dead_area_position_y = 2
 var dead_area_position_x = -1
 var dead_area_scale_x = 1
-var dead_area_scale_y = 1
+var dead_area_scale_y = 1.1
+
 
 var collision_position_x = 0
 var collision_position_y = 0.5
 var collision_scale_x = 1
-var collision_scale_y = 0.5
+var collision_scale_y = 0.52
 
-const UP             = Vector2(0, -1)
+
 var dead             = false
 var timer_dead       = 0
 var time_lapsus_dead = 150
 
 var motion = Vector2(0, 0)
 
-var max_jump = 1
-var times_jump = 0
+var max_jump    = 1
+var times_jump  = 0
 var lapsus_step = 23
 
-var is_healing = false
-var is_jumping = false
-var is_attacking = false
-var is_dashing = false
+var is_healing    = false
+var is_jumping    = false
+var is_attacking  = false
+var is_dashing    = false
 var is_air_attack = 0 # 0=>false, 1=> attack, 2=>impact
-var is_climbing = false
-
-var going_up = false
-
-var animation
+var is_climbing   = false
+var going_up      = false
+var going_down    = false
 var state_machine
 
-var timer_not_take_damage = 0
+var timer_not_take_damage     = 0
 var time_loop_not_take_damage = 60
-var timer_pray = 500
+var timer_pray                = 500
 
 var timer_dash = 0 #PARCHE PARA NO QUEDAR CON EL DASH ACTIVO
-var limit_dash = 15 # 40 es 0.6seg aprox -- 5 = 0.15
+var limit_dash = 10 # 40 es 0.6seg aprox -- 5 = 0.15
 
 var current_attack = 0
 var timer_attack   = 0
 var limit_attack   = 20
-var anim
 
-func _ready():
-	animation = get_node("AnimationPlayer")
-	print(animation)
+var limit_disabled_collision_down_climb = 10
+var timer_disabled_collision_down_climb = 0
+
+var _delta = 0
+
+func _ready():	
+#	get_parent().get_node("knight").position.x = Env.init_position_stage.x
+#	get_parent().get_node("knight").position.y = Env.init_position_stage.y
+#	get_parent().get_node("knight").scale.x    = Env.init_position_stage.flip
 	state_machine = $AnimationTree.get("parameters/playback")	
 	state_machine.start("idle")
 		
 func _process(delta):	
-	if not dead:			
+	_delta = delta
+	if not dead:
 		motion.x = 0
 		health()
-		fall(delta)
-		
+		invulnerability()
 		if not is_healing:
-			move()	
-			climb()
+			move()
+			fall(delta)			
 			jump()
 			attack()
 			dash()
 			airAttack()
-			move_and_slide(motion, UP)
-		invulnerability()	
-
-		
-	else:		
+			climb()
+			move_and_slide(motion, UP)		
+	else:
 		timer_dead += 1
 		if timer_dead == time_lapsus_dead:	
 			Env.current_life = Env.life
@@ -88,22 +90,45 @@ func invulnerability ():
 		timer_not_take_damage += 1			
 	if timer_not_take_damage == time_loop_not_take_damage:
 		timer_not_take_damage = 0	
-func climb ():
+		
+func climb ():	
+	if timer_disabled_collision_down_climb > 0:
+		timer_disabled_collision_down_climb += 1
+	if timer_disabled_collision_down_climb < limit_disabled_collision_down_climb:
+		timer_disabled_collision_down_climb = 0
+		$CollisionShape2D.disabled = false
+
 	if is_climbing:
+		times_jump = 1
 		if Input.is_action_pressed("ui_up"):
 			state_machine.travel("climb")
-			print("deberia subir")
-		
+			motion.y   = moveSpeed * -1
+			going_up   = true
+			going_down = false
+		elif Input.is_action_pressed("ui_down"):
+			if $Sprite/RayDown.is_colliding():				
+				if timer_disabled_collision_down_climb > 0:
+					timer_disabled_collision_down_climb = 1
+				$CollisionShape2D.disabled = true
+			state_machine.travel("climb")
+			motion.y = moveSpeed
+			going_up = false
+			going_down = true
+			
+func fall(delta):
 	
-func fall(delta):	
-	motion.y += gravity * mase * delta	
-	if is_on_floor():
-		times_jump = max_jump
+	if not is_climbing or (not going_down and not going_up):
+		motion.y += gravity * mase * delta		
+		if is_on_floor():
+			times_jump = max_jump
+			motion.y = 0
+			is_jumping = false
+		if is_on_ceiling():		
+			motion.y += gravity * mase * delta
+			is_jumping = false	
+	else:
+		state_machine.travel("climb-pause")
 		motion.y = 0
-		is_jumping = false
-	if is_on_ceiling():
-		motion.y += gravity * mase * delta
-		is_jumping = false	
 
 func move():	
 	if Input.is_action_pressed("ui_right"):
@@ -123,22 +148,12 @@ func move():
 
 func health():
 	if Input.is_action_just_pressed("health") and not is_attacking and not is_jumping and not is_dashing and not is_air_attack:
-		print("HEALTH")
+		SELF_HEALING()
 
-		if Env.current_potions > 0:
-			is_healing = true
-			Env.current_potions -= 1
-
-			state_machine.travel("health")	
-			Env.current_life += Env.recovery_potion
-			Env.current_life = Env.current_life if Env.current_life <= Env.life else Env.life
-			var canvasLayer = get_tree().get_root().find_node("CanvasLayer", true,false)	
-			canvasLayer.handleSetHpBar()
-			canvasLayer.handleUploadPotas()
-
-		
 func jump():
+
 	if Input.is_action_just_pressed("jump") and times_jump > 0:
+		END_DASH()
 		is_jumping = true
 		times_jump -= 1
 		state_machine.travel("jump")
@@ -151,7 +166,7 @@ func attack():
 		timer_attack += 1
 		if timer_attack == limit_attack:
 			END_ATTACK(0);			
-	if Input.is_action_just_pressed("attack") and timer_attack == 0 and not is_attacking:
+	if Input.is_action_just_pressed("attack") and not is_climbing and timer_attack == 0 and not is_attacking:
 		if current_attack == 0:		
 			INIT_TRAVEL_ATTACK("attack")			
 		elif current_attack == 1:	
@@ -172,14 +187,44 @@ func dash():
 		timer_dash += 1
 		if timer_dash == limit_dash:
 			END_DASH()
-
 	if Input.is_action_just_pressed("dash") and timer_dash == 0 and not is_dashing and not is_jumping and motion.x != 0:		
 		INIT_TRAVEL_DASH()
 
-	
-
 func pray ():
 	state_machine.travel("pray")
+	
+#acumular monedas
+func addCoin():	
+	var canvasLayer = get_tree().get_root().find_node("CanvasLayer", true,false)	
+	canvasLayer.handleCoinCollected()
+
+#Area de muerte Gústaf
+func _on_DeadArea_area_entered(area):
+	if not dead:		
+		if area.is_in_group("Enemies") and timer_not_take_damage == 0 and area.visible == true:			
+			RECIVE_HURT(area)							
+		elif area.is_in_group("Ladder"):
+			is_climbing = true
+		elif area.is_in_group("SpikesDead"):
+			INSTANT_DEAD(area)
+
+
+func _on_DeadArea_area_exited(area):
+	if area.is_in_group("Ladder"):
+		is_climbing = false
+		going_down  = false
+		going_up    = false
+		motion.y += gravity * mase * _delta
+		
+func _on_AttackArea_area_entered(area):
+	if not dead:
+		if area.is_in_group("Enemies"):
+			if is_air_attack == 1:
+				Env.attack *= Env.plus_air_attack
+				is_air_attack = 2
+				$AnimationPlayer.play("air-attack-impact")			
+			Env.attack = Env.memory_attack
+			$AttackArea/CollisionShape2D.disabled = true
 
 func _callMethodFinishAttack () :
 	END_ATTACK(1);
@@ -215,76 +260,62 @@ func INIT_TRAVEL_DASH ():
 	is_dashing = true	
 	timer_dash = 1	
 	state_machine.travel("dash")
-	$CollisionShape2D.position.x = 0
-	$CollisionShape2D.position.y = 26
-	$CollisionShape2D.scale.x    = 2
-	$CollisionShape2D.scale.y    = 0.15	
+	$CollisionShape2D.position.x          = 0
+	$CollisionShape2D.position.y          = 26
+	$CollisionShape2D.scale.x             = 2
+	$CollisionShape2D.scale.y             = 0.15	
 	$DeadArea/CollisionShape2D.position.x = 3
 	$DeadArea/CollisionShape2D.position.y = 17
 	$DeadArea/CollisionShape2D.scale.x    = 5
 	$DeadArea/CollisionShape2D.scale.y    = 0.3	
 
 func END_ATTACK (to_attack = 0) :
-	is_attacking = false
+	is_attacking   = false
 	current_attack = to_attack
-	timer_attack = 0
+	timer_attack   = 0
 	$AttackArea/CollisionShape2D.disabled = true
 
 func END_DASH ():
-	timer_dash = 0
-	is_dashing = false		
-	$CollisionShape2D.position.x = collision_position_x
-	$CollisionShape2D.position.y = collision_position_y
-	$CollisionShape2D.scale.x    = collision_scale_x
-	$CollisionShape2D.scale.y    = collision_scale_y		
+	timer_dash  = 0
+	is_dashing  = false		
+	$CollisionShape2D.position.x          = collision_position_x
+	$CollisionShape2D.position.y          = collision_position_y
+	$CollisionShape2D.scale.x             = collision_scale_x
+	$CollisionShape2D.scale.y             = collision_scale_y		
 	$DeadArea/CollisionShape2D.position.x = dead_area_position_y 
 	$DeadArea/CollisionShape2D.position.y = dead_area_position_x
-	$DeadArea/CollisionShape2D.scale.x = dead_area_scale_x
-	$DeadArea/CollisionShape2D.scale.y = dead_area_scale_y	
-#acumular monedas
-func addCoin():	
-	var canvasLayer = get_tree().get_root().find_node("CanvasLayer", true,false)	
-	canvasLayer.handleCoinCollected()
+	$DeadArea/CollisionShape2D.scale.x    = dead_area_scale_x
+	$DeadArea/CollisionShape2D.scale.y    = dead_area_scale_y	
 
-#Area de muerte Gústaf
-func _on_DeadArea_area_entered(area):
-	if not dead:		
-		print(area.get_name())
-		if area.is_in_group("Enemies") and timer_not_take_damage == 0 and area.visible == true:
-			print(area.visible)
-			var enemyAttack = area.get_parent().get_parent().attack
-			if is_air_attack == 1:
-				enemyAttack *= Env.low_damage_air_attack
-			timer_not_take_damage = 1
-			Env.current_life -= enemyAttack	
-			state_machine.travel("hurt")
-			$SoundHurt.play()		
-#
-			var canvasLayer = get_tree().get_root().find_node("CanvasLayer", true,false)	
-			canvasLayer.handleSetHpBar()				
-			if Env.current_life <= 0:
-				motion.y -= 1500
-				$SoundDead.playing = true
-				$AnimationPlayer.play("death")				
-				dead = true	
-				
-		elif area.is_in_group("Ladder"):
-			is_climbing = true
-			print("en la escalera")
+func SELF_HEALING ():
+	if Env.current_potions > 0:
+		is_healing = true
+		Env.current_potions -= 1
+		state_machine.travel("health")	
+		Env.current_life += Env.recovery_potion
+		Env.current_life = Env.current_life if Env.current_life <= Env.life else Env.life
+		var canvasLayer = get_tree().get_root().find_node("CanvasLayer", true,false)	
+		canvasLayer.handleSetHpBar()
+		canvasLayer.handleUploadPotas()
+	
+func RECIVE_HURT (area):	
+	state_machine.travel("hurt")
+	$SoundHurt.play()	
+	timer_not_take_damage = 1
+	Env.current_life -= Util.apply_damage_body(area.get_parent().attack, Env._get_defense())	
+	Util.get_an_script("CanvasLayer").handleSetHpBar()					
+	if Env.current_life <= 0:
+		motion.y -= 1500
+		$SoundDead.playing = true
+		state_machine.travel("death")				
+		dead = true
 		
-func _on_AttackArea_area_entered(area):
-	if not dead:
-		if area.is_in_group("Enemies"):
-			if is_air_attack == 1:
-				Env.attack *= Env.plus_air_attack
-				is_air_attack = 2
-				$AnimationPlayer.play("air-attack-impact")			
-			Env.attack = Env.memory_attack
-			$AttackArea/CollisionShape2D.disabled = true
+func INSTANT_DEAD (area):
+	Env.current_life -= Env.current_life	
+	var canvasLayer = get_tree().get_root().find_node("CanvasLayer", true,false)	
+	canvasLayer.handleSetHpBar()
+	$SoundDead.playing = true
+	state_machine.travel("death")
+	dead = true	
+	
 
-
-
-func _on_DeadArea_area_exited(area):
-	if area.is_in_group("Ladder"):
-		is_climbing = false
-		print("Sali de la la escalera")

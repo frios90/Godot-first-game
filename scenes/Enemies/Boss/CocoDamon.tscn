@@ -148,7 +148,7 @@ position = Vector2( -1.5, -3 )
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 4
-frame = 4
+frame = 1
 
 [node name="DeadArea" type="Area2D" parent="Sprite" groups=["Enemies"]]
 position = Vector2( 1.5, 3 )

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 237.5, 10 )
+
+[node name="SpikesDead" type="Area2D" groups=["SpikesDead"]]
+position = Vector2( -34, 2 )
+collision_layer = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 33, 9 )
+shape = SubResource( 1 )

@@ -1,0 +1,347 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://scripts/MenuPause.gd" type="Script" id=1]
+[ext_resource path="res://assets/Gui/Textures/Interface/ControlScreen/Panels/PanelBottom.png" type="Texture" id=2]
+[ext_resource path="res://fonts/DePixelBreit.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 19
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=18]
+size = 18
+font_data = ExtResource( 3 )
+
+[node name="MenuPause" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.666667 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+anchor_left = 0.994
+anchor_top = 0.987
+anchor_right = 0.994
+anchor_bottom = 0.987
+margin_left = -194.856
+margin_top = -168.2
+margin_right = 0.143982
+margin_bottom = -0.200012
+
+[node name="ButtonContinue" type="Button" parent="ColorRect/VBoxContainer"]
+pause_mode = 2
+margin_right = 195.0
+margin_bottom = 20.0
+text = "Continuar"
+
+[node name="ButtonQuit" type="Button" parent="ColorRect/VBoxContainer"]
+pause_mode = 2
+margin_top = 24.0
+margin_right = 195.0
+margin_bottom = 44.0
+text = "Salir"
+
+[node name="Statistics" type="Sprite" parent="."]
+position = Vector2( 192, 296 )
+scale = Vector2( 1.0618, 0.743392 )
+texture = ExtResource( 2 )
+
+[node name="00-lvl" type="Label" parent="Statistics"]
+margin_left = -113.0
+margin_top = -334.0
+margin_right = 121.0
+margin_bottom = -269.0
+custom_fonts/font = SubResource( 4 )
+text = "lvl"
+align = 1
+valign = 1
+
+[node name="01-name" type="Label" parent="Statistics"]
+anchor_left = -0.029
+anchor_top = -0.022
+anchor_right = -0.029
+anchor_bottom = -0.022
+margin_left = -110.168
+margin_top = -359.382
+margin_right = 131.832
+margin_bottom = -314.382
+custom_fonts/font = SubResource( 2 )
+text = "lvl"
+align = 1
+valign = 1
+
+[node name="02-max-hp" type="Label" parent="Statistics"]
+margin_left = -143.0
+margin_top = -248.0
+margin_right = -26.0
+margin_bottom = -226.0
+rect_pivot_offset = Vector2( 293.84, 32.2844 )
+custom_fonts/font = SubResource( 1 )
+text = "HP"
+valign = 1
+
+[node name="Gui-max-hp" type="Label" parent="Statistics"]
+margin_left = 15.0
+margin_top = -248.0
+margin_right = 128.0
+margin_bottom = -226.0
+rect_pivot_offset = Vector2( 60.2749, 32.2845 )
+custom_fonts/font = SubResource( 3 )
+text = "220 / 220"
+align = 2
+valign = 1
+
+[node name="03-fuerza" type="Label" parent="Statistics"]
+margin_left = -143.0
+margin_top = -226.0
+margin_right = -26.0
+margin_bottom = -204.0
+rect_pivot_offset = Vector2( 278.771, 32.2844 )
+custom_fonts/font = SubResource( 1 )
+text = "Fuerza"
+valign = 1
+
+[node name="Gui-fuerza" type="Label" parent="Statistics"]
+margin_left = 60.0
+margin_top = -226.0
+margin_right = 128.0
+margin_bottom = -204.0
+rect_pivot_offset = Vector2( 45.2062, 32.2844 )
+custom_fonts/font = SubResource( 3 )
+text = "5"
+align = 2
+valign = 1
+
+[node name="04-ataque" type="Label" parent="Statistics"]
+margin_left = -143.0
+margin_top = -107.615
+margin_right = -22.0
+margin_bottom = -87.6148
+rect_pivot_offset = Vector2( 278.771, 32.2844 )
+custom_fonts/font = SubResource( 1 )
+text = "Ataque"
+valign = 1
+
+[node name="Gui-ataque" type="Label" parent="Statistics"]
+margin_left = 60.0
+margin_top = -107.615
+margin_right = 128.0
+margin_bottom = -85.6148
+rect_pivot_offset = Vector2( 45.2062, 32.2844 )
+custom_fonts/font = SubResource( 3 )
+text = "16"
+align = 2
+valign = 1
+
+[node name="05-velocidad" type="Label" parent="Statistics"]
+margin_left = -143.153
+margin_top = -182.945
+margin_right = 7.84695
+margin_bottom = -160.945
+rect_pivot_offset = Vector2( 278.771, 32.2844 )
+custom_fonts/font = SubResource( 1 )
+text = "Desplazamiento"
+valign = 1
+
+[node name="Gui-velocidad" type="Label" parent="Statistics"]
+margin_left = 60.275
+margin_top = -182.945
+margin_right = 128.275
+margin_bottom = -160.945
+rect_pivot_offset = Vector2( 45.2062, 32.2844 )
+custom_fonts/font = SubResource( 3 )
+text = "1"
+align = 2
+valign = 1
+
+[node name="06-experiencia" type="Label" parent="Statistics"]
+margin_left = -143.0
+margin_top = 11.0
+margin_right = 30.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 5 )
+text = "Exp."
+
+[node name="Gui-experiencia" type="Label" parent="Statistics"]
+margin_left = 60.0
+margin_top = 11.0
+margin_right = 128.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 6 )
+text = "0"
+align = 2
+
+[node name="07-sig-nivel" type="Label" parent="Statistics"]
+margin_left = -143.0
+margin_top = 32.0
+margin_right = 60.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 7 )
+text = "Sig. nvl"
+
+[node name="Gui-next-lvl" type="Label" parent="Statistics"]
+margin_left = 52.7406
+margin_top = 32.2845
+margin_right = 127.741
+margin_bottom = 54.2845
+custom_fonts/font = SubResource( 8 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="08-defensa" type="Label" parent="Statistics"]
+margin_left = -143.153
+margin_top = -85.9911
+margin_right = -53.153
+margin_bottom = -65.9911
+custom_fonts/font = SubResource( 9 )
+text = "Defensa"
+
+[node name="Gui-defensa" type="Label" parent="Statistics"]
+margin_left = 60.275
+margin_top = -85.9911
+margin_right = 128.275
+margin_bottom = -65.9911
+custom_fonts/font = SubResource( 10 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="09-inteligencia" type="Label" parent="Statistics"]
+margin_left = -143.0
+margin_top = -204.0
+margin_right = -11.0
+margin_bottom = -182.0
+custom_fonts/font = SubResource( 11 )
+text = "Inteligencia"
+
+[node name="Gui-inteligencia" type="Label" parent="Statistics"]
+margin_left = 60.275
+margin_top = -204.468
+margin_right = 128.275
+margin_bottom = -182.468
+custom_fonts/font = SubResource( 12 )
+text = "1"
+align = 2
+
+[node name="10-ataque-magico" type="Label" parent="Statistics"]
+margin_left = -143.153
+margin_top = -64.4682
+margin_right = 26.8469
+margin_bottom = -44.4682
+custom_fonts/font = SubResource( 13 )
+text = "Ataque mágico"
+
+[node name="Gui-ataque-magico" type="Label" parent="Statistics"]
+margin_left = 68.0
+margin_top = -64.6148
+margin_right = 128.0
+margin_bottom = -44.6148
+custom_fonts/font = SubResource( 14 )
+text = "1"
+align = 2
+
+[node name="11-defensa-magica" type="Label" parent="Statistics"]
+margin_left = -143.0
+margin_top = -42.6148
+margin_right = 39.0
+margin_bottom = -17.6148
+custom_fonts/font = SubResource( 15 )
+text = "Defensa mágica"
+
+[node name="Gui-defensa-magica" type="Label" parent="Statistics"]
+margin_left = 67.8094
+margin_top = -42.9452
+margin_right = 127.809
+margin_bottom = -20.9452
+custom_fonts/font = SubResource( 16 )
+text = "1"
+align = 2
+
+[node name="12-suerte" type="Label" parent="Statistics"]
+margin_left = -143.153
+margin_top = -161.422
+margin_right = -102.153
+margin_bottom = -147.422
+custom_fonts/font = SubResource( 17 )
+text = "Suerte"
+
+[node name="Gui-suerte" type="Label" parent="Statistics"]
+margin_left = 83.0
+margin_top = -161.0
+margin_right = 128.0
+margin_bottom = -141.0
+custom_fonts/font = SubResource( 18 )
+text = "1"
+align = 2
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/ButtonContinue" to="." method="_on_ButtonContinue_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/ButtonQuit" to="." method="_on_ButtonQuit_pressed"]

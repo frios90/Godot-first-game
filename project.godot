@@ -11,12 +11,13 @@ config_version=4
 [application]
 
 config/name="practica_1"
-run/main_scene="res://scenes/Etapas/Etapa1.tscn"
+run/main_scene="res://scenes/Worl/Cementery/Cementery-001-intro.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Env="*res://scripts/global/env.gd"
+Util="*res://scripts/global/util.gd"
 
 [gui]
 
@@ -55,6 +56,11 @@ health={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":65,"unicode":0,"echo":false,"script":null)
  ]
 }
+pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":80,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -67,6 +73,8 @@ health={
 2d_physics/layer_7="CocoDeamon-Boss"
 2d_physics/layer_8="float-plataform"
 2d_physics/layer_9="dead-zones"
+2d_physics/layer_10="floor-custom-collision"
+2d_physics/layer_11="mapElements"
 
 [physics]
 

@@ -1,0 +1,102 @@
+extends KinematicBody2D
+
+export (int) var level  = 1
+export (int) var scaleX = -1
+export (int) var withMoveAndFlip = 0
+export (int) var maxSpeed = 26
+
+const gravity    = 1600
+const up         = Vector2(0, -1)
+const ptsDead    = 150
+
+var dead         = false
+
+var life         = 100
+var current_life = life if level == 1 else life * (level * 0.77)
+
+var base_attack  = 35
+var base_defense = 10
+var attack       = base_attack if level == 1 else base_attack * (level * 0.77)
+var defense      = base_defense if level == 1 else base_defense * (level * 0.55)
+
+var motion = Vector2(0, 0)
+var is_attacking  = false
+var _delta = 0
+var state_machine
+var useRandSound = 0
+
+func _ready():
+	attack       = base_attack if level == 1 else base_attack * (level * 0.77)
+	defense      = base_defense if level == 1 else base_defense * (level * 0.55)
+	current_life = life if level == 1 else life * (level * 0.77)
+	print(attack)
+	print(current_life)
+
+	scale.x = scaleX
+	state_machine = $AnimationTree.get("parameters/playback")	
+	if withMoveAndFlip == 1:
+		state_machine.start("walk")		
+		motion.x = maxSpeed * scaleX
+	else:
+		state_machine.start("idle")
+		motion.x = 0
+	$AttackArea/CollisionShape2D.disabled = true
+
+func _process(delta):	
+
+	_delta = delta
+	if not dead:	
+		motion.y += gravity	* delta
+		moveOrIdle()
+		attacking()		
+		flip()
+		if is_on_floor():
+			motion.y = 0
+	else:
+		motion = Vector2(0, 0)	
+	move_and_slide(motion, up)
+		
+func moveOrIdle():
+	if withMoveAndFlip == 1:
+		state_machine.travel("walk")
+	else:
+		state_machine.travel("idle")
+		
+func flip():
+	if withMoveAndFlip == 1 :
+		if $RayFlip.is_colliding() or $RayEnd.is_colliding() == false:
+			motion.x *= -1
+			scale.x  *= -1
+			
+func attacking () :
+	if $RayAttack.is_colliding() or $RayAttack2.is_colliding():
+		state_machine.travel("attack")	
+		
+func _callMethodStartAttack () :
+	is_attacking = true
+	$AttackArea/CollisionShape2D.disabled = false
+		
+func _callMethodFinishAttack () :
+	is_attacking = false
+	$AttackArea/CollisionShape2D.disabled = true
+	
+func _callMethodFinishDead () :
+	queue_free()
+
+func _on_DeadArea_area_entered(area):
+	if area.is_in_group("Sword"):		
+		applySoundSword()			
+		if (dead == false):
+			life = life - Env._get_attack()
+			state_machine.travel("hurt")	
+		if life <= 0:
+			if (dead == false):
+				dead =  true			
+				state_machine.travel("dead")
+				Util.get_an_script("CanvasLayer").handleIncrementExp(ptsDead)
+
+func applySoundSword ():
+	if useRandSound == 0:
+		$SwordHurt01.playing  = true
+	else:
+		$SwordHurt02.playing  = true
