@@ -5,8 +5,11 @@ var paused     : Object = null
 
 func _ready () :		
 	$LabelTotalCoins.text = String(Env.coins)
-	$LabelPotas.text      = String(Env.current_potions)
-	$HPbar.value          = (float(100) / float(Env.life)) * float(Env.current_life)
+	$LabelPotas.text      = String(Players.selected.selected_item.current)
+	$HPbar.value          = (float(100) / float(Players.selected.stats.health_points)) * float(Players.selected.stats.current_hp)
+	$MPbar.value          = (float(100) / float(Players.selected.stats.magic_points)) * float(Players.selected.stats.current_mp)
+	$StamineBar.value     = (float(100) / float(Players.selected.stats.stamine)) * float(Players.selected.stats.current_stamine)	
+	$GuiLvlLabel.text     = String(Players.selected.stats.level)
 	$HPBarBoss.visible    = false
 	$BackAudio.playing    = true
 	
@@ -23,7 +26,7 @@ func on_paused_quit() -> void:
 func handleStartFigthingBoss ():	
 #	get_parent().get_node("BossTheme").playing = true
 	$HPBarBoss.visible = true
-	$HPBarBoss.value += 100	
+	$HPBarBoss.value  += 100
 
 func handleFinishFigthingBoss ():	
 	get_parent().get_node("BossTheme").playing = false
@@ -40,13 +43,19 @@ func handleCoinCollected():
 	$LabelTotalCoins.text = String(Env.coins)
 	
 func handleIncrementExp(points):
-	Env.experience += points
-	Env.calculateLevel()
+	Players.selected.stats.experience += points
+	Players.calculateLevel()
 		
 func handleSetHpBar ():
-	$LabelLife.text = String(Env.current_life)		
-	$HPbar.value    = (float(100) / float(Env.life)) * float(Env.current_life)	
+	$LabelLife.text = String(Players.selected.stats.current_hp)		
+	$HPbar.value    = (float(100) / float(Players.selected.stats.health_points)) * float(Players.selected.stats.current_hp)	
 		
 func handleUploadPotas ():
-	$LabelPotas.text = String(Env.current_potions)
+	$LabelPotas.text = String(Players.selected.selected_item.current)
+	
+func handleSetLevelInUiPlayer () :
+	$GuiLvlLabel.text = String(Players.selected.stats.level)
+	
+func handleSetStamineBar ():
+	$StamineBar.value  = (float(100) / float(Players.selected.stats.stamine)) * float(Players.selected.stats.current_stamine)	
 

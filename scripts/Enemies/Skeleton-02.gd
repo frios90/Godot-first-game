@@ -1,4 +1,7 @@
 extends KinematicBody2D
+const true_positon_sprite = false
+var floating_text = preload("res://scenes/FloatingText.tscn")
+var ftd = 0
 
 export (int) var level  = 1
 export (int) var scaleX = -1
@@ -12,12 +15,12 @@ const ptsDead    = 150
 var dead         = false
 
 var life         = 100
-var current_life = life if level == 1 else life * (level * 0.77)
+onready var current_life = life if level == 1 else life * (level * 0.77)
 
 var base_attack  = 35
-var base_defense = 10
-var attack       = base_attack if level == 1 else base_attack * (level * 0.77)
-var defense      = base_defense if level == 1 else base_defense * (level * 0.55)
+var base_defense = 15
+onready var attack       = base_attack if level == 1 else base_attack * (level * 0.77)
+onready var defense      = base_defense if level == 1 else base_defense * (level * 0.55)
 
 var motion = Vector2(0, 0)
 var is_attacking  = false
@@ -26,11 +29,9 @@ var state_machine
 var useRandSound = 0
 
 func _ready():
-	attack       = base_attack if level == 1 else base_attack * (level * 0.77)
-	defense      = base_defense if level == 1 else base_defense * (level * 0.55)
-	current_life = life if level == 1 else life * (level * 0.77)
-	print(attack)
-	print(current_life)
+		
+	$HPbar.max_value = life if level == 1 else life * (level * 0.77)
+	$HPbar.value     = $HPbar.max_value
 
 	scale.x = scaleX
 	state_machine = $AnimationTree.get("parameters/playback")	
@@ -85,11 +86,19 @@ func _callMethodFinishDead () :
 
 func _on_DeadArea_area_entered(area):
 	if area.is_in_group("Sword"):		
+		Util.get_an_script("Camera2D").trauma = true
 		applySoundSword()			
 		if (dead == false):
-			life = life - Env._get_attack()
+			current_life = current_life - Players._get_attack(defense)
 			state_machine.travel("hurt")	
-		if life <= 0:
+			ftd = floating_text.instance()
+			ftd.type = "damage"
+			ftd.flip = motion.x
+			ftd.true_positon_sprite = true_positon_sprite
+			ftd.amount = Players._get_attack(defense)
+			add_child(ftd)
+			$HPbar.value = current_life
+		if current_life <= 0:
 			if (dead == false):
 				dead =  true			
 				state_machine.travel("dead")

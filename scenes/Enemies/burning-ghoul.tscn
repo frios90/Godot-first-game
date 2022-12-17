@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/Enemies/burning-ghoul.gd" type="Script" id=1]
 [ext_resource path="res://fonts/burning-ghoul.png" type="Texture" id=2]
 [ext_resource path="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits_8.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits_7.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/imgs/hp-bar-bg-small.png" type="Texture" id=5]
+[ext_resource path="res://assets/imgs/hp-bar-prog-small.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 20 )
@@ -78,6 +80,7 @@ extents = Vector2( 12, 21 )
 extents = Vector2( 13, 21 )
 
 [node name="burning-ghoul" type="KinematicBody2D"]
+scale = Vector2( 1.5, 1.5 )
 collision_layer = 2
 collision_mask = 528
 script = ExtResource( 1 )
@@ -120,7 +123,7 @@ position = Vector2( -32, 0 )
 enabled = true
 cast_to = Vector2( -56, 0 )
 
-[node name="DeadArea" type="Area2D" parent="."]
+[node name="DeadArea" type="Area2D" parent="." groups=["EnemiesDefense"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
 position = Vector2( 3, 11 )
@@ -131,5 +134,14 @@ stream = ExtResource( 3 )
 
 [node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+
+[node name="HPbar" type="TextureProgress" parent="."]
+margin_left = -8.0
+margin_top = -24.0
+margin_right = 11.0
+margin_bottom = -22.0
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 6 )
+nine_patch_stretch = true
 
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

@@ -24,6 +24,14 @@ var is_attacking  = true
 var useRandSound = 0
 
 func _ready():
+	
+	attack       = base_attack if level == 1 else base_attack * (level * 0.77)
+	defense      = base_defense if level == 1 else base_defense * (level * 0.55)
+	current_life = life if level == 1 else life * (level * 0.77)
+	
+	$HPbar.max_value = life if level == 1 else life * (level * 0.77)
+	$HPbar.value     = life if level == 1 else life * (level * 0.77)
+	
 	scale.x = scaleX
 	$AnimationPlayer.play("attack")
 	if withMoveAndFlip == 1:
@@ -49,16 +57,17 @@ func flip():
 			scale.x  *= -1
 
 func _on_DeadArea_area_entered(area):
-	if area.is_in_group("Sword"):		
+	if area.is_in_group("Sword"):
+		Util.get_an_script("Camera2D").trauma = true
 		applySoundSword()			
 		if (dead == false):
-			life = life - Env._get_attack()
-		if life <= 0:
+			current_life = current_life - Players._get_attack()
+			$HPbar.value = current_life
+		if current_life <= 0:
 			if (dead == false):
 				dead =  true
 				$AnimationPlayer.play("dead")
 				Util.get_an_script("CanvasLayer").handleIncrementExp(ptsDead)
-				
 
 func applySoundSword ():
 	if useRandSound == 0:

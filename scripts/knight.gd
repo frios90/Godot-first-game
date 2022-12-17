@@ -1,27 +1,19 @@
 extends KinematicBody2D
+var floating_text = preload("res://scenes/FloatingText.tscn")
+var ftd           = 0
+const up          = Vector2(0, -1)
 
-var moveSpeed    = Env.speed * 10
-const dashSpeed  = 600
-const jumpHeight = -930
-const gravity    = 1600
-const mase       = 1.8      
-const UP         = Vector2(0, -1)
 var attack_area_position_y = -43
 var attack_area_position_x = -12
+var dead_area_position_y   = 2
+var dead_area_position_x   = -1
+var dead_area_scale_x      = 1
+var dead_area_scale_y      = 1.1
+var collision_position_x   = 0
+var collision_position_y   = 0.5
+var collision_scale_x      = 1
+var collision_scale_y      = 0.52
 
-var dead_area_position_y = 2
-var dead_area_position_x = -1
-var dead_area_scale_x = 1
-var dead_area_scale_y = 1.1
-
-
-var collision_position_x = 0
-var collision_position_y = 0.5
-var collision_scale_x = 1
-var collision_scale_y = 0.52
-
-
-var dead             = false
 var timer_dead       = 0
 var time_lapsus_dead = 150
 
@@ -48,7 +40,7 @@ var timer_pray                = 500
 var timer_dash = 0 #PARCHE PARA NO QUEDAR CON EL DASH ACTIVO
 var limit_dash = 10 # 40 es 0.6seg aprox -- 5 = 0.15
 
-var current_attack = 0
+var event_attack = 0
 var timer_attack   = 0
 var limit_attack   = 20
 
@@ -66,7 +58,7 @@ func _ready():
 		
 func _process(delta):	
 	_delta = delta
-	if not dead:
+	if not Players.selected.dead:
 		motion.x = 0
 		health()
 		invulnerability()
@@ -76,14 +68,15 @@ func _process(delta):
 			jump()
 			attack()
 			dash()
-			airAttack()
 			climb()
-			move_and_slide(motion, UP)		
+			move_and_slide(motion, up)		
 	else:
 		timer_dead += 1
 		if timer_dead == time_lapsus_dead:	
-			Env.current_life = Env.life
-			var restart = get_tree().reload_current_scene()
+			Players.selected.stats.current_hp = Players.selected.stats.health_points
+			Players.selected.stats.current_mp = Players.selected.stats.magic_points			
+			Players.selected.dead = false
+			get_tree().reload_current_scene()
 
 func invulnerability ():
 	if timer_not_take_damage > 0:			
@@ -102,7 +95,7 @@ func climb ():
 		times_jump = 1
 		if Input.is_action_pressed("ui_up"):
 			state_machine.travel("climb")
-			motion.y   = moveSpeed * -1
+			motion.y   = Players.selected.stats.move_speed * -1
 			going_up   = true
 			going_down = false
 		elif Input.is_action_pressed("ui_down"):
@@ -111,20 +104,19 @@ func climb ():
 					timer_disabled_collision_down_climb = 1
 				$CollisionShape2D.disabled = true
 			state_machine.travel("climb")
-			motion.y = moveSpeed
+			motion.y = Players.selected.stats.move_speed
 			going_up = false
 			going_down = true
 			
-func fall(delta):
-	
+func fall(delta):	
 	if not is_climbing or (not going_down and not going_up):
-		motion.y += gravity * mase * delta		
+		motion.y += Players.selected.stats.gravity * Players.selected.stats.mase * delta		
 		if is_on_floor():
 			times_jump = max_jump
 			motion.y = 0
 			is_jumping = false
 		if is_on_ceiling():		
-			motion.y += gravity * mase * delta
+			motion.y += Players.selected.stats.gravity * Players.selected.stats.mase * delta
 			is_jumping = false	
 	else:
 		state_machine.travel("climb-pause")
@@ -133,13 +125,13 @@ func fall(delta):
 func move():	
 	if Input.is_action_pressed("ui_right"):
 		state_machine.travel("walk")
-		motion.x = moveSpeed if not is_dashing else dashSpeed
+		motion.x = Players.selected.stats.move_speed if not is_dashing else Players.selected.stats.dash_speed
 		$Sprite.flip_h = false
 		$AttackArea/CollisionShape2D.position.x = -8
 		
 	elif Input.is_action_pressed("ui_left"):
 		state_machine.travel("walk")
-		motion.x = -moveSpeed if not is_dashing else dashSpeed * -1
+		motion.x = -Players.selected.stats.move_speed if not is_dashing else Players.selected.stats.dash_speed * -1
 		$Sprite.flip_h = true
 		$AttackArea/CollisionShape2D.position.x = -65	
 	else:  
@@ -157,30 +149,28 @@ func jump():
 		is_jumping = true
 		times_jump -= 1
 		state_machine.travel("jump")
-		motion.y = jumpHeight
+		motion.y = Players.selected.stats.jump_height
 	if Input.is_action_just_released("jump") and motion.y < 0:
 		motion.y = 0
 	
 func attack():	
+	if Players.selected.stats.current_stamine < Players.selected.stats.stamine :
+		Players.selected.stats.current_stamine += Players.selected.stats.stamine_recovery
+		Util.get_an_script("CanvasLayer").handleSetStamineBar()
+		
 	if is_attacking == true and timer_attack > 0:
 		timer_attack += 1
 		if timer_attack == limit_attack:
 			END_ATTACK(0);			
 	if Input.is_action_just_pressed("attack") and not is_climbing and timer_attack == 0 and not is_attacking:
-		if current_attack == 0:		
-			INIT_TRAVEL_ATTACK("attack")			
-		elif current_attack == 1:	
-			INIT_TRAVEL_ATTACK("attack3")
+		if Players.selected.stats.current_stamine >= Players.selected.stats.stamine_cost:
+			if event_attack == 0:		
+				INIT_TRAVEL_ATTACK("attack")			
+			elif event_attack == 1:	
+				INIT_TRAVEL_ATTACK("attack3")
+			
 
-func airAttack ():
-	if is_jumping == true:
-		if Input.is_action_just_pressed("air-attack") :				
-			is_air_attack = 1		
-			state_machine.travel("air-attack")	
-			$AttackArea/CollisionShape2D.disabled = false
-			$AttackArea/CollisionShape2D.position.x = -27
-			$AttackArea/CollisionShape2D.position.y = -35			
-			$CollisionShape2D.position.x = 1		
+
 			
 func dash():	
 	if is_dashing == true and timer_dash > 0:
@@ -200,7 +190,7 @@ func addCoin():
 
 #Area de muerte Gústaf
 func _on_DeadArea_area_entered(area):
-	if not dead:		
+	if not Players.selected.dead:		
 		if area.is_in_group("Enemies") and timer_not_take_damage == 0 and area.visible == true:			
 			RECIVE_HURT(area)							
 		elif area.is_in_group("Ladder"):
@@ -214,36 +204,20 @@ func _on_DeadArea_area_exited(area):
 		is_climbing = false
 		going_down  = false
 		going_up    = false
-		motion.y += gravity * mase * _delta
+		motion.y += Players.selected.stats.gravity * Players.selected.stats.mase * _delta
 		
 func _on_AttackArea_area_entered(area):
-	if not dead:
-		if area.is_in_group("Enemies"):
-			if is_air_attack == 1:
-				Env.attack *= Env.plus_air_attack
-				is_air_attack = 2
-				$AnimationPlayer.play("air-attack-impact")			
-			Env.attack = Env.memory_attack
+	if not Players.selected.dead:
+		if area.is_in_group("EnemiesDefense"):			
 			$AttackArea/CollisionShape2D.disabled = true
+			
 
 func _callMethodFinishAttack () :
 	END_ATTACK(1);
 
 func _callMethodFinishAttack3 ():
 	END_ATTACK(0);
-	
-func _callMethodFinishAirAttack ():
-	is_attacking = false
-	$AttackArea/CollisionShape2D.position.x = attack_area_position_x
-	$AttackArea/CollisionShape2D.position.y = attack_area_position_y			
-	$AttackArea/CollisionShape2D.disabled = true
 
-func _callMethodFinishAirAttackImpact ():
-	is_attacking = false
-	$AttackArea/CollisionShape2D.position.x = attack_area_position_x
-	$AttackArea/CollisionShape2D.position.y = attack_area_position_y			
-	$AttackArea/CollisionShape2D.disabled = true
-	
 func _callMethodFinishDash () :
 	END_DASH()	
 
@@ -254,6 +228,8 @@ func INIT_TRAVEL_ATTACK (travel_to = "atttack"):
 	is_attacking = true		
 	timer_attack = 1
 	state_machine.travel(travel_to)
+	Players.selected.stats.current_stamine = Players.selected.stats.current_stamine - Players.selected.stats.stamine_cost
+	Util.get_an_script("CanvasLayer").handleSetStamineBar()
 	$AttackArea/CollisionShape2D.disabled = false
 
 func INIT_TRAVEL_DASH ():
@@ -271,7 +247,7 @@ func INIT_TRAVEL_DASH ():
 
 func END_ATTACK (to_attack = 0) :
 	is_attacking   = false
-	current_attack = to_attack
+	event_attack = to_attack
 	timer_attack   = 0
 	$AttackArea/CollisionShape2D.disabled = true
 
@@ -288,34 +264,35 @@ func END_DASH ():
 	$DeadArea/CollisionShape2D.scale.y    = dead_area_scale_y	
 
 func SELF_HEALING ():
-	if Env.current_potions > 0:
+	if Players.selected.selected_item.current > 0:
 		is_healing = true
-		Env.current_potions -= 1
+		Players.selected.selected_item.current -= 1
 		state_machine.travel("health")	
-		Env.current_life += Env.recovery_potion
-		Env.current_life = Env.current_life if Env.current_life <= Env.life else Env.life
-		var canvasLayer = get_tree().get_root().find_node("CanvasLayer", true,false)	
-		canvasLayer.handleSetHpBar()
-		canvasLayer.handleUploadPotas()
+		ftd      = floating_text.instance()
+		ftd.type = "heal"
+		ftd.amount = Players._get_potion_recovery()
+		add_child(ftd)
+		Players.selected.stats.current_hp += Players._get_potion_recovery()
+		Players.selected.stats.current_hp = Players.selected.stats.current_hp if Players.selected.stats.current_hp <= Players.selected.stats.health_points else Players.selected.stats.health_points
+		Util.get_an_script("CanvasLayer").handleSetHpBar()
+		Util.get_an_script("CanvasLayer").handleUploadPotas()
 	
 func RECIVE_HURT (area):	
 	state_machine.travel("hurt")
 	$SoundHurt.play()	
 	timer_not_take_damage = 1
-	Env.current_life -= Util.apply_damage_body(area.get_parent().attack, Env._get_defense())	
+	Players.selected.stats.current_hp -= Util.apply_damage_body(area.get_parent().attack, Players._get_defense())	
 	Util.get_an_script("CanvasLayer").handleSetHpBar()					
-	if Env.current_life <= 0:
-		motion.y -= 1500
+	if Players.selected.stats.current_hp <= 0:
 		$SoundDead.playing = true
 		state_machine.travel("death")				
-		dead = true
+		Players.selected.dead = true
 		
 func INSTANT_DEAD (area):
-	Env.current_life -= Env.current_life	
-	var canvasLayer = get_tree().get_root().find_node("CanvasLayer", true,false)	
-	canvasLayer.handleSetHpBar()
+	Players.selected.stats.current_hp -= Players.selected.stats.current_hp	
+	Util.get_an_script("CanvasLayer").handleSetHpBar()
 	$SoundDead.playing = true
 	state_machine.travel("death")
-	dead = true	
+	Players.selected.dead = true	
 	
 

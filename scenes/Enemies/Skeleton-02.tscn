@@ -1,9 +1,11 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scripts/Enemies/Skeleton-02.gd" type="Script" id=1]
 [ext_resource path="res://assets/Characters/Enemies/Skeleton enemy/Skeleton enemy.png" type="Texture" id=2]
 [ext_resource path="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits_9.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits_8.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/imgs/hp-bar-bg-small.png" type="Texture" id=5]
+[ext_resource path="res://assets/imgs/hp-bar-prog-small.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15.5, 26 )
@@ -237,7 +239,22 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 5 )
 
-[node name="DeadArea" type="Area2D" parent="."]
+[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="HPbar" type="TextureProgress" parent="."]
+margin_left = -11.0
+margin_top = -35.0
+margin_right = 8.0
+margin_bottom = -33.0
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 6 )
+nine_patch_stretch = true
+
+[node name="DeadArea" type="Area2D" parent="." groups=["EnemiesDefense"]]
 rotation = 3.14159
 scale = Vector2( 1, -1 )
 
@@ -246,12 +263,14 @@ position = Vector2( 3, -1.5 )
 shape = SubResource( 12 )
 
 [node name="AttackArea" type="Area2D" parent="." groups=["Enemies"]]
+scale = Vector2( 1, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2( 23.5, -14.5 )
 shape = SubResource( 8 )
 
 [node name="RayAttack" type="RayCast2D" parent="."]
+scale = Vector2( 1, 1 )
 enabled = true
 cast_to = Vector2( 75, 0 )
 
@@ -261,19 +280,15 @@ scale = Vector2( 1, -1 )
 enabled = true
 cast_to = Vector2( 0, -34 )
 
-[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-
-[node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
-
 [node name="RayFlip" type="RayCast2D" parent="."]
+scale = Vector2( 1, 1 )
 enabled = true
 cast_to = Vector2( 34, 0 )
 collision_mask = 528
 
 [node name="RayEnd" type="RayCast2D" parent="."]
 position = Vector2( 19, 4 )
+scale = Vector2( 1, 1 )
 enabled = true
 cast_to = Vector2( 0, 30 )
 collision_mask = 528

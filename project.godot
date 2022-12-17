@@ -11,13 +11,14 @@ config_version=4
 [application]
 
 config/name="practica_1"
-run/main_scene="res://scenes/Worl/Cementery/Cementery-001-intro.tscn"
+run/main_scene="res://scenes/World/Cementery/Cementery-002-bridge.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Env="*res://scripts/global/env.gd"
 Util="*res://scripts/global/util.gd"
+Players="*res://scripts/global/players.gd"
 
 [gui]
 

@@ -1,7 +1,7 @@
-[gd_scene load_steps=108 format=2]
+[gd_scene load_steps=106 format=2]
 
 [ext_resource path="res://assets/Sounds/player/paino.wav" type="AudioStream" id=1]
-[ext_resource path="res://assets/Sounds/melee sounds/sword sound.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/Sounds/melee sounds/animal melee sound.wav" type="AudioStream" id=2]
 [ext_resource path="res://scripts/knight.gd" type="Script" id=3]
 [ext_resource path="res://assets/Sounds/sound-air-attack.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/Sounds/player/die1.wav" type="AudioStream" id=5]
@@ -13,97 +13,10 @@
 extents = Vector2( 10.3125, 70 )
 
 [sub_resource type="RectangleShape2D" id=93]
-extents = Vector2( 22.4688, 31.125 )
+extents = Vector2( 25.2344, 31.125 )
 
 [sub_resource type="Animation" id=120]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 62 ]
-}
-
-[sub_resource type="Animation" id=165]
-resource_name = "air-attack"
-length = 0.2
-step = 0.0666667
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0666667, 0.133333 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 14, 15, 22 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.133333 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "_callMethodFinishAirAttack"
-} ]
-}
-
-[sub_resource type="Animation" id=169]
-resource_name = "air-attack-impact"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 23, 30, 31, 38 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "_callMethodFinishAirAttackImpact"
-} ]
-}
-tracks/2/type = "audio"
-tracks/2/path = NodePath("SountAirAttack")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 4 )
-} ],
-"times": PoolRealArray( 0 )
-}
 
 [sub_resource type="Animation" id=125]
 resource_name = "attack"
@@ -759,7 +672,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 8 )
 hframes = 8
 vframes = 15
-frame = 62
+frame = 64
 
 [node name="RayDown" type="RayCast2D" parent="Sprite"]
 enabled = true
@@ -770,14 +683,12 @@ collision_mask = 512
 position = Vector2( 35, 37 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( -1.46877, -38.125 )
+position = Vector2( 5, -39 )
 shape = SubResource( 93 )
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 120 )
-anims/air-attack = SubResource( 165 )
-anims/air-attack-impact = SubResource( 169 )
 anims/attack = SubResource( 125 )
 anims/attack1.5 = SubResource( 222 )
 anims/attack2 = SubResource( 176 )
