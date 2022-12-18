@@ -186,7 +186,7 @@ auto_advance = true
 states/attack/node = SubResource( 9 )
 states/attack/position = Vector2( 492.333, 77.6667 )
 states/dead/node = SubResource( 20 )
-states/dead/position = Vector2( 615, 152.333 )
+states/dead/position = Vector2( 755, 169.223 )
 states/hurt/node = SubResource( 14 )
 states/hurt/position = Vector2( 413.667, 169.667 )
 states/idle/node = SubResource( 6 )
@@ -257,20 +257,20 @@ nine_patch_stretch = true
 [node name="DeadArea" type="Area2D" parent="." groups=["EnemiesDefense"]]
 rotation = 3.14159
 scale = Vector2( 1, -1 )
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
 position = Vector2( 3, -1.5 )
 shape = SubResource( 12 )
 
 [node name="AttackArea" type="Area2D" parent="." groups=["Enemies"]]
-scale = Vector2( 1, 1 )
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2( 23.5, -14.5 )
 shape = SubResource( 8 )
 
 [node name="RayAttack" type="RayCast2D" parent="."]
-scale = Vector2( 1, 1 )
 enabled = true
 cast_to = Vector2( 75, 0 )
 
@@ -281,16 +281,19 @@ enabled = true
 cast_to = Vector2( 0, -34 )
 
 [node name="RayFlip" type="RayCast2D" parent="."]
-scale = Vector2( 1, 1 )
 enabled = true
 cast_to = Vector2( 34, 0 )
 collision_mask = 528
 
 [node name="RayEnd" type="RayCast2D" parent="."]
 position = Vector2( 19, 4 )
-scale = Vector2( 1, 1 )
 enabled = true
 cast_to = Vector2( 0, 30 )
 collision_mask = 528
+
+[node name="RayBackFlip" type="RayCast2D" parent="."]
+position = Vector2( -107, 0 )
+enabled = true
+cast_to = Vector2( -179, 0 )
 
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

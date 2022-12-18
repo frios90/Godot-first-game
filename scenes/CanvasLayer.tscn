@@ -79,7 +79,7 @@ margin_bottom = 30.0
 
 [node name="BackAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -80.0
+volume_db = -12.93
 
 [node name="StamineBar" type="TextureProgress" parent="."]
 margin_left = 128.0

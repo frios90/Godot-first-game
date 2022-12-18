@@ -1,7 +1,7 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scripts/CameraEffects.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Elements/Torch02.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Elements/TorchSmall02.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/CanvasLayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Elements/SpikesDead.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Enemies/Skeleton-01.tscn" type="PackedScene" id=5]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/tiles/Cementery/parche01.png" type="Texture" id=13]
 [ext_resource path="res://scenes/Players/Knight.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/Elements/PilarEnd.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/Elements/torch-big-01.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scripts/World/ScriptChangeScene.gd" type="Script" id=17]
 
 [sub_resource type="TileSet" id=13]
@@ -522,22 +523,22 @@
 32/shapes = [  ]
 32/z_index = 0
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=18]
 points = PoolVector2Array( 0, 32, 64, 32, 64, 64, 0, 64 )
 
-[sub_resource type="ConvexPolygonShape2D" id=16]
+[sub_resource type="ConvexPolygonShape2D" id=19]
 points = PoolVector2Array( 0.25, 47.25, 32, 47.25, 31.25, 64, 0, 63.25 )
 
-[sub_resource type="ConvexPolygonShape2D" id=7]
+[sub_resource type="ConvexPolygonShape2D" id=20]
 points = PoolVector2Array( 1.06018, 21.9167, 0.0956726, 18.0587, 31.4421, 33.4908, 31.9244, 37.3488 )
 
-[sub_resource type="ConvexPolygonShape2D" id=9]
+[sub_resource type="ConvexPolygonShape2D" id=21]
 points = PoolVector2Array( 0, 32.8913, 6.24001, 33.2262, 6.24001, 0, 24.9943, 0, 24.9943, 33.2262, 32, 33.2262, 32, 43.9429, 0.211868, 44.6127 )
 
-[sub_resource type="ConvexPolygonShape2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=22]
 points = PoolVector2Array( 0, 0, 32, 0.339706, 32, 5.02829, 29.6829, 5.02829, 27.0037, 7.70747, 27.0037, 13.4007, 25.6641, 17.0846, 25.6641, 32, 6.90981, 32, 6.57491, 16.0799, 4.56554, 11.7262, 3.89574, 5.69807, 0, 4.69339 )
 
-[sub_resource type="ConvexPolygonShape2D" id=11]
+[sub_resource type="ConvexPolygonShape2D" id=23]
 points = PoolVector2Array( 23.6547, 32, 6.24001, 32, 6.57491, 0, 23.9896, 0 )
 
 [sub_resource type="TileSet" id=4]
@@ -551,14 +552,14 @@ points = PoolVector2Array( 23.6547, 32, 6.24001, 32, 6.57491, 0, 23.9896, 0 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 5 )
+0/shape = SubResource( 18 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 5 ),
+"shape": SubResource( 18 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
@@ -572,14 +573,14 @@ points = PoolVector2Array( 23.6547, 32, 6.24001, 32, 6.57491, 0, 23.9896, 0 )
 1/navigation_offset = Vector2( 0, 0 )
 1/shape_offset = Vector2( 0, 0 )
 1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape = SubResource( 16 )
+1/shape = SubResource( 19 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
 1/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 16 ),
+"shape": SubResource( 19 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
@@ -593,14 +594,14 @@ points = PoolVector2Array( 23.6547, 32, 6.24001, 32, 6.57491, 0, 23.9896, 0 )
 2/navigation_offset = Vector2( 0, 0 )
 2/shape_offset = Vector2( 0, 0 )
 2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape = SubResource( 7 )
+2/shape = SubResource( 20 )
 2/shape_one_way = false
 2/shape_one_way_margin = 1.0
 2/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 7 ),
+"shape": SubResource( 20 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
@@ -614,14 +615,14 @@ points = PoolVector2Array( 23.6547, 32, 6.24001, 32, 6.57491, 0, 23.9896, 0 )
 3/navigation_offset = Vector2( 0, 0 )
 3/shape_offset = Vector2( 0, 0 )
 3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape = SubResource( 9 )
+3/shape = SubResource( 21 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
 3/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 9 ),
+"shape": SubResource( 21 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 3/z_index = 0
@@ -635,14 +636,14 @@ points = PoolVector2Array( 23.6547, 32, 6.24001, 32, 6.57491, 0, 23.9896, 0 )
 4/navigation_offset = Vector2( 0, 0 )
 4/shape_offset = Vector2( 0, 0 )
 4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-4/shape = SubResource( 10 )
+4/shape = SubResource( 22 )
 4/shape_one_way = false
 4/shape_one_way_margin = 1.0
 4/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 10 ),
+"shape": SubResource( 22 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 4/z_index = 0
@@ -656,14 +657,14 @@ points = PoolVector2Array( 23.6547, 32, 6.24001, 32, 6.57491, 0, 23.9896, 0 )
 5/navigation_offset = Vector2( 0, 0 )
 5/shape_offset = Vector2( 0, 0 )
 5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-5/shape = SubResource( 11 )
+5/shape = SubResource( 23 )
 5/shape_one_way = false
 5/shape_one_way_margin = 1.0
 5/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 11 ),
+"shape": SubResource( 23 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 5/z_index = 0
@@ -855,13 +856,73 @@ collision_mask = 3
 format = 1
 tile_data = PoolIntArray( -2293600, 7, 0, -2293598, 7, 0, -2293596, 536870919, 0, -2162528, 8, 0, -2162526, 8, 0, -2162524, 536870919, 0, -2031456, 8, 0, -2031454, 8, 0, -2031452, 536870919, 0, -1900384, 8, 0, -1900382, 8, 0, -1900380, 536870919, 0, -1900322, 1610612743, 0, -1900320, 1610612743, 0, -1900318, 1610612743, 0, -1900316, 10, 0, -1900314, 10, 0, -1900312, 10, 0, -1900310, 10, 0, -1900308, 10, 0, -1900306, 10, 0, -1834788, 1610612743, 0, -1769312, 8, 0, -1769310, 8, 0, -1769308, 536870919, 0, -1769254, 1610612743, 0, -1769233, -1073741816, 0, -1703720, 1610612743, 0, -1638186, 1610612743, 0, -1638161, -1073741816, 0, -1572652, 1610612743, 0, -1507118, 1610612743, 0, -1507089, -1073741816, 0, -1441584, 1610612743, 0, -1376050, 1610612743, 0, -1376017, -1073741816, 0, -1310516, 1610612743, 0, -1245016, 10, 0, -1245014, 10, 0, -1245012, 10, 0, -1245010, 10, 0, -1245008, 10, 0, -1245006, 10, 0, -1245004, 10, 0, -1245002, 536870922, 0, -1245000, 10, 0, -1244998, 10, 0, -1244996, 10, 0, -1244994, 10, 0, -1244992, 10, 0, -1244990, 10, 0, -1244988, 10, 0, -1244986, 10, 0, -1244984, 10, 0, -1244982, 10, 0, -1244945, -1073741816, 0, -1179416, 13, 0, -1113873, -1073741816, 0, -982801, -1073741816, 0, -851741, 14, 0, -851739, 9, 0, -851737, 9, 0, -851735, 9, 0, -851733, 9, 0, -851731, 9, 0, -851729, 9, 0, -786207, 14, 0, -720673, 14, 0, -655139, 14, 0, -589605, 14, 0, -524071, 14, 0, -458537, 14, 0, -393047, 536870921, 0, -393045, 536870921, 0, -393043, 536870921, 0, -393041, 536870921, 0, -393039, 536870921, 0, -393037, 536870921, 0, -393035, 536870921, 0, -393033, 9, 0, -393031, 9, 0, -393029, 536870921, 0, -393027, 9, 0, -393025, 536870921, 0, -393023, 9, 0, -393021, 9, 0, -393019, 9, 0, -393017, 536870921, 0, -393015, 536870921, 0, -393013, 9, 0, -393011, 9, 0, -393009, 9, 0, -393007, 536870921, 0, -393005, 536870921, 0, -393003, 9, 0, 655360, 5, 0, 786432, 5, 0, 917504, 5, 0, 1048576, 5, 0, 1179648, 5, 0, 1310720, 5, 0, 1441792, 5, 0, 1572864, 5, 0, 1703936, 5, 0, 1835008, 5, 0, 1966080, 5, 0, 2162682, 0, 0, 2162686, 0, 0, 2097152, 3, 0, 2097154, 0, 0, 2097158, 0, 0, 2097162, 0, 0, 2097166, 536870912, 0, 2097170, 0, 0, 2097174, 0, 0, 2097178, 0, 0, 2097182, 0, 0, 2097186, 0, 0, 2097190, 0, 0, 2097194, 0, 0, 2097198, 1, 0, 2097200, 1, 0, 2097202, 1, 0, 2097204, 0, 0, 2097208, 0, 0, 2097212, 0, 0, 2097216, 0, 0, 2097220, 0, 0, 2097224, 0, 0, 2097228, 1, 0, 2097230, 1, 0, 2097232, 1, 0, 2097234, 1, 0, 2097236, 0, 0, 2097240, 1, 0, 2097242, 1, 0, 2097244, 0, 0, 2097248, 1, 0, 2097250, 1, 0, 2097252, 0, 0, 2097256, 0, 0, 2097260, 0, 0, 2097264, 0, 0, 2097268, 0, 0, 2097272, 0, 0, 2097276, 0, 0, 2097280, 0, 0, 2097284, 1, 0, 2097286, 1, 0, 2097288, 1, 0, 2097290, 1, 0, 2097292, 0, 0, 2097296, 1, 0, 2097298, 1, 0, 2097300, 0, 0, 2097304, 0, 0, 2097308, 0, 0, 2097312, 0, 0, 2097316, 1, 0, 2097318, 1, 0, 2097320, 1, 0, 2097322, 1, 0, 2097324, 1, 0, 2097326, 1, 0, 2097328, 0, 0, 2097332, 0, 0, 2097336, 0, 0, 2097340, 0, 0, 2097344, 0, 0, 2097348, 0, 0, 2097352, 0, 0, 2097356, 0, 0, 2097360, 0, 0, 2097364, 0, 0, 2097368, 0, 0, 2097372, 0, 0, 2097376, 0, 0, 2097380, 0, 0, 2097384, 0, 0, 2097388, 0, 0, 2097392, 0, 0, 2097396, 0, 0, 2097400, 1, 0, 2097402, 1, 0, 2097404, 0, 0, 2097408, 0, 0, 2097412, 1, 0, 2097414, 1, 0, 2097416, 0, 0, 2097420, 1, 0, 2097422, 1, 0, 2097424, 0, 0, 2097428, 0, 0, 2097432, 0, 0, 2097436, 0, 0, 2097440, 0, 0, 2097444, 0, 0, 2097448, 0, 0, 2097452, 0, 0, 2097456, 0, 0, 2097460, 0, 0, 2097464, 0, 0, 2097468, 0, 0, 2097472, 1, 0, 2097474, 1, 0, 2097476, 1, 0, 2097478, 1, 0, 2097480, 1, 0, 2097482, 1, 0, 2097484, 1, 0, 2097485, 1, 0, 2097487, 1, 0, 2097489, 1, 0, 2097491, 1, 0, 2097493, 1, 0, 2097495, 1, 0, 2097497, 1, 0, 2097499, 1, 0, 2097501, 1, 0, 2097503, 1, 0, 2097505, 1, 0, 2097507, 1, 0, 2097509, 1, 0, 2097511, 1, 0, 2097513, 1, 0, 2097515, 1, 0, 2097517, 1, 0, 2097519, 1, 0, 2097520, 0, 0, 2097524, 0, 0, 2097528, 0, 0, 2097532, 0, 0, 2097536, 0, 0, 2097540, 0, 0, 2097544, 0, 0, 2097548, 0, 0, 2097552, 0, 0, 2097556, 0, 0, 2097560, 0, 0, 2097564, 0, 0, 2097568, 0, 0, 2097572, 0, 0, 2097576, 0, 0, 2097580, 0, 0 )
 
+[node name="Torchs" type="Node2D" parent="."]
+
+[node name="TorchSmall2" type="Node2D" parent="Torchs"]
+position = Vector2( 5264, 368 )
+
+[node name="TorchSmall03" parent="Torchs/TorchSmall2" instance=ExtResource( 2 )]
+position = Vector2( 128, 0 )
+
+[node name="TorchSmall04" parent="Torchs/TorchSmall2" instance=ExtResource( 2 )]
+position = Vector2( 256, 0 )
+
+[node name="TorchSmall05" parent="Torchs/TorchSmall2" instance=ExtResource( 2 )]
+position = Vector2( 384, 0 )
+
+[node name="TorchSmall06" parent="Torchs/TorchSmall2" instance=ExtResource( 2 )]
+position = Vector2( 512, 0 )
+
+[node name="TorchSmall07" parent="Torchs/TorchSmall2" instance=ExtResource( 2 )]
+position = Vector2( 640, 112 )
+
+[node name="TorchSmall02" parent="Torchs/TorchSmall2" instance=ExtResource( 2 )]
+
+[node name="TorchsBig01" type="Node2D" parent="Torchs"]
+
+[node name="torch-big-02" parent="Torchs/TorchsBig01" instance=ExtResource( 16 )]
+position = Vector2( 712, 496 )
+
+[node name="torch-big-01" parent="Torchs/TorchsBig01" instance=ExtResource( 16 )]
+position = Vector2( 312, 496 )
+
+[node name="torch-big-03" parent="Torchs/TorchsBig01" instance=ExtResource( 16 )]
+position = Vector2( 1184, 496 )
+
+[node name="torch-big-04" parent="Torchs/TorchsBig01" instance=ExtResource( 16 )]
+position = Vector2( 1488, 496 )
+
+[node name="torch-big-05" parent="Torchs/TorchsBig01" instance=ExtResource( 16 )]
+position = Vector2( 2248, 496 )
+
+[node name="torch-big-06" parent="Torchs/TorchsBig01" instance=ExtResource( 16 )]
+position = Vector2( 2888, 512 )
+
+[node name="torch-big-07" parent="Torchs/TorchsBig01" instance=ExtResource( 16 )]
+position = Vector2( 3488, 496 )
+
+[node name="torch-big-08" parent="Torchs/TorchsBig01" instance=ExtResource( 16 )]
+position = Vector2( 3888, 496 )
+
+[node name="torch-big-09" parent="Torchs/TorchsBig01" instance=ExtResource( 16 )]
+position = Vector2( 4440, 496 )
+
+[node name="torch-big-10" parent="Torchs/TorchsBig01" instance=ExtResource( 16 )]
+position = Vector2( 4912, 464 )
+
+[node name="torch-big-11" parent="Torchs/TorchsBig01" instance=ExtResource( 16 )]
+position = Vector2( 6280, 496 )
+
+[node name="torch-big-12" parent="Torchs/TorchsBig01" instance=ExtResource( 16 )]
+position = Vector2( 6824, 496 )
+
 [node name="knight" parent="." instance=ExtResource( 14 )]
 position = Vector2( 72, 528 )
 
 [node name="Camera2D" type="Camera2D" parent="knight"]
-position = Vector2( -24, -56 )
+position = Vector2( -16, -32 )
 current = true
-zoom = Vector2( 0.4, 0.4 )
+zoom = Vector2( 0.4, 0.5 )
 limit_left = 1
 limit_top = -10000011
 limit_right = 10000001
@@ -1012,30 +1073,6 @@ position = Vector2( 6722, 517 )
 
 [node name="PilarEnd" parent="." instance=ExtResource( 15 )]
 position = Vector2( 5776, 320 )
-
-[node name="Torchs" type="Node2D" parent="."]
-position = Vector2( 0, -8 )
-
-[node name="Torch02" parent="Torchs" instance=ExtResource( 2 )]
-position = Vector2( 4704, 368 )
-
-[node name="Torch03" parent="Torchs" instance=ExtResource( 2 )]
-position = Vector2( 5264, 376 )
-
-[node name="Torch04" parent="Torchs" instance=ExtResource( 2 )]
-position = Vector2( 5392, 376 )
-
-[node name="Torch05" parent="Torchs" instance=ExtResource( 2 )]
-position = Vector2( 5520, 368 )
-
-[node name="Torch06" parent="Torchs" instance=ExtResource( 2 )]
-position = Vector2( 5648, 368 )
-
-[node name="Torch07" parent="Torchs" instance=ExtResource( 2 )]
-position = Vector2( 5776, 368 )
-
-[node name="Torch08" parent="Torchs" instance=ExtResource( 2 )]
-position = Vector2( 5120, 368 )
 
 [node name="Skeletons01" type="Node2D" parent="."]
 

@@ -14,7 +14,7 @@ var gustaph = {
 	"stats" : {
 		"level"           : 1,
 		"experience"      : 0,
-		"health_points"   : 220,
+		"health_points"   : 130,
 		"magic_points"    : 90,
 		"stamine"         : 100,
 		"strength"        : 45,
@@ -22,7 +22,7 @@ var gustaph = {
 		"speed"           : 22.3,
 		"luck"            : 1,
 		"next_level"      : 900,
-		"current_hp"      : 220,
+		"current_hp"      : 130,
 		"current_mp"      : 90,
 		"current_stamine" : 100,
 		"dash_speed"      : 600,

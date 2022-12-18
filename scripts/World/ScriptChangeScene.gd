@@ -14,5 +14,17 @@ func _on_Rtn001002_body_entered(body):
 		Env.init_position_stage.flip = -1
 		get_tree().change_scene("res://scenes/World/Cementery/Cementery-001-intro.tscn")
 
+func _on_Goto003002_body_entered(body):
+	if body.get_name() == 'knight':	
+		Env.init_position_stage.x = 72
+		Env.init_position_stage.y = 528
+		Env.init_position_stage.flip = -1
+		get_tree().change_scene("res://scenes/World/Cementery/Cementery-003-down-of-hill.tscn")
 
 
+func _on_Rtn002003_body_entered(body):
+	if body.get_name() == 'knight':	
+		Env.init_position_stage.x = 8328
+		Env.init_position_stage.y = 360
+		Env.init_position_stage.flip = -1
+		get_tree().change_scene("res://scenes/World/Cementery/Cementery-002-bridge.tscn")

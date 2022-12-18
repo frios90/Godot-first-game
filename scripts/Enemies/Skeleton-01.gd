@@ -47,13 +47,15 @@ func _process(delta):
 func initRaice () :
 	if $RayRaise.is_colliding() and raise == false :
 		$AnimationPlayer.play("raise")
-		raise = true
+		
 		
 func flip():	
-	if $RayFlip.is_colliding() or $RayEnd.is_colliding() == false:
+	if $RayFlip.is_colliding() or  $RayEnd.is_colliding() == false:
 		motion.x *= -1
 		scale.x  *= -1
-#			
+	elif $RayBackFlip.is_colliding() and raise:
+		motion.x *= -1
+		scale.x  *= -1
 
 func _on_DeadArea_area_entered(area):
 	if area.is_in_group("Sword"):
@@ -82,6 +84,7 @@ func applySoundSword ():
 		$SwordHurt02.playing  = true
 		
 func _callMethodFinishRaise ():
+	raise = true
 	$AnimationPlayer.play("walk")
 	$HPbar.visible   = true
 	$HPbar.max_value = life if level == 1 else life * (level * 0.77)

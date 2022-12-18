@@ -65,9 +65,12 @@ func moveOrIdle():
 		
 func flip():
 	if withMoveAndFlip == 1 :
-		if $RayFlip.is_colliding() or $RayEnd.is_colliding() == false:
+		if $RayFlip.is_colliding() or $RayBackFlip.is_colliding()  or $RayEnd.is_colliding() == false:
 			motion.x *= -1
 			scale.x  *= -1
+	elif $RayBackFlip.is_colliding():
+		motion.x *= -1
+		scale.x  *= -1
 			
 func attacking () :
 	if $RayAttack.is_colliding() or $RayAttack2.is_colliding():
