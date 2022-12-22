@@ -4,6 +4,7 @@ onready var selected = gustaph
 
 var gustaph = {
 	"name" : "Gustaph",
+	"gems" : 0,
 	"increase_stats" : 0.2, 
 	"increase_level" : 0.7,
 	"dead": false,
@@ -27,9 +28,9 @@ var gustaph = {
 		"current_stamine" : 100,
 		"dash_speed"      : 600,
 		"move_speed"      : 22.3 * 10,
-		"jump_height"     : -890,
-		"gravity"         : 1600,
-		"mase"            : 1.8,
+		"jump_height"     : -620,
+		"gravity"         : 750,
+		"mase"            : 1.9,
 		"stamine_cost"    : 15,
 		"stamine_recovery": 0.4
 	},
@@ -77,9 +78,6 @@ func _get_defense_magic ():
 func _get_potion_recovery ():
 	return  self.selected.stats.health_points * self.selected.selected_item.recovery
 
-func calculateLevel ():
-	if  self.selected.stats.experience >=  self.selected.stats.next_level:
-		self.selected.stats.level     += 1
-		self.selected.stats.next_level =  self.selected.stats.next_level *  self.selected.stats.level * self.selected.increase_level
-		self.selected.stats.strength   =  self.selected.stats.strength + ( self.selected.stats.level *  self.selected.increase_stats)
-		Util.get_an_script("CanvasLayer").handleSetLevelInUiPlayer()
+
+	
+

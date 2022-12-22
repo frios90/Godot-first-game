@@ -76,6 +76,8 @@ pause={
 2d_physics/layer_9="dead-zones"
 2d_physics/layer_10="floor-custom-collision"
 2d_physics/layer_11="mapElements"
+2d_physics/layer_12="spells"
+2d_physics/layer_13="gems"
 
 [physics]
 

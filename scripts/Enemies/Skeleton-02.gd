@@ -1,38 +1,32 @@
 extends KinematicBody2D
-const true_positon_sprite = false
-var floating_text = preload("res://scenes/FloatingText.tscn")
-var ftd = 0
-
-export (int) var level  = 1
-export (int) var scaleX = -1
+const true_positon_sprite        = false
+var floating_text                = preload("res://scenes/FloatingText.tscn")
+var ftd                          = 0
+export (int) var level           = 1
+export (int) var scaleX          = -1
 export (int) var withMoveAndFlip = 0
-export (int) var maxSpeed = 26
+export (int) var maxSpeed        = 26
+const gravity                    = 1600
+const up                         = Vector2(0, -1)
+const ptsDead                    = 1000
+var dead                         = false 
+var life                         = 100
+var base_attack                  = 35
+var base_defense                 = 15
+var motion                       = Vector2(0, 0)
+var is_attacking                 = false
+var _delta                       = 0
+var useRandSound                 = 0
 
-const gravity    = 1600
-const up         = Vector2(0, -1)
-const ptsDead    = 150
+onready var attack               = base_attack if level == 1 else base_attack * (level * 0.77)
+onready var defense              = base_defense if level == 1 else base_defense * (level * 0.55)
+onready var current_life         = life if level == 1 else life * (level * 0.77)
 
-var dead         = false
-
-var life         = 100
-onready var current_life = life if level == 1 else life * (level * 0.77)
-
-var base_attack  = 35
-var base_defense = 15
-onready var attack       = base_attack if level == 1 else base_attack * (level * 0.77)
-onready var defense      = base_defense if level == 1 else base_defense * (level * 0.55)
-
-var motion = Vector2(0, 0)
-var is_attacking  = false
-var _delta = 0
 var state_machine
-var useRandSound = 0
 
-func _ready():
-		
+func _ready():		
 	$HPbar.max_value = life if level == 1 else life * (level * 0.77)
 	$HPbar.value     = $HPbar.max_value
-
 	scale.x = scaleX
 	state_machine = $AnimationTree.get("parameters/playback")	
 	if withMoveAndFlip == 1:
@@ -43,8 +37,7 @@ func _ready():
 		motion.x = 0
 	$AttackArea/CollisionShape2D.disabled = true
 
-func _process(delta):	
-
+func _process(delta):
 	_delta = delta
 	if not dead:	
 		motion.y += gravity	* delta
@@ -105,10 +98,12 @@ func _on_DeadArea_area_entered(area):
 			if (dead == false):
 				dead =  true			
 				state_machine.travel("dead")
-				Util.get_an_script("CanvasLayer").handleIncrementExp(ptsDead)
+				Util.get_an_script("knight")._increment_exp_player(ptsDead)
+				Env._dropGems(self.position, 12)
 
 func applySoundSword ():
 	if useRandSound == 0:
 		$SwordHurt01.playing  = true
 	else:
 		$SwordHurt02.playing  = true
+		

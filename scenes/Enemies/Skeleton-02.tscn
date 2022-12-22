@@ -206,7 +206,6 @@ extents = Vector2( 15, 25.5 )
 extents = Vector2( 23.5, 23.5 )
 
 [node name="Skeleton-02" type="KinematicBody2D" groups=["Enemies"]]
-scale = Vector2( -1, 1 )
 collision_layer = 2
 collision_mask = 528
 script = ExtResource( 1 )
@@ -222,7 +221,7 @@ scale = Vector2( 1.5, 1.7 )
 texture = ExtResource( 2 )
 hframes = 13
 vframes = 5
-frame = 1
+frame = 42
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
@@ -288,7 +287,7 @@ collision_mask = 528
 [node name="RayEnd" type="RayCast2D" parent="."]
 position = Vector2( 19, 4 )
 enabled = true
-cast_to = Vector2( 0, 30 )
+cast_to = Vector2( 0, 44 )
 collision_mask = 528
 
 [node name="RayBackFlip" type="RayCast2D" parent="."]

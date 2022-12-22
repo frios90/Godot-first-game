@@ -27,7 +27,6 @@ var is_healing    = false
 var is_jumping    = false
 var is_attacking  = false
 var is_dashing    = false
-var is_air_attack = 0 # 0=>false, 1=> attack, 2=>impact
 var is_climbing   = false
 var going_up      = false
 var going_down    = false
@@ -52,7 +51,6 @@ var _delta = 0
 func _ready():	
 #	get_parent().get_node("knight").position.x = Env.init_position_stage.x
 #	get_parent().get_node("knight").position.y = Env.init_position_stage.y
-#	get_parent().get_node("knight").scale.x    = Env.init_position_stage.flip
 	state_machine = $AnimationTree.get("parameters/playback")	
 	state_machine.start("idle")
 		
@@ -139,7 +137,7 @@ func move():
 		motion.x = 0
 
 func health():
-	if Input.is_action_just_pressed("health") and not is_attacking and not is_jumping and not is_dashing and not is_air_attack:
+	if Input.is_action_just_pressed("health") and not is_attacking and not is_jumping and not is_dashing:
 		SELF_HEALING()
 
 func jump():
@@ -197,6 +195,8 @@ func _on_DeadArea_area_entered(area):
 			is_climbing = true
 		elif area.is_in_group("SpikesDead"):
 			INSTANT_DEAD(area)
+		elif area.is_in_group("gems"):
+			area.get_parent()._gems_pick_up()
 
 
 func _on_DeadArea_area_exited(area):
@@ -294,5 +294,25 @@ func INSTANT_DEAD (area):
 	$SoundDead.playing = true
 	state_machine.travel("death")
 	Players.selected.dead = true	
+	
+func _increment_exp_player(points):
+	Players.selected.stats.experience += points
+	if  Players.selected.stats.experience >=  Players.selected.stats.next_level:
+		$SoundLvlUp.playing = true
+		Players.selected.stats.level     += 1
+		Players.selected.stats.next_level =  Players.selected.stats.next_level *  Players.selected.stats.level * Players.selected.increase_level
+		Players.selected.stats.strength   =  Players.selected.stats.strength + ( Players.selected.stats.level *  Players.selected.increase_stats)
+		var lvlUP = load("res://scenes/Players/LevelUp.tscn")		
+		lvlUP = lvlUP.instance()
+		lvlUP.position.y = lvlUP.position.y -2
+		self.get_node("Sprite").add_child(lvlUP)
+		
+		yield(get_tree().create_timer(1.5), "timeout")	
+		
+		lvlUP.queue_free()
+		Util.get_an_script("CanvasLayer").handleSetLevelInUiPlayer()
+		
+
+		
 	
 

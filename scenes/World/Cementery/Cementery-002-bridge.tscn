@@ -37,13 +37,13 @@
 points = PoolVector2Array( 32, 4.06471, 0, 4.06471, 0, 0, 32, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=36]
-points = PoolVector2Array( 0, 32, 64, 32, 64, 64, 0, 64 )
+points = PoolVector2Array( 0.25, 38.5, 64, 38.3063, 64, 64, 0, 64 )
 
 [sub_resource type="ConvexPolygonShape2D" id=37]
-points = PoolVector2Array( 32, 64, 0, 64, 0, 32, 32, 32 )
+points = PoolVector2Array( 32, 64, 0, 64, 0, 38.3063, 32, 38.1125 )
 
 [sub_resource type="ConvexPolygonShape2D" id=38]
-points = PoolVector2Array( 0, 32, 64, 32, 64, 64, 0, 64 )
+points = PoolVector2Array( 0, 38.1105, 64, 37.4563, 64, 64, 0, 64 )
 
 [sub_resource type="ConvexPolygonShape2D" id=29]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 32, 64, 32 )
@@ -464,56 +464,6 @@ position = Vector2( 5968, 208 )
 [node name="GranPilar54" parent="collition/PullPilars" instance=ExtResource( 11 )]
 position = Vector2( 208, 208 )
 
-[node name="knight" parent="." instance=ExtResource( 7 )]
-position = Vector2( 104, 448 )
-
-[node name="Camera2D" type="Camera2D" parent="knight"]
-position = Vector2( -32, -32 )
-current = true
-zoom = Vector2( 0.4, 0.5 )
-limit_left = 1
-limit_top = -10000011
-limit_right = 10000001
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = true
-smoothing_speed = 7.0
-offset_h = 0.08
-offset_v = 1.0
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
-editor_draw_drag_margin = true
-script = ExtResource( 2 )
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="knight/Camera2D"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="knight/Camera2D/ParallaxBackground"]
-motion_scale = Vector2( 0.02, 0.05 )
-motion_offset = Vector2( 0, 550 )
-motion_mirroring = Vector2( 1530, 445 )
-
-[node name="Sprite" type="Sprite" parent="knight/Camera2D/ParallaxBackground/ParallaxLayer"]
-position = Vector2( 402, 330 )
-texture = ExtResource( 6 )
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="knight/Camera2D/ParallaxBackground"]
-motion_scale = Vector2( 0.2, 1 )
-motion_mirroring = Vector2( 1341, 0 )
-
-[node name="Sprite" type="Sprite" parent="knight/Camera2D/ParallaxBackground/ParallaxLayer2"]
-position = Vector2( 664, 336 )
-texture = ExtResource( 4 )
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="knight/Camera2D/ParallaxBackground"]
-motion_scale = Vector2( 0.5, 1 )
-motion_mirroring = Vector2( 2573, 0 )
-
-[node name="Sprite" type="Sprite" parent="knight/Camera2D/ParallaxBackground/ParallaxLayer3"]
-position = Vector2( 1184, 368 )
-texture = ExtResource( 5 )
-
 [node name="front00" type="TileMap" parent="."]
 position = Vector2( -48, 0 )
 tile_set = SubResource( 26 )
@@ -621,6 +571,56 @@ position = Vector2( 4360, 448 )
 
 [node name="Skeleton-006" parent="Skeletons-003" instance=ExtResource( 14 )]
 position = Vector2( 5704, 448 )
+
+[node name="knight" parent="." instance=ExtResource( 7 )]
+position = Vector2( 80, 424 )
+
+[node name="Camera2D" type="Camera2D" parent="knight"]
+position = Vector2( -16, -32 )
+current = true
+zoom = Vector2( 0.35, 0.35 )
+limit_left = 1
+limit_top = -10000011
+limit_right = 10000001
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 7.0
+offset_h = 0.08
+offset_v = 1.0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_drag_margin = true
+script = ExtResource( 2 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="knight/Camera2D"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="knight/Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.02, 0.05 )
+motion_offset = Vector2( 0, 550 )
+motion_mirroring = Vector2( 1530, 445 )
+
+[node name="Sprite" type="Sprite" parent="knight/Camera2D/ParallaxBackground/ParallaxLayer"]
+position = Vector2( 402, 330 )
+texture = ExtResource( 6 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="knight/Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 1341, 0 )
+
+[node name="Sprite" type="Sprite" parent="knight/Camera2D/ParallaxBackground/ParallaxLayer2"]
+position = Vector2( 670, 446 )
+texture = ExtResource( 4 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="knight/Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.5, 1 )
+motion_mirroring = Vector2( 2573, 0 )
+
+[node name="Sprite" type="Sprite" parent="knight/Camera2D/ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 1152, 392 )
+texture = ExtResource( 5 )
 
 [connection signal="body_entered" from="Areas/Rtn-001-002" to="Areas/Rtn-001-002" method="_on_Rtn001002_body_entered"]
 [connection signal="body_entered" from="Areas/Goto-003-002" to="Areas/Goto-003-002" method="_on_Goto003002_body_entered"]

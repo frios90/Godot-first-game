@@ -1,0 +1,396 @@
+[gd_scene load_steps=49 format=2]
+
+[ext_resource path="res://assets/Characters/Enemies/Bosses/Bringer-of-Death-SpritSheet.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Enemies/Boss/BringerOfDeath/BringerOfDeath.gd" type="Script" id=2]
+[ext_resource path="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits_9.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits_8.wav" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12, 26.1765 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "attack"
+length = 0.666667
+step = 0.0555556
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0555556, 0.111111, 0.166667, 0.222222, 0.333333, 0.444444, 0.555556, 0.611111 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 19, 20, 21, 22, 23, 24 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.222222, 0.555556, 0.666667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_CM_init_attack_animation"
+}, {
+"args": [  ],
+"method": "_callMethodStartAttack"
+}, {
+"args": [  ],
+"method": "_callMethodFinishAttack"
+}, {
+"args": [  ],
+"method": "_CM_finish_attack_animation"
+} ]
+}
+
+[sub_resource type="Animation" id=40]
+resource_name = "comebacktele"
+length = 0.55
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 38, 37, 36, 35, 34, 33, 32, 31, 30, 29 ]
+}
+
+[sub_resource type="Animation" id=48]
+resource_name = "dead"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 32, 33, 34, 35, 36, 37, 38 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "hurt"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 25, 26, 27, 28 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_CM_init_hurt"
+}, {
+"args": [  ],
+"method": "_CM_finish_hurt"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=44]
+resource_name = "spell"
+step = 0.03125
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8125 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 39, 40, 41, 42, 43, 44, 45, 46, 47 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_CM_init_spell_event"
+}, {
+"args": [  ],
+"method": "_CM_finish_spell_event"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "tele"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 29, 30, 31, 32, 33, 34, 35, 36, 37, 38 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "walk"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12, 13, 14, 15 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "attack"
+
+[sub_resource type="AnimationNodeAnimation" id=41]
+animation = "comebacktele"
+
+[sub_resource type="AnimationNodeAnimation" id=49]
+animation = "dead"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "hurt"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=45]
+animation = "spell"
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "tele"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/attack/node = SubResource( 12 )
+states/attack/position = Vector2( 604.333, 135 )
+states/comebacktele/node = SubResource( 41 )
+states/comebacktele/position = Vector2( 950.617, 186.22 )
+states/dead/node = SubResource( 49 )
+states/dead/position = Vector2( 922.617, 381.916 )
+states/hurt/node = SubResource( 13 )
+states/hurt/position = Vector2( 607, 357.667 )
+states/idle/node = SubResource( 14 )
+states/idle/position = Vector2( 608.333, 255 )
+states/spell/node = SubResource( 45 )
+states/spell/position = Vector2( 298.617, 174.22 )
+states/tele/node = SubResource( 31 )
+states/tele/position = Vector2( 803.617, 255 )
+states/walk/node = SubResource( 16 )
+states/walk/position = Vector2( 423, 255.889 )
+transitions = [ "idle", "attack", SubResource( 17 ), "attack", "idle", SubResource( 18 ), "idle", "hurt", SubResource( 21 ), "hurt", "idle", SubResource( 22 ), "idle", "walk", SubResource( 23 ), "walk", "idle", SubResource( 24 ), "walk", "attack", SubResource( 25 ), "walk", "hurt", SubResource( 27 ), "hurt", "walk", SubResource( 28 ), "idle", "tele", SubResource( 32 ), "tele", "idle", SubResource( 33 ), "attack", "tele", SubResource( 34 ), "tele", "attack", SubResource( 35 ), "hurt", "tele", SubResource( 36 ), "tele", "hurt", SubResource( 37 ), "tele", "walk", SubResource( 38 ), "walk", "tele", SubResource( 39 ), "tele", "comebacktele", SubResource( 42 ), "comebacktele", "attack", SubResource( 43 ), "spell", "idle", SubResource( 46 ), "idle", "spell", SubResource( 47 ), "hurt", "dead", SubResource( 50 ) ]
+start_node = "idle"
+end_node = "dead"
+graph_offset = Vector2( 165.617, 127.813 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 24, 24.5147 )
+
+[sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 23.5, 28.2206 )
+
+[node name="BringerOfDeath" type="KinematicBody2D"]
+scale = Vector2( 2, 1.7 )
+collision_layer = 2
+collision_mask = 528
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -40, -18.8235 )
+texture = ExtResource( 1 )
+hframes = 8
+vframes = 8
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+anims/RESET = SubResource( 2 )
+anims/attack = SubResource( 3 )
+anims/comebacktele = SubResource( 40 )
+anims/dead = SubResource( 48 )
+anims/hurt = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/spell = SubResource( 44 )
+anims/tele = SubResource( 9 )
+anims/walk = SubResource( 6 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 7 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 8 )
+
+[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="RayFrontFlip" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -32, 0 )
+collision_mask = 16
+
+[node name="RayBackFlip" type="RayCast2D" parent="."]
+position = Vector2( 28, 0 )
+enabled = true
+cast_to = Vector2( 124, 0 )
+
+[node name="RaySwordAttack" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -36, 0 )
+
+[node name="DeadArea" type="Area2D" parent="." groups=["EnemiesDefense"]]
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
+position = Vector2( 4.00006, -0.985268 )
+shape = SubResource( 29 )
+
+[node name="AttackArea" type="Area2D" parent="." groups=["Enemies"]]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2( -40, -0.0147048 )
+shape = SubResource( 30 )
+disabled = true
+
+[connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]
