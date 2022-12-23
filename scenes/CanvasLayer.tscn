@@ -86,6 +86,7 @@ texture_progress = ExtResource( 10 )
 nine_patch_stretch = true
 
 [node name="HPBarBoss" type="TextureProgress" parent="."]
+visible = false
 margin_left = 536.0
 margin_top = 925.0
 margin_right = 1392.0
@@ -107,7 +108,7 @@ margin_bottom = 30.0
 
 [node name="BackAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -16.0
+volume_db = -17.333
 
 [node name="StamineBar" type="TextureProgress" parent="."]
 margin_left = 128.0
@@ -132,7 +133,8 @@ position = Vector2( 75.9814, 76 )
 scale = Vector2( 0.456132, 0.446097 )
 texture = ExtResource( 4 )
 
-[node name="Circle2" type="Sprite" parent="."]
+[node name="CircleBoss" type="Sprite" parent="."]
+visible = false
 position = Vector2( 488, 944 )
 scale = Vector2( 0.456132, 0.446097 )
 texture = ExtResource( 4 )

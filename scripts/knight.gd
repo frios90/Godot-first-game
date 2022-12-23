@@ -49,8 +49,8 @@ var timer_disabled_collision_down_climb = 0
 var _delta = 0
 
 func _ready():	
-#	get_parent().get_node("knight").position.x = Env.init_position_stage.x
-#	get_parent().get_node("knight").position.y = Env.init_position_stage.y
+	get_parent().get_node("knight").position.x = Env.init_position_stage.x
+	get_parent().get_node("knight").position.y = Env.init_position_stage.y
 	state_machine = $AnimationTree.get("parameters/playback")	
 	state_machine.start("idle")
 		
@@ -67,14 +67,14 @@ func _process(delta):
 			attack()
 			dash()
 			climb()
-			move_and_slide(motion, up)		
+			Env.non_use = move_and_slide(motion, up)		
 	else:
 		timer_dead += 1
 		if timer_dead == time_lapsus_dead:	
 			Players.selected.stats.current_hp = Players.selected.stats.health_points
 			Players.selected.stats.current_mp = Players.selected.stats.magic_points			
 			Players.selected.dead = false
-			get_tree().reload_current_scene()
+			Env.non_use = get_tree().reload_current_scene()
 
 func invulnerability ():
 	if timer_not_take_damage > 0:			
@@ -194,7 +194,7 @@ func _on_DeadArea_area_entered(area):
 		elif area.is_in_group("Ladder"):
 			is_climbing = true
 		elif area.is_in_group("SpikesDead"):
-			INSTANT_DEAD(area)
+			INSTANT_DEAD()
 		elif area.is_in_group("gems"):
 			area.get_parent()._gems_pick_up()
 
@@ -209,8 +209,11 @@ func _on_DeadArea_area_exited(area):
 func _on_AttackArea_area_entered(area):
 	if not Players.selected.dead:
 		if area.is_in_group("EnemiesDefense"):			
-			$AttackArea/CollisionShape2D.disabled = true
-			
+			self.call_deferred("_call_deferred_attack", true)
+
+
+func _call_deferred_attack(status):
+	$AttackArea/CollisionShape2D.disabled = status
 
 func _callMethodFinishAttack () :
 	END_ATTACK(1);
@@ -288,7 +291,7 @@ func RECIVE_HURT (area):
 		state_machine.travel("death")				
 		Players.selected.dead = true
 		
-func INSTANT_DEAD (area):
+func INSTANT_DEAD ():
 	Players.selected.stats.current_hp -= Players.selected.stats.current_hp	
 	Util.get_an_script("CanvasLayer").handleSetHpBar()
 	$SoundDead.playing = true
@@ -297,7 +300,7 @@ func INSTANT_DEAD (area):
 	
 func _increment_exp_player(points):
 	Players.selected.stats.experience += points
-	if  Players.selected.stats.experience >=  Players.selected.stats.next_level:
+	while  Players.selected.stats.experience >=  Players.selected.stats.next_level:
 		$SoundLvlUp.playing = true
 		Players.selected.stats.level     += 1
 		Players.selected.stats.next_level =  Players.selected.stats.next_level *  Players.selected.stats.level * Players.selected.increase_level
@@ -305,13 +308,11 @@ func _increment_exp_player(points):
 		var lvlUP = load("res://scenes/Players/LevelUp.tscn")		
 		lvlUP = lvlUP.instance()
 		lvlUP.position.y = lvlUP.position.y -2
-		self.get_node("Sprite").add_child(lvlUP)
-		
-		yield(get_tree().create_timer(1.5), "timeout")	
-		
+		self.get_node("Sprite").call_deferred("add_child",lvlUP)
+		yield(get_tree().create_timer(1), "timeout")	
 		lvlUP.queue_free()
 		Util.get_an_script("CanvasLayer").handleSetLevelInUiPlayer()
-		
+
 
 		
 	

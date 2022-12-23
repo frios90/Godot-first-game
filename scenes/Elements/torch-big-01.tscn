@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/MapElements/torch_big_1.png" type="Texture" id=1]
+[ext_resource path="res://assets/MapElements/light.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 12 )
@@ -53,3 +54,9 @@ hframes = 6
 autoplay = "idle"
 anims/RESET = SubResource( 2 )
 anims/idle = SubResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 5.99999, -1.99999 )
+scale = Vector2( 0.253906, 0.238281 )
+texture = ExtResource( 2 )
+color = Color( 0.866667, 0.576471, 0.290196, 1 )

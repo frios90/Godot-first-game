@@ -14,18 +14,6 @@ region = Rect2( 16, 15, 38, 39 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
 
 [sub_resource type="Animation" id=3]
 resource_name = "up"
@@ -52,8 +40,8 @@ collision_mask = 0
 shape = SubResource( 1 )
 
 [node name="Levelup2" type="Sprite" parent="."]
-position = Vector2( -1.90735e-06, 40 )
-scale = Vector2( 0.122159, 0.0538306 )
+position = Vector2( 0.749993, 24 )
+scale = Vector2( 0.0475852, 0.0269153 )
 texture = ExtResource( 2 )
 normal_map = SubResource( 5 )
 
@@ -61,6 +49,7 @@ normal_map = SubResource( 5 )
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 4
+frame = 13
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "up"

@@ -14,10 +14,12 @@ func _ready () :
 	$BackAudio.playing    = true
 	
 func _process(delta):
+	Env.non_use = delta
 	if Input.is_action_just_pressed("pause"):
 		paused = load(screenPause).instance()
 		add_child(paused)
-		paused.connect("e", self, "on_paused_quit")
+#		paused.connect("e", self, "on_paused_quit")
+		Env.non_use = paused		
 		get_tree().paused = true
 		
 func on_paused_quit() -> void:
@@ -37,11 +39,9 @@ func handleFinishFigthingBoss ():
 func handleUpdateHpBarBoss (max_life, current_life):
 	$HPBarBoss.value = (float(100) / float(max_life)) * float(current_life)
 
-
 func handleGemCollected(qty):
 	Players.selected.gems += qty
 	$LabelTotalGems.text = String(Players.selected.gems)
-	
 
 func handleSetHpBar ():
 	$LabelLife.text = String(Players.selected.stats.current_hp)		

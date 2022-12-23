@@ -73,7 +73,7 @@ func _on_DeadArea_area_entered(area):
 			if (dead == false):
 				dead =  true
 				$AnimationPlayer.play("dead")
-				Util.get_an_script("CanvasLayer").handleIncrementExp(ptsDead)	
+				Util.get_an_script("knight")._increment_exp_player(ptsDead)	
 				Env._dropGems(self.position, 20)
 
 func applySoundSword ():

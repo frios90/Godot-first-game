@@ -1,6 +1,6 @@
 extends Camera2D
 
-export (float, 0 , 1) var decaimiento = 30 ##esto mas el noise seed  actualizadose en el _process puede causar un gran temblor. Para esto bajar valor de decaimiento
+export (float, 0 , 1) var decaimiento = 30.0 ##esto mas el noise seed  actualizadose en el _process puede causar un gran temblor. Para esto bajar valor de decaimiento
 export var max_offetr: Vector2 = Vector2(80, 80)
 export var max_rotation: float = 0.1
 

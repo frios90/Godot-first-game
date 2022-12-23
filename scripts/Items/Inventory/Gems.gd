@@ -11,7 +11,7 @@ func _ready():
 	
 func _process(delta):
 	motion.y += 75 * delta
-	move_and_slide(motion, up)
+	Env.non_use = move_and_slide(motion, up)
 	
 func _gems_pick_up ():
 	$SoundPickAGem.playing = true

@@ -8,7 +8,7 @@ export (int) var withMoveAndFlip = 0
 export (int) var maxSpeed        = 26
 const gravity                    = 1600
 const up                         = Vector2(0, -1)
-const ptsDead                    = 1000
+const ptsDead                    = 100
 var dead                         = false 
 var life                         = 100
 var base_attack                  = 35
@@ -48,7 +48,7 @@ func _process(delta):
 			motion.y = 0
 	else:
 		motion = Vector2(0, 0)	
-	move_and_slide(motion, up)
+	Env.non_use = move_and_slide(motion, up)
 		
 func moveOrIdle():
 	if withMoveAndFlip == 1:

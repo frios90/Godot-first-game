@@ -1,4 +1,5 @@
 extends Node
+var non_use
 var list_gems = [
 	{
 		"color": "gold",
@@ -45,8 +46,7 @@ func _dropGems (position, max_gem_drop):
 	selectDropGem(random_max_gem, position)
 		
 func selectDropGem (gems, position) :
-	print("total gemas")
-	print(gems)
+
 	for i in range(list_gems.size()):
 		if gems >= list_gems[i].qty:			
 			createGem(list_gems[i].color, (gems / list_gems[i].qty), position, list_gems[i].qty) 
@@ -54,8 +54,7 @@ func selectDropGem (gems, position) :
 		
 
 func createGem (color, gems, position,  qty) :	
-	print(gems)
-	for i in range(gems):
+	for _i in range(gems):
 		var random_position_gem = randi() % 2 
 		var random              = randi() % 35				
 		var drop_gem            = load("res://scenes/Items/Gem.tscn")	

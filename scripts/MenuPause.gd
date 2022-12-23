@@ -17,6 +17,7 @@ func _ready ():
 	$Statistics.get_node("Gui-suerte").text         = String(Players.selected.stats.luck)
 	
 func _process(delta):
+	Env.non_use = delta
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = false
 		emit_signal("e")

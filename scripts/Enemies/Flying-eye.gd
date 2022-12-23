@@ -53,11 +53,11 @@ func _process(delta):
 		flip()
 		if is_on_floor():
 			motion.y = 0
-		move_and_slide(motion, up)
+		Env.non_use = move_and_slide(motion, up)
 	else:
 		motion   = Vector2(0, 0)	
 		motion.y = gravity
-		move_and_slide(motion, up)
+		Env.non_use = move_and_slide(motion, up)
 		yield(get_tree().create_timer(0.09), "timeout")
 		queue_free()
 

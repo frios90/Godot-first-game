@@ -11,18 +11,20 @@ const gravity                    = 1600
 const up                         = Vector2(0, -1)
 const ptsDead                    = 4000
 var dead                         = false 
-var life                         = 1200
-var base_attack                  = 80
+
+var life                         = 12
+var base_attack                  = 65
 var base_defense                 = 32
 
 var is_attacking                 = false
 var is_teletransport             = false
 var is_hurting                   = false
 var is_cast_spell                = false
+var is_spelling                  = false
 var _delta                       = 0
 var useRandSound                 = 0
 var count_damage_hits                  = 0
-
+var to_second_raund              = 0.49
 
 onready var motion               = Vector2(0, 0)
 onready var attack               = base_attack if level == 1 else base_attack * (level * 0.77)
@@ -30,43 +32,41 @@ onready var defense              = base_defense if level == 1 else base_defense 
 onready var current_life         = life if level == 1 else life * (level * 0.77)
 var state_machine
 
-func _ready():		
-	Util.get_an_script("CanvasLayer").get_node("HPBarBoss").visible=true
+func _ready():
+
 	Util.get_an_script("CanvasLayer").get_node("HPBarBoss").value=life
 	scale.x   = scaleX
 	maxSpeed *= -1
-	motion.x = maxSpeed
+	motion.x  = maxSpeed
 	state_machine = $AnimationTree.get("parameters/playback")	
 	state_machine.start("idle")
-	
-
-	
+		
 func _process(delta):
 	_delta = delta
-	if not dead:	
+	if not dead and withMoveAndFlip == 1:	
 		motion.y += gravity	* delta
 		if not is_teletransport:
 			state_machine.travel("walk")
 		attacking()		
 		flip()
+
 		if is_on_floor():
 			motion.y = 0
 	else:
 		motion = Vector2(0, 0)	
-	move_and_slide(motion, up)
+	Env.non_use = move_and_slide(motion, up)
 
 func flip():
-	if $RayFrontFlip.is_colliding() or $RayBackFlip.is_colliding() and not is_attacking and not is_hurting:
+	if $RayFrontFlip.is_colliding() or $RayBackFlip.is_colliding() and not is_attacking and not is_hurting and not is_spelling:
 		motion.x *= -1
 		scale.x  *= -1
 
 func attacking () :
 	if $RaySwordAttack.is_colliding():		
 		state_machine.travel("attack")
-		if current_life < life*0.45:
+		if current_life < life*to_second_raund:
 			if not is_cast_spell:
-				state_machine.travel("spell")
-		
+				state_machine.travel("spell")		
 
 ##Metodos de la animación atacar
 func _CM_init_attack_animation ():
@@ -87,22 +87,9 @@ func _CM_finish_attack_animation ():
 func _callMethodFinishDead () :
 	queue_free()
 
-func _on_DeadArea_area_entered(area):
-	if area.is_in_group("Sword"):
-		Util.get_an_script("Camera2D").trauma = true
-		applySoundSword()
-		if (dead == false):
-			_ADD_CHILD_DAMAGE()
-			state_machine.travel("hurt")			
-			current_life = current_life - Players._get_attack(defense)
-			Util.get_an_script("CanvasLayer").handleUpdateHpBarBoss(life, current_life)
-			_damage_teletransport()			
-		if current_life <= 0:
-			_DEAD()
-
 func _damage_teletransport ():
 	count_damage_hits += 1
-	if count_damage_hits % 6 == 0:		
+	if count_damage_hits % 6 == 0 and self:		
 		is_teletransport = true
 		yield(get_tree().create_timer(0.5), "timeout")
 		state_machine.travel("tele")		
@@ -120,6 +107,7 @@ func _return_teletransport ():
 
 
 func _CM_init_spell_event () :
+	is_spelling = true
 	maxSpeed = motion.x
 	motion.x = 0
 	
@@ -130,6 +118,7 @@ func _CM_finish_spell_event () :
 	spell.position.x = collider.position[0]
 	spell.position.y = -1230
 	get_parent().add_child(spell)
+	is_spelling = false
 	motion.x = maxSpeed
 	
 func _CM_init_hurt () :
@@ -157,12 +146,29 @@ func _ADD_CHILD_DAMAGE () :
 	ftd.amount = Players._get_attack(defense)
 	add_child(ftd)
 
+
+func _on_DeadArea_area_entered(area):
+	if area.is_in_group("Sword"):
+		Util.get_an_script("Camera2D").trauma = true
+		applySoundSword()
+		if (dead == false):
+			_ADD_CHILD_DAMAGE()
+			state_machine.travel("hurt")			
+			current_life = current_life - Players._get_attack(defense)
+			current_life = current_life - Players._get_attack(defense)
+			Util.get_an_script("CanvasLayer").handleUpdateHpBarBoss(life, current_life)
+			_damage_teletransport()			
+		if current_life <= 0:
+			_DEAD()
+			
 func _DEAD ():
 	if (dead == false):
 		dead =  true			
 		state_machine.travel("dead")
-		Util.get_an_script("knight")._increment_exp_player(ptsDead)
-		Env._dropGems(self.position, 1000)
-		
-func _on_AttackArea_area_entered(area):
-	pass # Replace with function body.
+		Util.get_an_script("knight")._increment_exp_player(ptsDead)		
+		Env._dropGems(self.position, 999)
+		if get_parent().has_node("BringerHandAttack"):
+			get_parent().get_node("BringerHandAttack").queue_free()
+		get_parent()._finish_battle()
+		self.queue_free()
+
