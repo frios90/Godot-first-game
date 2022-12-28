@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dova_Die Letzte Revolution_master.mp3-42ffd311e4f5d2e2a7eb4918e81932fd.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"
+dest_files=[ "res://.import/dova_Die Letzte Revolution_master.mp3-42ffd311e4f5d2e2a7eb4918e81932fd.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

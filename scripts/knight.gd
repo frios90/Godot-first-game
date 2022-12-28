@@ -30,6 +30,9 @@ var is_dashing    = false
 var is_climbing   = false
 var going_up      = false
 var going_down    = false
+var can_pray      = false
+var is_praying    = false
+var in_hand_pray  = ""
 var state_machine
 
 var timer_not_take_damage     = 0
@@ -48,34 +51,49 @@ var timer_disabled_collision_down_climb = 0
 
 var _delta = 0
 
-func _ready():	
+func _ready():
+
 	get_parent().get_node("knight").position.x = Env.init_position_stage.x
 	get_parent().get_node("knight").position.y = Env.init_position_stage.y
+
 	state_machine = $AnimationTree.get("parameters/playback")	
 	state_machine.start("idle")
 		
 func _process(delta):	
 	_delta = delta
 	if not Players.selected.dead:
-		motion.x = 0
-		health()
-		invulnerability()
-		if not is_healing:
-			move()
-			fall(delta)			
-			jump()
-			attack()
-			dash()
-			climb()
-			Env.non_use = move_and_slide(motion, up)		
+		if not Msgs.in_dialog:
+			motion.x = 0
+			health()
+			prayToSave()
+			invulnerability()
+			if not is_healing and not is_praying:
+				move()
+				fall(delta)			
+				jump()
+				attack()
+				dash()
+				climb()		
+				Env.non_use = move_and_slide(motion, up)		
+		else:
+			state_machine.travel("idle")
 	else:
 		timer_dead += 1
 		if timer_dead == time_lapsus_dead:	
 			Players.selected.stats.current_hp = Players.selected.stats.health_points
 			Players.selected.stats.current_mp = Players.selected.stats.magic_points			
 			Players.selected.dead = false
-			Env.non_use = get_tree().reload_current_scene()
 
+			if not Players.selected.last_save_point:
+				Env.init_position_stage.x = 224
+				Env.init_position_stage.y = 904
+				Env.non_use = get_tree().change_scene("res://scenes/World/Cementery/Cementery-001-intro.tscn")
+			else:		
+						
+				Env.init_position_stage.x = Players.selected.last_save_point.x
+				Env.init_position_stage.y = Players.selected.last_save_point.y
+				Env.non_use = get_tree().change_scene(Players.selected.last_save_point.scene)
+				
 func invulnerability ():
 	if timer_not_take_damage > 0:			
 		timer_not_take_damage += 1			
@@ -167,8 +185,6 @@ func attack():
 			elif event_attack == 1:	
 				INIT_TRAVEL_ATTACK("attack3")
 			
-
-
 			
 func dash():	
 	if is_dashing == true and timer_dash > 0:
@@ -178,9 +194,23 @@ func dash():
 	if Input.is_action_just_pressed("dash") and timer_dash == 0 and not is_dashing and not is_jumping and motion.x != 0:		
 		INIT_TRAVEL_DASH()
 
-func pray ():
-	state_machine.travel("pray")
-	
+func prayToSave ():
+	if Input.is_action_just_pressed("pray_to_save") and can_pray and not is_praying:		
+		state_machine.travel("pray")
+		Players.selected.selected_item.current = Players.selected.selected_item.max
+		Util.get_an_script("CanvasLayer").get_node("LabelPotas").text = String(Players.selected.selected_item.current)
+		is_praying = true
+
+func _callMethodFinishPray () :
+	if can_pray:
+		print(SavePoints.points)
+		for pt in SavePoints.points:
+			if int(pt.code) == int(in_hand_pray):
+				SavePoints.points[pt.key].status = true
+				Players.selected.last_save_point = SavePoints.points[pt.key]
+		print(SavePoints.points)
+		is_praying = false
+		
 #acumular monedas
 func addCoin():	
 	var canvasLayer = get_tree().get_root().find_node("CanvasLayer", true,false)	
@@ -189,15 +219,19 @@ func addCoin():
 #Area de muerte Gústaf
 func _on_DeadArea_area_entered(area):
 	if not Players.selected.dead:		
+		print(area)
 		if area.is_in_group("Enemies") and timer_not_take_damage == 0 and area.visible == true:			
 			RECIVE_HURT(area)							
 		elif area.is_in_group("Ladder"):
 			is_climbing = true
 		elif area.is_in_group("SpikesDead"):
+			print("cai en espinas")
 			INSTANT_DEAD()
 		elif area.is_in_group("gems"):
 			area.get_parent()._gems_pick_up()
-
+		elif area.is_in_group("Save"):
+			in_hand_pray = area.get_parent().spt_code
+			can_pray = true
 
 func _on_DeadArea_area_exited(area):
 	if area.is_in_group("Ladder"):
@@ -205,12 +239,13 @@ func _on_DeadArea_area_exited(area):
 		going_down  = false
 		going_up    = false
 		motion.y += Players.selected.stats.gravity * Players.selected.stats.mase * _delta
+	elif area.is_in_group("Save"):
+		can_pray = false
 		
 func _on_AttackArea_area_entered(area):
 	if not Players.selected.dead:
 		if area.is_in_group("EnemiesDefense"):			
 			self.call_deferred("_call_deferred_attack", true)
-
 
 func _call_deferred_attack(status):
 	$AttackArea/CollisionShape2D.disabled = status
@@ -236,6 +271,7 @@ func INIT_TRAVEL_ATTACK (travel_to = "atttack"):
 	$AttackArea/CollisionShape2D.disabled = false
 
 func INIT_TRAVEL_DASH ():
+
 	is_dashing = true	
 	timer_dash = 1	
 	state_machine.travel("dash")
@@ -268,11 +304,17 @@ func END_DASH ():
 
 func SELF_HEALING ():
 	if Players.selected.selected_item.current > 0:
+		var aura = load("res://scenes/Players/AuraHeal.tscn")		
+		aura     = aura.instance()
+		aura.position.x = self.position.x
+		aura.position.y = self.position.y
+		get_parent().add_child(aura)
+		
 		is_healing = true
 		Players.selected.selected_item.current -= 1
 		state_machine.travel("health")	
-		ftd      = floating_text.instance()
-		ftd.type = "heal"
+		ftd        = floating_text.instance()
+		ftd.type   = "heal"
 		ftd.amount = Players._get_potion_recovery()
 		add_child(ftd)
 		Players.selected.stats.current_hp += Players._get_potion_recovery()
@@ -288,7 +330,7 @@ func RECIVE_HURT (area):
 	Util.get_an_script("CanvasLayer").handleSetHpBar()					
 	if Players.selected.stats.current_hp <= 0:
 		$SoundDead.playing = true
-		state_machine.travel("death")				
+		state_machine.travel("death")
 		Players.selected.dead = true
 		
 func INSTANT_DEAD ():
@@ -301,7 +343,7 @@ func INSTANT_DEAD ():
 func _increment_exp_player(points):
 	Players.selected.stats.experience += points
 	while  Players.selected.stats.experience >=  Players.selected.stats.next_level:
-		$SoundLvlUp.playing = true
+#		$SoundLvlUp.playing = true
 		Players.selected.stats.level     += 1
 		Players.selected.stats.next_level =  Players.selected.stats.next_level *  Players.selected.stats.level * Players.selected.increase_level
 		Players.selected.stats.strength   =  Players.selected.stats.strength + ( Players.selected.stats.level *  Players.selected.increase_stats)

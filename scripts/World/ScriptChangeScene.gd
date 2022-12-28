@@ -28,3 +28,20 @@ func _on_Rtn002003_body_entered(body):
 		Env.init_position_stage.y = 360
 		Env.init_position_stage.flip = -1
 		Env.non_use =  get_tree().change_scene("res://scenes/World/Cementery/Cementery-002-bridge.tscn")
+
+func _on_Goto004003_body_entered(body):
+	if body.get_name() == 'knight':	
+		Env.init_position_stage.x = 4000
+		Env.init_position_stage.y = -1136
+		Env.init_position_stage.flip = -1
+		Env.non_use =  get_tree().change_scene("res://scenes/World/Church/church-004-front.tscn")
+
+func _on_Rtn003004_body_entered(body):
+	if body.get_name() == 'knight':	
+		Env.init_position_stage.x = 4000
+		Env.init_position_stage.y = -1136
+		Env.init_position_stage.flip = -1
+		Env.non_use =  get_tree().change_scene("res://scenes/World/Cementery/Cementery-003-down-of-hill.tscn")
+
+
+

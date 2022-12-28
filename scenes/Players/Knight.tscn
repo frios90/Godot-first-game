@@ -3,8 +3,8 @@
 [ext_resource path="res://assets/Sounds/orchestra.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/Sounds/melee sounds/animal melee sound.wav" type="AudioStream" id=2]
 [ext_resource path="res://scripts/knight.gd" type="Script" id=3]
+[ext_resource path="res://assets/Sounds/heal2.ogg" type="AudioStream" id=4]
 [ext_resource path="res://assets/Sounds/player/die1.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/Sounds/bottle.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/Characters/Player/sprite-player.png" type="Texture" id=8]
 [ext_resource path="res://assets/Sounds/Retro FootStep Mud 01.wav" type="AudioStream" id=9]
 
@@ -245,7 +245,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.119048 ),
+"times": PoolRealArray( 0.166667 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -392,6 +392,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 16, 17, 18, 19, 24, 25, 26, 27, 32, 18, 19, 24, 25, 26, 27, 32, 18, 19, 24, 25, 26, 27, 32, 24, 25, 26, 27, 32, 18, 19, 24, 25, 26, 27, 32, 18, 19, 24, 25, 26, 27, 32, 19, 24, 25, 26, 27, 32, 34, 35 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.72222 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodFinishPray"
+} ]
 }
 
 [sub_resource type="Animation" id=127]
@@ -676,7 +690,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 8 )
 hframes = 8
 vframes = 15
-frame = 48
+frame = 56
 
 [node name="RayDown" type="RayCast2D" parent="Sprite"]
 enabled = true
@@ -738,9 +752,9 @@ stream = SubResource( 289 )
 volume_db = -10.0
 
 [node name="SoundHealth" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-volume_db = -10.187
-pitch_scale = 0.61
+stream = ExtResource( 4 )
+volume_db = -20.0
+pitch_scale = 2.0
 
 [node name="SoundLvlUp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )

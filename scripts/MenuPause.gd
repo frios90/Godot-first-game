@@ -24,7 +24,7 @@ func _process(delta):
 		self.queue_free()
 
 func _on_ButtonQuit_pressed():
-	get_tree().quit()
+	Env.non_use = get_tree().change_scene("res://scenes/Menu.tscn")
 
 func _on_ButtonContinue_pressed():
 	get_tree().paused = false

@@ -49,7 +49,8 @@ var gustaph = {
 		"max"      : 3,
 		"current"  : 3,
 		"recovery" : 0.8	
-	}	
+	},
+	"last_save_point": ""
 }
 
 func _ready ():

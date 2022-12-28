@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const            = Vector2(0, -1)
+const up         = Vector2(0, -1)
 var attack       = 80
 var speed        = 250
 var motion       = Vector2(0, 0)

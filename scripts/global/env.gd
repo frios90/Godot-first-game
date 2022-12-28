@@ -1,4 +1,7 @@
 extends Node
+
+var in_dialog = false
+
 var non_use
 var list_gems = [
 	{
@@ -32,8 +35,8 @@ var list_gems = [
 ]
 
 var init_position_stage = {
-	"x" : 72,
-	"y" : 528,
+	"x" : 224,
+	"y" : 904,
 	"flip" : 1
 }
 
@@ -55,12 +58,14 @@ func selectDropGem (gems, position) :
 
 func createGem (color, gems, position,  qty) :	
 	for _i in range(gems):
+		randomize()
 		var random_position_gem = randi() % 2 
-		var random              = randi() % 35				
+		var random_x              = randi() % 35	
+		var random_y              = randi() % 35							
 		var drop_gem            = load("res://scenes/Items/Gem.tscn")	
 		drop_gem                = drop_gem.instance()
-		drop_gem.position.x     = position[0] + random if random_position_gem == 1 else position[0] - random
-		drop_gem.position.y     = position[1]	
+		drop_gem.position.x     = position[0] + random_x if random_position_gem == 1 else position[0] - random_x
+		drop_gem.position.y     = position[1] + random_y if random_position_gem == 1 else position[1] - random_y	
 		drop_gem.color          = color	
 		drop_gem.qty            = qty		
 

@@ -12,7 +12,7 @@ const up                         = Vector2(0, -1)
 const ptsDead                    = 4000
 var dead                         = false 
 
-var life                         = 12
+var life                         = 2000
 var base_attack                  = 65
 var base_defense                 = 32
 
@@ -21,9 +21,9 @@ var is_teletransport             = false
 var is_hurting                   = false
 var is_cast_spell                = false
 var is_spelling                  = false
-var _delta                       = 0
+
 var useRandSound                 = 0
-var count_damage_hits                  = 0
+var count_damage_hits            = 0
 var to_second_raund              = 0.49
 
 onready var motion               = Vector2(0, 0)
@@ -33,16 +33,18 @@ onready var current_life         = life if level == 1 else life * (level * 0.77)
 var state_machine
 
 func _ready():
+	if DbBoss.bringer_of_deadth_001.dead:
+		print("ya esta muerto este loco")
+		self.queue_free()
+	else:	
+		Util.get_an_script("CanvasLayer").get_node("HPBarBoss").value = life
+		scale.x       = scaleX
+		maxSpeed     *= -1
+		motion.x      = maxSpeed
+		state_machine = $AnimationTree.get("parameters/playback")	
+		state_machine.start("idle")
 
-	Util.get_an_script("CanvasLayer").get_node("HPBarBoss").value=life
-	scale.x   = scaleX
-	maxSpeed *= -1
-	motion.x  = maxSpeed
-	state_machine = $AnimationTree.get("parameters/playback")	
-	state_machine.start("idle")
-		
 func _process(delta):
-	_delta = delta
 	if not dead and withMoveAndFlip == 1:	
 		motion.y += gravity	* delta
 		if not is_teletransport:
@@ -83,9 +85,7 @@ func _callMethodFinishAttack () :
 func _CM_finish_attack_animation ():
 	motion.x = maxSpeed
 	is_attacking = false
-	
-func _callMethodFinishDead () :
-	queue_free()
+
 
 func _damage_teletransport ():
 	count_damage_hits += 1
@@ -122,13 +122,10 @@ func _CM_finish_spell_event () :
 	motion.x = maxSpeed
 	
 func _CM_init_hurt () :
-#	maxSpeed = motion.x
-#	motion.x = 0
 	is_hurting = true
 	$DeadArea/CollisionShape2D.disabled = true
 	
 func _CM_finish_hurt () :
-#	motion.x   = maxSpeed
 	is_hurting = false
 	$DeadArea/CollisionShape2D.disabled = false
 	
@@ -139,13 +136,12 @@ func applySoundSword ():
 		$SwordHurt02.playing  = true
 		
 func _ADD_CHILD_DAMAGE () :
-	ftd = floating_text.instance()
-	ftd.type = "damage"
-	ftd.flip = -motion.x
+	ftd                     = floating_text.instance()
+	ftd.type                = "damage"
+	ftd.flip                = -motion.x
 	ftd.true_positon_sprite = true_positon_sprite
-	ftd.amount = Players._get_attack(defense)
+	ftd.amount              = Players._get_attack(defense)
 	add_child(ftd)
-
 
 func _on_DeadArea_area_entered(area):
 	if area.is_in_group("Sword"):
@@ -157,18 +153,30 @@ func _on_DeadArea_area_entered(area):
 			current_life = current_life - Players._get_attack(defense)
 			current_life = current_life - Players._get_attack(defense)
 			Util.get_an_script("CanvasLayer").handleUpdateHpBarBoss(life, current_life)
-			_damage_teletransport()			
+			_damage_teletransport()						
 		if current_life <= 0:
 			_DEAD()
-			
+	
+func _cd_magic_circle_death ():
+	var circle = load("res://scenes/Enemies/Boss/MagicCircleFinalBoss.tscn")
+	circle            = circle.instance()
+	circle.position.x = self.position.x
+	circle.position.y = -1216
+	get_parent().add_child(circle)
+	
 func _DEAD ():
 	if (dead == false):
+		DbBoss.bringer_of_deadth_001.dead = true
 		dead =  true			
+		self.call_deferred("_cd_magic_circle_death")
 		state_machine.travel("dead")
 		Util.get_an_script("knight")._increment_exp_player(ptsDead)		
 		Env._dropGems(self.position, 999)
 		if get_parent().has_node("BringerHandAttack"):
 			get_parent().get_node("BringerHandAttack").queue_free()
 		get_parent()._finish_battle()
-		self.queue_free()
 
+
+	
+func _callMethodFinishDead () :
+	self.queue_free()

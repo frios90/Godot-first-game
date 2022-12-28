@@ -82,7 +82,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=48]
 resource_name = "dead"
-length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -90,10 +89,24 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.7, 0.8, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 32, 33, 34, 35, 36, 37, 38 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodFinishDead"
+} ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -290,7 +303,6 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=47]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=50]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id=7]
 states/attack/node = SubResource( 12 )
@@ -312,7 +324,7 @@ states/walk/position = Vector2( 423, 255.889 )
 transitions = [ "idle", "attack", SubResource( 17 ), "attack", "idle", SubResource( 18 ), "idle", "hurt", SubResource( 21 ), "hurt", "idle", SubResource( 22 ), "idle", "walk", SubResource( 23 ), "walk", "idle", SubResource( 24 ), "walk", "attack", SubResource( 25 ), "walk", "hurt", SubResource( 27 ), "hurt", "walk", SubResource( 28 ), "idle", "tele", SubResource( 32 ), "tele", "idle", SubResource( 33 ), "attack", "tele", SubResource( 34 ), "tele", "attack", SubResource( 35 ), "hurt", "tele", SubResource( 36 ), "tele", "hurt", SubResource( 37 ), "tele", "walk", SubResource( 38 ), "walk", "tele", SubResource( 39 ), "tele", "comebacktele", SubResource( 42 ), "comebacktele", "attack", SubResource( 43 ), "spell", "idle", SubResource( 46 ), "idle", "spell", SubResource( 47 ), "hurt", "dead", SubResource( 50 ) ]
 start_node = "idle"
 end_node = "dead"
-graph_offset = Vector2( 165.617, 127.813 )
+graph_offset = Vector2( 165.617, 209.666 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 

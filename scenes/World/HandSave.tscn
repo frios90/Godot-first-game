@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/MapElements/light.png" type="Texture" id=1]
+[ext_resource path="res://assets/MapElements/HandSave.png" type="Texture" id=2]
+[ext_resource path="res://scripts/World/HandSave.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "off"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "on"
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.0833333, 0.25, 0.416667, 0.583333, 0.75, 0.916667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 22, 54 )
+
+[node name="HandSave" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 7
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "off"
+anims/RESET = SubResource( 2 )
+anims/off = SubResource( 3 )
+anims/on = SubResource( 4 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( -2.99994, -1 )
+scale = Vector2( 0.799805, 0.714844 )
+texture = ExtResource( 1 )
+color = Color( 0.866667, 0.329412, 0.290196, 1 )
+energy = 0.2
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( -2.99994, -1 )
+scale = Vector2( 0.799805, 0.714844 )
+texture = ExtResource( 1 )
+color = Color( 0.913725, 0.231373, 0.121569, 1 )
+energy = 0.2
+
+[node name="Light2D4" type="Light2D" parent="."]
+position = Vector2( 1.00974e-28, -64 )
+scale = Vector2( 0.799805, 0.714844 )
+texture = ExtResource( 1 )
+color = Color( 0.905882, 0.721569, 0.290196, 1 )
+energy = 0.2
+
+[node name="PrayToSave" type="Area2D" parent="." groups=["Save"]]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PrayToSave"]
+position = Vector2( 0, -16 )
+shape = SubResource( 5 )

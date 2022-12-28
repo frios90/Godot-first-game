@@ -25,16 +25,6 @@ func _process(delta):
 func on_paused_quit() -> void:
 	paused = null
 
-func handleStartFigthingBoss ():	
-#	get_parent().get_node("BossTheme").playing = true
-	$HPBarBoss.visible = true
-	$HPBarBoss.value  += 100
-
-func handleFinishFigthingBoss ():	
-	get_parent().get_node("BossTheme").playing = false
-	get_parent().get_node("VictorySound").playing = true
-	get_parent().get_node("WaterBoss/CollisionShape2D").disabled = true
-	$HPBarBoss.visible = false
 	
 func handleUpdateHpBarBoss (max_life, current_life):
 	$HPBarBoss.value = (float(100) / float(max_life)) * float(current_life)
