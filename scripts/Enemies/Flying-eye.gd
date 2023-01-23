@@ -58,8 +58,13 @@ func _process(delta):
 		motion      = Vector2(0, 0)	
 		motion.y    = gravity
 		Env.non_use = move_and_slide(motion, up)
-		yield(get_tree().create_timer(0.09), "timeout")
-		queue_free()
+		var pretime_to_dead = get_tree().create_timer(0.33)
+		pretime_to_dead.connect("timeout", self, "_preTimeToDead")	
+
+		
+
+func _preTimeToDead () :
+	queue_free()
 
 func moveOrIdle():
 	if withMoveAndFlip == 1:
@@ -94,13 +99,15 @@ func castSpell (collider):
 	spell.position.x = collider.position[0]
 	spell.position.y = collider.position[1]
 	spell.attack = attack		
-	yield(get_tree().create_timer(0.5), "timeout")	
+	yield(get_tree().create_timer(0.3), "timeout")	
 	get_parent().add_child(spell)
 	state_machine.travel("attack")	
-		
+
+	
+
 func _timeout_finish_attach () :
 	is_attacking = false
-
+	
 func _callMethodCastSpell ():
 	pass
 	

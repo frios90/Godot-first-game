@@ -34,10 +34,9 @@ var state_machine
 
 func _ready():
 	if DbBoss.bringer_of_deadth_001.dead:
-		print("ya esta muerto este loco")
 		self.queue_free()
 	else:	
-		Util.get_an_script("CanvasLayer").get_node("HPBarBoss").value = life
+		Util.get_an_script("CanvasLayer").get_node("BossBarControl/HPBarBoss").value = life
 		scale.x       = scaleX
 		maxSpeed     *= -1
 		motion.x      = maxSpeed

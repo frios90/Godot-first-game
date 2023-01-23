@@ -2,17 +2,19 @@ extends KinematicBody2D
 const true_positon_sprite        = false
 var floating_text                = preload("res://scenes/FloatingText.tscn")
 var ftd                          = 0
+export (int) var can_back_flip   = 1
 export (int) var level           = 1
 export (int) var scaleX          = -1
-export (int) var withMoveAndFlip = 0
-export (int) var maxSpeed        = 26
+export (int) var withMoveAndFlip = 1
+export (int) var maxSpeed        = 45
 const gravity                    = 1600
 const up                         = Vector2(0, -1)
-const ptsDead                    = 100
+const ptsDead                    = 60
+var dropGem                      = 25
 var dead                         = false 
-var life                         = 100
-var base_attack                  = 35
-var base_defense                 = 15
+var life                         = 50
+var base_attack                  = 50
+var base_defense                 = 10
 var motion                       = Vector2(0, 0)
 var is_attacking                 = false
 var _delta                       = 0
@@ -25,16 +27,10 @@ onready var current_life         = life if level == 1 else life * (level * 0.77)
 var state_machine
 
 func _ready():		
+	state_machine    = $AnimationTree.get("parameters/playback")	
 	$HPbar.max_value = life if level == 1 else life * (level * 0.77)
 	$HPbar.value     = $HPbar.max_value
-	scale.x = scaleX
-	state_machine = $AnimationTree.get("parameters/playback")	
-	if withMoveAndFlip == 1:
-		state_machine.start("walk")		
-		motion.x = maxSpeed * scaleX
-	else:
-		state_machine.start("idle")
-		motion.x = 0
+	scale.x          = scaleX	
 	$AttackArea/CollisionShape2D.disabled = true
 
 func _process(delta):
@@ -53,17 +49,16 @@ func _process(delta):
 func moveOrIdle():
 	if withMoveAndFlip == 1:
 		state_machine.travel("walk")
+		motion.x = maxSpeed * -1
 	else:
-		state_machine.travel("idle")
+		motion.x = 0
 		
 func flip():
-	if withMoveAndFlip == 1 :
-		if $RayFlip.is_colliding() or $RayBackFlip.is_colliding()  or $RayEnd.is_colliding() == false:
-			motion.x *= -1
-			scale.x  *= -1
-	elif $RayBackFlip.is_colliding():
-		motion.x *= -1
+	if $RayFlip.is_colliding() or $RayBackFlip.is_colliding() or not $RayEnd.is_colliding() or ($RayBackFlip.is_colliding() and can_back_flip == 1):
+		maxSpeed *= -1
 		scale.x  *= -1
+		motion.x = maxSpeed		
+	
 			
 func attacking () :
 	if $RayAttack.is_colliding() or $RayAttack2.is_colliding():
@@ -85,25 +80,28 @@ func _on_DeadArea_area_entered(area):
 		Util.get_an_script("Camera2D").trauma = true
 		applySoundSword()			
 		if (dead == false):
-			current_life = current_life - Players._get_attack(defense)
 			state_machine.travel("hurt")	
-			ftd = floating_text.instance()
-			ftd.type = "damage"
-			ftd.flip = motion.x
-			ftd.true_positon_sprite = true_positon_sprite
-			ftd.amount = Players._get_attack(defense)
-			add_child(ftd)
+			current_life = current_life - Players._get_attack(defense)			
+			floatDamageCount()
 			$HPbar.value = current_life
 		if current_life <= 0:
 			if (dead == false):
-				dead =  true			
 				state_machine.travel("dead")
+				dead =  true
 				Util.get_an_script("knight")._increment_exp_player(ptsDead)
-				Env._dropGems(self.position, 12)
+				Env._dropGems(self.position, dropGem)
 
 func applySoundSword ():
 	if useRandSound == 0:
 		$SwordHurt01.playing  = true
 	else:
 		$SwordHurt02.playing  = true
+		
+func floatDamageCount () :
+	ftd                     = floating_text.instance()
+	ftd.type                = "damage"
+	ftd.flip                = motion.x
+	ftd.true_positon_sprite = true_positon_sprite
+	ftd.amount              = Players._get_attack(defense)
+	add_child(ftd)
 		

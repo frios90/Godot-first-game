@@ -19,7 +19,7 @@ var time_lapsus_dead = 150
 
 var motion = Vector2(0, 0)
 
-var max_jump    = 1
+var max_jump    = 2
 var times_jump  = 0
 var lapsus_step = 23
 
@@ -27,12 +27,17 @@ var is_healing    = false
 var is_jumping    = false
 var is_attacking  = false
 var is_dashing    = false
+var is_hurting    = false
 var is_climbing   = false
 var going_up      = false
 var going_down    = false
 var can_pray      = false
 var is_praying    = false
 var in_hand_pray  = ""
+
+var can_open_chest = false
+var in_front_of_the_chest = ""
+
 var state_machine
 
 var timer_not_take_damage     = 0
@@ -51,11 +56,7 @@ var timer_disabled_collision_down_climb = 0
 
 var _delta = 0
 
-func _ready():
-
-	get_parent().get_node("knight").position.x = Env.init_position_stage.x
-	get_parent().get_node("knight").position.y = Env.init_position_stage.y
-
+func _ready():	
 	state_machine = $AnimationTree.get("parameters/playback")	
 	state_machine.start("idle")
 		
@@ -64,39 +65,38 @@ func _process(delta):
 	if not Players.selected.dead:
 		if not Msgs.in_dialog:
 			motion.x = 0
-			health()
+			applyItem()
 			prayToSave()
 			invulnerability()
-			if not is_healing and not is_praying:
+			if not is_praying and not is_hurting:
 				move()
-				fall(delta)			
+				fall(delta)
 				jump()
 				attack()
 				dash()
-				climb()		
-				Env.non_use = move_and_slide(motion, up)		
+				climb()
+				Env.non_use = move_and_slide(motion, up)
 		else:
 			state_machine.travel("idle")
 	else:
 		timer_dead += 1
-		if timer_dead == time_lapsus_dead:	
+
+		if timer_dead == time_lapsus_dead:
 			Players.selected.stats.current_hp = Players.selected.stats.health_points
-			Players.selected.stats.current_mp = Players.selected.stats.magic_points			
-			Players.selected.dead = false
+			Players.selected.stats.current_mp = Players.selected.stats.magic_points
+			Players.selected.dead             = false
 
 			if not Players.selected.last_save_point:
 				Env.init_position_stage.x = 224
 				Env.init_position_stage.y = 904
-				Env.non_use = get_tree().change_scene("res://scenes/World/Cementery/Cementery-001-intro.tscn")
-			else:		
-						
-				Env.init_position_stage.x = Players.selected.last_save_point.x
-				Env.init_position_stage.y = Players.selected.last_save_point.y
+				Env.non_use               = get_tree().change_scene("res://scenes/World/Cementery/Cementery-001-intro.tscn")
+			else:				
+				Players.selected.change_scene_from_dead = true
 				Env.non_use = get_tree().change_scene(Players.selected.last_save_point.scene)
 				
 func invulnerability ():
-	if timer_not_take_damage > 0:			
-		timer_not_take_damage += 1			
+	if timer_not_take_damage > 0:
+		timer_not_take_damage += 1
 	if timer_not_take_damage == time_loop_not_take_damage:
 		timer_not_take_damage = 0	
 		
@@ -123,7 +123,7 @@ func climb ():
 			motion.y = Players.selected.stats.move_speed
 			going_up = false
 			going_down = true
-			
+
 func fall(delta):	
 	if not is_climbing or (not going_down and not going_up):
 		motion.y += Players.selected.stats.gravity * Players.selected.stats.mase * delta		
@@ -140,13 +140,15 @@ func fall(delta):
 
 func move():	
 	if Input.is_action_pressed("ui_right"):
-		state_machine.travel("walk")
+		if not is_jumping:
+			state_machine.travel("walk")
 		motion.x = Players.selected.stats.move_speed if not is_dashing else Players.selected.stats.dash_speed
 		$Sprite.flip_h = false
 		$AttackArea/CollisionShape2D.position.x = -8
 		
 	elif Input.is_action_pressed("ui_left"):
-		state_machine.travel("walk")
+		if not is_jumping:
+			state_machine.travel("walk")
 		motion.x = -Players.selected.stats.move_speed if not is_dashing else Players.selected.stats.dash_speed * -1
 		$Sprite.flip_h = true
 		$AttackArea/CollisionShape2D.position.x = -65	
@@ -154,12 +156,20 @@ func move():
 		state_machine.travel("idle")	
 		motion.x = 0
 
-func health():
-	if Input.is_action_just_pressed("health") and not is_attacking and not is_jumping and not is_dashing:
-		SELF_HEALING()
+func applyItem():
+	if Input.is_action_just_pressed("useItem") and not is_attacking and not is_jumping and not is_dashing:
+		var item = Players.selected.selected_item
+		item     = Players.selected.action_items[item]
+		item     = Players._get_player_item_by_code(item)
+		if item and item.data and item.qty > 0:
+			state_machine.travel("health")
+			is_healing = true
+			Players._set_aura_use_item(self.position)
+			Players._use_hp_item(item)
+			Players._use_mp_item(item)
+			Players._erase_item(item)
 
 func jump():
-
 	if Input.is_action_just_pressed("jump") and times_jump > 0:
 		END_DASH()
 		is_jumping = true
@@ -168,24 +178,25 @@ func jump():
 		motion.y = Players.selected.stats.jump_height
 	if Input.is_action_just_released("jump") and motion.y < 0:
 		motion.y = 0
-	
+
 func attack():	
-	if Players.selected.stats.current_stamine < Players.selected.stats.stamine :
-		Players.selected.stats.current_stamine += Players.selected.stats.stamine_recovery
-		Util.get_an_script("CanvasLayer").handleSetStamineBar()
-		
-	if is_attacking == true and timer_attack > 0:
-		timer_attack += 1
-		if timer_attack == limit_attack:
-			END_ATTACK(0);			
-	if Input.is_action_just_pressed("attack") and not is_climbing and timer_attack == 0 and not is_attacking:
-		if Players.selected.stats.current_stamine >= Players.selected.stats.stamine_cost:
-			if event_attack == 0:		
-				INIT_TRAVEL_ATTACK("attack")			
-			elif event_attack == 1:	
-				INIT_TRAVEL_ATTACK("attack3")
-			
-			
+	if not can_open_chest:
+		if Players.selected.stats.current_stamine < Players.selected.stats.stamine :
+			Players.selected.stats.current_stamine += Players.selected.stats.stamine_recovery
+			Util.get_an_script("CanvasLayer").handleSetStamineBar()			
+		if is_attacking == true and timer_attack > 0:
+			timer_attack += 1
+			if timer_attack == limit_attack:
+				END_ATTACK(0);
+		if Input.is_action_just_pressed("attack") and not is_climbing and timer_attack == 0 and not is_attacking:
+			if Players.selected.stats.current_stamine >= Players.selected.stats.stamine_cost:
+				if event_attack == 0:
+					INIT_TRAVEL_ATTACK("attack")
+				elif event_attack == 1:	
+					INIT_TRAVEL_ATTACK("attack3")
+	else:
+		self.openChest(in_front_of_the_chest)
+
 func dash():	
 	if is_dashing == true and timer_dash > 0:
 		timer_dash += 1
@@ -195,43 +206,40 @@ func dash():
 		INIT_TRAVEL_DASH()
 
 func prayToSave ():
-	if Input.is_action_just_pressed("pray_to_save") and can_pray and not is_praying:		
+	if Input.is_action_just_pressed("attack") and can_pray and not is_praying:		
 		state_machine.travel("pray")
-		Players.selected.selected_item.current = Players.selected.selected_item.max
-		Util.get_an_script("CanvasLayer").get_node("LabelPotas").text = String(Players.selected.selected_item.current)
 		is_praying = true
 
 func _callMethodFinishPray () :
 	if can_pray:
-		print(SavePoints.points)
 		for pt in SavePoints.points:
 			if int(pt.code) == int(in_hand_pray):
 				SavePoints.points[pt.key].status = true
 				Players.selected.last_save_point = SavePoints.points[pt.key]
-		print(SavePoints.points)
 		is_praying = false
 		
-#acumular monedas
-func addCoin():	
-	var canvasLayer = get_tree().get_root().find_node("CanvasLayer", true,false)	
-	canvasLayer.handleCoinCollected()
-
 #Area de muerte Gústaf
 func _on_DeadArea_area_entered(area):
-	if not Players.selected.dead:		
-		print(area)
-		if area.is_in_group("Enemies") and timer_not_take_damage == 0 and area.visible == true:			
-			RECIVE_HURT(area)							
+	if not Players.selected.dead:
+		if area.is_in_group("Enemies") and timer_not_take_damage == 0 and area.visible == true:	
+			RECIVE_HURT(area)
 		elif area.is_in_group("Ladder"):
 			is_climbing = true
 		elif area.is_in_group("SpikesDead"):
-			print("cai en espinas")
 			INSTANT_DEAD()
 		elif area.is_in_group("gems"):
 			area.get_parent()._gems_pick_up()
 		elif area.is_in_group("Save"):
 			in_hand_pray = area.get_parent().spt_code
 			can_pray = true
+		elif area.is_in_group("Chests"):
+			in_front_of_the_chest = area.get_parent().code
+			can_open_chest = true
+
+func  openChest (chest):
+	if Input.is_action_just_pressed("attack") and can_open_chest:
+		var key = Chests._get_chest_by_code(chest).key
+		Chests.list[key].open = true
 
 func _on_DeadArea_area_exited(area):
 	if area.is_in_group("Ladder"):
@@ -241,10 +249,12 @@ func _on_DeadArea_area_exited(area):
 		motion.y += Players.selected.stats.gravity * Players.selected.stats.mase * _delta
 	elif area.is_in_group("Save"):
 		can_pray = false
-		
+	elif area.is_in_group("Chests"):
+		can_open_chest = false
+
 func _on_AttackArea_area_entered(area):
 	if not Players.selected.dead:
-		if area.is_in_group("EnemiesDefense"):			
+		if area.is_in_group("EnemiesDefense"):
 			self.call_deferred("_call_deferred_attack", true)
 
 func _call_deferred_attack(status):
@@ -260,7 +270,10 @@ func _callMethodFinishDash () :
 	END_DASH()	
 
 func _callMethodFinishHeath () :
-	is_healing = false	
+	self.is_healing = false	
+	
+func _callMethodFinishHurt () :
+	is_hurting = false
 	
 func INIT_TRAVEL_ATTACK (travel_to = "atttack"):
 	is_attacking = true		
@@ -271,7 +284,6 @@ func INIT_TRAVEL_ATTACK (travel_to = "atttack"):
 	$AttackArea/CollisionShape2D.disabled = false
 
 func INIT_TRAVEL_DASH ():
-
 	is_dashing = true	
 	timer_dash = 1	
 	state_machine.travel("dash")
@@ -302,29 +314,11 @@ func END_DASH ():
 	$DeadArea/CollisionShape2D.scale.x    = dead_area_scale_x
 	$DeadArea/CollisionShape2D.scale.y    = dead_area_scale_y	
 
-func SELF_HEALING ():
-	if Players.selected.selected_item.current > 0:
-		var aura = load("res://scenes/Players/AuraHeal.tscn")		
-		aura     = aura.instance()
-		aura.position.x = self.position.x
-		aura.position.y = self.position.y
-		get_parent().add_child(aura)
 		
-		is_healing = true
-		Players.selected.selected_item.current -= 1
-		state_machine.travel("health")	
-		ftd        = floating_text.instance()
-		ftd.type   = "heal"
-		ftd.amount = Players._get_potion_recovery()
-		add_child(ftd)
-		Players.selected.stats.current_hp += Players._get_potion_recovery()
-		Players.selected.stats.current_hp = Players.selected.stats.current_hp if Players.selected.stats.current_hp <= Players.selected.stats.health_points else Players.selected.stats.health_points
-		Util.get_an_script("CanvasLayer").handleSetHpBar()
-		Util.get_an_script("CanvasLayer").handleUploadPotas()
-	
 func RECIVE_HURT (area):	
 	state_machine.travel("hurt")
-	$SoundHurt.play()	
+	$SoundHurt.play()
+	is_hurting            = true	
 	timer_not_take_damage = 1
 	Players.selected.stats.current_hp -= Util.apply_damage_body(area.get_parent().attack, Players._get_defense())	
 	Util.get_an_script("CanvasLayer").handleSetHpBar()					
@@ -332,18 +326,18 @@ func RECIVE_HURT (area):
 		$SoundDead.playing = true
 		state_machine.travel("death")
 		Players.selected.dead = true
-		
+
 func INSTANT_DEAD ():
+	
 	Players.selected.stats.current_hp -= Players.selected.stats.current_hp	
 	Util.get_an_script("CanvasLayer").handleSetHpBar()
 	$SoundDead.playing = true
 	state_machine.travel("death")
 	Players.selected.dead = true	
-	
+
 func _increment_exp_player(points):
 	Players.selected.stats.experience += points
 	while  Players.selected.stats.experience >=  Players.selected.stats.next_level:
-#		$SoundLvlUp.playing = true
 		Players.selected.stats.level     += 1
 		Players.selected.stats.next_level =  Players.selected.stats.next_level *  Players.selected.stats.level * Players.selected.increase_level
 		Players.selected.stats.strength   =  Players.selected.stats.strength + ( Players.selected.stats.level *  Players.selected.increase_stats)
@@ -354,8 +348,3 @@ func _increment_exp_player(points):
 		yield(get_tree().create_timer(1), "timeout")	
 		lvlUP.queue_free()
 		Util.get_an_script("CanvasLayer").handleSetLevelInUiPlayer()
-
-
-		
-	
-

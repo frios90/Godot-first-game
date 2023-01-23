@@ -1,0 +1,133 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/MapElements/Traps/Ceiling Trap - Level 3.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Elements/Traps/TrapB-002.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 17.3334, 14 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 16 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "action"
+step = 0.0588235
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0588235, 0.117647, 0.176471, 0.235294, 0.294118, 0.352941, 0.411765, 0.470588, 0.529412, 0.588235, 0.647059, 0.705882, 0.764706, 0.823529, 0.882353, 0.941176 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.411765, 0.705882, 0.941176 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodTrapOpen"
+}, {
+"args": [  ],
+"method": "_callMethodTrapClose"
+}, {
+"args": [  ],
+"method": "_callMethodTrapEnd"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "off"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 21.3333, 10.5 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 40, 9 )
+
+[node name="TrapB-002" type="KinematicBody2D"]
+position = Vector2( 8, 0 )
+scale = Vector2( 1.5, 2 )
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.33335, -6 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -1, 8 )
+scale = Vector2( 1.16667, 1 )
+texture = ExtResource( 2 )
+hframes = 17
+frame = 16
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/action = SubResource( 3 )
+anims/off = SubResource( 4 )
+
+[node name="DamageArea" type="Area2D" parent="." groups=["Enemies"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2( 0, -10.5 )
+shape = SubResource( 5 )
+
+[node name="KillArea" type="Area2D" parent="." groups=["Enemies"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
+position = Vector2( 0, 33 )
+shape = SubResource( 6 )
+disabled = true
+
+[node name="RayUp" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 192 )
+
+[node name="RayUp3" type="RayCast2D" parent="."]
+position = Vector2( -5.33333, -8 )
+enabled = true
+cast_to = Vector2( -85.3333, 72 )
+
+[node name="RayUp2" type="RayCast2D" parent="."]
+position = Vector2( 10.6667, -8 )
+enabled = true
+cast_to = Vector2( 69.3333, 72 )
+
+[node name="SoundClose" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 4.76837e-07, -4 )
+pitch_scale = 2.45

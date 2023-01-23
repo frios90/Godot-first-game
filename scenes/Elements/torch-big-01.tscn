@@ -56,7 +56,8 @@ anims/RESET = SubResource( 2 )
 anims/idle = SubResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 5.99999, -1.99999 )
-scale = Vector2( 0.253906, 0.238281 )
+position = Vector2( 7.62939e-06, -12 )
+scale = Vector2( 0.15625, 0.117188 )
 texture = ExtResource( 2 )
 color = Color( 0.866667, 0.576471, 0.290196, 1 )
+energy = 1.55

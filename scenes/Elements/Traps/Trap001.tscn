@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/MapElements/Traps/Ceiling Trap - Level 2.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Elements/Traps/Trap001.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 18.6667, 4 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+
+[sub_resource type="Animation" id=3]
+resource_name = "action"
+loop = true
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6, 0.666667, 0.733333, 0.8, 0.866667, 0.933333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.333333, 0.737 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodTrapClose"
+}, {
+"args": [  ],
+"method": "_callMethodTrapOpen"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "off"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 21.3333, 5 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 21.3333, 28 )
+
+[node name="Trap001" type="KinematicBody2D" groups=["Enemies"]]
+scale = Vector2( 1.5, -1 )
+collision_layer = 8192
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2.66667, -12 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 15
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/action = SubResource( 3 )
+anims/off = SubResource( 4 )
+
+[node name="DamageArea" type="Area2D" parent="." groups=["Enemies"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2( 0, -13 )
+shape = SubResource( 5 )
+disabled = true
+
+[node name="KillArea" type="Area2D" parent="." groups=["Enemies"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
+position = Vector2( -9.53674e-07, 8 )
+shape = SubResource( 6 )
+disabled = true
+
+[node name="RayUp" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 192 )
+
+[node name="RayUp3" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -85.3333, 128 )
+
+[node name="RayUp2" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 85.3333, 128 )
+
+[node name="SoundClose" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_DamageArea_body_entered"]
+[connection signal="body_entered" from="KillArea" to="." method="_on_KillArea_body_entered"]

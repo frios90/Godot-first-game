@@ -1,8 +1,7 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/Characters/Enemies/Fly-enemies/Flyinf-eye.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Enemies/Flying-eye.gd" type="Script" id=2]
-[ext_resource path="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - Monster_Hurt.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/imgs/hp-bar-prog-small.png" type="Texture" id=4]
 [ext_resource path="res://assets/imgs/hp-bar-bg-small.png" type="Texture" id=5]
 
@@ -174,10 +173,8 @@ active = true
 parameters/playback = SubResource( 21 )
 
 [node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
 
 [node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
 
 [node name="HPbar" type="TextureProgress" parent="."]
 margin_left = -5.0

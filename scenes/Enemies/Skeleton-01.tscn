@@ -1,9 +1,7 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/Characters/Enemies/Skeleton enemy/SkeletonClothes01.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Enemies/Skeleton-01.gd" type="Script" id=2]
-[ext_resource path="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits_3.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/imgs/hp-bar-bg-small.png" type="Texture" id=5]
 [ext_resource path="res://assets/imgs/hp-bar-prog-small.png" type="Texture" id=6]
 
@@ -12,18 +10,6 @@ extents = Vector2( 13.5, 22.5 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
 
 [sub_resource type="Animation" id=13]
 resource_name = "dead"
@@ -57,7 +43,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "raise"
-length = 1.2
+step = 0.0769231
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -65,7 +51,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.1, 0.3, 0.5, 0.7, 0.9, 1.1 ),
+"times": PoolRealArray( 0.1, 0.230769, 0.384615, 0.538462, 0.692308, 0.846154 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 8, 9, 10, 11, 12, 13 ]
@@ -77,7 +63,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1.2 ),
+"times": PoolRealArray( 0.923077 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -147,16 +133,14 @@ anims/sleep = SubResource( 12 )
 anims/walk = SubResource( 4 )
 
 [node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
 
 [node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
 
 [node name="HPbar" type="TextureProgress" parent="."]
-margin_left = -11.0
-margin_top = -35.0
-margin_right = 8.0
-margin_bottom = -33.0
+margin_left = -15.8333
+margin_top = -25.0
+margin_right = 3.16667
+margin_bottom = -23.0
 texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 6 )
 nine_patch_stretch = true
@@ -167,6 +151,7 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
 position = Vector2( -5.5, 3.5 )
 shape = SubResource( 10 )
+disabled = true
 
 [node name="RayRaise" type="RayCast2D" parent="."]
 enabled = true
@@ -185,13 +170,15 @@ cast_to = Vector2( -3.24249e-05, 35.8333 )
 collision_mask = 16
 
 [node name="RayBackFlip" type="RayCast2D" parent="."]
-position = Vector2( 50, 0 )
+position = Vector2( 35, 0 )
 enabled = true
-cast_to = Vector2( 133.333, 0 )
+cast_to = Vector2( 36.6667, -0.833333 )
 
 [node name="AttackArea" type="Area2D" parent="." groups=["Enemies"]]
+position = Vector2( 3.33333, 21.6667 )
 
-[node name="CollisionShap2D" type="CollisionShape2D" parent="AttackArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2( -10.8333, -20.8333 )
 shape = SubResource( 14 )
 
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

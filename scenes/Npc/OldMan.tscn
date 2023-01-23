@@ -19,10 +19,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 5, 6, 7 ]
+"values": [ 7 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -59,6 +59,7 @@ tracks/0/keys = {
 }
 
 [node name="OldMan" type="KinematicBody2D"]
+position = Vector2( 1, 0 )
 collision_layer = 8192
 collision_mask = 16
 script = ExtResource( 2 )
@@ -73,6 +74,7 @@ scale = Vector2( -1.6, 1.6 )
 texture = ExtResource( 1 )
 hframes = 12
 vframes = 2
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
@@ -82,4 +84,4 @@ anims/walk = SubResource( 5 )
 
 [node name="RayInitDialog" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( -206, 0 )
+cast_to = Vector2( -152, 0 )

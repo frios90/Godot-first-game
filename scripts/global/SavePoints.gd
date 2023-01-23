@@ -6,8 +6,14 @@ var points = [
 		"code" : 001,
 		"name" : "Pasaje de la cueva",
 		"scene" : "res://scenes/World/Cementery/Cementery-003-down-of-hill.tscn",
-		"x" : 2264,
-		"y" : -1128,
+		"x" : 1648,
+		"y" : 500,
 		"status" : false
 	}
 ]
+
+
+func _get_save_point_code(code):
+	for i in range(len(self.points)):
+		if self.points[i].code == code :
+			return self.points[i]

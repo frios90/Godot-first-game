@@ -1,10 +1,8 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scripts/Enemies/HellDog.gd" type="Script" id=1]
 [ext_resource path="res://assets/Characters/Enemies/undead-dog.png" type="Texture" id=2]
 [ext_resource path="res://assets/imgs/hp-bar-bg-small.png" type="Texture" id=3]
-[ext_resource path="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits_9.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits_8.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/imgs/hp-bar-prog-small.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -247,10 +245,8 @@ active = true
 parameters/playback = SubResource( 25 )
 
 [node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
 
 [node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
 
 [node name="HPbar" type="TextureProgress" parent="."]
 margin_left = -8.0

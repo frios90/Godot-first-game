@@ -1,9 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/Enemies/burning-ghoul.gd" type="Script" id=1]
 [ext_resource path="res://fonts/burning-ghoul.png" type="Texture" id=2]
-[ext_resource path="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits_8.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/Sounds/Socapex - Evol Online SFX - Punches and hits/Socapex - Evol Online SFX - Punches and hits/Socapex - new_hits_7.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/imgs/hp-bar-bg-small.png" type="Texture" id=5]
 [ext_resource path="res://assets/imgs/hp-bar-prog-small.png" type="Texture" id=6]
 
@@ -130,10 +128,8 @@ position = Vector2( 3, 11 )
 shape = SubResource( 5 )
 
 [node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
 
 [node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
 
 [node name="HPbar" type="TextureProgress" parent="."]
 margin_left = -8.0

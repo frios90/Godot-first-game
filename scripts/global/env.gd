@@ -34,9 +34,11 @@ var list_gems = [
 	},
 ]
 
+var player_origin_position = "init"
+
 var init_position_stage = {
 	"x" : 224,
-	"y" : 904,
+	"y" : -150,
 	"flip" : 1
 }
 
@@ -56,18 +58,19 @@ func selectDropGem (gems, position) :
 			gems = gems % list_gems[i].qty			
 		
 
-func createGem (color, gems, position,  qty) :	
+func createGem (color, gems, position,  qty) :
+	
 	for _i in range(gems):
 		randomize()
 		var random_position_gem = randi() % 2 
-		var random_x              = randi() % 35	
-		var random_y              = randi() % 35							
+		var random_x            = randi() % 35	
+		var random_y            = randi() % 35							
 		var drop_gem            = load("res://scenes/Items/Gem.tscn")	
 		drop_gem                = drop_gem.instance()
 		drop_gem.position.x     = position[0] + random_x if random_position_gem == 1 else position[0] - random_x
 		drop_gem.position.y     = position[1] + random_y if random_position_gem == 1 else position[1] - random_y	
-		drop_gem.color          = color	
-		drop_gem.qty            = qty		
+		drop_gem.color          = color
+		drop_gem.qty            = qty
 
 		yield(get_tree().create_timer(0.05), "timeout")	
 		get_parent().add_child(drop_gem)

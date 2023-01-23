@@ -1,426 +1,642 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scripts/MenuPause.gd" type="Script" id=1]
-[ext_resource path="res://assets/Gui/Textures/Interface/ControlScreen/Panels/PanelBottom.png" type="Texture" id=2]
+[ext_resource path="res://assets/Gui/Stats/intelligence-stone.png" type="Texture" id=2]
 [ext_resource path="res://fonts/DePixelBreit.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/Gui/Textures/Interface/WindowBorder.png" type="Texture" id=4]
-
-[sub_resource type="DynamicFont" id=4]
-size = 30
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 19
-font_data = ExtResource( 3 )
+[ext_resource path="res://assets/Gui/Stats/mp-stone.png" type="Texture" id=4]
+[ext_resource path="res://assets/Gui/TexturaBlue/Icons/remove.png" type="Texture" id=5]
+[ext_resource path="res://assets/Gui/Stats/strength-stone.png" type="Texture" id=6]
+[ext_resource path="res://assets/Gui/Stats/speed-stone.png" type="Texture" id=7]
+[ext_resource path="res://assets/Gui/Stats/hp-stone.png" type="Texture" id=8]
+[ext_resource path="res://assets/Gui/Stats/luckstone.png" type="Texture" id=9]
+[ext_resource path="res://assets/Gui/Stats/stamine-stone.png" type="Texture" id=10]
+[ext_resource path="res://assets/Gui/Stats/waterrune.png" type="Texture" id=11]
+[ext_resource path="res://assets/Gui/Stats/FlameRune.png" type="Texture" id=12]
+[ext_resource path="res://assets/Gui/Stats/bornRune.png" type="Texture" id=13]
+[ext_resource path="res://assets/Gui/Stats/sandRune.png" type="Texture" id=14]
+[ext_resource path="res://assets/Gui/Stats/windrune.png" type="Texture" id=15]
+[ext_resource path="res://assets/Gui/TexturaBlue/Base Bg 1.png" type="Texture" id=16]
+[ext_resource path="res://assets/Gui/TexturaBlue/Round Bg B.png" type="Texture" id=17]
+[ext_resource path="res://assets/Characters/2D_SL_Knight_v1.0/Idle.png" type="Texture" id=18]
+[ext_resource path="res://assets/Items/PotaMpL.png" type="Texture" id=19]
+[ext_resource path="res://assets/Gui/box-highres.png" type="Texture" id=20]
+[ext_resource path="res://assets/Gui/TexturaBlue/Scroll Button.png" type="Texture" id=21]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=2]
+size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 14
+font_data = ExtResource( 3 )
+
 [sub_resource type="DynamicFont" id=3]
-size = 18
+size = 12
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=5]
-size = 18
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=6]
-size = 18
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 18
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=8]
-size = 18
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=9]
-size = 18
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=10]
-size = 18
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=11]
-size = 18
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=12]
-size = 18
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=13]
-size = 18
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=14]
-size = 18
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=15]
-size = 18
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=16]
-size = 18
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=17]
-size = 18
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=18]
-size = 18
-font_data = ExtResource( 3 )
+[sub_resource type="Theme" id=5]
 
 [node name="MenuPause" type="Control"]
 pause_mode = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
 script = ExtResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Stats" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.666667 )
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
-anchor_left = 0.994
-anchor_top = 0.987
-anchor_right = 0.994
-anchor_bottom = 0.987
-margin_left = -194.856
-margin_top = -168.2
-margin_right = 0.143982
-margin_bottom = -0.200012
-
-[node name="ButtonContinue" type="Button" parent="ColorRect/VBoxContainer"]
-pause_mode = 2
-margin_right = 195.0
-margin_bottom = 20.0
-text = "Continuar"
-
-[node name="ButtonQuit" type="Button" parent="ColorRect/VBoxContainer"]
-pause_mode = 2
-margin_top = 24.0
-margin_right = 195.0
-margin_bottom = 44.0
-text = "Salir"
-
-[node name="Statistics" type="Sprite" parent="."]
-position = Vector2( 216, 320 )
-scale = Vector2( 1.0618, 0.743392 )
-texture = ExtResource( 2 )
-
-[node name="00-lvl" type="Label" parent="Statistics"]
-margin_left = -113.0
-margin_top = -334.0
-margin_right = 121.0
-margin_bottom = -269.0
-custom_fonts/font = SubResource( 4 )
-text = "lvl"
-align = 1
-valign = 1
+margin_top = 8.0
+margin_right = -568.0
+margin_bottom = -208.0
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_group_": true
 }
 
-[node name="01-name" type="Label" parent="Statistics"]
-anchor_left = -0.029
-anchor_top = -0.022
-anchor_right = -0.029
-anchor_bottom = -0.022
-margin_left = -110.168
-margin_top = -359.382
-margin_right = 131.832
-margin_bottom = -314.382
-custom_fonts/font = SubResource( 2 )
-text = "lvl"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[node name="TextureRect" type="TextureRect" parent="Stats"]
+margin_right = 456.0
+margin_bottom = 376.0
+texture = ExtResource( 20 )
+expand = true
 
-[node name="02-max-hp" type="Label" parent="Statistics"]
-margin_left = -143.0
-margin_top = -248.0
-margin_right = -26.0
-margin_bottom = -226.0
-rect_pivot_offset = Vector2( 293.84, 32.2844 )
-custom_fonts/font = SubResource( 1 )
-text = "HP"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[node name="Icons" type="Node2D" parent="Stats"]
+position = Vector2( 0, -8 )
 
-[node name="Gui-max-hp" type="Label" parent="Statistics"]
-margin_left = 15.0
-margin_top = -248.0
-margin_right = 128.0
-margin_bottom = -226.0
-rect_pivot_offset = Vector2( 60.2749, 32.2845 )
-custom_fonts/font = SubResource( 3 )
-text = "220 / 220"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[node name="Strength-stone" type="Sprite" parent="Stats/Icons"]
+position = Vector2( 40, 136 )
+scale = Vector2( 0.12, 0.12 )
+texture = ExtResource( 6 )
 
-[node name="03-fuerza" type="Label" parent="Statistics"]
-margin_left = -143.0
-margin_top = -226.0
-margin_right = -26.0
-margin_bottom = -204.0
-rect_pivot_offset = Vector2( 278.771, 32.2844 )
-custom_fonts/font = SubResource( 1 )
-text = "Fuerza"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[node name="Stamine-stone" type="Sprite" parent="Stats/Icons"]
+position = Vector2( 40, 112 )
+scale = Vector2( 0.12, 0.12 )
+texture = ExtResource( 10 )
 
-[node name="Gui-fuerza" type="Label" parent="Statistics"]
-margin_left = 60.0
-margin_top = -226.0
-margin_right = 128.0
-margin_bottom = -204.0
-rect_pivot_offset = Vector2( 45.2062, 32.2844 )
-custom_fonts/font = SubResource( 3 )
-text = "5"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="04-ataque" type="Label" parent="Statistics"]
-margin_left = -143.0
-margin_top = -107.615
-margin_right = -22.0
-margin_bottom = -87.6148
-rect_pivot_offset = Vector2( 278.771, 32.2844 )
-custom_fonts/font = SubResource( 1 )
-text = "Ataque"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Gui-ataque" type="Label" parent="Statistics"]
-margin_left = 60.0
-margin_top = -107.615
-margin_right = 128.0
-margin_bottom = -85.6148
-rect_pivot_offset = Vector2( 45.2062, 32.2844 )
-custom_fonts/font = SubResource( 3 )
-text = "16"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="05-velocidad" type="Label" parent="Statistics"]
-margin_left = -143.153
-margin_top = -182.945
-margin_right = 7.84695
-margin_bottom = -160.945
-rect_pivot_offset = Vector2( 278.771, 32.2844 )
-custom_fonts/font = SubResource( 1 )
-text = "Desplazamiento"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Gui-velocidad" type="Label" parent="Statistics"]
-margin_left = 60.275
-margin_top = -182.945
-margin_right = 128.275
-margin_bottom = -160.945
-rect_pivot_offset = Vector2( 45.2062, 32.2844 )
-custom_fonts/font = SubResource( 3 )
-text = "1"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="06-experiencia" type="Label" parent="Statistics"]
-margin_left = -143.0
-margin_top = 11.0
-margin_right = 30.0
-margin_bottom = 31.0
-custom_fonts/font = SubResource( 5 )
-text = "Exp."
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Gui-experiencia" type="Label" parent="Statistics"]
-margin_left = 60.0
-margin_top = 11.0
-margin_right = 128.0
-margin_bottom = 31.0
-custom_fonts/font = SubResource( 6 )
-text = "0"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="07-sig-nivel" type="Label" parent="Statistics"]
-margin_left = -143.0
-margin_top = 32.0
-margin_right = 60.0
-margin_bottom = 52.0
-custom_fonts/font = SubResource( 7 )
-text = "Sig. nvl"
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Gui-next-lvl" type="Label" parent="Statistics"]
-margin_left = 52.7406
-margin_top = 32.2845
-margin_right = 127.741
-margin_bottom = 54.2845
-custom_fonts/font = SubResource( 8 )
-text = "0"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="08-defensa" type="Label" parent="Statistics"]
-margin_left = -143.153
-margin_top = -85.9911
-margin_right = -53.153
-margin_bottom = -65.9911
-custom_fonts/font = SubResource( 9 )
-text = "Defensa"
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Gui-defensa" type="Label" parent="Statistics"]
-margin_left = 60.275
-margin_top = -85.9911
-margin_right = 128.275
-margin_bottom = -65.9911
-custom_fonts/font = SubResource( 10 )
-text = "0"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="09-inteligencia" type="Label" parent="Statistics"]
-margin_left = -143.0
-margin_top = -204.0
-margin_right = -11.0
-margin_bottom = -182.0
-custom_fonts/font = SubResource( 11 )
-text = "Inteligencia"
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Gui-inteligencia" type="Label" parent="Statistics"]
-margin_left = 60.275
-margin_top = -204.468
-margin_right = 128.275
-margin_bottom = -182.468
-custom_fonts/font = SubResource( 12 )
-text = "1"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="10-ataque-magico" type="Label" parent="Statistics"]
-margin_left = -143.153
-margin_top = -64.4682
-margin_right = 26.8469
-margin_bottom = -44.4682
-custom_fonts/font = SubResource( 13 )
-text = "Ataque mágico"
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Gui-ataque-magico" type="Label" parent="Statistics"]
-margin_left = 68.0
-margin_top = -64.6148
-margin_right = 128.0
-margin_bottom = -44.6148
-custom_fonts/font = SubResource( 14 )
-text = "1"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="11-defensa-magica" type="Label" parent="Statistics"]
-margin_left = -143.0
-margin_top = -42.6148
-margin_right = 39.0
-margin_bottom = -17.6148
-custom_fonts/font = SubResource( 15 )
-text = "Defensa mágica"
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Gui-defensa-magica" type="Label" parent="Statistics"]
-margin_left = 67.8094
-margin_top = -42.9452
-margin_right = 127.809
-margin_bottom = -20.9452
-custom_fonts/font = SubResource( 16 )
-text = "1"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="12-suerte" type="Label" parent="Statistics"]
-margin_left = -143.153
-margin_top = -161.422
-margin_right = -102.153
-margin_bottom = -147.422
-custom_fonts/font = SubResource( 17 )
-text = "Suerte"
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Gui-suerte" type="Label" parent="Statistics"]
-margin_left = 83.0
-margin_top = -161.0
-margin_right = 128.0
-margin_bottom = -141.0
-custom_fonts/font = SubResource( 18 )
-text = "1"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="WindowBorder" type="Sprite" parent="."]
-position = Vector2( 960, 488 )
-scale = Vector2( 1.5, 1.21563 )
+[node name="Mp-stone" type="Sprite" parent="Stats/Icons"]
+position = Vector2( 40, 88 )
+scale = Vector2( 0.12, 0.12 )
 texture = ExtResource( 4 )
 
-[connection signal="pressed" from="ColorRect/VBoxContainer/ButtonContinue" to="." method="_on_ButtonContinue_pressed"]
-[connection signal="pressed" from="ColorRect/VBoxContainer/ButtonQuit" to="." method="_on_ButtonQuit_pressed"]
+[node name="Luckstone" type="Sprite" parent="Stats/Icons"]
+position = Vector2( 40, 208 )
+scale = Vector2( 0.12, 0.12 )
+texture = ExtResource( 9 )
+
+[node name="Speed-stone" type="Sprite" parent="Stats/Icons"]
+position = Vector2( 40, 184 )
+scale = Vector2( 0.12, 0.12 )
+texture = ExtResource( 7 )
+
+[node name="Hp-stone" type="Sprite" parent="Stats/Icons"]
+position = Vector2( 40, 64 )
+scale = Vector2( 0.12, 0.12 )
+texture = ExtResource( 8 )
+
+[node name="BornRune" type="Sprite" parent="Stats/Icons"]
+position = Vector2( 185, 248 )
+texture = ExtResource( 13 )
+
+[node name="SandRune" type="Sprite" parent="Stats/Icons"]
+position = Vector2( 297, 248 )
+texture = ExtResource( 14 )
+
+[node name="Waterrune" type="Sprite" parent="Stats/Icons"]
+position = Vector2( 353, 248 )
+texture = ExtResource( 11 )
+
+[node name="Windrune" type="Sprite" parent="Stats/Icons"]
+position = Vector2( 409, 248 )
+texture = ExtResource( 15 )
+
+[node name="FlameRune" type="Sprite" parent="Stats/Icons"]
+position = Vector2( 241, 248 )
+texture = ExtResource( 12 )
+
+[node name="Intelligence-stone" type="Sprite" parent="Stats/Icons"]
+position = Vector2( 40, 160 )
+scale = Vector2( 0.12, 0.12 )
+texture = ExtResource( 2 )
+
+[node name="Labels" type="Node2D" parent="Stats"]
+
+[node name="hp" type="Label" parent="Stats/Labels"]
+margin_left = 57.0
+margin_top = 48.0
+margin_right = 225.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( 293.84, 32.2844 )
+custom_fonts/font = SubResource( 1 )
+text = "puntos de vida"
+valign = 1
+
+[node name="mp" type="Label" parent="Stats/Labels"]
+margin_left = 57.0
+margin_top = 72.0
+margin_right = 245.0
+margin_bottom = 94.0
+rect_pivot_offset = Vector2( 56, 16 )
+custom_fonts/font = SubResource( 1 )
+text = "puntos de mágia"
+valign = 1
+
+[node name="stamine" type="Label" parent="Stats/Labels"]
+margin_left = 57.0
+margin_top = 96.0
+margin_right = 174.0
+margin_bottom = 118.0
+rect_pivot_offset = Vector2( 56, 16 )
+custom_fonts/font = SubResource( 1 )
+text = "aguante"
+valign = 1
+
+[node name="strength" type="Label" parent="Stats/Labels"]
+margin_left = 57.0
+margin_top = 120.0
+margin_right = 174.0
+margin_bottom = 142.0
+rect_pivot_offset = Vector2( 56, 16 )
+custom_fonts/font = SubResource( 1 )
+text = "fuerza"
+valign = 1
+autowrap = true
+
+[node name="intelligence" type="Label" parent="Stats/Labels"]
+margin_left = 57.0
+margin_top = 144.0
+margin_right = 241.0
+margin_bottom = 168.0
+custom_fonts/font = SubResource( 2 )
+text = "inteligencia"
+valign = 1
+
+[node name="speed" type="Label" parent="Stats/Labels"]
+margin_left = 57.0
+margin_top = 168.0
+margin_right = 241.0
+margin_bottom = 192.0
+custom_fonts/font = SubResource( 2 )
+text = "agilidad"
+valign = 1
+
+[node name="luck" type="Label" parent="Stats/Labels"]
+margin_left = 57.0
+margin_top = 192.0
+margin_right = 241.0
+margin_bottom = 216.0
+custom_fonts/font = SubResource( 2 )
+text = "suerte"
+valign = 1
+
+[node name="titleAttack" type="Label" parent="Stats/Labels"]
+margin_left = 57.0
+margin_top = 272.0
+margin_right = 241.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 2 )
+text = "ataque"
+valign = 1
+
+[node name="titleDefense" type="Label" parent="Stats/Labels"]
+margin_left = 57.0
+margin_top = 296.0
+margin_right = 241.0
+margin_bottom = 320.0
+custom_fonts/font = SubResource( 2 )
+text = "defensa"
+valign = 1
+
+[node name="Values" type="Node2D" parent="Stats"]
+
+[node name="hp" type="Label" parent="Stats/Values"]
+margin_left = 241.0
+margin_top = 48.0
+margin_right = 425.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( 293.84, 32.2844 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="mp" type="Label" parent="Stats/Values"]
+margin_left = 257.0
+margin_top = 72.0
+margin_right = 425.0
+margin_bottom = 94.0
+rect_pivot_offset = Vector2( 56, 16 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="stamine" type="Label" parent="Stats/Values"]
+margin_left = 241.0
+margin_top = 96.0
+margin_right = 425.0
+margin_bottom = 118.0
+rect_pivot_offset = Vector2( 56, 16 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="strength" type="Label" parent="Stats/Values"]
+margin_left = 241.0
+margin_top = 120.0
+margin_right = 425.0
+margin_bottom = 142.0
+rect_pivot_offset = Vector2( 56, 16 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 2
+valign = 1
+autowrap = true
+
+[node name="intelligence" type="Label" parent="Stats/Values"]
+margin_left = 241.0
+margin_top = 144.0
+margin_right = 425.0
+margin_bottom = 168.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="speed" type="Label" parent="Stats/Values"]
+margin_left = 241.0
+margin_top = 168.0
+margin_right = 425.0
+margin_bottom = 192.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="luck" type="Label" parent="Stats/Values"]
+margin_left = 241.0
+margin_top = 192.0
+margin_right = 425.0
+margin_bottom = 216.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="defense-wind" type="Label" parent="Stats/Values"]
+margin_left = 385.0
+margin_top = 296.0
+margin_right = 425.0
+margin_bottom = 320.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="defense-liquid" type="Label" parent="Stats/Values"]
+margin_left = 329.0
+margin_top = 296.0
+margin_right = 369.0
+margin_bottom = 320.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="defense-sand" type="Label" parent="Stats/Values"]
+margin_left = 273.0
+margin_top = 296.0
+margin_right = 313.0
+margin_bottom = 320.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="defense-flame" type="Label" parent="Stats/Values"]
+margin_left = 217.0
+margin_top = 296.0
+margin_right = 257.0
+margin_bottom = 320.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="defense-natural" type="Label" parent="Stats/Values"]
+margin_left = 161.0
+margin_top = 296.0
+margin_right = 201.0
+margin_bottom = 320.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="attack-wind" type="Label" parent="Stats/Values"]
+margin_left = 385.0
+margin_top = 272.0
+margin_right = 425.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="attack-liquid" type="Label" parent="Stats/Values"]
+margin_left = 329.0
+margin_top = 272.0
+margin_right = 369.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="attack-sand" type="Label" parent="Stats/Values"]
+margin_left = 273.0
+margin_top = 272.0
+margin_right = 313.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="attack-flame" type="Label" parent="Stats/Values"]
+margin_left = 217.0
+margin_top = 272.0
+margin_right = 257.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="attack-natural" type="Label" parent="Stats/Values"]
+margin_left = 161.0
+margin_top = 272.0
+margin_right = 201.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="Items" type="Panel" parent="."]
+margin_left = 872.0
+margin_top = 8.0
+margin_right = 1248.0
+margin_bottom = 384.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="Items"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 20 )
+expand = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Items"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 48.0
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Items/ScrollContainer"]
+margin_right = 376.0
+margin_bottom = 328.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Accessories" type="Panel" parent="."]
+show_behind_parent = true
+margin_left = 472.0
+margin_top = 8.0
+margin_right = 856.0
+margin_bottom = 384.0
+
+[node name="TextureRect" type="TextureRect" parent="Accessories"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 20 )
+expand = true
+
+[node name="Rune001" type="Sprite" parent="Accessories"]
+position = Vector2( 96, 113 )
+scale = Vector2( 1.6, 1.6 )
+texture = ExtResource( 16 )
+
+[node name="Rune002" type="Sprite" parent="Accessories"]
+position = Vector2( 288, 112 )
+scale = Vector2( 1.7, 1.675 )
+texture = ExtResource( 16 )
+
+[node name="Acc001" type="Sprite" parent="Accessories"]
+position = Vector2( 80, 232 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 17 )
+
+[node name="Acc002" type="Sprite" parent="Accessories"]
+position = Vector2( 144, 296 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 17 )
+
+[node name="Acc003" type="Sprite" parent="Accessories"]
+position = Vector2( 240, 296 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 17 )
+
+[node name="Acc004" type="Sprite" parent="Accessories"]
+position = Vector2( 304, 232 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 17 )
+
+[node name="PlayerIcon" type="Sprite" parent="Accessories"]
+position = Vector2( 200, 152 )
+scale = Vector2( -3, 2.5 )
+texture = ExtResource( 18 )
+hframes = 2
+vframes = 4
+
+[node name="InfoItem" type="Panel" parent="."]
+margin_left = 872.0
+margin_top = 496.0
+margin_right = 1248.0
+margin_bottom = 672.0
+
+[node name="TextureRect" type="TextureRect" parent="InfoItem"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 20 )
+expand = true
+
+[node name="Icon" type="Sprite" parent="InfoItem"]
+position = Vector2( 48, 84 )
+scale = Vector2( 3, 2.75 )
+texture = ExtResource( 19 )
+
+[node name="Title" type="Label" parent="InfoItem"]
+margin_left = 88.0
+margin_top = 16.0
+margin_right = 344.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 4 )
+text = "Posion de prueba"
+
+[node name="Description" type="RichTextLabel" parent="InfoItem"]
+margin_left = 88.0
+margin_top = 48.0
+margin_right = 352.0
+margin_bottom = 120.0
+custom_fonts/normal_font = SubResource( 3 )
+text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+
+[node name="BtnUse" type="TextureButton" parent="InfoItem"]
+margin_left = 304.0
+margin_top = 144.0
+margin_right = 331.0
+margin_bottom = 158.0
+theme = SubResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="InfoItem/BtnUse"]
+margin_right = 27.0
+margin_bottom = 14.0
+text = "usar"
+
+[node name="BtnSelect" type="TextureButton" parent="InfoItem"]
+margin_left = 216.0
+margin_top = 144.0
+margin_right = 289.0
+margin_bottom = 158.0
+theme = SubResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="InfoItem/BtnSelect"]
+margin_right = 73.0
+margin_bottom = 14.0
+text = "seleccionar"
+
+[node name="BtnEquipAttack" type="TextureButton" parent="InfoItem"]
+margin_left = 24.0
+margin_top = 144.0
+margin_right = 72.0
+margin_bottom = 158.0
+theme = SubResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="InfoItem/BtnEquipAttack"]
+margin_right = 73.0
+margin_bottom = 14.0
+text = "Ataque"
+
+[node name="BtnEquipDefense" type="TextureButton" parent="InfoItem"]
+margin_left = 80.0
+margin_top = 144.0
+margin_right = 136.0
+margin_bottom = 158.0
+theme = SubResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="InfoItem/BtnEquipDefense"]
+margin_right = 73.0
+margin_bottom = 14.0
+text = "Defensa"
+
+[node name="ItemsSelected" type="Panel" parent="."]
+margin_left = 872.0
+margin_top = 392.0
+margin_right = 1248.0
+margin_bottom = 488.0
+
+[node name="sprite001" type="Sprite" parent="ItemsSelected"]
+position = Vector2( 48, 48 )
+scale = Vector2( 0.456522, 0.456522 )
+texture = ExtResource( 20 )
+
+[node name="sprite002" type="Sprite" parent="ItemsSelected"]
+position = Vector2( 184, 48 )
+scale = Vector2( 0.456522, 0.456522 )
+texture = ExtResource( 20 )
+
+[node name="sprite003" type="Sprite" parent="ItemsSelected"]
+position = Vector2( 331, 48 )
+scale = Vector2( 0.456522, 0.456522 )
+texture = ExtResource( 20 )
+
+[node name="IconItem001" type="Sprite" parent="ItemsSelected"]
+position = Vector2( 48, 48 )
+scale = Vector2( 2, 1.90625 )
+texture = ExtResource( 21 )
+
+[node name="IconItem002" type="Sprite" parent="ItemsSelected"]
+position = Vector2( 184, 48 )
+scale = Vector2( 2, 1.90625 )
+texture = ExtResource( 21 )
+
+[node name="IconItem003" type="Sprite" parent="ItemsSelected"]
+position = Vector2( 331, 48 )
+scale = Vector2( 2, 1.90625 )
+texture = ExtResource( 21 )
+
+[node name="RemoveItem001" type="TextureButton" parent="ItemsSelected"]
+margin_left = 72.0
+margin_top = 6.0
+margin_right = 99.0
+margin_bottom = 34.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Remove" type="Sprite" parent="ItemsSelected/RemoveItem001"]
+position = Vector2( 13, 16 )
+scale = Vector2( 0.84375, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="RemoveItem002" type="TextureButton" parent="ItemsSelected"]
+margin_left = 208.0
+margin_top = 6.0
+margin_right = 235.0
+margin_bottom = 34.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Remove" type="Sprite" parent="ItemsSelected/RemoveItem002"]
+position = Vector2( 13, 16 )
+scale = Vector2( 0.84375, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="RemoveItem003" type="TextureButton" parent="ItemsSelected"]
+margin_left = 360.0
+margin_top = 6.0
+margin_right = 387.0
+margin_bottom = 34.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Remove" type="Sprite" parent="ItemsSelected/RemoveItem003"]
+position = Vector2( 13, 16 )
+scale = Vector2( 0.84375, 0.75 )
+texture = ExtResource( 5 )
+
+[connection signal="pressed" from="InfoItem/BtnUse" to="." method="_on_BtnUse_pressed"]
+[connection signal="pressed" from="InfoItem/BtnSelect" to="." method="_on_BtnSelect_pressed"]
+[connection signal="pressed" from="InfoItem/BtnEquipAttack" to="." method="_on_BtnEquipAttack_pressed"]
+[connection signal="pressed" from="InfoItem/BtnEquipDefense" to="." method="_on_BtnEquipDefense_pressed"]
+[connection signal="pressed" from="ItemsSelected/RemoveItem001" to="." method="_on_RemoveItem001_pressed"]
+[connection signal="pressed" from="ItemsSelected/RemoveItem002" to="." method="_on_RemoveItem002_pressed"]
+[connection signal="pressed" from="ItemsSelected/RemoveItem003" to="." method="_on_RemoveItem003_pressed"]
