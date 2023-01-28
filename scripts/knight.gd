@@ -1,8 +1,7 @@
 extends KinematicBody2D
-var floating_text = preload("res://scenes/FloatingText.tscn")
-var ftd           = 0
-const up          = Vector2(0, -1)
-
+var floating_text          = preload("res://scenes/FloatingText.tscn")
+var ftd                    = 0
+const up                   = Vector2(0, -1)
 var attack_area_position_y = -43
 var attack_area_position_x = -12
 var dead_area_position_y   = 2
@@ -13,33 +12,25 @@ var collision_position_x   = 0
 var collision_position_y   = 0.5
 var collision_scale_x      = 1
 var collision_scale_y      = 0.52
-
-var timer_dead       = 0
-var time_lapsus_dead = 150
-
-var motion = Vector2(0, 0)
-
-var max_jump    = 2
-var times_jump  = 0
-var lapsus_step = 23
-
-var is_healing    = false
-var is_jumping    = false
-var is_attacking  = false
-var is_dashing    = false
-var is_hurting    = false
-var is_climbing   = false
-var going_up      = false
-var going_down    = false
-var can_pray      = false
-var is_praying    = false
-var in_hand_pray  = ""
-
-var can_open_chest = false
-var in_front_of_the_chest = ""
-
-var state_machine
-
+var timer_dead             = 0
+var time_lapsus_dead       = 150
+var motion                 = Vector2(0, 0)
+var max_jump               = 2
+var times_jump             = 0
+var lapsus_step            = 23
+var is_healing             = false
+var is_jumping             = false
+var is_attacking           = false
+var is_dashing             = false
+var is_hurting             = false
+var is_climbing            = false
+var going_up               = false
+var going_down             = false
+var can_pray               = false
+var is_praying             = false
+var in_hand_pray           = ""
+var can_open_chest         = false
+var in_front_of_the_chest  = ""
 var timer_not_take_damage     = 0
 var time_loop_not_take_damage = 60
 var timer_pray                = 500
@@ -47,7 +38,7 @@ var timer_pray                = 500
 var timer_dash = 0 #PARCHE PARA NO QUEDAR CON EL DASH ACTIVO
 var limit_dash = 10 # 40 es 0.6seg aprox -- 5 = 0.15
 
-var event_attack = 0
+var event_attack   = 0
 var timer_attack   = 0
 var limit_attack   = 20
 
@@ -55,7 +46,7 @@ var limit_disabled_collision_down_climb = 10
 var timer_disabled_collision_down_climb = 0
 
 var _delta = 0
-
+var state_machine
 func _ready():	
 	state_machine = $AnimationTree.get("parameters/playback")	
 	state_machine.start("idle")
@@ -80,17 +71,15 @@ func _process(delta):
 			state_machine.travel("idle")
 	else:
 		timer_dead += 1
-
 		if timer_dead == time_lapsus_dead:
 			Players.selected.stats.current_hp = Players.selected.stats.health_points
 			Players.selected.stats.current_mp = Players.selected.stats.magic_points
 			Players.selected.dead             = false
-
 			if not Players.selected.last_save_point:
 				Env.init_position_stage.x = 224
 				Env.init_position_stage.y = 904
 				Env.non_use               = get_tree().change_scene("res://scenes/World/Cementery/Cementery-001-intro.tscn")
-			else:				
+			else:
 				Players.selected.change_scene_from_dead = true
 				Env.non_use = get_tree().change_scene(Players.selected.last_save_point.scene)
 				
@@ -103,6 +92,7 @@ func invulnerability ():
 func climb ():	
 	if timer_disabled_collision_down_climb > 0:
 		timer_disabled_collision_down_climb += 1
+		
 	if timer_disabled_collision_down_climb < limit_disabled_collision_down_climb:
 		timer_disabled_collision_down_climb = 0
 		$CollisionShape2D.disabled = false
@@ -129,10 +119,10 @@ func fall(delta):
 		motion.y += Players.selected.stats.gravity * Players.selected.stats.mase * delta		
 		if is_on_floor():
 			times_jump = max_jump
-			motion.y = 0
+			motion.y  = 0
 			is_jumping = false
 		if is_on_ceiling():		
-			motion.y += Players.selected.stats.gravity * Players.selected.stats.mase * delta
+			motion.y  += Players.selected.stats.gravity * Players.selected.stats.mase * delta
 			is_jumping = false	
 	else:
 		state_machine.travel("climb-pause")
@@ -149,7 +139,7 @@ func move():
 	elif Input.is_action_pressed("ui_left"):
 		if not is_jumping:
 			state_machine.travel("walk")
-		motion.x = -Players.selected.stats.move_speed if not is_dashing else Players.selected.stats.dash_speed * -1
+		motion.x       = -Players.selected.stats.move_speed if not is_dashing else Players.selected.stats.dash_speed * -1
 		$Sprite.flip_h = true
 		$AttackArea/CollisionShape2D.position.x = -65	
 	else:  
@@ -167,7 +157,7 @@ func applyItem():
 			Players._set_aura_use_item(self.position)
 			Players._use_hp_item(item)
 			Players._use_mp_item(item)
-			Players._erase_item(item)
+			Players._use_tonic(item)
 
 func jump():
 	if Input.is_action_just_pressed("jump") and times_jump > 0:
@@ -182,7 +172,7 @@ func jump():
 func attack():	
 	if not can_open_chest:
 		if Players.selected.stats.current_stamine < Players.selected.stats.stamine :
-			Players.selected.stats.current_stamine += Players.selected.stats.stamine_recovery
+			Players.selected.stats.current_stamine += (Players.selected.stats.stamine_recovery + Players.selected.statuses_stack.stamine.up)
 			Util.get_an_script("CanvasLayer").handleSetStamineBar()			
 		if is_attacking == true and timer_attack > 0:
 			timer_attack += 1
@@ -327,8 +317,7 @@ func RECIVE_HURT (area):
 		state_machine.travel("death")
 		Players.selected.dead = true
 
-func INSTANT_DEAD ():
-	
+func INSTANT_DEAD ():	
 	Players.selected.stats.current_hp -= Players.selected.stats.current_hp	
 	Util.get_an_script("CanvasLayer").handleSetHpBar()
 	$SoundDead.playing = true

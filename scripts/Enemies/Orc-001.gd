@@ -101,6 +101,6 @@ func floatDamageCount () :
 	ftd.type                = "damage"
 	ftd.flip                = motion.x
 	ftd.true_positon_sprite = true_positon_sprite
-	ftd.amount              = Players._get_attack(defense)
+	ftd.amount              = int( Players._get_attack(defense))
 	add_child(ftd)
 		

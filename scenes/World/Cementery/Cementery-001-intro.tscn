@@ -1147,24 +1147,26 @@ texture = ExtResource( 25 )
 position = Vector2( 280, 936 )
 scale = Vector2( 1.5, 1.5 )
 
-[node name="Chest-A" parent="Chests" instance=ExtResource( 29 )]
+[node name="Chest-1001" parent="Chests" instance=ExtResource( 29 )]
+position = Vector2( 1776, -346.667 )
+scale = Vector2( 1, 1 )
+item = 1001
+qty = 3
+
+[node name="Chest-1002" parent="Chests" instance=ExtResource( 29 )]
+position = Vector2( -144, -6.10351e-05 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+code = 1002
+item = 1001
+
+[node name="Chest-1003" parent="Chests" instance=ExtResource( 29 )]
 position = Vector2( 3776, -256 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
 code = 1003
 item = 1001
 qty = 3
-
-[node name="Chest-A2" parent="Chests" instance=ExtResource( 29 )]
-position = Vector2( 69.3333, 0.00012207 )
-scale = Vector2( 1, 1 )
-
-[node name="Chest-A3" parent="Chests" instance=ExtResource( 29 )]
-position = Vector2( -154.667, 6.10352e-05 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
-code = 1002
-item = 1003
 
 [node name="collision" type="TileMap" parent="."]
 position = Vector2( -10, 22 )
@@ -1359,21 +1361,23 @@ position = Vector2( 2464, 536 )
 
 [node name="Skeleton-02" parent="Skeletons002" instance=ExtResource( 6 )]
 position = Vector2( 1072, 544 )
+scale = Vector2( 1, 1 )
 
 [node name="Skeleton-03" parent="Skeletons002" instance=ExtResource( 6 )]
 position = Vector2( 1704, 544 )
+scale = Vector2( 1, 1 )
 
 [node name="Skeleton-04" parent="Skeletons002" instance=ExtResource( 6 )]
 position = Vector2( 1864, 544 )
+scale = Vector2( 1, 1 )
 
 [node name="Skeleton-05" parent="Skeletons002" instance=ExtResource( 6 )]
 position = Vector2( 2960, 544 )
+scale = Vector2( 1, 1 )
 
 [node name="Skeleton-06" parent="Skeletons002" instance=ExtResource( 6 )]
 position = Vector2( 3488, 544 )
-
-[node name="Skeleton-07" parent="Skeletons002" instance=ExtResource( 6 )]
-position = Vector2( 312, 912 )
+scale = Vector2( 1, 1 )
 
 [node name="Ladder01" parent="." instance=ExtResource( 23 )]
 position = Vector2( 128, 696 )
@@ -1409,14 +1413,5 @@ position = Vector2( 128, 584 )
 
 [node name="OldMan" parent="." instance=ExtResource( 28 )]
 position = Vector2( 504, 536 )
-
-[node name="Skeleton-02" parent="." instance=ExtResource( 6 )]
-position = Vector2( 4912, 344 )
-
-[node name="Skeleton-03" parent="." instance=ExtResource( 6 )]
-position = Vector2( 5040, 536 )
-
-[node name="Skeleton-04" parent="." instance=ExtResource( 6 )]
-position = Vector2( 6720, 536 )
 
 [connection signal="body_entered" from="Areas/Goto-002-001" to="Areas/Goto-002-001" method="_on_Goto002001_body_entered"]

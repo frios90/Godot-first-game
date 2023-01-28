@@ -7,17 +7,56 @@ var info_item_selected
 func _ready ():
 	self.initOrUpdateDataPlayer()
 	
+func _load_accessories() :
 	
-
+	var wpn = ItemsGbl._get_item_by_code(Players.selected.weapon_selected) if Players.selected.weapon_selected else false 
+	if wpn:
+		$Accessories/Weapon/input.texture = load(wpn.icon) 
+		
+	var arm = ItemsGbl._get_item_by_code(Players.selected.armory_selected) if Players.selected.armory_selected else false 
+	if arm :
+		$Accessories/Armory/input.texture = load(arm.icon) 
+		
+	var runes_attack = Players.selected.action_attack_runes
+	var rune_001     = ItemsGbl._get_item_by_code(runes_attack[0]) if runes_attack[0] else false
+	var rune_002     = ItemsGbl._get_item_by_code(runes_attack[1]) if runes_attack[1] else false
+	if rune_001:
+		$Accessories/RuneWeapon001/input.texture = load(rune_001.icon) 
+	if rune_002:
+		$Accessories/RuneWeapon002/input.texture = load(rune_002.icon)
+		
+	var runes_defense = Players.selected.action_defense_runes
+	var rune_003     =  ItemsGbl._get_item_by_code(runes_defense[0]) if runes_defense[0] else false
+	var rune_004     =  ItemsGbl._get_item_by_code(runes_defense[1]) if runes_defense[1] else false
+	if rune_003:
+		$Accessories/RuneArmory001/input.texture = load(rune_003.icon) 
+	if rune_004:
+		$Accessories/RuneArmory002/input.texture = load(rune_004.icon)
+	
 func initOrUpdateDataPlayer ():
+	var runes_attack  = Players._get_runes_attack()
+	var runes_defense = Players._get_runes_defense()
 	self._load_items()
-	$Stats/Values.get_node("hp").text           = str(String(int(Players.selected.stats.current_hp)), " / ", String(Players.selected.stats.health_points))
-	$Stats/Values.get_node("mp").text           = str(String(int(Players.selected.stats.current_mp)), " / ", String(Players.selected.stats.magic_points))
-	$Stats/Values.get_node("stamine").text      = String(int(Players.selected.stats.stamine))
-	$Stats/Values.get_node("strength").text     = String(int(Players.selected.stats.strength))
-	$Stats/Values.get_node("intelligence").text = String(int(Players.selected.stats.intelligence))
-	$Stats/Values.get_node("speed").text        = String(int(Players.selected.stats.speed)) 
-	$Stats/Values.get_node("luck").text         = String(int(Players.selected.stats.speed))
+	self._load_accessories()
+	$Stats/Values/hp.text            = str(str(int(Players.selected.stats.current_hp)), " / ", str(Players.selected.stats.health_points))
+	$Stats/Values/mp.text            = str(str(int(Players.selected.stats.current_mp)), " / ", str(Players.selected.stats.magic_points))
+	$Stats/Values/stamine.text       = str(int(Players.selected.stats.stamine))
+	$Stats/Values/strength.text      = str(int(Players.selected.stats.strength))
+	$Stats/Values/intelligence.text  = str(int(Players.selected.stats.intelligence))
+	$Stats/Values/speed.text         = str(int(Players.selected.stats.speed)) 
+	$Stats/Values/luck.text          = str(int(Players.selected.stats.speed))
+	$Stats/Values/totalattack.text   = str(int(Players._get_attack()))
+	$Stats/Values/totaldefense.text   = str(int(Players._get_defense()))
+	$Stats/Values/defensenatural.text = str(ItemsGbl._get_item_by_code(Players.selected.armory_selected).defense)
+	$Stats/Values/attacknatural.text = str(ItemsGbl._get_item_by_code(Players.selected.weapon_selected).attack)
+	$Stats/Values/attackflame.text   = str(runes_attack.flame)
+	$Stats/Values/attacksand.text    = str(runes_attack.sand)
+	$Stats/Values/attackwind.text    = str(runes_attack.wind)
+	$Stats/Values/attackliquid.text  = str(runes_attack.liquid)
+	$Stats/Values/defenseflame.text  = str(runes_defense.flame)
+	$Stats/Values/defensesand.text   = str(runes_defense.sand)
+	$Stats/Values/defensewind.text   = str(runes_defense.wind)
+	$Stats/Values/defenseliquid.text = str(runes_defense.liquid)
 	
 func _process(delta):
 	Env.non_use = delta
@@ -27,6 +66,11 @@ func _process(delta):
 		get_tree().paused = false
 		emit_signal("e")
 		self.queue_free()	
+		
+	if self.info_item_selected and not self.info_item_selected.data.can_use:
+		$InfoItem/BtnUse.visible = false 
+	else:
+		$InfoItem/BtnSelect.visible = true
 
 	if self.info_item_selected and not self.info_item_selected.data.can_select:
 		$InfoItem/BtnSelect.visible = false 
@@ -47,17 +91,17 @@ func setActionItems () :
 		var item1 =  Players._get_player_item_by_code(Players.selected.action_items[0])
 		$ItemsSelected/IconItem001.texture = load(item1.data.icon)
 	else:
-		$ItemsSelected/IconItem001.texture = load(empty_icon)
+		$ItemsSelected/IconItem001.texture = null
 	if Players.selected.action_items[1]:		
 		var item2 = Players._get_player_item_by_code(Players.selected.action_items[1])
 		$ItemsSelected/IconItem002.texture = load(item2.data.icon)
 	else:
-		$ItemsSelected/IconItem002.texture = load(empty_icon)
+		$ItemsSelected/IconItem002.texture = null
 	if Players.selected.action_items[2]:
 		var item3 = Players._get_player_item_by_code(Players.selected.action_items[2])
 		$ItemsSelected/IconItem003.texture = load(item3.data.icon)
 	else:
-		$ItemsSelected/IconItem003.texture = load(empty_icon)
+		$ItemsSelected/IconItem003.texture = null
 
 
 func _load_items () :
@@ -103,8 +147,61 @@ func _on_BtnUse_pressed():
 
 
 func _on_BtnEquipAttack_pressed():
-	pass # Replace with function body.
+	
+	var runes_in_use = self._count_runes_in_use_by_code(self.info_item_selected.data.code)
+	if runes_in_use == self.info_item_selected.qty:
+		return
+		
+	if !Players.selected.action_attack_runes[0]:
+		Players.selected.action_attack_runes[0] = self.info_item_selected.data.code
+	elif !Players.selected.action_attack_runes[1]:
+		Players.selected.action_attack_runes[1] = self.info_item_selected.data.code
+	
+	self.initOrUpdateDataPlayer()
+	self._load_accessories()
+
+func _on_BtnEquipDefense_pressed():	
+	var runes_in_use = self._count_runes_in_use_by_code(self.info_item_selected.data.code)
+	if runes_in_use == self.info_item_selected.qty:
+		return	
+	if !Players.selected.action_defense_runes[0]:
+		Players.selected.action_defense_runes[0] = self.info_item_selected.data.code
+	elif !Players.selected.action_defense_runes[1]:
+		Players.selected.action_defense_runes[1] = self.info_item_selected.data.code
+		
+	self.initOrUpdateDataPlayer()
+	self._load_accessories()
 
 
-func _on_BtnEquipDefense_pressed():
-	pass # Replace with function body.
+func _count_runes_in_use_by_code (code):
+	var count = 0
+	count += 1 if Players.selected.action_attack_runes[0] and Players.selected.action_attack_runes[0] == code else 0
+	count += 1 if Players.selected.action_attack_runes[1] and Players.selected.action_attack_runes[1] == code else 0
+	count += 1 if Players.selected.action_defense_runes[0] and Players.selected.action_defense_runes[0] == code else 0
+	count += 1 if Players.selected.action_defense_runes[1] and Players.selected.action_defense_runes[1] == code else 0
+	return count
+
+func _on_removeRuneDefense002_pressed():
+	Players.selected.action_defense_runes[0] = false
+	$Accessories/RuneArmory002/input.texture = null
+
+func _on_removeRuneDefense001_pressed():
+	Players.selected.action_defense_runes[1] = false
+	$Accessories/RuneArmory001/input.texture = null
+
+func _on_removeRuneAttack002_pressed():
+	Players.selected.action_attack_runes[1] = false
+	$Accessories/RuneWeapon002/input.texture = null
+
+func _on_removeRuneAttack001_pressed():
+	Players.selected.action_attack_runes[0] = false
+	$Accessories/RuneWeapon001/input.texture = null
+
+
+func _on_Equipar_pressed():
+	if self.info_item_selected.data.on == "weapon":
+		Players.selected.weapon_selected = self.info_item_selected.data.code
+	if self.info_item_selected.data.on == "armory":
+		Players.selected.armory_selected = self.info_item_selected.data.code
+	self.initOrUpdateDataPlayer()
+	self._load_accessories()

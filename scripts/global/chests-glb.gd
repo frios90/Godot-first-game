@@ -65,6 +65,91 @@ var list = [
 		"key"    : 12,
 		"code"   : 1013,
 		"open"   : false
+	},
+	{
+		"key"    : 13,
+		"code"   : 1014,
+		"open"   : false
+	},
+	{
+		"key"    : 14,
+		"code"   : 1015,
+		"open"   : false
+	},
+	{
+		"key"    : 15,
+		"code"   : 1016,
+		"open"   : false
+	},
+	{
+		"key"    : 16,
+		"code"   : 1017,
+		"open"   : false
+	},
+	{
+		"key"    : 17,
+		"code"   : 1018,
+		"open"   : false
+	},
+	{
+		"key"    : 18,
+		"code"   : 1019,
+		"open"   : false
+	},
+	{
+		"key"    : 19,
+		"code"   : 1020,
+		"open"   : false
+	},
+	{
+		"key"    : 20,
+		"code"   : 1021,
+		"open"   : false
+	},
+	{
+		"key"    : 21,
+		"code"   : 1022,
+		"open"   : false
+	},
+	{
+		"key"    : 22,
+		"code"   : 1023,
+		"open"   : false
+	},
+	{
+		"key"    : 23,
+		"code"   : 1024,
+		"open"   : false
+	},
+	{
+		"key"    : 24,
+		"code"   : 1025,
+		"open"   : false
+	},
+	{
+		"key"    : 25,
+		"code"   : 1026,
+		"open"   : false
+	},
+	{
+		"key"    : 26,
+		"code"   : 1027,
+		"open"   : false
+	},
+	{
+		"key"    : 27,
+		"code"   : 1028,
+		"open"   : false
+	},
+	{
+		"key"    : 28,
+		"code"   : 1029,
+		"open"   : false
+	},
+	{
+		"key"    : 29,
+		"code"   : 1030,
+		"open"   : false
 	}
 ]
 

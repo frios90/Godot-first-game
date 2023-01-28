@@ -26,6 +26,13 @@ var is_attacking                 = true
 var useRandSound                 = 0
 var old_motion_x                 = 0
 
+var resistance                   = {
+	"flame" : 50,
+	"sand" : 50,
+	"wind" : 50,
+	"liquid" : 50
+}
+
 func _ready():	
 	$HPbar.visible   = false
 	maxSpeed        *= -1
@@ -77,7 +84,9 @@ func _on_DeadArea_area_entered(area):
 		applySoundSword()
 		Util.get_an_script("Camera2D").trauma = true
 		if not dead:
-			current_life = current_life - Players._get_attack(defense)
+			print("atacke con resusteni aplicado")
+			print(Players._get_attack(self.defense, self.resistance))
+			current_life = current_life - Players._get_attack(self.defense, self.resistance)
 			$HPbar.value = current_life
 			floatDamageCount()	
 		if current_life <= 0:
@@ -110,7 +119,7 @@ func floatDamageCount () :
 	ftd.type                = "damage"
 	ftd.flip                = motion.x
 	ftd.true_positon_sprite = true_positon_sprite
-	ftd.amount              = Players._get_attack(defense)
+	ftd.amount              = int(Players._get_attack(defense))
 	add_child(ftd)
 		
 func _on_AttackArea_area_entered(area):

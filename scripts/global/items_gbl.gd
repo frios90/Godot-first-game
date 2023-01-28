@@ -1,4 +1,4 @@
-extends Node
+ extends Node
 
 var list_items = [
 	{
@@ -13,7 +13,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : true,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 1,
@@ -27,7 +29,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : true,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 2,
@@ -41,7 +45,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : true,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 3,
@@ -55,7 +61,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : true,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 4,
@@ -69,7 +77,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : true,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 5,
@@ -83,49 +93,57 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : true,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 6,
 		"code"       : 1007,
 		"name"       : "Tónico de aguante S",
 		"on"         : "stamine",
-		"percentage" : 10, 
+		"percentage" : 0.2, 
 		"duration"   : 10,
 		"icon"       : "res://assets/Items/TonicoStamineS.png",
-		"description" : "Aumenta la velocidad de RECUPERACIÓN DE AGUANTE en un 10% por 10 segundos",
+		"description" : "Aumenta la velocidad de RECUPERACIÓN DE AGUANTE en un 50% por 10 segundos",
 		"can_use"     : true,
 		"can_select"  : true,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 7,
-		"code"       : 100,
+		"code"       : 1008,
 		"name"       : "Tónico de aguante M",
 		"on"         : "stamine",
-		"percentage" : 20, 
+		"percentage" : 0.4, 
 		"duration"   : 12,
 		"icon"       : "res://assets/Items/TonicStamineM.png",
-		"description" : "Aumenta la velocidad de RECUPERACIÓN DE AGUANTE en un 20% por 12 segundos",
+		"description" : "Aumenta la velocidad de RECUPERACIÓN DE AGUANTE en un 100% por 12 segundos",
 		"can_use"     : true,
 		"can_select"  : true,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 8,
 		"code"       : 1009,
 		"name"       : "Tónico de aguante L",
 		"on"         : "stamine",
-		"percentage" : 30,
+		"percentage" : 0.6,
 		"duration"   : 14,
 		"icon"       : "res://assets/Items/TonicStamineL.png",
-		"description" : "Aumenta la velocidad de RECUPERACIÓN DE AGUANTE en un 30% por 14 segundos",
+		"description" : "Aumenta la velocidad de RECUPERACIÓN DE AGUANTE en un 150% por 14 segundos",
 		"can_use"     : true,
 		"can_select"  : true,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 9,
@@ -139,7 +157,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : true,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 10,
@@ -153,7 +173,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : true,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 11,
@@ -167,7 +189,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : true,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 12,
@@ -181,7 +205,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : true,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 15,
@@ -195,7 +221,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : false,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 16,
@@ -209,7 +237,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : false,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 17,
@@ -223,7 +253,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : false,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 18,
@@ -237,7 +269,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : false,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 19,
@@ -251,7 +285,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : false,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 20,
@@ -265,7 +301,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : false,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 21,
@@ -279,7 +317,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : false,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 22,
@@ -293,7 +333,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : false,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 23,
@@ -307,7 +349,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : false,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 24,
@@ -321,7 +365,9 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : false,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 25,
@@ -335,21 +381,208 @@ var list_items = [
 		"can_use"     : true,
 		"can_select"  : false,
 		"is_accesory" : false,
-		"is_rune"     : false
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
 	},
 	{
 		"key"        : 26,
 		"code"       : 1027,
 		"name"       : "Runa de la falma lvl.1",
-		"on"         : "equipment",
-		"percentage" : false,
-		"duration"   : false, 
+		"on"         : "flame",
+		"percentage" : 30,
+
 		"icon"       : "res://assets/Gui/Stats/FlameRune.png",
 		"description" : "Runa cargada de poder mágico (lvl01). Al equiparla en tu espada potenciara tus ataques de elemento fuego. si la equipas en tu armadura, potenciarás tu resistencia al fuego.",
 		"can_use"     : false,
 		"can_select"  : false,
 		"is_accesory" : false,
-		"is_rune"     : true
+		"is_rune"     : true,
+		"is_weapon"   : false,
+		"is_armory"   : false
+	},
+	{
+		"key"        : 27,
+		"code"       : 1028,
+		"name"       : "Runa de la arena lvl.1",
+		"on"         : "sand",
+		"percentage" : 30,
+		"duration"   : false, 
+		"icon"       : "res://assets/Gui/Stats/sandRune.png",
+		"description" : "Runa cargada de poder mágico (lvl01). Al equiparla en tu espada potenciara tus ataques de elemento tierra. si la equipas en tu armadura, potenciarás tu resistencia a la arena.",
+		"can_use"     : false,
+		"can_select"  : false,
+		"is_accesory" : false,
+		"is_rune"     : true,
+		"is_weapon"   : false,
+		"is_armory"   : false
+	},
+	{
+		"key"        : 28,
+		"code"       : 1029,
+		"name"       : "Runa de la aire lvl.1",
+		"on"         : "wind",
+		"percentage" : 30,
+		"duration"   : false, 
+		"icon"       : "res://assets/Gui/Stats/windrune.png",
+		"description" : "Runa cargada de poder mágico (lvl01). Al equiparla en tu espada potenciara tus ataques de elemento aire. si la equipas en tu armadura, potenciarás tu resistencia a la aire.",
+		"can_use"     : false,
+		"can_select"  : false,
+		"is_accesory" : false,
+		"is_rune"     : true,
+		"is_weapon"   : false,
+		"is_armory"   : false
+	},
+	{
+		"key"        : 29,
+		"code"       : 1030,
+		"name"       : "Runa de la liquida lvl.1",
+		"on"         : "liquid",
+		"percentage" : 30,
+		"duration"   : false, 
+		"icon"       : "res://assets/Gui/Stats/waterrune.png",
+		"description" : "Runa cargada de poder mágico (lvl01). Al equiparla en tu espada potenciara tus ataques de elemento aire. si la equipas en tu armadura, potenciarás tu resistencia a la aire.",
+		"can_use"     : false,
+		"can_select"  : false,
+		"is_accesory" : false,
+		"is_rune"     : true,
+		"is_weapon"   : false,
+		"is_armory"   : false
+	},
+	{
+		"key"        : 30,
+		"code"       : 1031,
+		"name"       : "Espada Vieja",
+		"attack"     : 5,
+		"on"         : "weapon",
+		"icon"       : "res://assets/swords/sword1.PNG",
+		"description" : "Vieja espada sin filo. Peor es nada... mejor tenerla",
+		"can_use"     : false,
+		"can_select"  : false,
+		"is_accesory" : false,
+		"is_rune"     : false,
+		"is_weapon"   : true,
+		"is_armory"   : false
+	},
+	{
+		"key"        : 31,
+		"code"       : 1032,
+		"name"       : "Espada de Bronce",
+		"attack"     : 38,
+		"on"         : "weapon",
+		"icon"       : "res://assets/swords/sword2.PNG",
+		"description" : "la espada 002",
+		"can_use"     : false,
+		"can_select"  : false,
+		"is_accesory" : false,
+		"is_rune"     : false,
+		"is_weapon"   : true,
+		"is_armory"   : false
+	},
+	{
+		"key"        : 32,
+		"code"       : 1033,
+		"name"       : "Gran espada",
+		"attack"     : 54,
+		"on"         : "weapon",
+		"icon"       : "res://assets/swords/sword3.PNG",
+		"description" : "la espada 002",
+		"can_use"     : false,
+		"can_select"  : false,
+		"is_accesory" : false,
+		"is_rune"     : false,
+		"is_weapon"   : true,
+		"is_armory"   : false
+	},
+	{
+		"key"        : 33,
+		"code"       : 1034,
+		"name"       : "Gran espada de plata",
+		"attack"     : 64,
+		"on"         : "weapon",
+		"icon"       : "res://assets/swords/sword4.PNG" ,
+		"description" : "la espada 002",
+		"can_use"     : false,
+		"can_select"  : false,
+		"is_accesory" : false,
+		"is_rune"     : false,
+		"is_weapon"   : true,
+		"is_armory"   : false
+	},
+	{
+		"key"        : 34,
+		"code"       : 1035,
+		"name"       : "Espada ",
+		"attack"     : 84,
+		"on"         : "weapon",
+		"icon"       : "res://assets/swords/sword5.PNG" ,
+		"description" : "la espada 002",
+		"can_use"     : false,
+		"can_select"  : false,
+		"is_accesory" : false,
+		"is_rune"     : false,
+		"is_weapon"   : true,
+		"is_armory"   : false
+	},
+	{
+		"key"        : 35,
+		"code"       : 1036,
+		"name"       : "Espada jade",
+		"attack"     : 72,
+		"on"         : "weapon",
+		"icon"       : "res://assets/swords/sword6.PNG" ,
+		"description" : "la espada 002",
+		"can_use"     : false,
+		"can_select"  : false,
+		"is_accesory" : false,
+		"is_rune"     : false,
+		"is_weapon"   : true,
+		"is_armory"   : false
+	},
+	{
+		"key"        : 36,
+		"code"       : 1037,
+		"name"       : "Espada sentimiento",
+		"attack"     : 50,
+		"on"         : "weapon",
+		"icon"       : "res://assets/swords/sword6.PNG" ,
+		"description" : "la espada 002",
+		"can_use"     : false,
+		"can_select"  : false,
+		"is_accesory" : false,
+		"is_rune"     : false,
+		"is_weapon"   : true,
+		"is_armory"   : false
+	},
+	{
+		"key"        : 37,
+		"code"       : 1038,
+		"name"       : "Armadura vieja",
+		"defense"   : 10,
+		"on"         : "armory",
+		"icon"       : "res://assets/armor/001.png" ,
+		"description" : "La armadura pendiente de descripcion",
+		"can_use"     : false,
+		"can_select"  : false,
+		"is_accesory" : false,
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : true
+	},
+	{
+		"key"         : 38,
+		"code"        : 1039,
+		"name"        : "Armadura bronce",
+		"defense"     : 40,
+		"on"         : "armory",
+		"icon"        : "res://assets/armor/002.png",
+		"description" : "La armadura pendiente de descripcion",
+		"can_use"     : false,
+		"can_select"  : false,
+		"is_accesory" : false,
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : true
 	},
 ]
 
@@ -357,3 +590,4 @@ func _get_item_by_code(code):
 	for i in range(len(self.list_items)):
 		if self.list_items[i].code == code :
 			return self.list_items[i]
+	return false

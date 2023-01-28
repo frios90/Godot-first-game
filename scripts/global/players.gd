@@ -35,34 +35,29 @@ var gustaph = {
 		"gravity"         : 750,
 		"mase"            : 1.9,
 		"stamine_cost"    : 15,
-		"stamine_recovery": 0.4
+		"stamine_recovery": 0.4,
 	},	
-	"weapon_selected" : {
-		"name"         : "INIT_SWORD",
-		"attack"       : 5,
-		"attack_magic" : 0
-	},
-	"armory_selected" : {
-		"name"          : "INIT_ARMORY",
-		"defense"       : 1,
-		"defense_magic" : 0
-	},
-	"selected_item" : 0,
-	"items"        : [],
+	"weapon_selected" : 1031, #por defecto
+	"armory_selected" : 1038, #por defecto
+	"selected_item"   : 0,
+	"items"           : [],
 	"action_items" : [false, false, false],
-	"action_attack_rune"  : 0,
-	"action_defense_rune" : 0,
-	"action_accessory_01" : 0,
-	"action_accessory_02" : 0,
-	"action_accessory_03" : 0,
-	"action_accessory_04" : 0,
+	"action_attack_runes"  : [false, false],
+	"action_defense_runes" : [false, false],	
 	"statuses_stack" : {
-		"stamine"  : 0,
-		"strength" : 0,
-		"speed"    : 0
+		"stamine"  : {
+			"time" : 0,
+			"up"   : 0
+		},
+		"strength" :{
+			"time" : 0,
+			"up"   : 0
+		},
+		"speed"    : {
+			"time" : 0,
+			"up"   : 0
+		}
 	}
-	
-	
 }
 
 func _ready ():
@@ -71,20 +66,99 @@ func _ready ():
 var coins       = 0
 var points      = 0
 
-func _get_attack (enemy_defense = false):
+func _get_attack (enemy_defense = false, resistance = false):
+	var weapon_attack    = ItemsGbl._get_item_by_code(self.selected.weapon_selected).attack if self.selected.weapon_selected else 0	
+	var effective_attack = self.selected.stats.strength	
+	var runes_attack     = self._get_runes_attack()		
+	effective_attack    += weapon_attack	
+	
+	if self.selected.statuses_stack.strength.up > 0:
+		var attack_tonic_effect = int((float(self.selected.stats.strength) / 100) * selected.statuses_stack.strength.up)
+		effective_attack += attack_tonic_effect
+
+	if resistance and resistance.flame > 0:
+		runes_attack.flame = runes_attack.flame - int((float(runes_attack.flame) / 100)* resistance.flame)
+		runes_attack.flame = runes_attack.flame if runes_attack.flame >= 0 else 0
+	if resistance and resistance.sand  > 0:
+		runes_attack.sand = runes_attack.sand - int((float(runes_attack.sand) / 100)* 30)
+		runes_attack.sand = runes_attack.sand if runes_attack.sand >= 0 else 0
+	if resistance and resistance.wind > 0:			
+		runes_attack.wind = runes_attack.wind - int((float(runes_attack.wind) / 100)* 30)
+		runes_attack.wind = runes_attack.wind if runes_attack.wind >= 0 else 0
+	if resistance and resistance.liquid > 0:		
+		runes_attack.liquid = runes_attack.liquid - int((float(runes_attack.liquid) / 100)* 30)
+		runes_attack.liquid = runes_attack.liquid if runes_attack.liquid >= 0 else 0
+	
+	effective_attack += runes_attack.flame
+	effective_attack += runes_attack.sand
+	effective_attack += runes_attack.wind
+	effective_attack += runes_attack.liquid
+	
 	if not enemy_defense:
-		return self.selected.stats.strength + self.selected.weapon_selected.attack
+		return effective_attack
 	else :
-		return (self.selected.stats.strength + self.selected.weapon_selected.attack) - enemy_defense
+		return effective_attack - enemy_defense
 
-func _get_defense ():
-	return self.selected.stats.strength + self.selected.armory_selected.defense
+func _get_runes_attack():
+	var detail = {
+		"flame"            : 0,
+		"sand"             : 0,
+		"wind"             : 0,
+		"liquid"           : 0 
+	}
+	
+	var base_calculate_attack = self.selected.stats.strength
 
-func _get_attack_magic ():
-	return self.selected.stats.intelligence + self.selected.weapon_selected.attack_magic
+	for i in range(len(self.selected.action_attack_runes)):
+		if self.selected.action_attack_runes[i]:
+			var rune = ItemsGbl._get_item_by_code(self.selected.action_attack_runes[i])			
+			match rune.on:
+				"flame": 
+					detail.flame += int((float(base_calculate_attack) / 100) * rune.percentage) + int(self.selected.stats.intelligence)
+				"sand":
+					detail.sand += int((float(base_calculate_attack) / 100) * rune.percentage)+ int(self.selected.stats.intelligence)
+				"wind":
+					detail.wind += int((float(base_calculate_attack) / 100) * rune.percentage) + int(self.selected.stats.intelligence)
+				"liquid": 
+					detail.liquid += int((float(base_calculate_attack) / 100) * rune.percentage) + int(self.selected.stats.intelligence)
+	return detail
 
-func _get_defense_magic ():
-	return self.selected.stats.intelligence + self.selected.armory_selected.defense_magic
+func _get_defense ():	
+	var armor_defense   = ItemsGbl._get_item_by_code(self.selected.armory_selected).defense if self.selected.armory_selected else 0	
+	var effective_defense = self.selected.stats.strength
+	var runes_defense = self._get_runes_defense()
+	effective_defense += runes_defense.flame
+	effective_defense += runes_defense.sand
+	effective_defense += runes_defense.wind
+	effective_defense += runes_defense.liquid
+	
+	effective_defense += armor_defense
+	
+	return effective_defense
+
+func _get_runes_defense():
+	var detail = {
+		"flame"            : 0,
+		"sand"             : 0,
+		"wind"             : 0,
+		"liquid"           : 0 
+	}
+	
+	var base_calculate_defense = self.selected.stats.strength
+
+	for i in range(len(self.selected.action_defense_runes)):
+		if self.selected.action_defense_runes[i]:
+			var rune = ItemsGbl._get_item_by_code(self.selected.action_defense_runes[i])			
+			match rune.on:
+				"flame": 
+					detail.flame  += int((float(base_calculate_defense) / 100) * rune.percentage) + int(self.selected.stats.intelligence)
+				"sand":
+					detail.sand   += int((float(base_calculate_defense) / 100) * rune.percentage) + int(self.selected.stats.intelligence)
+				"wind":
+					detail.wind   += int((float(base_calculate_defense) / 100) * rune.percentage) + int(self.selected.stats.intelligence)
+				"liquid": 
+					detail.liquid += int((float(base_calculate_defense) / 100) * rune.percentage) + int(self.selected.stats.intelligence)
+	return detail
 
 func _add_item (item, qty):
 	var new_item_to_add = {
@@ -115,8 +189,7 @@ func _get_player_item_by_code (code):
 	for i in range(len(self.selected.items)):
 		if code and self.selected.items[i].data.code == code :
 			return  self.selected.items[i]
-			
-			
+
 func _add_action_item (item) :	
 	if  self.selected.action_items[0] and self.selected.action_items[0] == item.data.code:
 		return false
@@ -136,18 +209,11 @@ func _remove_action_item (position) :
 	self.selected.action_items[position] = false
 	
 func _erase_item (item):
-	print("EN EL ERASE ITEMS")
-	print(len(self.selected.items))
-	for i in range(len(self.selected.items)):
-		print("FLG001")
-		print(i)
-		print(self.selected.items[i])
-		## MAS ERRORES AL QUERER USAR UN ITEM
+	for i in range(len(self.selected.items)):	
 		if self.selected.items[i].data.code == item.data.code:
 			self.selected.items[i].qty -= 1
 			if self.selected.items[i].qty == 0:
 				self.selected.items.remove(i)
-				#el problma esta aqui al querer eliminar el coso este
 				for j in range(len(self.selected.action_items)):
 					if self.selected.action_items[j]:
 						if self.selected.action_items[j] == item.data.code:
@@ -167,10 +233,10 @@ func _use_item_in_pause_menu (item):
 		self._use_hp_item(item)
 		self._use_mp_item(item)
 		self._use_cristal(item)
+		self._use_tonic(item)
 		#to-do el resto de la aplicacion de items (stamna, agilidad, fuerza, gemas... ...)
-		self._erase_item(item)
+		
 		Util.get_an_script("MenuPause").initOrUpdateDataPlayer()
-	
 
 func _use_hp_item (item) :
 	if item.data.on == "hp":		
@@ -182,6 +248,7 @@ func _use_hp_item (item) :
 		var hp_after_recovery          = self.selected.stats.current_hp + recovery
 		self.selected.stats.current_hp = hp_after_recovery if hp_after_recovery < self.selected.stats.health_points else self.selected.stats.health_points
 		Util.get_an_script("CanvasLayer").handleSetHpBar()
+		self._erase_item(item)
 
 func _use_mp_item (item) :
 	if item.data.on == "mp":
@@ -193,24 +260,62 @@ func _use_mp_item (item) :
 		var mp_after_recovery             = self.selected.stats.current_mp + recovery
 		self.selected.stats.current_mp = mp_after_recovery if mp_after_recovery < self.selected.stats.magic_points else self.selected.stats.magic_points
 		Util.get_an_script("CanvasLayer").handleSetMpBar()
+		self._erase_item(item)
 
 func _use_cristal (item):
 	match item.data.code:
 		1016: #Cristal de hp
 			self.selected.stats.health_points = int(self.selected.stats.health_points * float(item.data.percentage))
 			self.selected.stats.current_hp = self.selected.stats.health_points 
+			self._erase_item(item)
 		1017: #Cristal de mp
 			self.selected.stats.magic_points = int(self.selected.stats.magic_points * float(item.data.percentage))
 			self.selected.stats.current_hp = self.selected.stats.health_points 
+			self._erase_item(item)
 		1018: #Cristal de stamina
 			self.selected.stats.stamine = int(self.selected.stats.stamine * float(item.data.percentage))
+			self._erase_item(item)
 		1019: #Cristal de fuerza
 			self.selected.stats.strength = self.selected.stats.strength * item.data.percentage
+			self._erase_item(item)
 		1020:
 			self.selected.stats.intelligence = self.selected.stats.intelligence * item.data.percentage
+			self._erase_item(item)
 		1021:#Cristal de agilidad
 			self.selected.stats.speed = self.selected.stats.speed * item.data.percentage
+			self._erase_item(item)
 		1022:#Cristal de  suerte
 			self.selected.stats.luck = self.selected.stats.luck * item.data.percentage
-		
+			self._erase_item(item)
+
+func _use_tonic (item):
 	
+	if (item.data.code == 1007 or item.data.code == 1008 or item.data.code == 1009) and self.selected.statuses_stack.stamine.up == 0:
+		self.selected.statuses_stack.stamine.time = item.data.duration
+		self.selected.statuses_stack.stamine.up   = item.data.percentage		
+		self._erase_item(item)
+		get_tree().create_timer(item.data.duration).connect("timeout", self, "__finish_effect_tonic_stamine")	
+		
+	if (item.data.code == 1010 or item.data.code == 1011 or item.data.code == 1012) and self.selected.statuses_stack.strength.up == 0:
+		self.selected.statuses_stack.strength.time = item.data.duration
+		self.selected.statuses_stack.strength.up   = item.data.percentage
+		self._erase_item(item)
+		get_tree().create_timer(item.data.duration).connect("timeout", self, "__finish_effect_tonic_strength")	
+		
+	if item.data.code == 1013 and self.selected.statuses_stack.speed.up == 0:
+		self.selected.statuses_stack.speed.time = item.data.duration
+		self.selected.statuses_stack.speed.up   = item.data.percentage
+		self._erase_item(item)
+		get_tree().create_timer(item.data.duration).connect("timeout", self, "__finish_effect_tonic_speed")	
+
+func __finish_effect_tonic_stamine ():
+	self.selected.statuses_stack.stamine.time = 0
+	self.selected.statuses_stack.stamine.up   = 0
+	
+func __finish_effect_tonic_strength ():
+	self.selected.statuses_stack.strength.time = 0
+	self.selected.statuses_stack.strength.up   = 0
+	
+func __finish_effect_tonic_speed ():
+	self.selected.statuses_stack.speed.time = 0
+	self.selected.statuses_stack.speed.up   = 0

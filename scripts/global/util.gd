@@ -15,7 +15,9 @@ func round_dicimal (number, dec) :
 
 
 func apply_damage_body (attack, defense):
-	return attack - (defense * 0.5)
+	var damage =  attack - (defense * 0.5)
+	damage = damage if damage > 0 else 10
+	return damage
 	
 func get_an_script (script):
 	return get_tree().get_root().find_node(script, true,false)

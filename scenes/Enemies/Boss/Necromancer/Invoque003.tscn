@@ -6,14 +6,6 @@
 [node name="Invoque003" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Skeleton-003" parent="." instance=ExtResource( 2 )]
-position = Vector2( 2344, 528 )
-can_back_flip = 0
-level = 2
-scaleX = -1.3
-scaleY = 1.3
-withMoveAndFlip = 0
-
 [node name="Skeleton-004" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2200, 528 )
 can_back_flip = 0
@@ -26,4 +18,14 @@ position = Vector2( 2488, 528 )
 can_back_flip = 0
 scaleX = -1.2
 scaleY = 1.2
+withMoveAndFlip = 0
+
+[node name="Skeleton-003" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2696, 528 )
+can_back_flip = 0
+withMoveAndFlip = 0
+
+[node name="Skeleton-006" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2344, 528 )
+can_back_flip = 0
 withMoveAndFlip = 0

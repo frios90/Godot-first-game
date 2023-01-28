@@ -49,19 +49,17 @@ func _process(delta):
 	_delta = delta
 	if not dead:
 		moveOrIdle()
-		attacking()	
+		attacking()
 		flip()
 		if is_on_floor():
 			motion.y = 0
 		Env.non_use = move_and_slide(motion, up)
 	else:
-		motion      = Vector2(0, 0)	
-		motion.y    = gravity
-		Env.non_use = move_and_slide(motion, up)
+		motion              = Vector2(0, 0)	
+		motion.y            = gravity
+		Env.non_use         = move_and_slide(motion, up)
 		var pretime_to_dead = get_tree().create_timer(0.33)
 		pretime_to_dead.connect("timeout", self, "_preTimeToDead")	
-
-		
 
 func _preTimeToDead () :
 	queue_free()
@@ -91,17 +89,16 @@ func attacking () :
 			castSpell($Rays/Back.get_collider())
 			
 func castSpell (collider):
-	is_attacking = true
-	timer_attack = get_tree().create_timer(1)
-	timer_attack.connect("timeout", self, "_timeout_finish_attach")	
-	var spell = load("res://scenes/Spells/Spell-001-spark.tscn")
-	spell = spell.instance()
+	is_attacking     = true
+	get_tree().create_timer(1).connect("timeout", self, "_timeout_finish_attach")	
+	var spell        = load("res://scenes/Spells/Spell-001-spark.tscn")
+	spell            = spell.instance()
 	spell.position.x = collider.position[0]
 	spell.position.y = collider.position[1]
-	spell.attack = attack		
+	spell.attack     = attack
 	yield(get_tree().create_timer(0.3), "timeout")	
 	get_parent().add_child(spell)
-	state_machine.travel("attack")	
+	self.state_machine.travel("attack")
 
 	
 
@@ -119,14 +116,9 @@ func _on_DeadArea_area_entered(area):
 		Util.get_an_script("Camera2D").trauma = true
 		applySoundSword()			
 		if (dead == false):
-			current_life = current_life - Players._get_attack(defense)
+			self.current_life = current_life - Players._get_attack(defense)
 			state_machine.travel("hurt")	
-			ftd = floating_text.instance()
-			ftd.type = "damage"
-			ftd.flip = motion.x
-			ftd.true_positon_sprite = true_positon_sprite
-			ftd.amount = Players._get_attack(defense)
-			add_child(ftd)
+			floatDamageCount()
 			$HPbar.value = current_life
 		if current_life <= 0:
 			if (dead == false):
@@ -141,3 +133,11 @@ func applySoundSword ():
 	else:
 		$SwordHurt02.playing  = true
 
+		
+func floatDamageCount () :
+	ftd                     = floating_text.instance()
+	ftd.type                = "damage"
+	ftd.flip                = motion.x
+	ftd.true_positon_sprite = true_positon_sprite
+	ftd.amount              = int( Players._get_attack(defense))
+	add_child(ftd)

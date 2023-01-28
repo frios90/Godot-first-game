@@ -556,7 +556,7 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 528
 collision_mask = 3
 format = 1
-tile_data = PoolIntArray( -2293474, 1, 0, -2293472, 1, 0, -2162401, 0, 0, -1900257, 0, 0, -261810, 0, 0, 334, 0, 0, 65870, 0, 0, 852195, 1, 0, 852197, 1, 0, 852198, 1, 0, 852259, 1, 0, 852261, 1, 0, 1048805, 0, 0, 1048868, 0, 0, 1114228, 536870913, 0, 1114229, 536870913, 0, 1114231, 536870913, 0, 1310838, 0, 0, 1310949, 0, 0, 1311012, 0, 0, 1572982, 0, 0 )
+tile_data = PoolIntArray( -2293474, 1, 0, -2293472, 1, 0, -2162401, 0, 0, -1900257, 0, 0, -261810, 0, 0, 334, 0, 0, 65870, 0, 0, 852195, 1, 0, 852197, 1, 0, 852198, 1, 0, 852259, 1, 0, 852261, 1, 0, 1048805, 0, 0, 1048868, 0, 0, 1114228, 536870913, 0, 1114229, 536870913, 0, 1114231, 536870913, 0, 1310838, 0, 0, 1310949, 0, 0, 1311012, 0, 0 )
 
 [node name="Ladder01" parent="middle" instance=ExtResource( 23 )]
 position = Vector2( 4608, -456 )
@@ -1016,7 +1016,8 @@ position = Vector2( 3680, 320 )
 position = Vector2( -7, -72 )
 
 [node name="Ladder04" parent="." instance=ExtResource( 23 )]
-position = Vector2( 1904, 384 )
+position = Vector2( 1904, 352 )
+scale = Vector2( 1, 0.6 )
 
 [node name="StBody02" parent="Ladder04" instance=ExtResource( 24 )]
 position = Vector2( -7, -72 )

@@ -8,9 +8,9 @@ var parent_position
 var limitTimerLap = 25
 var timerLap      = 24
 var useTween      = 1
-var current_life          = 1
-var speed = 100
-var start = false
+var current_life  = 1
+var speed         = 100
+var start         = false
 
 func _ready():
 	pass
@@ -47,6 +47,7 @@ func lap ():
 	
 func _on_DeadArea_area_entered(area):
 	if area.is_in_group("Sword") and self.start:		
+		print("hit ")
 		Util.get_an_script("Camera2D").trauma = true
 		get_parent().skulls -= 1
 		self.queue_free()

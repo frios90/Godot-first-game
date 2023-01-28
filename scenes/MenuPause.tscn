@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scripts/MenuPause.gd" type="Script" id=1]
 [ext_resource path="res://assets/Gui/Stats/intelligence-stone.png" type="Texture" id=2]
@@ -20,7 +20,6 @@
 [ext_resource path="res://assets/Characters/2D_SL_Knight_v1.0/Idle.png" type="Texture" id=18]
 [ext_resource path="res://assets/Items/PotaMpL.png" type="Texture" id=19]
 [ext_resource path="res://assets/Gui/box-highres.png" type="Texture" id=20]
-[ext_resource path="res://assets/Gui/TexturaBlue/Scroll Button.png" type="Texture" id=21]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -28,6 +27,12 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 18
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=4]
@@ -42,7 +47,8 @@ font_data = ExtResource( 3 )
 
 [node name="MenuPause" type="Control"]
 pause_mode = 2
-margin_right = 1024.0
+margin_left = -8.0
+margin_right = 1016.0
 margin_bottom = 600.0
 script = ExtResource( 1 )
 
@@ -51,14 +57,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 8.0
 margin_right = -568.0
-margin_bottom = -208.0
-__meta__ = {
-"_edit_group_": true
-}
+margin_bottom = -64.0
 
 [node name="TextureRect" type="TextureRect" parent="Stats"]
-margin_right = 456.0
-margin_bottom = 376.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 120.0
 texture = ExtResource( 20 )
 expand = true
 
@@ -96,23 +100,28 @@ scale = Vector2( 0.12, 0.12 )
 texture = ExtResource( 8 )
 
 [node name="BornRune" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 185, 248 )
+position = Vector2( 174, 264 )
+scale = Vector2( 0.712121, 0.742424 )
 texture = ExtResource( 13 )
 
 [node name="SandRune" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 297, 248 )
+position = Vector2( 257, 264 )
+scale = Vector2( 0.712121, 0.742424 )
 texture = ExtResource( 14 )
 
 [node name="Waterrune" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 353, 248 )
+position = Vector2( 296, 264 )
+scale = Vector2( 0.712121, 0.742424 )
 texture = ExtResource( 11 )
 
 [node name="Windrune" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 409, 248 )
+position = Vector2( 336, 264 )
+scale = Vector2( 0.712121, 0.742424 )
 texture = ExtResource( 15 )
 
 [node name="FlameRune" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 241, 248 )
+position = Vector2( 216, 264 )
+scale = Vector2( 0.712121, 0.742424 )
 texture = ExtResource( 12 )
 
 [node name="Intelligence-stone" type="Sprite" parent="Stats/Icons"]
@@ -285,102 +294,122 @@ text = "0"
 align = 2
 valign = 1
 
-[node name="defense-wind" type="Label" parent="Stats/Values"]
-margin_left = 385.0
+[node name="defensewind" type="Label" parent="Stats/Values"]
+margin_left = 312.0
 margin_top = 296.0
-margin_right = 425.0
+margin_right = 345.0
 margin_bottom = 320.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
 valign = 1
 
-[node name="defense-liquid" type="Label" parent="Stats/Values"]
-margin_left = 329.0
+[node name="defenseliquid" type="Label" parent="Stats/Values"]
+margin_left = 272.0
 margin_top = 296.0
-margin_right = 369.0
+margin_right = 305.0
 margin_bottom = 320.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
 valign = 1
 
-[node name="defense-sand" type="Label" parent="Stats/Values"]
-margin_left = 273.0
+[node name="defensesand" type="Label" parent="Stats/Values"]
+margin_left = 232.0
 margin_top = 296.0
-margin_right = 313.0
+margin_right = 265.0
 margin_bottom = 320.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
 valign = 1
 
-[node name="defense-flame" type="Label" parent="Stats/Values"]
-margin_left = 217.0
+[node name="defenseflame" type="Label" parent="Stats/Values"]
+margin_left = 192.0
 margin_top = 296.0
-margin_right = 257.0
+margin_right = 224.0
 margin_bottom = 320.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
 valign = 1
 
-[node name="defense-natural" type="Label" parent="Stats/Values"]
-margin_left = 161.0
+[node name="defensenatural" type="Label" parent="Stats/Values"]
+margin_left = 152.0
 margin_top = 296.0
-margin_right = 201.0
+margin_right = 184.0
 margin_bottom = 320.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
 valign = 1
 
-[node name="attack-wind" type="Label" parent="Stats/Values"]
-margin_left = 385.0
+[node name="attackwind" type="Label" parent="Stats/Values"]
+margin_left = 312.0
+margin_top = 272.0
+margin_right = 345.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="attackliquid" type="Label" parent="Stats/Values"]
+margin_left = 272.0
+margin_top = 272.0
+margin_right = 305.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="attacksand" type="Label" parent="Stats/Values"]
+margin_left = 232.0
+margin_top = 272.0
+margin_right = 264.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="attackflame" type="Label" parent="Stats/Values"]
+margin_left = 192.0
+margin_top = 272.0
+margin_right = 224.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="attacknatural" type="Label" parent="Stats/Values"]
+margin_left = 152.0
+margin_top = 272.0
+margin_right = 184.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="totalattack" type="Label" parent="Stats/Values"]
+margin_left = 376.0
 margin_top = 272.0
 margin_right = 425.0
-margin_bottom = 296.0
-custom_fonts/font = SubResource( 2 )
+margin_bottom = 289.0
+custom_fonts/font = SubResource( 6 )
 text = "0"
 align = 2
 valign = 1
 
-[node name="attack-liquid" type="Label" parent="Stats/Values"]
-margin_left = 329.0
-margin_top = 272.0
-margin_right = 369.0
-margin_bottom = 296.0
-custom_fonts/font = SubResource( 2 )
-text = "0"
-align = 2
-valign = 1
-
-[node name="attack-sand" type="Label" parent="Stats/Values"]
-margin_left = 273.0
-margin_top = 272.0
-margin_right = 313.0
-margin_bottom = 296.0
-custom_fonts/font = SubResource( 2 )
-text = "0"
-align = 2
-valign = 1
-
-[node name="attack-flame" type="Label" parent="Stats/Values"]
-margin_left = 217.0
-margin_top = 272.0
-margin_right = 257.0
-margin_bottom = 296.0
-custom_fonts/font = SubResource( 2 )
-text = "0"
-align = 2
-valign = 1
-
-[node name="attack-natural" type="Label" parent="Stats/Values"]
-margin_left = 161.0
-margin_top = 272.0
-margin_right = 201.0
-margin_bottom = 296.0
-custom_fonts/font = SubResource( 2 )
+[node name="totaldefense" type="Label" parent="Stats/Values"]
+margin_left = 384.0
+margin_top = 296.0
+margin_right = 424.0
+margin_bottom = 313.0
+custom_fonts/font = SubResource( 7 )
 text = "0"
 align = 2
 valign = 1
@@ -403,70 +432,165 @@ expand = true
 [node name="ScrollContainer" type="ScrollContainer" parent="Items"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 6.0
 margin_top = 48.0
+margin_bottom = -48.0
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Items/ScrollContainer"]
-margin_right = 376.0
-margin_bottom = 328.0
+margin_right = 370.0
+margin_bottom = 280.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Accessories" type="Panel" parent="."]
 show_behind_parent = true
-margin_left = 472.0
+margin_left = 478.0
 margin_top = 8.0
-margin_right = 856.0
-margin_bottom = 384.0
+margin_right = 862.0
+margin_bottom = 264.0
 
 [node name="TextureRect" type="TextureRect" parent="Accessories"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = 16.0
 texture = ExtResource( 20 )
 expand = true
 
-[node name="Rune001" type="Sprite" parent="Accessories"]
-position = Vector2( 96, 113 )
+[node name="Weapon" type="Sprite" parent="Accessories"]
+position = Vector2( 96, 57 )
 scale = Vector2( 1.6, 1.6 )
 texture = ExtResource( 16 )
 
-[node name="Rune002" type="Sprite" parent="Accessories"]
-position = Vector2( 288, 112 )
+[node name="input" type="Sprite" parent="Accessories/Weapon"]
+position = Vector2( -6.19888e-06, -0.937501 )
+
+[node name="Armory" type="Sprite" parent="Accessories"]
+position = Vector2( 288, 56 )
 scale = Vector2( 1.7, 1.675 )
 texture = ExtResource( 16 )
 
-[node name="Acc001" type="Sprite" parent="Accessories"]
-position = Vector2( 80, 232 )
+[node name="input" type="Sprite" parent="Accessories/Armory"]
+position = Vector2( 0, 7.62939e-06 )
+
+[node name="RuneWeapon001" type="Sprite" parent="Accessories"]
+position = Vector2( 72, 105 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 17 )
 
-[node name="Acc002" type="Sprite" parent="Accessories"]
-position = Vector2( 144, 296 )
+[node name="input" type="Sprite" parent="Accessories/RuneWeapon001"]
+position = Vector2( 0, -0.5 )
+scale = Vector2( 0.8, 0.8 )
+
+[node name="removeRuneAttack001" type="TextureButton" parent="Accessories/RuneWeapon001"]
+anchor_left = 2.25
+anchor_top = 1.562
+anchor_right = 2.25
+anchor_bottom = 1.562
+margin_left = -66.0
+margin_top = -50.484
+margin_right = -53.0
+margin_bottom = -38.484
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="icon" type="Sprite" parent="Accessories/RuneWeapon001/removeRuneAttack001"]
+position = Vector2( 6, 6.5 )
+scale = Vector2( 0.4375, 0.359375 )
+texture = ExtResource( 5 )
+
+[node name="RuneWeapon002" type="Sprite" parent="Accessories"]
+position = Vector2( 72, 153 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 17 )
 
-[node name="Acc003" type="Sprite" parent="Accessories"]
-position = Vector2( 240, 296 )
+[node name="input" type="Sprite" parent="Accessories/RuneWeapon002"]
+scale = Vector2( 0.8, 0.8 )
+
+[node name="removeRuneAttack002" type="TextureButton" parent="Accessories/RuneWeapon002"]
+anchor_left = 2.25
+anchor_top = 1.562
+anchor_right = 2.25
+anchor_bottom = 1.562
+margin_left = -66.0
+margin_top = -50.484
+margin_right = -53.0
+margin_bottom = -38.484
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="icon" type="Sprite" parent="Accessories/RuneWeapon002/removeRuneAttack002"]
+position = Vector2( 6, 6.5 )
+scale = Vector2( 0.4375, 0.359375 )
+texture = ExtResource( 5 )
+
+[node name="RuneArmory001" type="Sprite" parent="Accessories"]
+position = Vector2( 320, 104 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 17 )
 
-[node name="Acc004" type="Sprite" parent="Accessories"]
-position = Vector2( 304, 232 )
+[node name="input" type="Sprite" parent="Accessories/RuneArmory001"]
+scale = Vector2( 0.8, 0.8 )
+
+[node name="removeRuneDefense001" type="TextureButton" parent="Accessories/RuneArmory001"]
+anchor_left = 2.25
+anchor_top = 1.562
+anchor_right = 2.25
+anchor_bottom = 1.562
+margin_left = -66.0
+margin_top = -50.484
+margin_right = -53.0
+margin_bottom = -38.484
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="icon" type="Sprite" parent="Accessories/RuneArmory001/removeRuneDefense001"]
+position = Vector2( 6, 6.5 )
+scale = Vector2( 0.4375, 0.359375 )
+texture = ExtResource( 5 )
+
+[node name="RuneArmory002" type="Sprite" parent="Accessories"]
+position = Vector2( 320, 153 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 17 )
+
+[node name="input" type="Sprite" parent="Accessories/RuneArmory002"]
+scale = Vector2( 0.8, 0.8 )
+
+[node name="removeRuneDefense002" type="TextureButton" parent="Accessories/RuneArmory002"]
+anchor_left = 2.25
+anchor_top = 1.562
+anchor_right = 2.25
+anchor_bottom = 1.562
+margin_left = -66.0
+margin_top = -50.484
+margin_right = -53.0
+margin_bottom = -38.484
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="icon" type="Sprite" parent="Accessories/RuneArmory002/removeRuneDefense002"]
+position = Vector2( 6, 6.5 )
+scale = Vector2( 0.4375, 0.359375 )
+texture = ExtResource( 5 )
 
 [node name="PlayerIcon" type="Sprite" parent="Accessories"]
-position = Vector2( 200, 152 )
+position = Vector2( 200, 72 )
 scale = Vector2( -3, 2.5 )
 texture = ExtResource( 18 )
 hframes = 2
 vframes = 4
 
 [node name="InfoItem" type="Panel" parent="."]
-margin_left = 872.0
-margin_top = 496.0
-margin_right = 1248.0
-margin_bottom = 672.0
+visible = false
+margin_left = 480.0
+margin_top = 400.0
+margin_right = 1242.0
+margin_bottom = 656.0
 
 [node name="TextureRect" type="TextureRect" parent="InfoItem"]
 anchor_right = 1.0
@@ -475,31 +599,31 @@ texture = ExtResource( 20 )
 expand = true
 
 [node name="Icon" type="Sprite" parent="InfoItem"]
-position = Vector2( 48, 84 )
-scale = Vector2( 3, 2.75 )
+position = Vector2( 112, 134 )
+scale = Vector2( 5.1875, 4.625 )
 texture = ExtResource( 19 )
 
 [node name="Title" type="Label" parent="InfoItem"]
-margin_left = 88.0
+margin_left = 72.0
 margin_top = 16.0
-margin_right = 344.0
+margin_right = 328.0
 margin_bottom = 40.0
 custom_fonts/font = SubResource( 4 )
 text = "Posion de prueba"
 
 [node name="Description" type="RichTextLabel" parent="InfoItem"]
-margin_left = 88.0
+margin_left = 216.0
 margin_top = 48.0
-margin_right = 352.0
-margin_bottom = 120.0
+margin_right = 608.0
+margin_bottom = 200.0
 custom_fonts/normal_font = SubResource( 3 )
 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
 
 [node name="BtnUse" type="TextureButton" parent="InfoItem"]
-margin_left = 304.0
-margin_top = 144.0
-margin_right = 331.0
-margin_bottom = 158.0
+margin_left = 624.0
+margin_top = 48.0
+margin_right = 651.0
+margin_bottom = 62.0
 theme = SubResource( 5 )
 __meta__ = {
 "_edit_group_": true
@@ -511,10 +635,10 @@ margin_bottom = 14.0
 text = "usar"
 
 [node name="BtnSelect" type="TextureButton" parent="InfoItem"]
-margin_left = 216.0
-margin_top = 144.0
-margin_right = 289.0
-margin_bottom = 158.0
+margin_left = 624.0
+margin_top = 72.0
+margin_right = 697.0
+margin_bottom = 86.0
 theme = SubResource( 5 )
 __meta__ = {
 "_edit_group_": true
@@ -526,10 +650,10 @@ margin_bottom = 14.0
 text = "seleccionar"
 
 [node name="BtnEquipAttack" type="TextureButton" parent="InfoItem"]
-margin_left = 24.0
-margin_top = 144.0
-margin_right = 72.0
-margin_bottom = 158.0
+margin_left = 624.0
+margin_top = 120.0
+margin_right = 672.0
+margin_bottom = 134.0
 theme = SubResource( 5 )
 __meta__ = {
 "_edit_group_": true
@@ -540,11 +664,26 @@ margin_right = 73.0
 margin_bottom = 14.0
 text = "Ataque"
 
-[node name="BtnEquipDefense" type="TextureButton" parent="InfoItem"]
-margin_left = 80.0
+[node name="Equipar" type="TextureButton" parent="InfoItem"]
+margin_left = 624.0
 margin_top = 144.0
-margin_right = 136.0
+margin_right = 672.0
 margin_bottom = 158.0
+theme = SubResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="InfoItem/Equipar"]
+margin_right = 73.0
+margin_bottom = 14.0
+text = "Equipar"
+
+[node name="BtnEquipDefense" type="TextureButton" parent="InfoItem"]
+margin_left = 624.0
+margin_top = 96.0
+margin_right = 680.0
+margin_bottom = 110.0
 theme = SubResource( 5 )
 __meta__ = {
 "_edit_group_": true
@@ -556,13 +695,13 @@ margin_bottom = 14.0
 text = "Defensa"
 
 [node name="ItemsSelected" type="Panel" parent="."]
-margin_left = 872.0
-margin_top = 392.0
-margin_right = 1248.0
-margin_bottom = 488.0
+margin_left = 478.0
+margin_top = 288.0
+margin_right = 854.0
+margin_bottom = 384.0
 
 [node name="sprite001" type="Sprite" parent="ItemsSelected"]
-position = Vector2( 48, 48 )
+position = Vector2( 42, 48 )
 scale = Vector2( 0.456522, 0.456522 )
 texture = ExtResource( 20 )
 
@@ -579,63 +718,65 @@ texture = ExtResource( 20 )
 [node name="IconItem001" type="Sprite" parent="ItemsSelected"]
 position = Vector2( 48, 48 )
 scale = Vector2( 2, 1.90625 )
-texture = ExtResource( 21 )
 
 [node name="IconItem002" type="Sprite" parent="ItemsSelected"]
 position = Vector2( 184, 48 )
 scale = Vector2( 2, 1.90625 )
-texture = ExtResource( 21 )
 
 [node name="IconItem003" type="Sprite" parent="ItemsSelected"]
 position = Vector2( 331, 48 )
 scale = Vector2( 2, 1.90625 )
-texture = ExtResource( 21 )
 
 [node name="RemoveItem001" type="TextureButton" parent="ItemsSelected"]
-margin_left = 72.0
-margin_top = 6.0
-margin_right = 99.0
-margin_bottom = 34.0
+margin_left = 71.0
+margin_top = 80.0
+margin_right = 93.0
+margin_bottom = 100.0
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Remove" type="Sprite" parent="ItemsSelected/RemoveItem001"]
-position = Vector2( 13, 16 )
-scale = Vector2( 0.84375, 0.75 )
+position = Vector2( 11, 10 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 5 )
 
 [node name="RemoveItem002" type="TextureButton" parent="ItemsSelected"]
-margin_left = 208.0
-margin_top = 6.0
-margin_right = 235.0
-margin_bottom = 34.0
+margin_left = 216.0
+margin_top = 80.0
+margin_right = 234.0
+margin_bottom = 100.0
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Remove" type="Sprite" parent="ItemsSelected/RemoveItem002"]
-position = Vector2( 13, 16 )
-scale = Vector2( 0.84375, 0.75 )
+position = Vector2( 10, 10 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 5 )
 
 [node name="RemoveItem003" type="TextureButton" parent="ItemsSelected"]
 margin_left = 360.0
-margin_top = 6.0
-margin_right = 387.0
-margin_bottom = 34.0
+margin_top = 80.0
+margin_right = 380.0
+margin_bottom = 100.0
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="Remove" type="Sprite" parent="ItemsSelected/RemoveItem003"]
-position = Vector2( 13, 16 )
-scale = Vector2( 0.84375, 0.75 )
+position = Vector2( 10, 10 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 5 )
 
+[connection signal="pressed" from="Accessories/RuneWeapon001/removeRuneAttack001" to="." method="_on_removeRuneAttack001_pressed"]
+[connection signal="pressed" from="Accessories/RuneWeapon002/removeRuneAttack002" to="." method="_on_removeRuneAttack002_pressed"]
+[connection signal="pressed" from="Accessories/RuneArmory001/removeRuneDefense001" to="." method="_on_removeRuneDefense001_pressed"]
+[connection signal="pressed" from="Accessories/RuneArmory002/removeRuneDefense002" to="." method="_on_removeRuneDefense002_pressed"]
 [connection signal="pressed" from="InfoItem/BtnUse" to="." method="_on_BtnUse_pressed"]
 [connection signal="pressed" from="InfoItem/BtnSelect" to="." method="_on_BtnSelect_pressed"]
 [connection signal="pressed" from="InfoItem/BtnEquipAttack" to="." method="_on_BtnEquipAttack_pressed"]
+[connection signal="pressed" from="InfoItem/Equipar" to="." method="_on_Equipar_pressed"]
 [connection signal="pressed" from="InfoItem/BtnEquipDefense" to="." method="_on_BtnEquipDefense_pressed"]
 [connection signal="pressed" from="ItemsSelected/RemoveItem001" to="." method="_on_RemoveItem001_pressed"]
 [connection signal="pressed" from="ItemsSelected/RemoveItem002" to="." method="_on_RemoveItem002_pressed"]

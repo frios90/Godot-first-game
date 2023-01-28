@@ -88,12 +88,7 @@ func _on_DeadArea_area_entered(area):
 		applySoundSword()
 		if self.dead == false:
 			self.current_life = self.current_life - Players._get_attack(defense)
-			ftd = floating_text.instance()
-			ftd.type = "damage"
-			ftd.flip = motion.x
-			ftd.true_positon_sprite = true_positon_sprite
-			ftd.amount = Players._get_attack(defense)
-			add_child(ftd)
+			floatDamageCount()
 			$HPbar.value = current_life
 		if current_life <= 0:
 			if (dead == false):
@@ -108,3 +103,10 @@ func applySoundSword ():
 	else:
 		$SwordHurt02.playing  = true
 		
+func floatDamageCount () :
+	ftd                     = floating_text.instance()
+	ftd.type                = "damage"
+	ftd.flip                = motion.x
+	ftd.true_positon_sprite = true_positon_sprite
+	ftd.amount              = int( Players._get_attack(defense))
+	add_child(ftd)

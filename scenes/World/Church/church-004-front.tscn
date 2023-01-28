@@ -18,8 +18,8 @@
 [ext_resource path="res://assets/MapElements/iglesia.png" type="Texture" id=16]
 [ext_resource path="res://assets/tiles/Cementery/parche01.png" type="Texture" id=17]
 [ext_resource path="res://assets/tiles/Cementery/tileset.png" type="Texture" id=18]
+[ext_resource path="res://assets/tiles/oak_woods_v1.0/decorations/sign.png" type="Texture" id=19]
 [ext_resource path="res://assets/tiles/cave/tile_cave_platform.png" type="Texture" id=20]
-[ext_resource path="res://assets/MapElements/arrowSign.png" type="Texture" id=21]
 [ext_resource path="res://scripts/World/Levels/church-004-front.gd" type="Script" id=22]
 [ext_resource path="res://assets/tiles/oak_woods_v1.0/oak_woods_tileset.png" type="Texture" id=23]
 [ext_resource path="res://assets/tiles/Cementery/objectsObscure.png" type="Texture" id=24]
@@ -1421,14 +1421,14 @@ position = Vector2( 40, 464 )
 shape = SubResource( 37 )
 
 [node name="InitArrow" type="Sprite" parent="."]
-position = Vector2( 40, 544 )
-scale = Vector2( -0.046, 0.0455339 )
-texture = ExtResource( 21 )
+position = Vector2( 40, 545.335 )
+scale = Vector2( -2, 1.352 )
+texture = ExtResource( 19 )
 
 [node name="EndArrow" type="Sprite" parent="."]
-position = Vector2( 2344, 552 )
-scale = Vector2( 0.046, 0.038222 )
-texture = ExtResource( 21 )
+position = Vector2( 2344, 544 )
+scale = Vector2( 2, 1.3 )
+texture = ExtResource( 19 )
 
 [node name="knight" parent="." instance=ExtResource( 10 )]
 position = Vector2( 168, 536 )

@@ -117,8 +117,8 @@ func _CM_finish_spell_event () :
 	spell.position.x = collider.position[0]
 	spell.position.y = -1230
 	get_parent().add_child(spell)
-	is_spelling = false
-	motion.x = maxSpeed
+	is_spelling      = false
+	motion.x         = maxSpeed
 	
 func _CM_init_hurt () :
 	is_hurting = true
@@ -139,7 +139,7 @@ func _ADD_CHILD_DAMAGE () :
 	ftd.type                = "damage"
 	ftd.flip                = -motion.x
 	ftd.true_positon_sprite = true_positon_sprite
-	ftd.amount              = Players._get_attack(defense)
+	ftd.amount              = int(Players._get_attack(defense))
 	add_child(ftd)
 
 func _on_DeadArea_area_entered(area):

@@ -19,7 +19,6 @@ var motion                       = Vector2(0, 0)
 var is_attacking                 = false
 var _delta                       = 0
 var useRandSound                 = 0
-
 onready var attack               = base_attack if level == 1 else base_attack * (level * 0.77)
 onready var defense              = base_defense if level == 1 else base_defense * (level * 0.55)
 onready var current_life         = life if level == 1 else life * (level * 0.77)
@@ -35,10 +34,10 @@ func _ready():
 
 func _process(delta):
 	_delta = delta
-	if not dead:	
+	if not dead:
 		motion.y += gravity	* delta
 		moveOrIdle()
-		attacking()		
+		attacking()
 		flip()
 		if is_on_floor():
 			motion.y = 0
@@ -57,9 +56,8 @@ func flip():
 	if $RayFlip.is_colliding() or $RayBackFlip.is_colliding() or not $RayEnd.is_colliding() or ($RayBackFlip.is_colliding() and can_back_flip == 1):
 		maxSpeed *= -1
 		scale.x  *= -1
-		motion.x = maxSpeed		
-	
-			
+		motion.x  = maxSpeed
+
 func attacking () :
 	if $RayAttack.is_colliding() or $RayAttack2.is_colliding():
 		state_machine.travel("attack")	
@@ -102,6 +100,6 @@ func floatDamageCount () :
 	ftd.type                = "damage"
 	ftd.flip                = motion.x
 	ftd.true_positon_sprite = true_positon_sprite
-	ftd.amount              = Players._get_attack(defense)
+	ftd.amount              = int(Players._get_attack(defense))
 	add_child(ftd)
 		

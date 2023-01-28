@@ -1,11 +1,10 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/UI.gd" type="Script" id=1]
 [ext_resource path="res://assets/statusesStack/pup-strength.png" type="Texture" id=2]
 [ext_resource path="res://assets/Items/gemsSpretsheet.png" type="Texture" id=3]
 [ext_resource path="res://assets/Gui/Barras/circle-bar.png" type="Texture" id=4]
 [ext_resource path="res://assets/Gui/box-highres.png" type="Texture" id=5]
-[ext_resource path="res://assets/Gui/TexturaBlue/Scroll Button.png" type="Texture" id=6]
 [ext_resource path="res://assets/Gui/Barras/fill-stamina-02.png" type="Texture" id=8]
 [ext_resource path="res://assets/Gui/Barras/fonde-barra-02.png" type="Texture" id=9]
 [ext_resource path="res://assets/Gui/Barras/fill-health-02.png" type="Texture" id=10]
@@ -98,7 +97,6 @@ texture = ExtResource( 4 )
 [node name="ItemInCircleItems" type="Sprite" parent="PlayerBarControl"]
 position = Vector2( 136, 128 )
 scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 6 )
 
 [node name="LabelQtySelectedItem" type="Label" parent="PlayerBarControl"]
 margin_left = 112.0
@@ -173,14 +171,17 @@ hframes = 5
 vframes = 7
 
 [node name="StrengthUp" type="Sprite" parent="PlayerBarControl"]
+visible = false
 position = Vector2( 520, 128 )
 texture = ExtResource( 2 )
 
 [node name="SpeedUp" type="Sprite" parent="PlayerBarControl"]
+visible = false
 position = Vector2( 560, 128 )
 texture = ExtResource( 13 )
 
 [node name="StamineUp" type="Sprite" parent="PlayerBarControl"]
+visible = false
 position = Vector2( 600, 128 )
 texture = ExtResource( 14 )
 
@@ -226,23 +227,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -504.0
-margin_top = -128.0
-margin_right = 472.0
-__meta__ = {
-"_edit_group_": true
-}
+margin_left = -376.0
+margin_top = -112.0
+margin_right = 424.0
+margin_bottom = -8.0
 
 [node name="CircleBoss" type="Sprite" parent="BossBarControl"]
-position = Vector2( 64, 64 )
-scale = Vector2( 0.456132, 0.446097 )
+position = Vector2( 64, 56 )
+scale = Vector2( 0.258484, 0.237918 )
 texture = ExtResource( 4 )
 
 [node name="HPBarBoss" type="TextureProgress" parent="BossBarControl"]
-margin_left = 120.0
+margin_left = 88.0
 margin_top = 48.0
-margin_right = 976.0
-margin_bottom = 85.0
+margin_right = 792.0
+margin_bottom = 64.0
 texture_under = ExtResource( 9 )
 texture_progress = ExtResource( 10 )
 nine_patch_stretch = true

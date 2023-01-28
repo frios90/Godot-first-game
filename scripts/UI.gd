@@ -11,13 +11,15 @@ func _ready () :
 	$PlayerBarControl/StamineBar.value     = (float(100) / float(Players.selected.stats.stamine)) * float(Players.selected.stats.current_stamine)	
 	$PlayerBarControl/GuiLvlLabel.text     = String(Players.selected.stats.level)
 	$BossBarControl.visible                = false
-
 	
 func _process(delta):
 	Env.non_use = delta
 	self.paused()		
 	self.setCurrentSelectedItem()
-
+	$PlayerBarControl/StrengthUp.visible = true if Players.selected.statuses_stack.strength.up > 0 else false
+	$PlayerBarControl/SpeedUp.visible    = true if Players.selected.statuses_stack.speed.up > 0 else false
+	$PlayerBarControl/StamineUp.visible  = true if Players.selected.statuses_stack.stamine.up > 0 else false
+	
 func paused ():
 	if Input.is_action_just_pressed("pause"):
 		paused = load(screenPause).instance()
@@ -66,7 +68,3 @@ func setCurrentSelectedItem ():
 	else:
 		$PlayerBarControl/ItemInCircleItems.visible = false
 		$PlayerBarControl/LabelQtySelectedItem.text = ""
-
-
-			
-	

@@ -1,8 +1,6 @@
 extends Node2D
 
 var skeleton001_start = false
-var skeleton002_start = false
-var skeleton003_start = false
 
 func _process(delta):
 	if self.get_child_count() == 0:
@@ -14,6 +12,7 @@ func _process(delta):
 		self.create_blood_effect(bloodI,  $"Skeleton-003")
 		self.create_blood_effect(bloodI,  $"Skeleton-004")
 		self.create_blood_effect(bloodI,  $"Skeleton-005")
+		self.create_blood_effect(bloodI,  $"Skeleton-006")
 		
 func create_blood_effect (bloodI, skeleton):
 	var blood = bloodI.instance()

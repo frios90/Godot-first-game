@@ -177,13 +177,12 @@ func _finish_battle () :
 	self.call_deferred("_cd_finish_battle")
 		
 func _cd_finish_battle () :
-	$CanvasLayer/BackAudio.stop()
-	$CanvasLayer/BackAudio.stream = load(DbBoss.winner_song)
-	$CanvasLayer/BackAudio.play()
+#	$CanvasLayer/BackAudio.stop()
+#	$CanvasLayer/BackAudio.stream = load(DbBoss.winner_song)
+#	$CanvasLayer/BackAudio.play()
 	
 	$collision/BossObelisk/CollisionShape2D.disabled = true
 	$collision/BossObelisk/AnimationPlayer.play("off")
 	$collision/BossObelisk2/CollisionShape2D.disabled = true
 	$collision/BossObelisk2/AnimationPlayer.play("off")
-	$CanvasLayer/HPBarBoss.visible  = false
-	$CanvasLayer/CircleBoss.visible = false
+	$CanvasLayer/BossBarControl.visible  = false
