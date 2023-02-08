@@ -6,77 +6,88 @@ var messages_second_meeting = [
 		"title"   : "Viejo",
 		"message" : ""
 	},
-#	{
-#		"issuing" : "old-man",
-#		"title"   : "Viejo",
-#		"message" : "Veo que has recobrado fuerzas, ver a los 'amigos' hace bien no? (risas)"
-#	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "gusto en verte nuevamente 'viejo' amigo..."
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "haz seguido mi consejo y te dirijes al pueblo... muy bien."
+	},
 	{
 		"issuing" : "player",
 		"title"   : "Gustaph",
-		"message" : "Tú otra vez viejo ...?"
+		"message" : "Sí, espero entender que sucede. Esas cosas, mi tumba, mi muerte... y mi 'despertar'..."
 	},
-#
-#	{
-#		"issuing" : "old-man",
-#		"title"   : "Viejo",
-#		"message" : "Viejo? los dice quien murio hace 500 años... (escupe)"
-#	},
-#	{
-#		"issuing" : "player",
-#		"title"   : "Gustaph",
-#		"message" : "necesito que me cuentes que sucede ..."
-#	},
-#	{
-#		"issuing" : "old-man",
-#		"title"   : "Viejo",
-#		"message" : "te lo he dicho antes, estas 'cosas' despiertan y no hay quien las haga dormir nuevamente"
-#	},
-#	{
-#		"issuing" : "old-man",
-#		"title"   : "Viejo",
-#		"message" : "otros lo han intentado y al aprecer no le fue muy bien..."
-#	},
-#	{
-#		"issuing" : "old-man",
-#		"title"   : "Viejo",
-#		"message" : "pero deberas ir al pueblo... allá encontras más..."
-#	},
-#	{
-#		"issuing" : "player",
-#		"title"   : "Gustaph",
-#		"message" : "que diablos pasa?! se suponia que el rito habia sido un exito... yo no debería estar aquí..."
-#	},
-#	{
-#		"issuing" : "old-man",
-#		"title"   : "Viejo",
-#		"message" : "(risas) pues alguien piensa lo contrario viejo amigo... anda sigue tu camino... ten esto"
-#	},	
-#	{
-#		"issuing" : "player",
-#		"title"   : "Sistema",
-#		"message" : "Haz recibido Runa de la Flama"
-#	},
-#	{
-#		"issuing" : "old-man",
-#		"title"   : "Viejo",
-#		"message" : "Es algo que encontre en tu tumba cuando te fuiste... creo que a ti te servira más... ya tengo lo que buscaba"
-#	},
-#	{
-#		"issuing" : "old-man",
-#		"title"   : "Viejo",
-#		"message" : "nos vemos! (risas) ... sí, este luce diferente"
-#	},
-#	{
-#		"issuing" : "player",
-#		"title"   : "Gustaph",
-#		"message" : "de mi tumba? ese viejo ha estado saquendo tumbas?"
-#	}
+
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "tranquilo 'viejo' amigo, todo a su debido momento."
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "Ahora necesito que me hagas un favor... y es que yo ya estoy muy viejo para ciertas cosas..."
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "... sin ofender..."
+	},
+	{
+		"issuing" : "player",
+		"title"   : "Gustaph",
+		"message" : "... ... ..."
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "da la casualidad que estoy rumbo a la IGLESIA que esta de camino al pueblo..."
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "ahí yo tengo mis negocios con las cosas que aqui nadie ya usa... tú entiendes."
+	},
+	{
+		"issuing" : "player",
+		"title"   : "Gustaph",
+		"message" : "... ... ..."
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "No importa... el asunto es que, allá arriba, un tipo se ha tomado el paso a la IGLESIA."
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "Serías tan amable de ir a pedirle que se vaya... ?"
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "digamos que su presencia no favorece mi negocio."
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "Pero tranquilo. te ayudaré... ten esto. y nos vemos más tarde"
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "No mueras... (risas)"
+	},
+	{
+		"issuing" : "player",
+		"title"   : "Sistema",
+		"message" : "Has recibido una Runa"
+	},
 ]
-
-
-
-
 var number_message = 1
 var speed_text     = 0.08
 var end            = false
@@ -110,50 +121,36 @@ func initDialog () :
 		Msgs.in_dialog      = true
 		Msgs.dlg_002.active = true
 		$OldMan/RayInitDialog.enabled = false
-		self.old_man_msg_box = self.addChildOldManMsgBox()
-		self.old_man_msg_box._set_message(messages_second_meeting[0])
 		
 func showMessages () :
 
 	if number_message < messages_second_meeting.size():
-		if messages_second_meeting[number_message].issuing == "player":
-			if self.player_msg_box:
-				self.player_msg_box.queue_free()
-			self.player_msg_box  = self.addChildPlayerMsgBox()
-			self.player_msg_box._set_message(messages_second_meeting[number_message])
-		else:
-			if self.old_man_msg_box:
-				self.old_man_msg_box.queue_free()
-			self.old_man_msg_box = self.addChildOldManMsgBox()
-			self.old_man_msg_box._set_message(messages_second_meeting[number_message])
+
+		if self.player_msg_box:
+			self.player_msg_box.queue_free()
+		self.player_msg_box  = self.addChildPlayerMsgBox()
+		self.player_msg_box._set_message(messages_second_meeting[number_message])
+		
 	else:
-		self.old_man_msg_box.queue_free()
 		self.player_msg_box.queue_free()
 		Msgs.in_dialog       = false
 		$OldMan.is_stop      = false
-		Msgs.dlg_002.is_done = true
+		Msgs.dlg_002.isone = true
 		var item = ItemsGbl._get_item_by_code(1027)
 		Players._add_item(item, 1)
 
 	number_message += 1
 	
-func addChildOldManMsgBox():
-	var box = load("res://scenes/GUI/MsgBoxA.tscn")
-	box = box.instance()
-	box.position.x = $OldMan.position.x 
-	box.position.y = $OldMan.position.y - 100
-	self.add_child(box)
-	return box
+
 	
 func addChildPlayerMsgBox():
 	var box = load("res://scenes/GUI/MsgBoxA.tscn")
 	box = box.instance()
 	box.position.x = $knight.position.x 
-	box.position.y = $knight.position.y - 100
+	box.position.y = $knight.position.y + 50
 	self.add_child(box)
 	return box
-	
-	
+
 		
 func _on_EnterBattle_body_entered(body):
 	if body.get_name() == 'knight':			
@@ -167,10 +164,10 @@ func _cd_init_battle ():
 	$BringerOfDeath.withMoveAndFlip = 1
 	$BringerOfDeath.motion.x = $BringerOfDeath.maxSpeed
 	$Areas/EnterBattle.queue_free()
-	$collision/BossObelisk/CollisionShape2D.disabled = false
-	$collision/BossObelisk/AnimationPlayer.play("action")
-	$collision/BossObelisk2/CollisionShape2D.disabled = false
-	$collision/BossObelisk2/AnimationPlayer.play("action")
+	$BossObelisk/CollisionShape2D.disabled = false
+	$BossObelisk/AnimationPlayer.play("action")
+	$BossObelisk2/CollisionShape2D.disabled = false
+	$BossObelisk2/AnimationPlayer.play("action")
 	$CanvasLayer/BossBarControl.visible  = true
 	
 func _finish_battle () :
@@ -181,8 +178,8 @@ func _cd_finish_battle () :
 #	$CanvasLayer/BackAudio.stream = load(DbBoss.winner_song)
 #	$CanvasLayer/BackAudio.play()
 	
-	$collision/BossObelisk/CollisionShape2D.disabled = true
-	$collision/BossObelisk/AnimationPlayer.play("off")
-	$collision/BossObelisk2/CollisionShape2D.disabled = true
-	$collision/BossObelisk2/AnimationPlayer.play("off")
+	$BossObelisk/CollisionShape2D.disabled = true
+	$BossObelisk/AnimationPlayer.play("off")
+	$BossObelisk2/CollisionShape2D.disabled = true
+	$BossObelisk2/AnimationPlayer.play("off")
 	$CanvasLayer/BossBarControl.visible  = false

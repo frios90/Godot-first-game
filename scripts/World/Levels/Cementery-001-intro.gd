@@ -2,16 +2,30 @@ extends Node2D
 
 var messages = [
 	{
-		"issuing" : "old-man",
-		"title"   : "Viejo",
+		"issuing" : "Sistema",
+		"title"   : "Presiona 'C' para iniciar",
 		"message" : ""
 	},
 	{
 		"issuing" : "old-man",
-		"title"   : "Viejo",
-		"message" : "Vaya... tanto alboroto para esto?, sabía que algo extraño ocurría pero ..."
+		"title"   : "Gustavo",
+		"message" : "espera !, necesito tu ayuda ..."
 	},
-	
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "Que diablos?... han pasado años y aún me sorprende verlos levantarse"
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "Pero espera?... puedes hablar ?..."
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Gustavo",
+		"message" : "Por favor, ayudame ... explicame que sucede. No recuerdo nada... he despertado en este sitio, esta tumba... "
+	},
 	{
 		"issuing" : "old-man",
 		"title"   : "Viejo",
@@ -20,63 +34,60 @@ var messages = [
 	{
 		"issuing" : "old-man",
 		"title"   : "Viejo",
-		"message" : "veamos.. tú luces diferente... digo, no te pareces es estos pobres desgraciados sin descanso ..."
+		"message" : "Espera... no te me acerques. Como es que puedes hablar?"
+	},
+	
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "... esto es extraño ... "
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Gustavo",
+		"message" : "Tranquilo no te haré daño, solo necesito saber donde estoy  y que esta pasando?"
+	},
+	{
+		"issuing" : "player",
+		"title"   : "Viejo",
+		"message" : "mirate ... esto es increible ... año 846 ... chico, si esa es la fecha de tú muerte..."
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Gustavo",
+		"message" : "Que año es este ?"
+	},
+	{
+		"issuing" : "player",
+		"title"   : "Viejo",
+		"message" : "Viejo amigo... podrías ser ancestro de mis ancestro... 1476, te has perdido bastante"
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Gustavo",
+		"message" : "600 años... estoy muy confundido, recuerdo muy poco y no logro entender ..."
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "... Este no es un buen sitio para hablar... sal del cementerio y cuidate de tus 'amigos'..."
 	},
 	{
 		"issuing" : "player",
 		"title"   : "Gustaph",
-		"message" : "... ... ... ..."
+		"message" : "'amigos' ? "
 	},
 	{
 		"issuing" : "old-man",
 		"title"   : "Viejo",
-		"message" : "cuentame ... ¿por que has 'vuelto'?"
-	},
-	{
-		"issuing" : "player",
-		"title"   : "Gustaph",
-		"message" : "... ... ..."
-	},
-	{
-		"issuing" : "old-man",
-		"title"   : "Viejo",
-		"message" : "no importa. Ve al pueblo. Allá encontraras respuestas..."
-	},
-	{
-		"issuing" : "old-man",
-		"title"   : "Viejo",
-		"message" : "si, según relatos antiguos, antes ya vinieron otros como tú ... en intentos fellidos por arreglar las cosas ..."
-	},
-	{
-		"issuing" : "player",
-		"title"   : "Gustaph",
-		"message" : "... ¿como yo? ... "
-	},
-	{
-		"issuing" : "old-man",
-		"title"   : "Viejo",
-		"message" : "... de ser así, espero no acabes como ellos..."
+		"message" : "Ve a PUBLOCCC. Ten esto y buena suerte. Quiza nos volvamos a encontrar"
 	},	
 	{
 		"issuing" : "old-man",
-		"title"   : "Viejo",
-		"message" : "... nos vemos, aqui ya no hay nada de valor y tus 'amigos' no muy de fiar... tu entiendes. Ten esto... "
+		"title"   : "Gustavo",
+		"message" : "al pueblo ?"
 	},
-	{
-		"issuing" : "player",
-		"title"   : "Gustaph",
-		"message" : "... ¿amigos? ... "
-	},
-	{
-		"issuing" : "player",
-		"title"   : "Sistema",
-		"message" : "Haz recibido una poción"
-	},
-	{
-		"issuing" : "player",
-		"title"   : "Gustaph",
-		"message" : "¿que quizo decir ese viejo?. Por ahora será mejor que salga de aquí..."
-	}
+	
 ]
 
 var number_message = 1
@@ -111,24 +122,18 @@ func initDialog () :
 		Msgs.in_dialog      = true
 		Msgs.dlg_001.active = true
 		$OldMan/RayInitDialog.enabled = false
-		self.old_man_msg_box = self.addChildOldManMsgBox()
-		self.old_man_msg_box._set_message(messages[0])
+		
 		
 func showMessages () :
 
 	if number_message < messages.size():
-		if messages[number_message].issuing == "player":
-			if self.player_msg_box:
-				self.player_msg_box.queue_free()
-			self.player_msg_box  = self.addChildPlayerMsgBox()
-			self.player_msg_box._set_message(messages[number_message])
-		else:
-			if self.old_man_msg_box:
-				self.old_man_msg_box.queue_free()
-			self.old_man_msg_box = self.addChildOldManMsgBox()
-			self.old_man_msg_box._set_message(messages[number_message])
+
+		if self.player_msg_box:
+			self.player_msg_box.queue_free()
+		self.player_msg_box  = self.addChildPlayerMsgBox()
+		self.player_msg_box._set_message(messages[number_message])
+		
 	else:
-		self.old_man_msg_box.queue_free()
 		self.player_msg_box.queue_free()
 		Msgs.in_dialog       = false
 		$OldMan.is_stop      = false
@@ -138,18 +143,12 @@ func showMessages () :
 
 	number_message += 1
 	
-func addChildOldManMsgBox():
-	var box = load("res://scenes/GUI/MsgBoxA.tscn")
-	box = box.instance()
-	box.position.x = $OldMan.position.x 
-	box.position.y = $OldMan.position.y - 100
-	self.add_child(box)
-	return box
+
 	
 func addChildPlayerMsgBox():
 	var box = load("res://scenes/GUI/MsgBoxA.tscn")
 	box = box.instance()
 	box.position.x = $knight.position.x 
-	box.position.y = $knight.position.y - 100
+	box.position.y = $knight.position.y + 50
 	self.add_child(box)
 	return box

@@ -697,7 +697,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 8 )
 hframes = 8
 vframes = 15
-frame = 56
+frame = 65
 
 [node name="RayDown" type="RayCast2D" parent="Sprite"]
 enabled = true

@@ -28,8 +28,6 @@ var state_machine
 func _ready():		
 	state_machine    = $AnimationTree.get("parameters/playback")	
 	state_machine.start("init")	
-	$HPbar.max_value = life if level == 1 else life * (level * 0.77)
-	$HPbar.value     = $HPbar.max_value
 	scale.x          = scaleX	
 	scale.y          = scaleY	
 	$AttackArea/CollisionShape2D.disabled = true
@@ -91,6 +89,7 @@ func _callMethodFinishDead () :
 
 func _cd_finish_dead () :
 	self.queue_free()
+	get_parent()._finish_battle()
 
 func _on_DeadArea_area_entered(area):
 	if area.is_in_group("Sword"):		
@@ -100,7 +99,7 @@ func _on_DeadArea_area_entered(area):
 			self.state_machine.travel("hurt")	
 			self.current_life = self.current_life - Players._get_attack(defense)			
 			floatDamageCount()
-			$HPbar.value = current_life
+			Util.get_an_script("CanvasLayer").handleUpdateHpBarBoss(self.life, self.current_life)
 		if current_life <= 0:
 			if (dead == false):
 				self._dead_last_invoque()

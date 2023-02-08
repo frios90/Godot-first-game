@@ -9,7 +9,6 @@ export (int) var maxSpeed        = -26
 const gravity                    = 50
 const up                         = Vector2(0, -1)
 const ptsDead                    = 150
-var dead                         = false
 var life                         = 50
 onready var current_life         = life if level == 1 else life * (level * 0.77)
 var base_attack                  = 45
@@ -39,7 +38,8 @@ func _ready():
 	
 func _process(delta):
 	_delta = delta
-	if not dead:
+	if not DbBoss.necromancer_002.dead:
+		self.init()
 		self.castSpellA()
 		self.createShield()
 		self.flip()
@@ -49,6 +49,10 @@ func _process(delta):
 		Env.non_use         = move_and_slide(motion, up)
 		var pretime_to_dead = get_tree().create_timer(0.33)
 		pretime_to_dead.connect("timeout", self, "_preTimeToDead")	
+
+func init ():
+	if $Rays/Init.is_colliding():
+		$Rays/Init.enabled = false
 
 func castSpellA ():
 	if not get_parent().has_node("Invoque003"):
@@ -64,10 +68,43 @@ func spell_a_invoque003 ():
 
 func createShield ():
 	if not get_parent().has_node("ShieldSkull") and not self.has_shield :
-		self.has_shield   = true
-		var timer_spell_c = get_tree().create_timer(2)
-		timer_spell_c.connect("timeout", self, "spell_c")	
+		self.has_shield   = true		
+		get_tree().create_timer(2).connect("timeout", self, "spell_c")	
 	
+func _invoque_up_skull_purple():
+	if not $Rays/Init.enabled:		
+		var distance = 200;
+		for i in range(6):
+			var p_skull              = load("res://scenes/Enemies/Boss/Necromancer/SkullPurple.tscn")
+			p_skull                  = p_skull.instance()
+			p_skull.position.x       = 1990 + distance
+			p_skull.position.y       = self.position.y - 300
+			p_skull.rotation_degrees = -85
+			get_parent().add_child(p_skull)
+			distance += 100
+			$TweenPurpleSkull.stop(p_skull)
+			$TweenPurpleSkull.interpolate_property(p_skull, "global_position", p_skull.global_position, p_skull.global_position + Vector2(0, 900), 4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			$TweenPurpleSkull.start()
+			get_tree().create_timer(2).connect("timeout", p_skull, "queue_free")
+			
+		var start = "init"
+		distance = 0
+		var motionX  = 900
+		for i in range(4):
+			motionX                  = 900 if start == "init" else -900
+			var p_skull              = load("res://scenes/Enemies/Boss/Necromancer/SkullPurple.tscn")
+			p_skull                  = p_skull.instance()
+			p_skull.position.x       = 1990 if start == "init" else 2690			
+			p_skull.position.y       = self.position.y + distance
+			p_skull.scale.x          = 1 if start == "init" else -1
+			get_parent().add_child(p_skull)
+			start = "end" if start == "init" else "init"
+			distance += 30
+			$TweenPurpleSkull.stop(p_skull)
+			$TweenPurpleSkull.interpolate_property(p_skull, "global_position", p_skull.global_position, p_skull.global_position + Vector2(motionX, 0), 4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			$TweenPurpleSkull.start()
+			get_tree().create_timer(3).connect("timeout", p_skull, "queue_free")	
+
 func spell_c ():
 	state_machine.travel("castSpellC")
 
@@ -81,10 +118,11 @@ func _spell_c_new_shield() :
 	shield.position.x = self.position.x - 70
 	shield.position.y = self.position.y
 	get_parent().add_child(shield)
+	self._invoque_up_skull_purple()
 
 func _preTimeToDead () :
 	queue_free()
-		
+
 func flip():
 	if  $Rays/BackFlip.is_colliding():
 		motion.x *= -1
@@ -114,13 +152,13 @@ func _recive_hurt () :
 	self.has_shield = false
 	Util.get_an_script("Camera2D").trauma = true
 	self.applySoundSword()
-	if self.dead == false:
+	if DbBoss.necromancer_002.dead == false:
 		self.state_machine.travel("hurt")
 		self.current_life            = self.current_life - Players._get_attack(self.defense)
 		self.floatDamageCount()
 		Util.get_an_script("CanvasLayer").handleUpdateHpBarBoss(self.life, self.current_life)
 	if self.current_life <= 0:
-		if (self.dead == false):
+		if DbBoss.necromancer_002.dead == false:
 			self.state_machine.travel("dead")
 			Util.get_an_script("knight")._increment_exp_player(self.ptsDead)
 			get_tree().create_timer(2).connect("timeout", self, "_last_invoque")
@@ -133,14 +171,15 @@ func floatDamageCount () :
 	self.ftd.amount              = Players._get_attack(self.defense)
 	self.add_child(self.ftd)
 			
-func _last_invoque () :
-	self.dead =  true
+func _last_invoque () :	
+	DbBoss.necromancer_002.dead = true
 	var last_invoque        = load("res://scenes/Enemies/Boss/Necromancer/SkeletonGranInvoque.tscn")
 	last_invoque            = last_invoque.instance()
 	last_invoque.position.x = 2352
 	last_invoque.position.y = 496
 	self.get_parent().add_child(last_invoque)
-	
+	Util.get_an_script("CanvasLayer").get_node("BossBarControl/HPBarBoss").value = last_invoque.life
+
 func applySoundSword ():
 	if useRandSound == 0:
 		$SwordHurt01.playing  = true

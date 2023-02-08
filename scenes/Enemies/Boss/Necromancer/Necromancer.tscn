@@ -312,3 +312,5 @@ collision_mask = 1040
 [node name="Init" type="RayCast2D" parent="Rays"]
 enabled = true
 cast_to = Vector2( 128, 152 )
+
+[node name="TweenPurpleSkull" type="Tween" parent="."]

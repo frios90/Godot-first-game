@@ -6,7 +6,7 @@ var in_dialog = false
 var dlg_001 = {
 	"active"     : false,
 	"can_repeat" : false,
-	"is_done"    : true, #cambiar a false para ver
+	"is_done"    : false,
 	"description" : "Dialogo con oldman. se conocen"
 }
 
