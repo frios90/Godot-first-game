@@ -14,17 +14,22 @@ var messages = [
 	{
 		"issuing" : "old-man",
 		"title"   : "Viejo",
-		"message" : "Que diablos?... han pasado años y aún me sorprende verlos levantarse"
+		"message" : "Chico, que susto me has dado... crei toparme un una de esas alimañas"
 	},
 	{
 		"issuing" : "old-man",
 		"title"   : "Viejo",
-		"message" : "Pero espera?... puedes hablar ?..."
+		"message" : "Pero espera... tú eres distinto... puedes entender?"
 	},
 	{
 		"issuing" : "old-man",
 		"title"   : "Gustavo",
 		"message" : "Por favor, ayudame ... explicame que sucede. No recuerdo nada... he despertado en este sitio, esta tumba... "
+	},
+	{
+		"issuing" : "old-man",
+		"title"   : "Viejo",
+		"message" : "(esto es increible)"
 	},
 	{
 		"issuing" : "old-man",
@@ -45,7 +50,7 @@ var messages = [
 	{
 		"issuing" : "old-man",
 		"title"   : "Gustavo",
-		"message" : "Tranquilo no te haré daño, solo necesito saber donde estoy  y que esta pasando?"
+		"message" : "Tranquilo, estoy tan extrañado como tú, solo quiero saber que esta pasando..."
 	},
 	{
 		"issuing" : "player",
@@ -60,12 +65,12 @@ var messages = [
 	{
 		"issuing" : "player",
 		"title"   : "Viejo",
-		"message" : "Viejo amigo... podrías ser ancestro de mis ancestro... 1476, te has perdido bastante"
+		"message" : "Viejo amigo... 1476, te has perdido bastante"
 	},
 	{
 		"issuing" : "old-man",
 		"title"   : "Gustavo",
-		"message" : "600 años... estoy muy confundido, recuerdo muy poco y no logro entender ..."
+		"message" : "600 años !!???... que es lo que esta pasando?¡¡ ..."
 	},
 	{
 		"issuing" : "old-man",
@@ -80,7 +85,7 @@ var messages = [
 	{
 		"issuing" : "old-man",
 		"title"   : "Viejo",
-		"message" : "Ve a PUBLOCCC. Ten esto y buena suerte. Quiza nos volvamos a encontrar"
+		"message" : "Ve al 'PUEBLO'. Ten esto y buena suerte. Quiza nos volvamos a encontrar"
 	},	
 	{
 		"issuing" : "old-man",
@@ -99,7 +104,7 @@ var player_msg_box
 
 func _ready():
 	if Env.player_origin_position == "init":
-		$knight.position.x = 128
+		$knight.position.x = 220
 		$knight.position.y = 912
 	if Env.player_origin_position == "return":
 		$knight.position.x = $EndArrow.position.x - 100
@@ -107,6 +112,8 @@ func _ready():
 
 func _process(delta):
 	if Msgs.dlg_001.is_done :
+		Msgs.forgot    = false
+		Msgs.in_dialog = false
 		if self.has_node("OldMan"):
 			$OldMan.queue_free()
 	else:
@@ -152,3 +159,64 @@ func addChildPlayerMsgBox():
 	box.position.y = $knight.position.y + 50
 	self.add_child(box)
 	return box
+
+
+
+func _on_Tutorial001_area_entered(area):
+	if area.is_in_group("Player"):	
+		print("me aprece que esto no va a resultar")
+		$Tutorials/Tutorial001/BtnToPress.visible = true
+
+func _on_Tutorial001_area_exited(area):
+	if area.is_in_group("Player"):
+		$Tutorials/Tutorial001/BtnToPress.visible = false
+
+func _on_Tutorial002_area_entered(area):
+	if area.is_in_group("Player"):	
+		$Tutorials/Tutorial002/BtnToPress.visible = true
+
+func _on_Tutorial002_area_exited(area):
+	if area.is_in_group("Player"):
+		$Tutorials/Tutorial002/BtnToPress.visible = false
+		
+func _on_Tutorial003_area_entered(area):
+	if area.is_in_group("Player"):	
+		$Tutorials/Tutorial003/BtnToPress.visible = true
+
+
+func _on_Tutorial003_area_exited(area):
+	if area.is_in_group("Player"):	
+		$Tutorials/Tutorial003/BtnToPress.visible = false
+
+
+	
+func _on_Tutorial004_area_entered(area):
+	if area.is_in_group("Player"):	
+		$Tutorials/Tutorial004/BtnToPress.visible = true
+
+
+func _on_Tutorial004_area_exited(area):
+	if area.is_in_group("Player"):	
+		$Tutorials/Tutorial004/BtnToPress.visible = false
+
+
+
+func _on_Tutorial005_area_entered(area):
+	if area.is_in_group("Player"):	
+		$Tutorials/Tutorial005/BtnToPress.visible = true
+
+
+func _on_Tutorial005_area_exited(area):
+	if area.is_in_group("Player"):	
+		$Tutorials/Tutorial005/BtnToPress.visible = false
+
+
+
+func _on_Tutorial006_area_entered(area):
+	if area.is_in_group("Player"):	
+		$Tutorials/Tutorial006/BtnToPress.visible = true
+
+
+func _on_Tutorial006_area_exited(area):
+	if area.is_in_group("Player"):	
+		$Tutorials/Tutorial006/BtnToPress.visible = false

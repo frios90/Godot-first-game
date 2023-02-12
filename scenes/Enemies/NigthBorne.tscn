@@ -1,0 +1,290 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://assets/Characters/Enemies/NightBorne.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Enemies/NIghtBorne.gd" type="Script" id=2]
+[ext_resource path="res://assets/imgs/hp-bar-bg-small.png" type="Texture" id=3]
+[ext_resource path="res://assets/imgs/hp-bar-prog-small.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 21.3333, 20.5714 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "attack"
+length = 0.625
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0416667, 0.0833334, 0.125, 0.166667, 0.208334, 0.25, 0.291667, 0.333334, 0.416667, 0.5, 0.583333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.416667, 0.583333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodStartAttack"
+}, {
+"args": [  ],
+"method": "_callMethodFinishAttack"
+} ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "dead"
+loop = true
+step = 0.0434783
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0434783, 0.0869565, 0.130435, 0.173913, 0.217391, 0.26087, 0.304348, 0.347826, 0.391304, 0.434783, 0.478261, 0.521739, 0.565217, 0.608696, 0.652174, 0.695652, 0.73913, 0.782609, 0.826087, 0.869565, 0.913043, 0.956522 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.956522 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_callMethodFinishDead"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 69, 70, 71, 72, 73 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "idle"
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "walk"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 23, 24, 25, 26, 27, 28 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "attack"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "dead"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "hurt"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachine" id=26]
+states/attack/node = SubResource( 10 )
+states/attack/position = Vector2( 661.667, 74.0617 )
+states/dead/node = SubResource( 11 )
+states/dead/position = Vector2( 809.667, 141.667 )
+states/hurt/node = SubResource( 12 )
+states/hurt/position = Vector2( 552.333, 181.667 )
+states/idle/node = SubResource( 13 )
+states/idle/position = Vector2( 447, 74.1111 )
+states/walk/node = SubResource( 14 )
+states/walk/position = Vector2( 289.667, 151 )
+transitions = [ "walk", "idle", SubResource( 15 ), "idle", "walk", SubResource( 16 ), "idle", "hurt", SubResource( 17 ), "hurt", "idle", SubResource( 18 ), "idle", "attack", SubResource( 19 ), "attack", "idle", SubResource( 20 ), "hurt", "dead", SubResource( 21 ), "attack", "dead", SubResource( 22 ), "idle", "dead", SubResource( 23 ), "hurt", "attack", SubResource( 24 ), "attack", "hurt", SubResource( 25 ) ]
+start_node = "idle"
+end_node = "dead"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=27]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 23.3333, 20.5714 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 21, 18.6667 )
+
+[node name="NightBorne" type="KinematicBody2D" groups=["Enemies"]]
+scale = Vector2( 1.2, 1.2 )
+collision_layer = 2
+collision_mask = 528
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -5.33333, -3.42856 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -4.44444, -17.1429 )
+scale = Vector2( 1.6, 1.6 )
+texture = ExtResource( 1 )
+hframes = 23
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/attack = SubResource( 5 )
+anims/dead = SubResource( 6 )
+anims/hurt = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/walk = SubResource( 9 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 26 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 27 )
+
+[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
+
+[node name="SworddHurt02" type="AudioStreamPlayer" parent="."]
+
+[node name="DeadArea" type="Area2D" parent="." groups=["EnemiesDefense"]]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
+position = Vector2( -3.33333, -3.42857 )
+shape = SubResource( 2 )
+
+[node name="AttackArea" type="Area2D" parent="." groups=["Enemies"]]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2( 40, -5.33333 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="HPbar" type="TextureProgress" parent="."]
+margin_left = -6.66667
+margin_top = -33.3333
+margin_right = 12.3333
+margin_bottom = -31.3333
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+nine_patch_stretch = true
+
+[node name="RayAttack" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 75, 0 )
+
+[node name="RayAttack2" type="RayCast2D" parent="."]
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+enabled = true
+cast_to = Vector2( 0, -34 )
+
+[node name="RayFlip" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 34, 0 )
+collision_mask = 528
+
+[node name="RayEnd" type="RayCast2D" parent="."]
+position = Vector2( 19, 4 )
+enabled = true
+cast_to = Vector2( 0, 47 )
+collision_mask = 528
+
+[node name="RayBackFlip" type="RayCast2D" parent="."]
+position = Vector2( -40, 0 )
+enabled = true
+cast_to = Vector2( -179, 0 )
+
+[connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

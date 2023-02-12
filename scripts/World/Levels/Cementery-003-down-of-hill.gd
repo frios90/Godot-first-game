@@ -125,7 +125,6 @@ func initDialog () :
 func showMessages () :
 
 	if number_message < messages_second_meeting.size():
-
 		if self.player_msg_box:
 			self.player_msg_box.queue_free()
 		self.player_msg_box  = self.addChildPlayerMsgBox()
@@ -135,14 +134,13 @@ func showMessages () :
 		self.player_msg_box.queue_free()
 		Msgs.in_dialog       = false
 		$OldMan.is_stop      = false
-		Msgs.dlg_002.isone = true
-		var item = ItemsGbl._get_item_by_code(1027)
+		Msgs.dlg_002.is_done = true		
+		Msgs.forgot          = false
+		var item           = ItemsGbl._get_item_by_code(1027)
 		Players._add_item(item, 1)
 
 	number_message += 1
-	
 
-	
 func addChildPlayerMsgBox():
 	var box = load("res://scenes/GUI/MsgBoxA.tscn")
 	box = box.instance()
@@ -151,7 +149,6 @@ func addChildPlayerMsgBox():
 	self.add_child(box)
 	return box
 
-		
 func _on_EnterBattle_body_entered(body):
 	if body.get_name() == 'knight':			
 		if not DbBoss.bringer_of_deadth_001.dead:

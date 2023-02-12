@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://scenes/World/Cementery/ParallaxBackground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/Cementery/parche01.png" type="Texture" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://scenes/World/Chest-A.tscn" type="PackedScene" id=32]
 [ext_resource path="res://assets/tiles/entradaCueva.png" type="Texture" id=33]
 [ext_resource path="res://assets/tiles/pngwing.com.png" type="Texture" id=34]
+[ext_resource path="res://scenes/GUI/backmusic001.tscn" type="PackedScene" id=35]
 
 [sub_resource type="TileSet" id=17]
 0/name = "mountains.png 0"
@@ -1978,10 +1979,6 @@ tile_data = PoolIntArray( -5046112, 536870915, 0, -4980578, 536870915, 0, -49805
 
 [node name="Traps" type="Node2D" parent="."]
 
-[node name="TrapB-002" parent="Traps" instance=ExtResource( 6 )]
-position = Vector2( 752, -264 )
-rotation = 4.71239
-
 [node name="TrapB-003" parent="Traps" instance=ExtResource( 6 )]
 position = Vector2( 1920, 104 )
 
@@ -2111,8 +2108,8 @@ scale = Vector2( 2, 1.42419 )
 texture = ExtResource( 30 )
 
 [node name="Pngwingcom" type="Sprite" parent="EndArrow"]
-position = Vector2( 340, 389.564 )
-scale = Vector2( 1, 1.67026 )
+position = Vector2( 340, 181.206 )
+scale = Vector2( 1, 2.01752 )
 texture = ExtResource( 34 )
 
 [node name="InitArrow" type="Sprite" parent="."]
@@ -2127,6 +2124,8 @@ collision_layer = 528
 collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -4456293, 536870915, 0, -4456290, 536870915, 0, -4456287, 536870915, 0, -4456284, 536870915, 0, 2162741, 536870913, 0, 2228266, 536870914, 0, 2228269, 536870914, 0, 2228271, 536870913, 0, 2228272, 536870914, 0, 2228274, 536870914, 0, 2228275, 536870913, 0, 2228276, 536870913, 0, 2228277, 536870913, 0, 2228278, 536870913, 0, 2293800, 536870913, 0, 2293801, 536870913, 0, 2293813, 536870913, 0, 2359337, 536870913, 0 )
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource( 35 )]
 
 [connection signal="body_entered" from="Areas/Goto-004-003" to="Areas/Goto-004-003" method="_on_Goto004003_body_entered"]
 [connection signal="body_entered" from="Areas/Rtn-002-003" to="Areas/Rtn-002-003" method="_on_Rtn002003_body_entered"]

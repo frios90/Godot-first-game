@@ -8,11 +8,11 @@ export (int) var withMoveAndFlip = 0
 export (int) var maxSpeed        = -26
 const gravity                    = 50
 const up                         = Vector2(0, -1)
-const ptsDead                    = 150
-var life                         = 50
+const ptsDead                    = 9000
+var life                         = 14000
 onready var current_life         = life if level == 1 else life * (level * 0.77)
-var base_attack                  = 45
-var base_defense                 = 15
+var base_attack                  = 70
+var base_defense                 = 35
 onready var attack               = base_attack if level == 1 else base_attack * (level * 0.77)
 onready var defense              = base_defense if level == 1 else base_defense * (level * 0.55)
 var motion                       = Vector2(0, 0)

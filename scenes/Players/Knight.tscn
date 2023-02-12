@@ -1,6 +1,9 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=103 format=2]
 
+[ext_resource path="res://sfx/coin.wav" type="AudioStream" id=1]
+[ext_resource path="res://sfx/Step-3.wav" type="AudioStream" id=2]
 [ext_resource path="res://scripts/knight.gd" type="Script" id=3]
+[ext_resource path="res://sfx/swing2.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/Characters/Player/sprite-player.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -11,6 +14,30 @@ extents = Vector2( 31.6172, 33.5625 )
 
 [sub_resource type="Animation" id=120]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SoundWalk:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 43 ]
+}
 
 [sub_resource type="Animation" id=125]
 resource_name = "attack"
@@ -419,7 +446,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=127]
 resource_name = "walk"
-length = 0.6
+length = 0.8
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -428,10 +455,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 42, 43, 50, 58, 66, 67, 51 ]
+"values": [ 42, 43, 50, 51, 58, 59, 66, 67 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SoundWalk:playing")
@@ -440,7 +467,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.4 ),
+"times": PoolRealArray( 0.1, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, true ]
@@ -697,7 +724,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 8 )
 hframes = 8
 vframes = 15
-frame = 65
+frame = 43
 
 [node name="RayDown" type="RayCast2D" parent="Sprite"]
 enabled = true
@@ -744,12 +771,15 @@ position = Vector2( 2, 3.5 )
 shape = SubResource( 156 )
 
 [node name="SoundWalk" type="AudioStreamPlayer" parent="."]
-volume_db = -35.0
+stream = ExtResource( 2 )
+volume_db = -6.46
+mix_target = 1
 
 [node name="SoundDead" type="AudioStreamPlayer" parent="."]
 
 [node name="SoundSword" type="AudioStreamPlayer" parent="."]
-volume_db = -15.0
+stream = ExtResource( 4 )
+volume_db = -2.115
 
 [node name="SoundHurt" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0
@@ -759,6 +789,10 @@ volume_db = -20.0
 pitch_scale = 2.0
 
 [node name="SoundLvlUp" type="AudioStreamPlayer" parent="."]
+
+[node name="SoundPickAGem" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -27.988
 
 [connection signal="area_entered" from="AttackArea" to="." method="_on_AttackArea_area_entered"]
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

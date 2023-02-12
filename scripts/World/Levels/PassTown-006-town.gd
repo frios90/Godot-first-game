@@ -12,22 +12,22 @@ func _ready():
 
 func _on_EnterBattle_body_entered(body):
 	if body.get_name() == 'knight':
-		if not DbBoss.bringer_of_deadth_001.dead:
+		if not DbBoss.necromancer_002.dead:
 			self.call_deferred("_cd_init_battle")
 
 func _cd_init_battle ():
-	if not DbBoss.necromancer_002.dead:
-	#	$CanvasLayer/BackAudio.stop()
-	#	$CanvasLayer/BackAudio.stream = load(DbBoss.bringer_of_deadth_001._battleAudio)
-	#	$CanvasLayer/BackAudio.play()
-	#	$Necromancer.motion.x = $Necromancer.maxSpeed
-		$Areas/EnterBattle.queue_free()
-		$BossObelisk/CollisionShape2D.disabled = false
-		$BossObelisk/AnimationPlayer.play("action")
-		$BossObelisk2/CollisionShape2D.disabled = false
-		$BossObelisk2/AnimationPlayer.play("action")
-		$CanvasLayer/BossBarControl.visible  = true
-		$CanvasLayer/BossBarControl.visible = true
+
+#	$CanvasLayer/BackAudio.stop()
+#	$CanvasLayer/BackAudio.stream = load(DbBoss.bringer_of_deadth_001._battleAudio)
+#	$CanvasLayer/BackAudio.play()
+#	$Necromancer.motion.x = $Necromancer.maxSpeed
+	$Areas/EnterBattle.queue_free()
+	$BossObelisk/CollisionShape2D.disabled = false
+	$BossObelisk/AnimationPlayer.play("action")
+	$BossObelisk2/CollisionShape2D.disabled = false
+	$BossObelisk2/AnimationPlayer.play("action")
+	$CanvasLayer/BossBarControl.visible  = true
+	$CanvasLayer/BossBarControl.visible = true
 
 func _finish_battle () :
 	self.call_deferred("_cd_finish_battle")

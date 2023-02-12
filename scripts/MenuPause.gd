@@ -84,6 +84,11 @@ func _process(delta):
 		$InfoItem/BtnEquipAttack.visible = true 
 		$InfoItem/BtnEquipDefense.visible = true 
 		
+	if self.info_item_selected and not (self.info_item_selected.data.is_weapon or self.info_item_selected.data.is_weapon):
+		$InfoItem/Equipar.visible = false 
+	else:
+		$InfoItem/Equipar.visible = true
+		
 	
 func setActionItems () :
 	var empty_icon = "res://assets/Gui/TexturaBlue/Scroll Button.png"

@@ -67,7 +67,3 @@ anims/action = SubResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemArea"]
 position = Vector2( 10, -10 )
 shape = SubResource( 4 )
-
-[node name="SoundPickAGem" type="AudioStreamPlayer" parent="."]
-volume_db = -5.9
-pitch_scale = 1.32

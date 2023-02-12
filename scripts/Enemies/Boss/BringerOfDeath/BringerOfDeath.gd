@@ -12,7 +12,7 @@ const up                         = Vector2(0, -1)
 const ptsDead                    = 4000
 var dead                         = false 
 
-var life                         = 2000
+var life                         = 5000
 var base_attack                  = 65
 var base_defense                 = 32
 
@@ -25,6 +25,7 @@ var is_spelling                  = false
 var useRandSound                 = 0
 var count_damage_hits            = 0
 var to_second_raund              = 0.49
+var _drop_gems                   = 5000
 
 onready var motion               = Vector2(0, 0)
 onready var attack               = base_attack if level == 1 else base_attack * (level * 0.77)
@@ -170,7 +171,7 @@ func _DEAD ():
 		self.call_deferred("_cd_magic_circle_death")
 		state_machine.travel("dead")
 		Util.get_an_script("knight")._increment_exp_player(ptsDead)		
-		Env._dropGems(self.position, 999)
+		Env._dropGems(self.position, _drop_gems)
 		if get_parent().has_node("BringerHandAttack"):
 			get_parent().get_node("BringerHandAttack").queue_free()
 		get_parent()._finish_battle()

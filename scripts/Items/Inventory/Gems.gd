@@ -15,8 +15,6 @@ func _process(delta):
 	motion.y += 75 * delta
 	
 func _gems_pick_up ():
-	$SoundPickAGem.playing = true
-	yield(get_tree().create_timer(0.09), "timeout")	
 	Util.get_an_script("CanvasLayer").handleGemCollected(qty)
 	queue_free()
 	

@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/Characters/Enemies/Skeleton enemy/SkeletonClothes01.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Enemies/Skeleton-01.gd" type="Script" id=2]
+[ext_resource path="res://sfx/shade2.wav" type="AudioStream" id=3]
+[ext_resource path="res://sfx/shade14.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/imgs/hp-bar-bg-small.png" type="Texture" id=5]
 [ext_resource path="res://assets/imgs/hp-bar-prog-small.png" type="Texture" id=6]
 
@@ -133,8 +135,10 @@ anims/sleep = SubResource( 12 )
 anims/walk = SubResource( 4 )
 
 [node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [node name="HPbar" type="TextureProgress" parent="."]
 margin_left = -15.8333

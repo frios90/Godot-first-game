@@ -129,22 +129,25 @@ func fall(delta):
 		motion.y = 0
 
 func move():	
-	if Input.is_action_pressed("ui_right"):
-		if not is_jumping:
-			state_machine.travel("walk")
-		motion.x = Players.selected.stats.move_speed if not is_dashing else Players.selected.stats.dash_speed
-		$Sprite.flip_h = false
-		$AttackArea/CollisionShape2D.position.x = -8
-		
-	elif Input.is_action_pressed("ui_left"):
-		if not is_jumping:
-			state_machine.travel("walk")
-		motion.x       = -Players.selected.stats.move_speed if not is_dashing else Players.selected.stats.dash_speed * -1
-		$Sprite.flip_h = true
-		$AttackArea/CollisionShape2D.position.x = -65	
-	else:  
-		state_machine.travel("idle")	
-		motion.x = 0
+	if not is_attacking:
+		if Input.is_action_pressed("ui_right"):
+
+			if not is_jumping:
+				state_machine.travel("walk")
+			motion.x = Players.selected.stats.move_speed if not is_dashing else Players.selected.stats.dash_speed
+			$Sprite.flip_h = false
+			$AttackArea/CollisionShape2D.position.x = -8			
+		elif Input.is_action_pressed("ui_left"):
+
+			if not is_jumping:
+				state_machine.travel("walk")
+			motion.x       = -Players.selected.stats.move_speed if not is_dashing else Players.selected.stats.dash_speed * -1
+			$Sprite.flip_h = true
+			$AttackArea/CollisionShape2D.position.x = -65	
+		else:  
+
+			state_machine.travel("idle")	
+			motion.x = 0
 
 func applyItem():
 	if Input.is_action_just_pressed("useItem") and not is_attacking and not is_jumping and not is_dashing:
@@ -170,6 +173,7 @@ func jump():
 		motion.y = 0
 
 func attack():	
+	
 	if not can_open_chest:
 		if Players.selected.stats.current_stamine < Players.selected.stats.stamine :
 			Players.selected.stats.current_stamine += (Players.selected.stats.stamine_recovery + Players.selected.statuses_stack.stamine.up)
@@ -179,7 +183,9 @@ func attack():
 			if timer_attack == limit_attack:
 				END_ATTACK(0);
 		if Input.is_action_just_pressed("attack") and not is_climbing and timer_attack == 0 and not is_attacking:
+			
 			if Players.selected.stats.current_stamine >= Players.selected.stats.stamine_cost:
+				motion.x = 0
 				if event_attack == 0:
 					INIT_TRAVEL_ATTACK("attack")
 				elif event_attack == 1:	
@@ -219,6 +225,7 @@ func _on_DeadArea_area_entered(area):
 			INSTANT_DEAD()
 		elif area.is_in_group("gems"):
 			area.get_parent()._gems_pick_up()
+			$SoundPickAGem.playing = true
 		elif area.is_in_group("Save"):
 			in_hand_pray = area.get_parent().spt_code
 			can_pray = true
@@ -265,7 +272,8 @@ func _callMethodFinishHeath () :
 func _callMethodFinishHurt () :
 	is_hurting = false
 	
-func INIT_TRAVEL_ATTACK (travel_to = "atttack"):
+func INIT_TRAVEL_ATTACK (travel_to = "attack"):
+	
 	is_attacking = true		
 	timer_attack = 1
 	state_machine.travel(travel_to)

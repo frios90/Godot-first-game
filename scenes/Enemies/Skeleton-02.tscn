@@ -1,7 +1,9 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scripts/Enemies/Skeleton-02.gd" type="Script" id=1]
 [ext_resource path="res://assets/Characters/Enemies/Skeleton enemy/Skeleton enemy.png" type="Texture" id=2]
+[ext_resource path="res://sfx/shade2.wav" type="AudioStream" id=3]
+[ext_resource path="res://sfx/shade14.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/imgs/hp-bar-bg-small.png" type="Texture" id=5]
 [ext_resource path="res://assets/imgs/hp-bar-prog-small.png" type="Texture" id=6]
 
@@ -204,7 +206,7 @@ extents = Vector2( 15, 25.5 )
 extents = Vector2( 23.5, 23.5 )
 
 [node name="Skeleton-02" type="KinematicBody2D" groups=["Enemies"]]
-scale = Vector2( 2, 2 )
+scale = Vector2( 2, 1.2 )
 collision_layer = 2
 collision_mask = 528
 script = ExtResource( 1 )
@@ -236,10 +238,6 @@ tree_root = SubResource( 4 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 5 )
-
-[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
-
-[node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
 
 [node name="HPbar" type="TextureProgress" parent="."]
 margin_left = -11.0
@@ -291,5 +289,11 @@ collision_mask = 528
 position = Vector2( -65, 0 )
 enabled = true
 cast_to = Vector2( -69, 0 )
+
+[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

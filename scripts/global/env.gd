@@ -45,6 +45,9 @@ var init_position_stage = {
 var coins       = 0
 var points      = 0
 
+
+	
+
 func _dropGems (position, max_gem_drop):
 	randomize()
 	var random_max_gem = randi() % max_gem_drop 

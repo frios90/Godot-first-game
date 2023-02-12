@@ -63,6 +63,7 @@ func flip():
 			
 func attacking () :
 	if $RayAttack.is_colliding() or $RayAttack2.is_colliding():
+		motion.x = 0
 		state_machine.travel("attack")	
 		
 func _callMethodStartAttack () :

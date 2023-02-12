@@ -2,7 +2,10 @@ extends Node
 var floating_text = preload("res://scenes/FloatingText.tscn")
 var ftd           = 0
 onready var selected = gustaph
+var sound
 
+	
+	
 var gustaph = {
 	"change_scene_from_dead" : false,
 	"last_save_point": "",
@@ -61,8 +64,8 @@ var gustaph = {
 }
 
 func _ready ():
-	selected = gustaph
-
+	selected = gustaph	
+	
 var coins       = 0
 var points      = 0
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://scenes/Players/Camera2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Elements/TorchSmall02.tscn" type="PackedScene" id=2]
@@ -36,6 +36,8 @@
 [ext_resource path="res://assets/tiles/Pixel2DCastle1.1/environment.png" type="Texture" id=34]
 [ext_resource path="res://assets/tiles/Pixel2DCastle1.1/wood_env.png" type="Texture" id=35]
 [ext_resource path="res://assets/tiles/pngwing.com.png" type="Texture" id=36]
+[ext_resource path="res://scenes/GUI/backmusic001.tscn" type="PackedScene" id=37]
+[ext_resource path="res://scenes/GUI/btns/BtnToPress.tscn" type="PackedScene" id=38]
 
 [sub_resource type="TileSet" id=13]
 0/name = "mountains.png 0"
@@ -1696,6 +1698,12 @@ b = Vector2( 24, 560 )
 9/shapes = [  ]
 9/z_index = 0
 
+[sub_resource type="CircleShape2D" id=31]
+radius = 16.0
+
+[sub_resource type="CapsuleShape2D" id=32]
+radius = 40.0
+
 [node name="Cementery-001-intro" type="Node2D"]
 script = ExtResource( 27 )
 __meta__ = {
@@ -1784,9 +1792,9 @@ item = 1001
 qty = 3
 
 [node name="Chest-1002" parent="Chests" instance=ExtResource( 29 )]
-position = Vector2( -144, -6.10351e-05 )
+position = Vector2( 42.6667, 5.33331 )
 rotation = 3.14159
-scale = Vector2( 1, -1 )
+scale = Vector2( -1, -1 )
 code = 1002
 item = 1001
 
@@ -1864,13 +1872,13 @@ position = Vector2( 424, 904 )
 position = Vector2( 3592, 504 )
 
 [node name="TorchSmall10" parent="Torchs/TorchSmall" instance=ExtResource( 2 )]
-position = Vector2( 6832, 504 )
+position = Vector2( 6880, 496 )
 
 [node name="TorchSmall11" parent="Torchs/TorchSmall" instance=ExtResource( 2 )]
 position = Vector2( 1040, 504 )
 
 [node name="knight" parent="." instance=ExtResource( 14 )]
-position = Vector2( 160, 808 )
+position = Vector2( 224, 912 )
 
 [node name="Camera2D" parent="knight" instance=ExtResource( 1 )]
 limit_top = -10000022
@@ -1923,13 +1931,9 @@ shape = SubResource( 17 )
 position = Vector2( 5776, 448 )
 
 [node name="EndArrow" type="Sprite" parent="."]
-position = Vector2( 6880, 552 )
-scale = Vector2( 1.45454, 1.30544 )
+position = Vector2( 6880, 535.059 )
+scale = Vector2( 2.18181, 1.48765 )
 texture = ExtResource( 19 )
-
-[node name="Pngwingcom" type="Sprite" parent="EndArrow"]
-position = Vector2( 231.001, -226.743 )
-texture = ExtResource( 36 )
 
 [node name="Skeletons01" type="Node2D" parent="."]
 
@@ -1982,6 +1986,12 @@ position = Vector2( 1960, 536 )
 [node name="Skeleton-18" parent="Skeletons01" instance=ExtResource( 5 )]
 position = Vector2( 2464, 536 )
 
+[node name="Pngwingcom" type="Sprite" parent="."]
+visible = false
+position = Vector2( 7464, -88 )
+scale = Vector2( 2.18181, 2.45917 )
+texture = ExtResource( 36 )
+
 [node name="Skeletons002" type="Node2D" parent="."]
 
 [node name="Skeleton-02" parent="Skeletons002" instance=ExtResource( 6 )]
@@ -2019,7 +2029,7 @@ scale = Vector2( 1, 0.864285 )
 texture = ExtResource( 9 )
 
 [node name="Graveyard2" type="Sprite" parent="."]
-position = Vector2( 5968, 536 )
+position = Vector2( 5888, 552 )
 scale = Vector2( 1, 1.11429 )
 texture = ExtResource( 9 )
 
@@ -2039,4 +2049,89 @@ position = Vector2( 128, 584 )
 [node name="OldMan" parent="." instance=ExtResource( 28 )]
 position = Vector2( 504, 536 )
 
+[node name="AudioStreamPlayer" parent="." instance=ExtResource( 37 )]
+
+[node name="Pngwingcom2" type="Sprite" parent="."]
+position = Vector2( 7048, -97.9999 )
+scale = Vector2( 0.773333, 1.65667 )
+texture = ExtResource( 36 )
+
+[node name="Tutorials" type="Node2D" parent="."]
+
+[node name="Tutorial001" type="Area2D" parent="Tutorials"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorials/Tutorial001"]
+position = Vector2( 128, 912 )
+shape = SubResource( 31 )
+
+[node name="BtnToPress" parent="Tutorials/Tutorial001" instance=ExtResource( 38 )]
+visible = false
+position = Vector2( 128, 872 )
+inpt = "x"
+
+[node name="Tutorial002" type="Area2D" parent="Tutorials"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorials/Tutorial002"]
+position = Vector2( 312, 936 )
+shape = SubResource( 31 )
+
+[node name="BtnToPress" parent="Tutorials/Tutorial002" instance=ExtResource( 38 )]
+visible = false
+position = Vector2( 312, 872 )
+
+[node name="Tutorial004" type="Area2D" parent="Tutorials"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorials/Tutorial004"]
+position = Vector2( 128, 864 )
+shape = SubResource( 31 )
+
+[node name="BtnToPress" parent="Tutorials/Tutorial004" instance=ExtResource( 38 )]
+visible = false
+position = Vector2( 128, 816 )
+inpt = "up"
+
+[node name="Tutorial003" type="Area2D" parent="Tutorials"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorials/Tutorial003"]
+position = Vector2( 896, 528 )
+shape = SubResource( 31 )
+
+[node name="BtnToPress" parent="Tutorials/Tutorial003" instance=ExtResource( 38 )]
+visible = false
+position = Vector2( 896, 496 )
+
+[node name="Tutorial005" type="Area2D" parent="Tutorials"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorials/Tutorial005"]
+position = Vector2( 432, 528 )
+shape = SubResource( 32 )
+
+[node name="BtnToPress" parent="Tutorials/Tutorial005" instance=ExtResource( 38 )]
+visible = false
+position = Vector2( 432, 472 )
+inpt = "z"
+
+[node name="Tutorial006" type="Area2D" parent="Tutorials"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorials/Tutorial006"]
+position = Vector2( 3008, 384 )
+shape = SubResource( 32 )
+
+[node name="BtnToPress" parent="Tutorials/Tutorial006" instance=ExtResource( 38 )]
+visible = false
+position = Vector2( 2984, 336 )
+inpt = "p"
+
 [connection signal="body_entered" from="Areas/Goto-002-001" to="Areas/Goto-002-001" method="_on_Goto002001_body_entered"]
+[connection signal="area_entered" from="Tutorials/Tutorial001" to="." method="_on_Tutorial001_area_entered"]
+[connection signal="area_exited" from="Tutorials/Tutorial001" to="." method="_on_Tutorial001_area_exited"]
+[connection signal="area_entered" from="Tutorials/Tutorial002" to="." method="_on_Tutorial002_area_entered"]
+[connection signal="area_exited" from="Tutorials/Tutorial002" to="." method="_on_Tutorial002_area_exited"]
+[connection signal="area_entered" from="Tutorials/Tutorial004" to="." method="_on_Tutorial004_area_entered"]
+[connection signal="area_exited" from="Tutorials/Tutorial004" to="." method="_on_Tutorial004_area_exited"]
+[connection signal="area_entered" from="Tutorials/Tutorial003" to="." method="_on_Tutorial003_area_entered"]
+[connection signal="area_exited" from="Tutorials/Tutorial003" to="." method="_on_Tutorial003_area_exited"]
+[connection signal="area_entered" from="Tutorials/Tutorial005" to="." method="_on_Tutorial005_area_entered"]
+[connection signal="area_exited" from="Tutorials/Tutorial005" to="." method="_on_Tutorial005_area_exited"]
+[connection signal="area_entered" from="Tutorials/Tutorial006" to="." method="_on_Tutorial006_area_entered"]
+[connection signal="area_exited" from="Tutorials/Tutorial006" to="." method="_on_Tutorial006_area_exited"]

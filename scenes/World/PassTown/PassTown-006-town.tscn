@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://scenes/Players/Camera2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/town/props/tileset.png" type="Texture" id=2]
@@ -21,6 +21,9 @@
 [ext_resource path="res://scenes/Players/Knight.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/CanvasLayer.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/tiles/deathitch002.png" type="Texture" id=21]
+[ext_resource path="res://scenes/Enemies/Skeleton-02.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/GUI/backmusic001.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scenes/Enemies/NigthBorne.tscn" type="PackedScene" id=24]
 
 [sub_resource type="TileSet" id=39]
 0/name = "tileset.png 0"
@@ -852,6 +855,31 @@ position = Vector2( 1990, 648 )
 
 [node name="BossObelisk2" parent="." instance=ExtResource( 18 )]
 position = Vector2( 2690, 648 )
+
+[node name="skuls002" type="Node2D" parent="."]
+
+[node name="Skeleton-02" parent="skuls002" instance=ExtResource( 22 )]
+position = Vector2( 744, 530 )
+
+[node name="Skeleton-03" parent="skuls002" instance=ExtResource( 22 )]
+position = Vector2( 1024, 528 )
+
+[node name="Skeleton-04" parent="skuls002" instance=ExtResource( 22 )]
+position = Vector2( 1496, 528 )
+
+[node name="Skeleton-05" parent="skuls002" instance=ExtResource( 22 )]
+position = Vector2( 1712, 528 )
+
+[node name="Skeleton-06" parent="skuls002" instance=ExtResource( 22 )]
+position = Vector2( 1144, 528 )
+
+[node name="NightBorne" parent="skuls002" instance=ExtResource( 24 )]
+position = Vector2( 1824, 536 )
+
+[node name="NightBorne2" parent="skuls002" instance=ExtResource( 24 )]
+position = Vector2( 3976, 536 )
+
+[node name="AudioStreamPlayer" parent="." instance=ExtResource( 23 )]
 
 [connection signal="body_entered" from="Areas/Goto-007-006" to="Areas/Goto-007-006" method="_on_Goto007006_body_entered"]
 [connection signal="body_entered" from="Areas/Rtn-005-006" to="Areas/Rtn-005-006" method="_on_Rtn005006_body_entered"]
