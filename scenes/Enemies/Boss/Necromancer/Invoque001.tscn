@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/Enemies/Boss/Necromancer/MiniNecromancer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Enemies/Boss/Necromancer/Invoque001.gd" type="Script" id=2]
+
+[node name="Invoque001" type="Node2D"]
+position = Vector2( 8, 152 )
+script = ExtResource( 2 )
+
+[node name="MiniNecromancer" parent="." instance=ExtResource( 1 )]
+position = Vector2( -224, -8 )
+
+[node name="MiniNecromancer2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 248, -16 )
+scale = Vector2( -1.5, 1.2 )

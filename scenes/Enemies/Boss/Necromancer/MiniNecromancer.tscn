@@ -1,34 +1,22 @@
 [gd_scene load_steps=29 format=2]
 
-[ext_resource path="res://assets/Characters/Enemies/Fly-enemies/Flyinf-eye.png" type="Texture" id=1]
-[ext_resource path="res://scripts/Enemies/Flying-eye.gd" type="Script" id=2]
-[ext_resource path="res://sfx/shade2.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/imgs/hp-bar-prog-small.png" type="Texture" id=4]
-[ext_resource path="res://assets/imgs/hp-bar-bg-small.png" type="Texture" id=5]
-[ext_resource path="res://sfx/shade14.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/Characters/Enemies/Bosses/Necromancer.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Enemies/Boss/Necromancer/MiniNecromancer.gd" type="Script" id=2]
+[ext_resource path="res://assets/imgs/hp-bar-bg-small.png" type="Texture" id=3]
+[ext_resource path="res://sfx/shade2.wav" type="AudioStream" id=4]
+[ext_resource path="res://sfx/shade14.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/imgs/hp-bar-prog-small.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15, 30.5 )
+extents = Vector2( 9, 12 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 16 ]
-}
 
 [sub_resource type="Animation" id=3]
 resource_name = "attack"
-length = 0.375
-step = 0.03125
+length = 1.0
+step = 0.0714286
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -36,47 +24,76 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.03125, 0.0625, 0.09375, 0.125, 0.15625, 0.25, 0.3125 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.0714286, 0.142857, 0.214286, 0.285714, 0.357143, 0.428571, 0.5, 0.571429, 0.642857, 0.714286, 0.785714, 0.857143 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 16, 17, 18, 19, 20, 21, 22, 23 ]
+"values": [ 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46 ]
 }
-
-[sub_resource type="Animation" id=4]
-resource_name = "dead"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 8, 9, 10, 11 ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "hurt"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.357143, 0.928571 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ null ],
+"method": "_cm_cast_spell"
+}, {
+"args": [  ],
+"method": "_cm_finish_attack"
+} ]
 }
 
 [sub_resource type="Animation" id=6]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 102, 103, 104, 105, 106, 107, 108, 109, 110 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_cm_finish_dead"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "hurt"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 85, 86, 87, 86, 87, 88, 89 ]
+}
+
+[sub_resource type="Animation" id=8]
 resource_name = "idle"
-length = 0.5
 loop = true
 step = 0.0625
 tracks/0/type = "value"
@@ -86,10 +103,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375 ),
+"times": PoolRealArray( 0.0625, 0.1875, 0.3125, 0.4375, 0.5625, 0.6875, 0.8125, 0.9375 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 24, 25, 26, 27, 28, 29, 30, 31 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=20]
@@ -127,7 +144,7 @@ switch_mode = 2
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=24]
+[sub_resource type="AnimationNodeStateMachine" id=22]
 states/attack/node = SubResource( 20 )
 states/attack/position = Vector2( 572, 198 )
 states/dead/node = SubResource( 21 )
@@ -140,84 +157,87 @@ transitions = [ "idle", "hurt", SubResource( 11 ), "hurt", "idle", SubResource( 
 start_node = "idle"
 end_node = "dead"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=25]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
-[sub_resource type="RectangleShape2D" id=23]
-extents = Vector2( 37, 13 )
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 13.3333, 22.3333 )
 
-[node name="Flying-eye" type="KinematicBody2D"]
+[node name="MiniNecromancer" type="KinematicBody2D"]
+scale = Vector2( 1.5, 1.2 )
 collision_layer = 2
 collision_mask = 528
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 9, 21.5 )
+position = Vector2( 5.96046e-08, -2.38419e-07 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 2, 2 )
+position = Vector2( -3.8147e-06, -26.5333 )
+scale = Vector2( 0.816667, 0.835417 )
 texture = ExtResource( 1 )
-hframes = 8
-vframes = 4
-frame = 16
+hframes = 17
+vframes = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/attack = SubResource( 3 )
-anims/dead = SubResource( 4 )
-anims/hurt = SubResource( 5 )
-anims/idle = SubResource( 6 )
+anims/dead = SubResource( 6 )
+anims/hurt = SubResource( 7 )
+anims/idle = SubResource( 8 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 24 )
+tree_root = SubResource( 22 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 25 )
+parameters/playback = SubResource( 23 )
+
+[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -20.0
+pitch_scale = 0.8
+
+[node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -20.0
+
+[node name="Rays" type="Node2D" parent="."]
+
+[node name="D_back" type="RayCast2D" parent="Rays"]
+enabled = true
+cast_to = Vector2( -213.333, 106.667 )
+
+[node name="Back" type="RayCast2D" parent="Rays"]
+enabled = true
+cast_to = Vector2( -213.333, 0 )
+
+[node name="Front" type="RayCast2D" parent="Rays"]
+enabled = true
+cast_to = Vector2( 293.333, 0 )
+
+[node name="D_front" type="RayCast2D" parent="Rays"]
+enabled = true
+cast_to = Vector2( 261.333, 113.333 )
+
+[node name="Down" type="RayCast2D" parent="Rays"]
+enabled = true
+cast_to = Vector2( 0, 93.3333 )
 
 [node name="HPbar" type="TextureProgress" parent="."]
-margin_left = -5.0
-margin_top = -15.0
-margin_right = 14.0
-margin_bottom = -13.0
-texture_under = ExtResource( 5 )
-texture_progress = ExtResource( 4 )
+margin_left = -5.33333
+margin_top = -26.6667
+margin_right = 13.6667
+margin_bottom = -24.6667
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 6 )
 nine_patch_stretch = true
 
 [node name="DeadArea" type="Area2D" parent="." groups=["EnemiesDefense"]]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
-position = Vector2( 6, 5 )
-shape = SubResource( 23 )
-
-[node name="Rays" type="Node2D" parent="."]
-
-[node name="D_back" type="RayCast2D" parent="Rays"]
-enabled = true
-cast_to = Vector2( -100, 100 )
-
-[node name="Back" type="RayCast2D" parent="Rays"]
-enabled = true
-cast_to = Vector2( -125, 0 )
-
-[node name="Front" type="RayCast2D" parent="Rays"]
-enabled = true
-cast_to = Vector2( 125, 0 )
-
-[node name="D_front" type="RayCast2D" parent="Rays"]
-enabled = true
-cast_to = Vector2( 100, 100 )
-
-[node name="Down" type="RayCast2D" parent="Rays"]
-enabled = true
-cast_to = Vector2( 0, 125 )
-
-[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-volume_db = -30.0
-
-[node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-volume_db = -25.0
+position = Vector2( 2.66667, -4.33333 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 24 )
 
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

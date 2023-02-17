@@ -1,14 +1,46 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://assets/Characters/Enemies/Bosses/Necromancer.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Enemies/Boss/Necromancer/Necromancer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Enemies/Boss/Necromancer/backspell.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sfx/shade2.wav" type="AudioStream" id=4]
+[ext_resource path="res://sfx/shade14.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9, 12 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
+
+[sub_resource type="Animation" id=48]
+resource_name = "castSpell001"
+step = 0.0714286
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0714286, 0.142857, 0.214286, 0.285714, 0.357143, 0.428571, 0.5, 0.571429, 0.642857, 0.714286, 0.785714, 0.857143 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.714286 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "spell_a_invoque001"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "castSpellA"
@@ -32,7 +64,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.852 ),
+"times": PoolRealArray( 0.642857 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -172,6 +204,9 @@ tracks/0/keys = {
 "values": [ 17, 18, 19, 20, 21, 22, 23, 24 ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=49]
+animation = "castSpell001"
+
 [sub_resource type="AnimationNodeAnimation" id=13]
 animation = "castSpellA"
 
@@ -237,13 +272,21 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=47]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id=10]
+states/castSpell001/node = SubResource( 49 )
+states/castSpell001/position = Vector2( 817.362, 47.4444 )
 states/castSpellA/node = SubResource( 13 )
-states/castSpellA/position = Vector2( 347, 34.7037 )
+states/castSpellA/position = Vector2( 390, 40.3333 )
 states/castSpellB/node = SubResource( 14 )
-states/castSpellB/position = Vector2( 531, 39.4444 )
+states/castSpellB/position = Vector2( 576, 47.4444 )
 states/castSpellC/node = SubResource( 15 )
-states/castSpellC/position = Vector2( 719, 40.3333 )
+states/castSpellC/position = Vector2( 174.362, 190.333 )
 states/castSpellD/node = SubResource( 45 )
 states/castSpellD/position = Vector2( 174.362, 34.7037 )
 states/dead/node = SubResource( 16 )
@@ -254,7 +297,7 @@ states/idle/node = SubResource( 33 )
 states/idle/position = Vector2( 534.556, 128.333 )
 states/walk/node = SubResource( 19 )
 states/walk/position = Vector2( 535, 212.185 )
-transitions = [ "hurt", "dead", SubResource( 28 ), "walk", "hurt", SubResource( 31 ), "hurt", "walk", SubResource( 32 ), "castSpellA", "idle", SubResource( 34 ), "idle", "castSpellA", SubResource( 35 ), "idle", "castSpellB", SubResource( 36 ), "castSpellB", "idle", SubResource( 37 ), "idle", "castSpellC", SubResource( 38 ), "castSpellC", "idle", SubResource( 39 ), "idle", "hurt", SubResource( 40 ), "hurt", "idle", SubResource( 41 ), "walk", "idle", SubResource( 42 ), "idle", "walk", SubResource( 43 ), "castSpellD", "idle", SubResource( 46 ), "idle", "castSpellD", SubResource( 47 ) ]
+transitions = [ "hurt", "dead", SubResource( 28 ), "walk", "hurt", SubResource( 31 ), "hurt", "walk", SubResource( 32 ), "castSpellA", "idle", SubResource( 34 ), "idle", "castSpellA", SubResource( 35 ), "idle", "castSpellB", SubResource( 36 ), "castSpellB", "idle", SubResource( 37 ), "idle", "castSpellC", SubResource( 38 ), "castSpellC", "idle", SubResource( 39 ), "idle", "hurt", SubResource( 40 ), "hurt", "idle", SubResource( 41 ), "walk", "idle", SubResource( 42 ), "idle", "walk", SubResource( 43 ), "castSpellD", "idle", SubResource( 46 ), "idle", "castSpellD", SubResource( 47 ), "idle", "castSpell001", SubResource( 50 ), "castSpell001", "idle", SubResource( 51 ) ]
 graph_offset = Vector2( 57.3617, 0 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
@@ -282,6 +325,7 @@ frame = 20
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
+anims/castSpell001 = SubResource( 48 )
 anims/castSpellA = SubResource( 3 )
 anims/castSpellB = SubResource( 4 )
 anims/castSpellC = SubResource( 5 )
@@ -296,10 +340,6 @@ tree_root = SubResource( 10 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 11 )
-
-[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
-
-[node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
 
 [node name="Rays" type="Node2D" parent="."]
 
@@ -319,3 +359,12 @@ enabled = true
 cast_to = Vector2( 128, 152 )
 
 [node name="TweenPurpleSkull" type="Tween" parent="."]
+
+[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -20.0
+pitch_scale = 0.8
+
+[node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -20.0

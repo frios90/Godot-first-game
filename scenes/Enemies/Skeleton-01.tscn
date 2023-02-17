@@ -136,9 +136,13 @@ anims/walk = SubResource( 4 )
 
 [node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -30.0
+pitch_scale = 2.0
 
 [node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -30.0
+pitch_scale = 2.0
 
 [node name="HPbar" type="TextureProgress" parent="."]
 margin_left = -15.8333

@@ -584,6 +584,21 @@ var list_items = [
 		"is_weapon"   : false,
 		"is_armory"   : true
 	},
+	{
+		"key"         : 39,
+		"code"        : 1040,
+		"name"        : "Llave de la Iglesia",
+		"defense"     : false,
+		"on"          : false,
+		"icon"        : "res://assets/Items/key-church-001.png",
+		"description" : "La Iglesia recibe de Cristo unas llaves maravillosas. Con la mirada puesta en la Cruz y en la mañana de Pascua, tenemos la certeza de la victoria del Buen Pastor, de Aquel que es la verdadera Puerta para las ovejas: si uno entra por mí, estará a salvo; entrará y saldrá y encontrará pasto (Jn 10,9). ",
+		"can_use"     : false,
+		"can_select"  : false,
+		"is_accesory" : false,
+		"is_rune"     : false,
+		"is_weapon"   : false,
+		"is_armory"   : false
+	},
 ]
 
 func _get_item_by_code(code):

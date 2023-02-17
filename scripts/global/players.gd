@@ -24,7 +24,7 @@ var gustaph = {
 		"health_points"   : 130,
 		"magic_points"    : 90,
 		"stamine"         : 100,
-		"strength"        : 1000,
+		"strength"        : 50,
 		"intelligence"    : 12,
 		"speed"           : 16,
 		"luck"            : 1,

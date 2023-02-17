@@ -16,3 +16,10 @@ var dlg_002 = {
 	"is_done"    : false,
 	"description" : "Dialogo con oldman en la entrada de la cueva"
 }
+
+var dlg_003 = {
+	"active"      : false,
+	"can_repeat"  : false,
+	"is_done"     : false,
+	"description" : "Dialogo con el nigromante solomon previo a la batalla"
+}

@@ -103,7 +103,11 @@ var old_man_msg_box
 var player_msg_box  
 
 func _ready():
-	if Env.player_origin_position == "init":
+	if Players.selected.change_scene_from_dead :
+		$knight.position.x = Players.selected.last_save_point.x
+		$knight.position.y = Players.selected.last_save_point.y
+		Players.selected.change_scene_from_dead = false
+	elif Env.player_origin_position == "init":
 		$knight.position.x = 220
 		$knight.position.y = 912
 	if Env.player_origin_position == "return":
@@ -129,8 +133,7 @@ func initDialog () :
 		Msgs.in_dialog      = true
 		Msgs.dlg_001.active = true
 		$OldMan/RayInitDialog.enabled = false
-		
-		
+	
 func showMessages () :
 
 	if number_message < messages.size():
@@ -149,8 +152,6 @@ func showMessages () :
 		Players._add_item(item, 1)
 
 	number_message += 1
-	
-
 	
 func addChildPlayerMsgBox():
 	var box = load("res://scenes/GUI/MsgBoxA.tscn")

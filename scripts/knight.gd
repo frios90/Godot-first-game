@@ -31,6 +31,8 @@ var is_praying             = false
 var in_hand_pray           = ""
 var can_open_chest         = false
 var in_front_of_the_chest  = ""
+var can_open_door         = false
+var in_front_of_the_door  = ""
 var timer_not_take_damage     = 0
 var time_loop_not_take_damage = 60
 var timer_pray                = 500
@@ -173,8 +175,7 @@ func jump():
 		motion.y = 0
 
 func attack():	
-	
-	if not can_open_chest:
+	if not can_open_chest and not can_open_door:
 		if Players.selected.stats.current_stamine < Players.selected.stats.stamine :
 			Players.selected.stats.current_stamine += (Players.selected.stats.stamine_recovery + Players.selected.statuses_stack.stamine.up)
 			Util.get_an_script("CanvasLayer").handleSetStamineBar()			
@@ -190,8 +191,10 @@ func attack():
 					INIT_TRAVEL_ATTACK("attack")
 				elif event_attack == 1:	
 					INIT_TRAVEL_ATTACK("attack3")
-	else:
+	elif can_open_chest:
 		self.openChest(in_front_of_the_chest)
+	elif can_open_door:
+		self.openDoor(in_front_of_the_door)
 
 func dash():	
 	if is_dashing == true and timer_dash > 0:
@@ -232,11 +235,24 @@ func _on_DeadArea_area_entered(area):
 		elif area.is_in_group("Chests"):
 			in_front_of_the_chest = area.get_parent().code
 			can_open_chest = true
+		elif area.is_in_group("Doors"):
+			in_front_of_the_door = area.get_parent().code
+			can_open_door = true
 
 func  openChest (chest):
 	if Input.is_action_just_pressed("attack") and can_open_chest:
-		var key = Chests._get_chest_by_code(chest).key
+		var key               = Chests._get_chest_by_code(chest).key
 		Chests.list[key].open = true
+
+func  openDoor (door):
+	if Input.is_action_just_pressed("attack") and can_open_door:
+		var door_to_open      = Doors._get_door_by_code(door)
+		var has_key           = Players._get_player_item_by_code(door_to_open.for_open_key)
+		if has_key:
+			Doors.doors[door_to_open.key].open = true
+		else:
+			print("la puerta no se puede abrir")
+
 
 func _on_DeadArea_area_exited(area):
 	if area.is_in_group("Ladder"):
@@ -248,6 +264,8 @@ func _on_DeadArea_area_exited(area):
 		can_pray = false
 	elif area.is_in_group("Chests"):
 		can_open_chest = false
+	elif area.is_in_group("Doors"):
+		can_open_door = false
 
 func _on_AttackArea_area_entered(area):
 	if not Players.selected.dead:

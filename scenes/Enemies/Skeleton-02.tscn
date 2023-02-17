@@ -292,8 +292,12 @@ cast_to = Vector2( -69, 0 )
 
 [node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -30.0
+pitch_scale = 1.5
 
 [node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -30.0
+pitch_scale = 1.6
 
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

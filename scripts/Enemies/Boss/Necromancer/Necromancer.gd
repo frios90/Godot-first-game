@@ -9,10 +9,10 @@ export (int) var maxSpeed        = -26
 const gravity                    = 50
 const up                         = Vector2(0, -1)
 const ptsDead                    = 9000
-var life                         = 14000
+var life                         = 10000
 onready var current_life         = life if level == 1 else life * (level * 0.77)
 var base_attack                  = 70
-var base_defense                 = 35
+var base_defense                 = 20
 onready var attack               = base_attack if level == 1 else base_attack * (level * 0.77)
 onready var defense              = base_defense if level == 1 else base_defense * (level * 0.55)
 var motion                       = Vector2(0, 0)
@@ -22,9 +22,13 @@ var useRandSound                 = 0
 var timer_attack                 = 0
 var count_invoque_003            = 3
 var init_actions                 = false
-var timer_inveque_003            = 0
-var limit_wait_invoque003        = 200
+var timer_inveque_003            = 1
+var limit_wait_invoque003        = 1
 var has_shield                   = false
+var reset_cont_invoque_001       = 10
+var cont_to_invoque_001          = 10
+var reset_cont_invoque_003       = 1
+var cont_to_invoque_003          = 1
 var state_machine
 
 func _ready():
@@ -40,7 +44,7 @@ func _process(delta):
 	_delta = delta
 	if not DbBoss.necromancer_002.dead:
 		self.init()
-		self.castSpellA()
+		self.castSpell()
 		self.createShield()
 		self.flip()
 	else:
@@ -54,12 +58,30 @@ func init ():
 	if $Rays/Init.is_colliding():
 		$Rays/Init.enabled = false
 
-func castSpellA ():
-	if not get_parent().has_node("Invoque003"):
-		self.timer_inveque_003 += 1
-		if (self.timer_inveque_003 == self.limit_wait_invoque003):		
-			self.timer_inveque_003 = 0
-			self.state_machine.travel("castSpellA")
+func castSpell ():
+
+
+	if self.cont_to_invoque_003 == 0 :		
+		self.cont_to_invoque_003 = self.reset_cont_invoque_003
+		self.state_machine.travel("castSpellA")
+		
+	if self.cont_to_invoque_001 == 0 :
+		self.cont_to_invoque_001 = self.reset_cont_invoque_001
+		self.state_machine.travel("castSpell001")
+
+	
+				 
+	
+func spell_a_invoque001 ():
+
+	var inv001 = load("res://scenes/Enemies/Boss/Necromancer/Invoque001.tscn")
+	
+	inv001     = inv001.instance()
+	inv001.position.x = self.position.x
+	inv001.position.y = self.position.y + 70
+	inv001.get_node("MiniNecromancer").from_necromancer = true
+	inv001.get_node("MiniNecromancer2").from_necromancer = true
+	get_parent().add_child(inv001)			
 	
 func spell_a_invoque003 ():
 	var inv003 = load("res://scenes/Enemies/Boss/Necromancer/Invoque003.tscn")
@@ -153,6 +175,8 @@ func _recive_hurt () :
 	Util.get_an_script("Camera2D").trauma = true
 	self.applySoundSword()
 	if DbBoss.necromancer_002.dead == false:
+		self.cont_to_invoque_001 -= 1
+		self.cont_to_invoque_003 -= 1
 		self.state_machine.travel("hurt")
 		self.current_life            = self.current_life - Players._get_attack(self.defense)
 		self.floatDamageCount()
@@ -168,7 +192,7 @@ func floatDamageCount () :
 	self.ftd.type                = "damage"
 	self.ftd.flip                = self.motion.x
 	self.ftd.true_positon_sprite = self.true_positon_sprite
-	self.ftd.amount              = Players._get_attack(self.defense)
+	self.ftd.amount              = int(Players._get_attack(self.defense))
 	self.add_child(self.ftd)
 			
 func _last_invoque () :	

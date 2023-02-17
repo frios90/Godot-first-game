@@ -12,7 +12,7 @@ config_version=4
 
 config/name="Anothergame"
 config/description="Este es mi jeugo de p"
-run/main_scene="res://scenes/World/Cementery/Cementery-001-intro.tscn"
+run/main_scene="res://scenes/World/PassTown/PassTown-006-town.tscn"
 config/custom_user_dir_name="mygame"
 config/project_settings_override="mygamess"
 config/icon="res://icon.png"
@@ -29,6 +29,7 @@ SavePoints="*res://scripts/global/SavePoints.gd"
 Msgs="*res://scripts/global/Messages.gd"
 ItemsGbl="*res://scripts/global/items_gbl.gd"
 Chests="*res://scripts/global/chests-glb.gd"
+Doors="*res://scripts/global/doors.gd"
 
 [gui]
 

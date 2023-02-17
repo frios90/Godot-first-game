@@ -1149,7 +1149,7 @@ scale = Vector2( 1, 1 )
 [node name="Skeleton003" type="Node2D" parent="."]
 
 [node name="Skeleton-003" parent="Skeleton003" instance=ExtResource( 14 )]
-position = Vector2( 7256, -560 )
+position = Vector2( 7256, -552 )
 
 [node name="Skeleton-004" parent="Skeleton003" instance=ExtResource( 14 )]
 position = Vector2( 4552, 208 )
@@ -1210,7 +1210,7 @@ position = Vector2( 5256, -8 )
 position = Vector2( 5440, -536 )
 
 [node name="Trap009" parent="Traps" instance=ExtResource( 20 )]
-position = Vector2( 6592, -544 )
+position = Vector2( 6592, -536 )
 
 [node name="TrapB-008" parent="Traps" instance=ExtResource( 21 )]
 position = Vector2( 6208, -680 )

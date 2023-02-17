@@ -9,6 +9,15 @@ var points = [
 		"x" : 1648,
 		"y" : 500,
 		"status" : false
+	},
+	{
+		"key"  : 1,
+		"code" : 002,
+		"name" : "Inicio",
+		"scene" : "res://scenes/World/Cementery/Cementery-001-intro.tscn",
+		"x" : 4920,
+		"y" : 336,
+		"status" : false
 	}
 ]
 

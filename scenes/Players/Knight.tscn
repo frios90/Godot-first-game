@@ -772,14 +772,16 @@ shape = SubResource( 156 )
 
 [node name="SoundWalk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-volume_db = -6.46
+volume_db = -25.787
+pitch_scale = 2.45
 mix_target = 1
 
 [node name="SoundDead" type="AudioStreamPlayer" parent="."]
 
 [node name="SoundSword" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -2.115
+volume_db = -20.0
+pitch_scale = 0.8
 
 [node name="SoundHurt" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0

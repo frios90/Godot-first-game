@@ -1,7 +1,9 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://assets/Characters/Enemies/Bosses/Bringer-of-Death-SpritSheet.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Enemies/Boss/BringerOfDeath/BringerOfDeath.gd" type="Script" id=2]
+[ext_resource path="res://sfx/shade2.wav" type="AudioStream" id=3]
+[ext_resource path="res://sfx/shade14.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 26.1765 )
@@ -333,7 +335,7 @@ extents = Vector2( 24, 24.5147 )
 extents = Vector2( 23.5, 28.2206 )
 
 [node name="BringerOfDeath" type="KinematicBody2D"]
-scale = Vector2( 1.6, 1.2 )
+scale = Vector2( 1.6, 1.6 )
 collision_layer = 2
 collision_mask = 528
 script = ExtResource( 2 )
@@ -346,7 +348,7 @@ position = Vector2( -40, -18.8235 )
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 8
-frame = 1
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 reset_on_save = false
@@ -365,10 +367,6 @@ tree_root = SubResource( 7 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 8 )
-
-[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
-
-[node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
 
 [node name="RayFrontFlip" type="RayCast2D" parent="."]
 enabled = true
@@ -400,5 +398,15 @@ collision_layer = 2
 position = Vector2( -40, -0.0147048 )
 shape = SubResource( 30 )
 disabled = true
+
+[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -20.0
+pitch_scale = 0.6
+
+[node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -25.0
+pitch_scale = 0.7
 
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

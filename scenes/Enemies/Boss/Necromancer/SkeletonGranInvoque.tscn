@@ -1,7 +1,9 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://assets/Characters/Enemies/Bosses/necromancer-add/skeleton_seeker.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Enemies/Boss/Necromancer/SkeletonGranInvoque.gd" type="Script" id=2]
+[ext_resource path="res://sfx/shade2.wav" type="AudioStream" id=3]
+[ext_resource path="res://sfx/shade14.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28, 40 )
@@ -283,10 +285,6 @@ position = Vector2( -48, -8 )
 shape = SubResource( 11 )
 disabled = true
 
-[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
-
-[node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
-
 [node name="DeadArea" type="Area2D" parent="." groups=["EnemiesDefense"]]
 rotation = 3.14159
 scale = Vector2( 1, -1 )
@@ -328,5 +326,15 @@ cast_to = Vector2( 216, 0 )
 position = Vector2( 0, 8 )
 enabled = true
 cast_to = Vector2( 160, 0 )
+
+[node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+pitch_scale = 0.3
+
+[node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+pitch_scale = 0.5
 
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

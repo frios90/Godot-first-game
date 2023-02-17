@@ -187,20 +187,24 @@ func _count_runes_in_use_by_code (code):
 	return count
 
 func _on_removeRuneDefense002_pressed():
-	Players.selected.action_defense_runes[0] = false
+	Players.selected.action_defense_runes[1] = false
 	$Accessories/RuneArmory002/input.texture = null
+	self.initOrUpdateDataPlayer()
 
 func _on_removeRuneDefense001_pressed():
-	Players.selected.action_defense_runes[1] = false
+	Players.selected.action_defense_runes[0] = false
 	$Accessories/RuneArmory001/input.texture = null
+	self.initOrUpdateDataPlayer()
 
 func _on_removeRuneAttack002_pressed():
 	Players.selected.action_attack_runes[1] = false
 	$Accessories/RuneWeapon002/input.texture = null
+	self.initOrUpdateDataPlayer()
 
 func _on_removeRuneAttack001_pressed():
 	Players.selected.action_attack_runes[0] = false
 	$Accessories/RuneWeapon001/input.texture = null
+	self.initOrUpdateDataPlayer()
 
 
 func _on_Equipar_pressed():
