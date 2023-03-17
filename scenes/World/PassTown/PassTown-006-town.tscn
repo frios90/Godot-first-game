@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://scenes/Players/Camera2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/town/props/tileset.png" type="Texture" id=2]
@@ -14,11 +14,11 @@
 [ext_resource path="res://assets/tiles/deathitch.png" type="Texture" id=12]
 [ext_resource path="res://assets/tiles/Cementery/tileset.png" type="Texture" id=13]
 [ext_resource path="res://scenes/Enemies/Boss/Necromancer/Necromancer.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/MapElements/arrowSign.png" type="Texture" id=15]
+[ext_resource path="res://scenes/GUI/btns/BtnToPress.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scripts/World/Levels/PassTown-006-town.gd" type="Script" id=16]
 [ext_resource path="res://scenes/Elements/Fire002.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/Elements/BossObelisk.tscn" type="PackedScene" id=18]
-[ext_resource path="res://scenes/Players/Knight.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/Players/__Knight.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/CanvasLayer.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/tiles/deathitch002.png" type="Texture" id=21]
 [ext_resource path="res://scenes/GUI/backmusic001.tscn" type="PackedScene" id=23]
@@ -605,6 +605,9 @@ extents = Vector2( 8.6875, 524.25 )
 2/shapes = [  ]
 2/z_index = 0
 
+[sub_resource type="CircleShape2D" id=58]
+radius = 16.0
+
 [node name="PassTown-006-town" type="Node2D"]
 script = ExtResource( 16 )
 
@@ -673,14 +676,13 @@ position = Vector2( 2232, 232 )
 shape = SubResource( 54 )
 
 [node name="InitArrow" type="Sprite" parent="."]
-position = Vector2( 40, 528.566 )
-scale = Vector2( -2.62311, 2.21244 )
+position = Vector2( 40, 530.67 )
+scale = Vector2( -2.38041, 1.87467 )
 texture = ExtResource( 5 )
 
 [node name="EndArrow" type="Sprite" parent="."]
 position = Vector2( 7552, 304 )
 scale = Vector2( 0.046, 0.0266109 )
-texture = ExtResource( 15 )
 
 [node name="Fires002" type="Node2D" parent="."]
 
@@ -774,7 +776,13 @@ position = Vector2( 1224, 552 )
 position = Vector2( 1280, 520 )
 
 [node name="Fire9" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 544, 498 )
+position = Vector2( 541, 504 )
+
+[node name="Fire29" parent="Fires" instance=ExtResource( 9 )]
+position = Vector2( 625, 478 )
+
+[node name="Fire30" parent="Fires" instance=ExtResource( 9 )]
+position = Vector2( 520, 504 )
 
 [node name="Fire10" parent="Fires" instance=ExtResource( 9 )]
 position = Vector2( 632, 552 )
@@ -861,6 +869,28 @@ position = Vector2( 2690, 648 )
 position = Vector2( 4008, 550 )
 code = 1017
 item = 1040
+
+[node name="Actions" type="Node2D" parent="."]
+
+[node name="Dialog001Boss" type="Area2D" parent="Actions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actions/Dialog001Boss"]
+position = Vector2( 2220, 456 )
+shape = SubResource( 58 )
+
+[node name="BtnToPress" parent="Actions/Dialog001Boss" instance=ExtResource( 15 )]
+visible = false
+position = Vector2( 2220, 456 )
+
+[node name="Dialog002BossDead" type="Area2D" parent="Actions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actions/Dialog002BossDead"]
+position = Vector2( 2432, 454 )
+shape = SubResource( 58 )
+
+[node name="BtnToPress" parent="Actions/Dialog002BossDead" instance=ExtResource( 15 )]
+visible = false
+position = Vector2( 2432, 454 )
 
 [connection signal="body_entered" from="Areas/Goto-007-006" to="Areas/Goto-007-006" method="_on_Goto007006_body_entered"]
 [connection signal="body_entered" from="Areas/Rtn-005-006" to="Areas/Rtn-005-006" method="_on_Rtn005006_body_entered"]

@@ -9,7 +9,7 @@ export (int) var maxSpeed        = -26
 const gravity                    = 50
 const up                         = Vector2(0, -1)
 const ptsDead                    = 9000
-var life                         = 10000
+var life                         = 1000
 onready var current_life         = life if level == 1 else life * (level * 0.77)
 var base_attack                  = 70
 var base_defense                 = 20

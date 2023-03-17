@@ -1,6 +1,5 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=61 format=2]
 
-[ext_resource path="res://assets/tiles/puente.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Players/Camera2D.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/CanvasLayer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/tiles/Cementery/mountains.png" type="Texture" id=4]
@@ -791,7 +790,7 @@ extents = Vector2( 4264, 36 )
 
 [sub_resource type="TileSet" id=26]
 0/name = "puente.png 0"
-0/texture = ExtResource( 1 )
+0/texture = ExtResource( 10 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 32, 256, 32, 32 )
@@ -1280,6 +1279,11 @@ position = Vector2( 24, 456 )
 rotation = 3.14159
 scale = Vector2( -1.55342, -1.25895 )
 texture = ExtResource( 31 )
+
+[node name="Pngwingcom" type="Sprite" parent="InitArrow"]
+position = Vector2( -56.6511, -12.7093 )
+scale = Vector2( -0.309051, 0.977278 )
+texture = ExtResource( 17 )
 
 [node name="EndArrow" type="Sprite" parent="."]
 position = Vector2( 8432, 361.884 )

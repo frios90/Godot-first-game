@@ -68,3 +68,9 @@ func setCurrentSelectedItem ():
 	else:
 		$PlayerBarControl/ItemInCircleItems.visible = false
 		$PlayerBarControl/LabelQtySelectedItem.text = ""
+
+func changeBackMusic (to_load, volume) :
+	$BackAudio.stop()
+	$BackAudio.stream = load(to_load)
+	$BackAudio.volume_db = volume
+	$BackAudio.play()

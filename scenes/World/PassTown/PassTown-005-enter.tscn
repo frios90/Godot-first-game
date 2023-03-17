@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://scenes/Players/Camera2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/Buildings.png" type="Texture" id=2]
@@ -17,13 +17,18 @@
 [ext_resource path="res://scenes/World/Chest-A.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/Enemies/HellDog.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/tiles/oak_woods_v1.0/oak_woods_tileset.png" type="Texture" id=17]
-[ext_resource path="res://scenes/World/Church/ParallaxBackground2.tscn" type="PackedScene" id=18]
-[ext_resource path="res://scenes/Players/Knight.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/Players/Knight.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/World/Cementery/ParallaxBackground.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/CanvasLayer.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/Elements/SpikesDead.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scenes/Enemies/NigthBorne.tscn" type="PackedScene" id=22]
 [ext_resource path="res://scripts/World/Levels/PassTown-005-enter.gd" type="Script" id=23]
 [ext_resource path="res://scenes/GUI/backmusic001.tscn" type="PackedScene" id=24]
+[ext_resource path="res://scenes/Elements/Traps/Trap-003.tscn" type="PackedScene" id=25]
+[ext_resource path="res://scenes/Elements/Traps/Trap001.tscn" type="PackedScene" id=26]
+[ext_resource path="res://scenes/Elements/Traps/TrapB-002.tscn" type="PackedScene" id=27]
+[ext_resource path="res://scenes/Enemies/Orc-001.tscn" type="PackedScene" id=28]
+[ext_resource path="res://scenes/Enemies/Archer.tscn" type="PackedScene" id=29]
 
 [sub_resource type="TileSet" id=39]
 0/name = "oak_woods_tileset.png 0"
@@ -1332,7 +1337,7 @@ item = 1007
 qty = 5
 
 [node name="Chest-1015" parent="Chests" instance=ExtResource( 15 )]
-position = Vector2( 2712, -88 )
+position = Vector2( 2688, -88 )
 scale = Vector2( -1.5, 1.5 )
 code = 1015
 item = 1010
@@ -1385,14 +1390,14 @@ position = Vector2( 7552, 289.925 )
 scale = Vector2( 2, 1.42419 )
 texture = ExtResource( 4 )
 
-[node name="knight" parent="." instance=ExtResource( 19 )]
-position = Vector2( 152, 520 )
+[node name="knight" parent="." instance=ExtResource( 18 )]
+position = Vector2( 144, 520 )
 
 [node name="Camera2D" parent="knight" instance=ExtResource( 1 )]
-position = Vector2( -16, -24 )
+position = Vector2( -24, -104 )
 limit_top = -10000022
 
-[node name="ParallaxBackground2" parent="knight/Camera2D" instance=ExtResource( 18 )]
+[node name="ParallaxBackground" parent="knight/Camera2D" instance=ExtResource( 19 )]
 
 [node name="front-01" type="TileMap" parent="."]
 position = Vector2( -104, -1584 )
@@ -1426,10 +1431,43 @@ position = Vector2( 4336, 424 )
 [node name="NightBorne5" parent="NightBorns" instance=ExtResource( 22 )]
 position = Vector2( 6320, -144 )
 
-[node name="Dogs" type="Node2D" parent="."]
+[node name="NightBorne6" parent="NightBorns" instance=ExtResource( 22 )]
+position = Vector2( 1576, 544 )
 
-[node name="HellDog" parent="Dogs" instance=ExtResource( 16 )]
-position = Vector2( 368, 544 )
+[node name="NightBorne7" parent="NightBorns" instance=ExtResource( 22 )]
+position = Vector2( 2040, 320 )
+
+[node name="NightBorne8" parent="NightBorns" instance=ExtResource( 22 )]
+position = Vector2( 3008, 104 )
+
+[node name="Orc-00A" parent="NightBorns" instance=ExtResource( 28 )]
+position = Vector2( 3136, 224 )
+
+[node name="Orc-00A2" parent="NightBorns" instance=ExtResource( 28 )]
+position = Vector2( 3904, 424 )
+
+[node name="Orc-00A3" parent="NightBorns" instance=ExtResource( 28 )]
+position = Vector2( 4640, 264 )
+
+[node name="Orc-00A4" parent="NightBorns" instance=ExtResource( 28 )]
+position = Vector2( 4784, -112 )
+
+[node name="NightBorne9" parent="NightBorns" instance=ExtResource( 22 )]
+position = Vector2( 5920, -128 )
+
+[node name="NightBorne10" parent="NightBorns" instance=ExtResource( 22 )]
+position = Vector2( 5056, -112 )
+
+[node name="Archer" parent="NightBorns" instance=ExtResource( 29 )]
+position = Vector2( 3144, 544 )
+
+[node name="Archer2" parent="NightBorns" instance=ExtResource( 29 )]
+position = Vector2( 3344, 480 )
+
+[node name="Archer3" parent="NightBorns" instance=ExtResource( 29 )]
+position = Vector2( 3520, 424 )
+
+[node name="Dogs" type="Node2D" parent="."]
 
 [node name="HellDog2" parent="Dogs" instance=ExtResource( 16 )]
 position = Vector2( 1224, 488 )
@@ -1447,7 +1485,7 @@ position = Vector2( 5264, -120 )
 position = Vector2( 6456, 664 )
 
 [node name="HellDog7" parent="Dogs" instance=ExtResource( 16 )]
-position = Vector2( 6464, 480 )
+position = Vector2( 6472, 504 )
 
 [node name="HellDog8" parent="Dogs" instance=ExtResource( 16 )]
 position = Vector2( 4624, 536 )
@@ -1456,6 +1494,75 @@ position = Vector2( 4624, 536 )
 position = Vector2( 4304, 0 )
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource( 24 )]
+
+[node name="traps" type="Node2D" parent="."]
+
+[node name="Trap-003" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 352, 552 )
+
+[node name="Trap-004" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 216, 312 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+dir_projectile = 1
+
+[node name="Trap-005" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 1232, 296 )
+
+[node name="Trap-006" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 1448, 488 )
+dir_projectile = 1
+
+[node name="Trap-007" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 1960, 168 )
+
+[node name="Trap-008" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 1864, 648 )
+
+[node name="TrapB-002" parent="traps" instance=ExtResource( 27 )]
+position = Vector2( 2040, 448 )
+
+[node name="TrapB-003" parent="traps" instance=ExtResource( 27 )]
+position = Vector2( 2784, 208 )
+
+[node name="Trap-009" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 3208, 232 )
+
+[node name="Trap001" parent="traps" instance=ExtResource( 26 )]
+position = Vector2( 2816, -88 )
+
+[node name="Trap-010" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 5728, 440 )
+
+[node name="Trap-011" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 5448, 488 )
+
+[node name="Trap-012" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 6496, 504 )
+
+[node name="Trap002" parent="traps" instance=ExtResource( 26 )]
+position = Vector2( 6352, 680 )
+
+[node name="Trap-013" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 6712, 664 )
+
+[node name="Trap-014" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 6920, 440 )
+
+[node name="Trap-015" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 7400, 296 )
+
+[node name="Trap-016" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 6832, -504 )
+
+[node name="Trap003" parent="traps" instance=ExtResource( 26 )]
+position = Vector2( 6512, -712 )
+
+[node name="Trap-017" parent="traps" instance=ExtResource( 25 )]
+position = Vector2( 6488, -200 )
+
+[node name="Trap004" parent="traps" instance=ExtResource( 26 )]
+position = Vector2( 5664, -328 )
 
 [connection signal="body_entered" from="Areas/Goto-006-005" to="Areas/Goto-006-005" method="_on_Goto006005_body_entered"]
 [connection signal="body_entered" from="Areas/Rtn-004-005" to="Areas/Rtn-004-005" method="_on_Rtn004005_body_entered"]

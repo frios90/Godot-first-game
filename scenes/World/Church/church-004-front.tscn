@@ -1,7 +1,7 @@
 [gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://scripts/World/ScriptChangeScene.gd" type="Script" id=1]
-[ext_resource path="res://scenes/World/Church/ParallaxBackground2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Players/Knight.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/tiles/Cementery/objects.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Players/Camera2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/tiles/cave/SismileBOnes.png" type="Texture" id=5]
@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/tiles/Cementery/oneWay.png" type="Texture" id=7]
 [ext_resource path="res://assets/tiles/Seleccion-01/Props-Rocks.png" type="Texture" id=8]
 [ext_resource path="res://assets/tiles/Mountain.png" type="Texture" id=9]
-[ext_resource path="res://scenes/Players/Knight.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/World/Cementery/ParallaxBackground.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/tiles/Cementery/mountains.png" type="Texture" id=11]
 [ext_resource path="res://scenes/Elements/torch-big-01.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/tiles/Cementery/objects2.png" type="Texture" id=13]
@@ -1433,14 +1433,14 @@ texture = ExtResource( 19 )
 position = Vector2( 248, -190.769 )
 texture = ExtResource( 21 )
 
-[node name="knight" parent="." instance=ExtResource( 10 )]
-position = Vector2( 168, 536 )
+[node name="knight" parent="." instance=ExtResource( 2 )]
+position = Vector2( 3048, 857.6 )
 
 [node name="Camera2D" parent="knight" instance=ExtResource( 4 )]
-position = Vector2( -8, -112 )
+position = Vector2( -24, -104 )
 limit_top = -10000022
 
-[node name="ParallaxBackground2" parent="knight/Camera2D" instance=ExtResource( 2 )]
+[node name="ParallaxBackground" parent="knight/Camera2D" instance=ExtResource( 10 )]
 
 [node name="front-01" type="TileMap" parent="."]
 position = Vector2( 7, 0 )

@@ -1,9 +1,8 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scripts/Enemies/HellDog.gd" type="Script" id=1]
 [ext_resource path="res://assets/Characters/Enemies/undead-dog.png" type="Texture" id=2]
 [ext_resource path="res://assets/imgs/hp-bar-bg-small.png" type="Texture" id=3]
-[ext_resource path="res://scenes/World/Chest-A.tscn" type="PackedScene" id=4]
 [ext_resource path="res://sfx/shade2.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/imgs/hp-bar-prog-small.png" type="Texture" id=6]
 [ext_resource path="res://sfx/shade14.wav" type="AudioStream" id=7]
@@ -217,7 +216,7 @@ extents = Vector2( 44, 24 )
 extents = Vector2( 36, 24 )
 
 [node name="HellDog" type="KinematicBody2D" groups=["Enemies"]]
-scale = Vector2( 0.6, 0.7 )
+scale = Vector2( 0.4, 0.8 )
 collision_layer = 2
 collision_mask = 528
 script = ExtResource( 1 )
@@ -298,19 +297,14 @@ collision_mask = 528
 position = Vector2( -4, -8 )
 shape = SubResource( 27 )
 
-[node name="Chest-1014" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1616, 552 )
-code = 1014
-item = 1040
-
 [node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -30.0
-pitch_scale = 1.9
+volume_db = -20.0
+pitch_scale = 1.57
 
 [node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -30.0
-pitch_scale = 1.9
+volume_db = -20.0
+pitch_scale = 1.57
 
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

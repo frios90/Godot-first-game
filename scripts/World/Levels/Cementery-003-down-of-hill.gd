@@ -109,11 +109,15 @@ func _ready():
 		$knight.position.y = $EndArrow.position.y
 
 func _process(delta):	
-	self.initDialog()
-	if not Msgs.forgot and Msgs.in_dialog:		
-		if Input.is_action_just_pressed("attack"):
-			self.showMessages()
-			Msgs.forgot = true
+	if Msgs.dlg_002.is_done :
+		Msgs.forgot    = false
+		Msgs.in_dialog = false
+	else:		
+		self.initDialog()
+		if not Msgs.forgot and Msgs.in_dialog:		
+			if Input.is_action_just_pressed("attack"):
+				self.showMessages()
+				Msgs.forgot = true
 
 func initDialog () :
 	if $OldMan/RayInitDialog.is_colliding():

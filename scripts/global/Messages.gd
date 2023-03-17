@@ -23,3 +23,10 @@ var dlg_003 = {
 	"is_done"     : false,
 	"description" : "Dialogo con el nigromante solomon previo a la batalla"
 }
+
+var dlg_004 = {
+	"active"      : false,
+	"can_repeat"  : false,
+	"is_done"     : false,
+	"description" : "Dialogo con el nigromante solomon al morir"
+}

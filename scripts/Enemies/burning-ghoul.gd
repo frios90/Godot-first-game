@@ -3,32 +3,25 @@ extends KinematicBody2D
 const true_positon_sprite        = false
 var floating_text                = preload("res://scenes/FloatingText.tscn")
 var ftd                          = 0
-
 export (int) var level           = 1
 export (int) var scaleX          = 1
 export (int) var withMoveAndFlip = 0
 export (int) var maxSpeed        = 120
-
-
 const gravity                    = 1600
 const up                         = Vector2(0, -1)
-
 const ptsDead                    = 150
 var dead                         = false 
 var life                         = 50
 var base_attack                  = 60
 var base_defense                 = 15
 var motion                       = Vector2(0, 0)
-
 var is_attacking                 = false
 var  is_detecting                = false 
 var _delta                       = 0
 var useRandSound                 = 0
-
 onready var attack               = base_attack if level == 1 else base_attack * (level * 0.77)
 onready var defense              = base_defense if level == 1 else base_defense * (level * 0.55)
 onready var current_life         = life if level == 1 else life * (level * 0.77)
-
 
 func _ready():
 	$HPbar.max_value = life if level == 1 else life * (level * 0.77)
@@ -36,8 +29,6 @@ func _ready():
 	scale.x          = scaleX
 	$AnimationPlayer.play("attack")
 	motion.x = maxSpeed 
-
-
 
 func _process(delta):
 	if not dead:	
@@ -54,9 +45,6 @@ func flip():
 		self.scale.x  *= -1
 		self.motion.x *= -1
 
-
-		
-		
 func _call_method_finish_detect () :
 	motion.x = maxSpeed * -5
 	

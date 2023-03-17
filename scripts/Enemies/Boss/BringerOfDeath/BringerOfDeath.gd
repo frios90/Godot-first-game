@@ -176,7 +176,5 @@ func _DEAD ():
 			get_parent().get_node("BringerHandAttack").queue_free()
 		get_parent()._finish_battle()
 
-
-	
 func _callMethodFinishDead () :
 	self.queue_free()

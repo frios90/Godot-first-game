@@ -4,17 +4,27 @@ var messages_battle_necromancer_001 = [
 	{
 		"issuing" : "necro",
 		"title"   : "Nigromante",
-		"message" : "Vaya... conozco ese edor... pero no eres creación mía. Dime, quien te envía?"
-	},
-	{
-		"issuing" : "player",
-		"title"   : "Gustavo",
-		"message" : "He recorrido un largo camino sin tener respuestas, no necesito mas preguntas!"
+		"message" : "..."
 	},
 	{
 		"issuing" : "necro",
 		"title"   : "Nigromante",
-		"message" : "INSOLENTE... no te das cuenta a quien te diriges? ..."
+		"message" : "Vaya... conozco ese aroma. Es el asqueroso incienso de los muertos. A que has venido hijo mio?"
+	},
+	{
+		"issuing" : "necro",
+		"title"   : "Nigromante",
+		"message" : "Aunque... no recuerdo haber traido a la vida a un ser tan ... fresco"
+	},
+	{
+		"issuing" : "player",
+		"title"   : "Gustavo",
+		"message" : "No soy creación tuya maldita sabandija!... he venido a buscar respuestas. Si tienes algo que ver con lo que esta pasando... es momento de que hables!"
+	},
+	{
+		"issuing" : "necro",
+		"title"   : "Nigromante",
+		"message" : "INSOLENTE... acaso no sabes a quien tienes en frente? ..."
 	},
 	{
 		"issuing" : "player",
@@ -24,7 +34,7 @@ var messages_battle_necromancer_001 = [
 	{
 		"issuing" : "player",
 		"title"   : "Gustavo",
-		"message" : "No eres mas que otro parasito, salido de su tumba..."
+		"message" : "No eres más que otro parasito salido de su tumba..."
 	},
 	{
 		"issuing" : "necro",
@@ -34,19 +44,21 @@ var messages_battle_necromancer_001 = [
 	{
 		"issuing" : "necro",
 		"title"   : "Nigromante",
-		"message" : "soy SOLOMON, rey de los muertos y claramente tú no eres creación mía y la verdad no importa de donde hayas salido ..."
+		"message" : "soy SOLOMON, el Nigromante..."
 	},
 	{
 		"issuing" : "necro",
 		"title"   : "Nigromante",
-		"message" : "formaras parte de mi ejercito de muertos, yo.. el Nigromante te sentencio a la agonia eterna..."
+		"message" : "Preparate, porque haré que te arrodilles ante mi como lo que eres... un sucio cadaver"
 	},
 ]
 
 
+
 var dead_last_invoque = false
 
-var number_message_first_msg = 1
+var number_message_first_msg  = 1
+var number_message_second_msg = 1
 var speed_text    = 0.08
 var end_first_msg = false
 
@@ -62,20 +74,27 @@ func _ready():
 
 func _process(delta):
 	if not Msgs.forgot and Msgs.in_dialog:		
-		self.showMessages()
-		Msgs.forgot = true
-
+		if Input.is_action_just_pressed("attack") and not Msgs.dlg_003.is_done:
+			self.showMessages()
+			Msgs.forgot = true
+		elif Input.is_action_just_pressed("attack") and not Msgs.dlg_004.is_done:
+			self.showDeadMessages()
+			Msgs.forgot = true
 
 func _on_EnterBattle_body_entered(body):
 	if body.get_name() == 'knight':
 		if not DbBoss.necromancer_002.dead:
 			self.initDialog()
-			self.call_deferred("_cd_init_battle")
-
 
 func initDialog () :
+	$Actions/Dialog001Boss/BtnToPress.visible = true
 	Msgs.in_dialog      = true
 	Msgs.dlg_003.active = true
+
+func initDialogDead () :
+	$Actions/Dialog002BossDead/BtnToPress.visible = true
+	Msgs.in_dialog      = true
+	Msgs.dlg_004.active = true
 		
 func showMessages () :
 	if number_message_first_msg < messages_battle_necromancer_001.size():
@@ -89,16 +108,35 @@ func showMessages () :
 		Msgs.in_dialog       = false				
 		Msgs.forgot          = false
 		Msgs.dlg_003.is_done = true
-		var item             = ItemsGbl._get_item_by_code(1027)
-		Players._add_item(item, 1)
+		self.call_deferred("_cd_init_battle")
+#		var item             = ItemsGbl._get_item_by_code(1027)
+#		Players._add_item(item, 1)
 
 	number_message_first_msg += 1
+	
+func showDeadMessages () :
+	if number_message_second_msg < messages_battle_necromancer_001.size():
+		if self.box_msg:
+			self.box_msg.queue_free()
+		self.box_msg  = self.addChildBoxMsg()
+		self.box_msg._set_message(messages_battle_necromancer_001[number_message_second_msg])
+		
+	else:
+		self.box_msg.queue_free()
+		Msgs.in_dialog       = false				
+		Msgs.forgot          = false
+		Msgs.dlg_004.is_done = true
+		self.call_deferred("_cd_init_battle")
+		var item             = ItemsGbl._get_item_by_code(1003)
+		Players._add_item(item, 5)
+
+	number_message_second_msg += 1
 
 func addChildBoxMsg():
 	var box        = load("res://scenes/GUI/MsgBoxA.tscn")
 	box            = box.instance()
 	box.position.x = $knight.position.x 
-	box.position.y = $knight.position.y + 50
+	box.position.y = $knight.position.y + 20
 	self.add_child(box)
 	return box
 
@@ -108,6 +146,7 @@ func _cd_init_battle ():
 #	$CanvasLayer/BackAudio.stream = load(DbBoss.bringer_of_deadth_001._battleAudio)
 #	$CanvasLayer/BackAudio.play()
 #	$Necromancer.motion.x = $Necromancer.maxSpeed
+	$Actions/Dialog001Boss/BtnToPress.visible = false
 	$Areas/EnterBattle.queue_free()
 	$BossObelisk/CollisionShape2D.disabled = false
 	$BossObelisk/AnimationPlayer.play("action")

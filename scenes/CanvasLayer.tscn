@@ -245,3 +245,6 @@ margin_bottom = 64.0
 texture_under = ExtResource( 9 )
 texture_progress = ExtResource( 10 )
 nine_patch_stretch = true
+
+[node name="BackAudio" type="AudioStreamPlayer" parent="."]
+volume_db = -25.0
