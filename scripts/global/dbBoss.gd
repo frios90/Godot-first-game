@@ -83,3 +83,17 @@ var water_spirit = {
 	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"	
 }
 
+var wind_spirit = {
+	"id"    : 007,
+	"name"  : "Espíritu de aire",
+	"dead"  : false,
+	"level" : 1,
+	"maxSpeed"     : 1000,
+	"ptsDead"      : 0,
+	"life"         : 9999999,
+	"drop_gems"    : 0,
+	"base_attack"  : 999999,
+	"base_defense" : 999999,
+	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"	
+}
+

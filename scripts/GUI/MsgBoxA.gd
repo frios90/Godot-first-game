@@ -32,3 +32,14 @@ func _set_message (message):
 func _on_Tween_tween_completed(object, key):
 	Msgs.forgot = false
 
+
+func _unique_event_message(message):
+	$Control/Message.bbcode_text     = message.message
+	$Control/Message.percent_visible = 0
+	$Control/Title.text              =  message.title
+	var duration = speed_text * message.message.length()
+	$Control/Tween.interpolate_property(
+		$Control/Message,"percent_visible",0,1,duration,Tween.TRANS_LINEAR,Tween.EASE_IN_OUT
+	)
+	$Control/Tween.start()
+

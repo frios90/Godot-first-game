@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://assets/Characters/Enemies/Bosses/WaterSpirit.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Enemies/Boss/WaterSpirit.gd" type="Script" id=2]
@@ -268,27 +268,29 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=48]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+
 [sub_resource type="AnimationNodeStateMachine" id=2]
 states/attack/node = SubResource( 13 )
-states/attack/position = Vector2( 262, 199 )
+states/attack/position = Vector2( 264, 199 )
 states/charge/node = SubResource( 30 )
 states/charge/position = Vector2( 664, 129.327 )
 states/dead/node = SubResource( 14 )
 states/dead/position = Vector2( 712, 342 )
 states/dive/node = SubResource( 45 )
-states/dive/position = Vector2( 280, 297.333 )
+states/dive/position = Vector2( 281, 297.333 )
 states/hurt/node = SubResource( 16 )
 states/hurt/position = Vector2( 556, 342 )
 states/ice/node = SubResource( 38 )
 states/ice/position = Vector2( 421, 143.73 )
 states/idle/node = SubResource( 17 )
-states/idle/position = Vector2( 618.667, 245.333 )
+states/idle/position = Vector2( 645.667, 216.333 )
 states/jump/node = SubResource( 36 )
 states/jump/position = Vector2( 865, 141.327 )
-transitions = [ "idle", "attack", SubResource( 21 ), "attack", "idle", SubResource( 22 ), "idle", "hurt", SubResource( 25 ), "attack", "hurt", SubResource( 26 ), "hurt", "idle", SubResource( 28 ), "hurt", "dead", SubResource( 29 ), "idle", "charge", SubResource( 31 ), "charge", "idle", SubResource( 32 ), "charge", "jump", SubResource( 37 ), "idle", "ice", SubResource( 39 ), "ice", "idle", SubResource( 40 ), "ice", "charge", SubResource( 41 ), "ice", "hurt", SubResource( 42 ), "jump", "idle", SubResource( 43 ), "idle", "dive", SubResource( 46 ), "dive", "idle", SubResource( 47 ), "attack", "dive", SubResource( 48 ) ]
+transitions = [ "idle", "attack", SubResource( 21 ), "attack", "idle", SubResource( 22 ), "idle", "hurt", SubResource( 25 ), "attack", "hurt", SubResource( 26 ), "hurt", "idle", SubResource( 28 ), "hurt", "dead", SubResource( 29 ), "idle", "charge", SubResource( 31 ), "charge", "idle", SubResource( 32 ), "charge", "jump", SubResource( 37 ), "idle", "ice", SubResource( 39 ), "ice", "idle", SubResource( 40 ), "ice", "charge", SubResource( 41 ), "ice", "hurt", SubResource( 42 ), "jump", "idle", SubResource( 43 ), "idle", "dive", SubResource( 46 ), "dive", "idle", SubResource( 47 ), "attack", "dive", SubResource( 48 ), "hurt", "dive", SubResource( 49 ) ]
 start_node = "idle"
 end_node = "dead"
-graph_offset = Vector2( 0, 89.7298 )
+graph_offset = Vector2( 0, 139.514 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
@@ -307,12 +309,12 @@ collision_mask = 528
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -8, 20 )
+position = Vector2( -8, 8 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -8, 0 )
-scale = Vector2( 3, 2.5 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 6
@@ -338,21 +340,21 @@ parameters/playback = SubResource( 3 )
 [node name="ChargeArea" type="Area2D" parent="." groups=["Enemies"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeArea"]
-position = Vector2( -4, 24 )
+position = Vector2( -4, 8 )
 shape = SubResource( 33 )
 
 [node name="DeadArea" type="Area2D" parent="." groups=["EnemiesDefense"]]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
-position = Vector2( -8, 18.0952 )
+position = Vector2( -4, 8 )
 shape = SubResource( 11 )
 
 [node name="AttackArea" type="Area2D" parent="." groups=["Enemies"]]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( 36, 18 )
+position = Vector2( 40, 8 )
 shape = SubResource( 12 )
 disabled = true
 
@@ -367,20 +369,20 @@ volume_db = -13.434
 [node name="RayAttack" type="RayCast2D" parent="."]
 position = Vector2( 0, 24 )
 enabled = true
-cast_to = Vector2( 128, 0 )
+cast_to = Vector2( 88, 0 )
 
 [node name="RayFlip" type="RayCast2D" parent="."]
 position = Vector2( 0, 32 )
 cast_to = Vector2( 80, 0 )
 collision_mask = 528
 
-[node name="RayBumpRocks" type="RayCast2D" parent="."]
+[node name="RayWaterShot" type="RayCast2D" parent="."]
 position = Vector2( 128, 0 )
 enabled = true
 cast_to = Vector2( 408, 0 )
 
 [node name="RayDive" type="RayCast2D" parent="."]
-position = Vector2( -32, 48 )
-cast_to = Vector2( -24, 0 )
+position = Vector2( -24, 40 )
+cast_to = Vector2( -32, 0 )
 
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

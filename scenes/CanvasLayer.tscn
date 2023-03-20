@@ -233,7 +233,7 @@ margin_right = 424.0
 margin_bottom = -8.0
 
 [node name="CircleBoss" type="Sprite" parent="BossBarControl"]
-position = Vector2( 64, 56 )
+position = Vector2( 56, 56 )
 scale = Vector2( 0.258484, 0.237918 )
 texture = ExtResource( 4 )
 

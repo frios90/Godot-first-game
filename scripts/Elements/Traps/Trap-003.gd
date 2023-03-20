@@ -21,7 +21,7 @@ func _process(_delta):
 func _callMethodStartAttack () :
 	var projectile = load("res://scenes/Spells/Projectile002.tscn")
 	projectile = projectile.instance()
-	projectile.position.x = self.position.x 
+	projectile.position.x = self.position.x + (20 * self.dir_projectile)
 	projectile.position.y = self.position.y + 1
 	projectile.maxSpeed   = self.speed_shoot if dir_projectile < 0 else self.speed_shoot * -1
 	projectile.attack     = self.power_shoot 

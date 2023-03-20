@@ -7,7 +7,7 @@
 extents = Vector2( 16, 4 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16, 4 )
+extents = Vector2( 32, 4 )
 
 [node name="Projectile" type="KinematicBody2D"]
 collision_layer = 8192

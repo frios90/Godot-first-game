@@ -5,7 +5,7 @@
 [ext_resource path="res://sfx/giant2.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 40 )
+extents = Vector2( 16, 104 )
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -224,7 +224,7 @@ states/idle/position = Vector2( 618.667, 245.333 )
 transitions = [ "idle", "attack", SubResource( 21 ), "attack", "idle", SubResource( 22 ), "idle", "fire", SubResource( 23 ), "fire", "idle", SubResource( 24 ), "idle", "hurt", SubResource( 25 ), "attack", "hurt", SubResource( 26 ), "fire", "hurt", SubResource( 27 ), "hurt", "idle", SubResource( 28 ), "hurt", "dead", SubResource( 29 ), "idle", "charge", SubResource( 31 ), "charge", "idle", SubResource( 32 ), "fire", "charge", SubResource( 34 ) ]
 start_node = "idle"
 end_node = "dead"
-graph_offset = Vector2( 0, 45.3267 )
+graph_offset = Vector2( 0, 52.4387 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
@@ -232,7 +232,7 @@ graph_offset = Vector2( 0, 45.3267 )
 extents = Vector2( 28, 36 )
 
 [sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 48, 41.9048 )
+extents = Vector2( 24, 40 )
 
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 43.5834, 44 )
@@ -243,16 +243,16 @@ collision_mask = 528
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 16 )
+position = Vector2( -16, -8 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -24, 5 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 6
-frame = 40
+frame = 46
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 4 )
@@ -272,14 +272,14 @@ parameters/playback = SubResource( 3 )
 [node name="ChargeArea" type="Area2D" parent="." groups=["Enemies"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeArea"]
-position = Vector2( 4, 20 )
+position = Vector2( -16, 8 )
 shape = SubResource( 33 )
 
 [node name="DeadArea" type="Area2D" parent="." groups=["EnemiesDefense"]]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
-position = Vector2( -8, 14.0952 )
+position = Vector2( -32, -16 )
 shape = SubResource( 11 )
 
 [node name="AttackArea" type="Area2D" parent="." groups=["Enemies"]]
@@ -293,6 +293,7 @@ disabled = true
 [node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -15.0
+pitch_scale = 3.5
 
 [node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )

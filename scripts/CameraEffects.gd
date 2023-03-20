@@ -11,7 +11,6 @@ var noise_y : float
 
 onready var noise: OpenSimplexNoise = OpenSimplexNoise.new()
 
-
 func _ready () :
 	randomize()	
 	noise.period = 6

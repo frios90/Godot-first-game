@@ -12,15 +12,15 @@ func _process(delta):
 	var door_in_open = Doors._get_door_by_code(self.code)
 	if door_in_open.open:
 		Doors.doors[door_in_open.key].open = false
-		$knight.position.x = $InitArrow.position.x + 100
-		$knight.position.y = $InitArrow.position.y
+		Env.player_origin_position = "init"	
+		Env.non_use = get_tree().change_scene("res://scenes/World/Church/Church-007-inside.tscn")
 
 func _on_ChurchDoor_area_entered(area):
 	if area.is_in_group("Player"):
 		$ChurchDoor/CollisionShape2D/BtnToPress.visible = true
 		
-
-
 func _on_ChurchDoor_area_exited(area):
 	if area.is_in_group("Player"):
 		$ChurchDoor/CollisionShape2D/BtnToPress.visible = false
+		if self.has_node("MsgBoxA"):				
+			self.get_node("MsgBoxA").queue_free()

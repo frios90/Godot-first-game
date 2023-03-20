@@ -251,7 +251,22 @@ func  openDoor (door):
 		if has_key:
 			Doors.doors[door_to_open.key].open = true
 		else:
-			print("la puerta no se puede abrir")
+			if not get_parent().has_node("MsgBoxA"):
+				var box = load("res://scenes/GUI/MsgBoxA.tscn")
+				box = box.instance()
+				box.position.x = self.position.x 
+				box.position.y = self.position.y + 50
+				get_parent().add_child(box)
+				var msg = {
+					"issuing" : "System",
+					"title"   : "Iglesia",
+					"message" : "La puerta esta cerrada con llave",
+					"autoclose" : true
+				}
+				box._unique_event_message(msg)
+			else :
+				get_parent().get_node("MsgBoxA").queue_free()
+			
 
 
 func _on_DeadArea_area_exited(area):

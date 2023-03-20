@@ -28,12 +28,14 @@ onready var current_life         = life if level == 1 else life * (level * 0.77)
 
 var to_jump       = 1
 var count_to_jump = 0
-
 var in_jump = false
+
+var to_dive       = 2
+var count_to_dive = 0
 var in_dive = false
 
 var state_machine
-var dir_rocks_attack = 1
+var dir_attacks = 1
 var power_shoot  = 70
 var speed_shoot = 250
 var hits_to_charge       = 2
@@ -74,9 +76,7 @@ func _process(delta):
 			moveOrIdle()
 			dive()
 			attacking()
-#			bumpRocks()
-#			fallRocks()
-#			wallRocks()
+#			waterShot()
 		if is_on_floor():
 			self.motion.y = 0
 	else:
@@ -102,7 +102,7 @@ func flip():
 		self.maxSpeed         *= -1
 		self.scale.x          *= -1
 		self.motion.x          = self.maxSpeed
-		self.dir_rocks_attack *= -1
+		self.dir_attacks      *= -1
 		self.speed_shoot      *= -1
 		self.count_to_jump += 1			
 
@@ -113,6 +113,10 @@ func jump () :
 	jump_splash.position.y = self.position.y  -200
 	get_parent().add_child(jump_splash)
 	$CollisionShape2D.disabled = true
+	$ChargeArea/CollisionShape2D.disabled = true
+	$DeadArea/CollisionShape2D.disabled   = true
+	$AttackArea/CollisionShape2D.disabled = true
+		
 	self.in_jump = true
 	self.in_dive = false
 	
@@ -120,30 +124,52 @@ func jump () :
 	self.motion.y = -1000
 	self.motion.x = 0
 	$RayFlip.enabled = false
-	Env.non_use   = move_and_slide(motion, up)
-	
+	Env.non_use = move_and_slide(motion, up)
 	
 
 func _cm_finish_jump ():
 	self.in_jump = false
 	$CollisionShape2D.disabled = false
+	$ChargeArea/CollisionShape2D.disabled = false
+	$DeadArea/CollisionShape2D.disabled   = false
+
 
 func dive ():
-	if $RayDive.is_colliding():
+	if $RayDive.is_colliding() or self.count_to_dive == self.to_dive:
 		motion.x = 0		
+		if self.count_to_dive == self.to_dive:
+			self.count_to_dive = 0	
 		state_machine.travel("dive")	
 		$CollisionShape2D.disabled = true
 		$DeadArea/CollisionShape2D.disabled = true
 		$RayDive.enabled = false
+		$RayAttack.enabled = false
+		
 
 func _cm_finish_dive ():
+
 	self.in_dive = true
 	$RayFlip.enabled = true
+	$RayAttack.enabled = true
 	$CollisionShape2D.disabled = false
 	$DeadArea/CollisionShape2D.disabled = false
+	_wave(-50, false)
+	_wave(500, true)
+
+func _wave (plus_x, invert_dir) :
+	var wave = load("res://scenes/Spells/Wave.tscn")
+	wave = wave.instance()
+	wave.position.x = self.position.x + ((plus_x) * self.dir_attacks) 
+	wave.position.y = self.position.y + 46
+	
+	var event_dir = self.dir_attacks if not invert_dir else self.dir_attacks *-1
+	wave.scale.x    = event_dir
+	wave.speed      = wave.speed * event_dir 
+	get_parent().add_child(wave)
+	
 	
 func attacking () :
-	if $RayAttack.is_colliding():		
+	if $RayAttack.is_colliding() and not self.in_dive:		
 		motion.x = 0
 		state_machine.travel("attack")	
 		self.count_to_leave_bump_rocks = 0
@@ -154,17 +180,10 @@ func _cm_init_attack () :
 
 func _cm_end_attack () :
 	$AttackArea/CollisionShape2D.disabled   = true
-
 		
-func bumpRocks () :
-	if $RayBumpRocks.is_colliding():
-		motion.x = 0
-		state_machine.travel("ice")
 
-func fallRocks () :
-	if self.to_fall_rocks == self.count_to_fall_rocks:		
-		state_machine.travel("FallRocks")
-		self.in_fall_rocks = true
+
+
 		
 func wallRocks () :
 	if self.to_wall_rocks == self.count_to_wall_rocks:		
@@ -182,75 +201,53 @@ func charge () :
 			$ChargeArea/CollisionShape2D.disabled = true
 			$DeadArea/CollisionShape2D.disabled   = false			
 			self.jump()
+
+func waterShot () :
+	if $RayWaterShot.is_colliding():
+		motion.x = 0
+		state_machine.travel("ice")
 			
 func _call_bumrock () :
 	var bumprock = load("res://scenes/Spells/BumpRock.tscn")
 	bumprock = bumprock.instance()
-	bumprock.position.x = self.position.x + (50 * self.dir_rocks_attack)
+	bumprock.position.x = self.position.x + (50 * self.dir_attacks)
 	bumprock.position.y = self.position.y + 46
-	bumprock.scale.x    = self.dir_rocks_attack
-	bumprock.speed      = bumprock.speed * self.dir_rocks_attack 
+	bumprock.scale.x    = self.dir_attacks
+	bumprock.speed      = bumprock.speed * self.dir_attacks 
 	get_parent().add_child(bumprock)
 	self.count_to_leave_bump_rocks += 1
 	self.in_bump_rocks = false
-
-
-func _call_fall_rocks () :	
-	for i in 5:
-		var fallrocks = load("res://scenes/Spells/FallRock.tscn")
-		fallrocks = fallrocks.instance()
-		fallrocks.position.x = self.position.x + (50 * i * 3 * self.dir_rocks_attack)
-		fallrocks.position.y = self.position.y  - 250
-
-		fallrocks.scale.y    = 2.5
-		fallrocks.scale.x    = self.dir_rocks_attack * 2.5
-		fallrocks.speed      = fallrocks.speed * self.dir_rocks_attack 
-		get_parent().add_child(fallrocks)
-		
-	self.count_to_fall_rocks = 0
-	self.in_fall_rocks = false
-
-func _call_wall_rocks () :	
-	var initialX = self.position.x + 100 * self.dir_rocks_attack
-	for i in 5:
-		var wallrocks = load("res://scenes/Spells/WallRock.tscn")
-		wallrocks = wallrocks.instance()
-		wallrocks.position.x = initialX + (50 * i * 3 * self.dir_rocks_attack)
-		wallrocks.position.y = self.position.y
-		wallrocks.scale.x    = self.dir_rocks_attack
-		get_parent().add_child(wallrocks)
-		
-	self.count_to_wall_rocks = 0
-	self.in_wall_rocks = false
 
 func _callMethodFinishDead () :
 	queue_free()
 
 func _on_DeadArea_area_entered(area):
 	if area.is_in_group("Sword"):	
-			
+		
 		self.applySwordEffecs()	
 				
-		if DbBoss.water_spirit.dead == false :
-			self.count_hits_to_charge += 1
-			self.state_machine.travel("hurt")	
-			self.current_life = current_life - Players._get_attack(self.defense)			
-			floatDamageCount()
-			Util.get_an_script("CanvasLayer").handleUpdateHpBarBoss(DbBoss.water_spirit.life, current_life)
+		if not self.in_dive:
 
-		if current_life <= 0:
-			if (DbBoss.water_spirit.dead == false):
-				self.call_deferred("_cd_magic_circle_death")
-				self.state_machine.travel("dead")
-				DbBoss.water_spirit.dead =  true
-				Util.get_an_script("knight")._increment_exp_player(DbBoss.water_spirit.ptsDead)
-				Env._dropGems(self.position, DbBoss.water_spirit.drop_gems)
-				get_parent()._finish_battle_water_spirit()
-				var item = ItemsGbl._get_item_by_code(1025)
-				Players._add_item(item, 1)
+			if DbBoss.water_spirit.dead == false :
+				self.count_to_dive +=1	
+				self.count_hits_to_charge += 1
+				self.state_machine.travel("hurt")	
+				self.current_life = current_life - Players._get_attack(self.defense)			
+				floatDamageCount()
+				Util.get_an_script("CanvasLayer").handleUpdateHpBarBoss(DbBoss.water_spirit.life, current_life)
+
+			if current_life <= 0:
+				if (DbBoss.water_spirit.dead == false):
+					self.call_deferred("_cd_magic_circle_death")
+					self.state_machine.travel("dead")
+					DbBoss.water_spirit.dead =  true
+					Util.get_an_script("knight")._increment_exp_player(DbBoss.water_spirit.ptsDead)
+					Env._dropGems(self.position, DbBoss.water_spirit.drop_gems)
+					get_parent()._finish_battle_water_spirit()
+					var item = ItemsGbl._get_item_by_code(1025)
+					Players._add_item(item, 1)
 
 func applySwordEffecs ():	
-	print("aqui esta esto")
 	Util.get_an_script("Camera2D").trauma = true
 	$SwordHurt01.playing  = true
 		

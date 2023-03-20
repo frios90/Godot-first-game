@@ -1,5 +1,7 @@
 extends Node
-
+var town_name = "Pueblo"
+var final_boss_name = "Nicromante"
+var name_other_world = "upDownSIde"
 var in_dialog = false
 
 var non_use
