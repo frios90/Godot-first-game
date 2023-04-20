@@ -47,7 +47,7 @@ var to_wall_rocks       = 1
 var count_to_wall_rocks = 0
 var in_wall_rocks       = false
 
-func _ready():		
+func _ready():
 	Util.get_an_script("CanvasLayer").get_node("BossBarControl/HPBarBoss").value = DbBoss.sand_spirit.life
 	self.state_machine = $AnimationTree.get("parameters/playback")
 	self.state_machine.start("idle")
@@ -60,7 +60,7 @@ func _process(delta):
 		
 		self.motion.y += gravity * delta
 		moveOrIdle()
-		attacking()		
+		attacking()
 		bumpRocks()
 		fallRocks()
 		wallRocks()

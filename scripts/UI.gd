@@ -3,7 +3,8 @@ extends CanvasLayer
 var screenPause : String = "res://scenes/MenuPause.tscn" 
 var paused      : Object = null
 
-func _ready () :		
+func _ready () :	
+#	$BackAudio.play()	
 	$PopUpItem.visible    = false
 	$PlayerBarControl/LabelTotalGems.text  = String(Players.selected.gems)
 	$PlayerBarControl/HPbar.value          = (float(100) / float(Players.selected.stats.health_points)) * float(Players.selected.stats.current_hp)

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://sfx/coin.wav" type="AudioStream" id=1]
 [ext_resource path="res://sfx/Step-3.wav" type="AudioStream" id=2]
-[ext_resource path="res://scripts/knight.gd" type="Script" id=3]
+[ext_resource path="res://scripts/0002knight.gd" type="Script" id=3]
 [ext_resource path="res://sfx/swing2.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/Characters/Player/sprite-player.png" type="Texture" id=8]
 

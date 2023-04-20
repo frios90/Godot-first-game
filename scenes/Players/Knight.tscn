@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://sfx/coin.wav" type="AudioStream" id=1]
 [ext_resource path="res://sfx/Step-3.wav" type="AudioStream" id=2]
@@ -473,12 +473,6 @@ tracks/1/keys = {
 "values": [ true, true ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=230]
-animation = "air-attack-impact"
-
-[sub_resource type="AnimationNodeAnimation" id=231]
-animation = "air-attack"
-
 [sub_resource type="AnimationNodeAnimation" id=180]
 animation = "attack"
 
@@ -549,6 +543,7 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=201]
 switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=202]
 
@@ -567,6 +562,7 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=220]
 switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=236]
 
@@ -584,21 +580,8 @@ switch_mode = 2
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=245]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=247]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=248]
-switch_mode = 2
-auto_advance = true
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=249]
 switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=250]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=253]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=254]
 
@@ -614,11 +597,10 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=260]
 switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=261]
 switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=262]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=263]
 switch_mode = 2
@@ -667,46 +649,55 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=288]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=289]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=290]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=291]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=292]
+switch_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id=196]
-states/air-attack/node = SubResource( 231 )
-states/air-attack/position = Vector2( 103.279, 138.951 )
-states/air-attack-impact/node = SubResource( 230 )
-states/air-attack-impact/position = Vector2( 103.976, 252.333 )
 states/attack/node = SubResource( 180 )
-states/attack/position = Vector2( 1057.67, 13.9629 )
+states/attack/position = Vector2( 1071.98, -41.0371 )
 states/attack3/node = SubResource( 182 )
-states/attack3/position = Vector2( 1056.98, 120.333 )
+states/attack3/position = Vector2( 812.98, 37.333 )
 states/climb/node = SubResource( 276 )
-states/climb/position = Vector2( 162.083, -143.887 )
+states/climb/position = Vector2( -76.917, -221.887 )
 states/climb-pause/node = SubResource( 284 )
 states/climb-pause/position = Vector2( 156.916, -227.167 )
 states/dash/node = SubResource( 206 )
-states/dash/position = Vector2( 532.667, 120.333 )
+states/dash/position = Vector2( -113.333, 296.333 )
 states/death/node = SubResource( 232 )
 states/death/position = Vector2( 1161.67, 352.778 )
 states/health/node = SubResource( 270 )
 states/health/position = Vector2( 16.0831, 61.113 )
 states/hurt/node = SubResource( 233 )
-states/hurt/position = Vector2( 968.334, 352.778 )
+states/hurt/position = Vector2( 1030.33, 259.778 )
 states/idle/node = SubResource( 184 )
-states/idle/position = Vector2( 409.667, 168.63 )
+states/idle/position = Vector2( 503.667, 347.63 )
 "states/idle 2/node" = SubResource( 183 )
-"states/idle 2/position" = Vector2( 117.667, -5.44443 )
+"states/idle 2/position" = Vector2( 142, 170.556 )
 states/jump/node = SubResource( 185 )
-states/jump/position = Vector2( 393.666, -73 )
+states/jump/position = Vector2( 402.999, -173 )
 states/pray/node = SubResource( 234 )
-states/pray/position = Vector2( 1083, 213.222 )
+states/pray/position = Vector2( 349.667, 390.222 )
 states/walk/node = SubResource( 186 )
-states/walk/position = Vector2( 560.666, 328.333 )
-transitions = [ "idle 2", "idle", SubResource( 187 ), "idle", "idle 2", SubResource( 188 ), "walk", "idle", SubResource( 189 ), "idle", "walk", SubResource( 190 ), "idle 2", "walk", SubResource( 191 ), "idle", "jump", SubResource( 192 ), "walk", "jump", SubResource( 193 ), "idle 2", "jump", SubResource( 194 ), "jump", "idle", SubResource( 195 ), "walk", "attack", SubResource( 198 ), "idle", "attack", SubResource( 199 ), "jump", "attack", SubResource( 200 ), "attack", "idle", SubResource( 201 ), "idle 2", "attack", SubResource( 202 ), "walk", "dash", SubResource( 207 ), "dash", "idle", SubResource( 208 ), "idle", "attack3", SubResource( 211 ), "jump", "attack3", SubResource( 212 ), "idle 2", "attack3", SubResource( 213 ), "walk", "attack3", SubResource( 216 ), "attack3", "idle", SubResource( 220 ), "idle", "hurt", SubResource( 236 ), "walk", "hurt", SubResource( 237 ), "idle 2", "hurt", SubResource( 238 ), "jump", "hurt", SubResource( 239 ), "attack", "hurt", SubResource( 240 ), "attack3", "hurt", SubResource( 242 ), "hurt", "idle", SubResource( 244 ), "air-attack", "jump", SubResource( 245 ), "air-attack", "air-attack-impact", SubResource( 247 ), "air-attack-impact", "idle", SubResource( 248 ), "hurt", "death", SubResource( 249 ), "attack", "pray", SubResource( 250 ), "attack3", "pray", SubResource( 253 ), "idle", "pray", SubResource( 254 ), "pray", "idle", SubResource( 255 ), "attack", "jump", SubResource( 256 ), "attack3", "jump", SubResource( 259 ), "jump", "idle 2", SubResource( 260 ), "jump", "walk", SubResource( 261 ), "jump", "air-attack", SubResource( 262 ), "dash", "walk", SubResource( 263 ), "dash", "idle 2", SubResource( 264 ), "idle", "dash", SubResource( 265 ), "idle 2", "dash", SubResource( 266 ), "dash", "jump", SubResource( 267 ), "jump", "dash", SubResource( 268 ), "health", "idle 2", SubResource( 271 ), "idle 2", "health", SubResource( 272 ), "health", "idle", SubResource( 273 ), "idle", "health", SubResource( 274 ), "climb", "idle 2", SubResource( 277 ), "idle 2", "climb", SubResource( 278 ), "climb", "idle", SubResource( 279 ), "idle", "climb", SubResource( 280 ), "jump", "climb", SubResource( 281 ), "climb", "jump", SubResource( 282 ), "climb", "climb-pause", SubResource( 285 ), "climb-pause", "climb", SubResource( 286 ), "climb-pause", "jump", SubResource( 287 ), "walk", "death", SubResource( 288 ) ]
+states/walk/position = Vector2( 384.666, 218.556 )
+transitions = [ "idle 2", "idle", SubResource( 187 ), "idle", "idle 2", SubResource( 188 ), "walk", "idle", SubResource( 189 ), "idle", "walk", SubResource( 190 ), "idle 2", "walk", SubResource( 191 ), "idle", "jump", SubResource( 192 ), "walk", "jump", SubResource( 193 ), "idle 2", "jump", SubResource( 194 ), "jump", "idle", SubResource( 195 ), "walk", "attack", SubResource( 198 ), "idle", "attack", SubResource( 199 ), "jump", "attack", SubResource( 200 ), "attack", "idle", SubResource( 201 ), "idle 2", "attack", SubResource( 202 ), "walk", "dash", SubResource( 207 ), "dash", "idle", SubResource( 208 ), "idle", "attack3", SubResource( 211 ), "jump", "attack3", SubResource( 212 ), "idle 2", "attack3", SubResource( 213 ), "walk", "attack3", SubResource( 216 ), "attack3", "idle", SubResource( 220 ), "idle", "hurt", SubResource( 236 ), "walk", "hurt", SubResource( 237 ), "idle 2", "hurt", SubResource( 238 ), "jump", "hurt", SubResource( 239 ), "attack", "hurt", SubResource( 240 ), "attack3", "hurt", SubResource( 242 ), "hurt", "idle", SubResource( 244 ), "hurt", "death", SubResource( 249 ), "idle", "pray", SubResource( 254 ), "pray", "idle", SubResource( 255 ), "attack", "jump", SubResource( 256 ), "attack3", "jump", SubResource( 259 ), "jump", "idle 2", SubResource( 260 ), "jump", "walk", SubResource( 261 ), "dash", "walk", SubResource( 263 ), "dash", "idle 2", SubResource( 264 ), "idle", "dash", SubResource( 265 ), "idle 2", "dash", SubResource( 266 ), "dash", "jump", SubResource( 267 ), "jump", "dash", SubResource( 268 ), "health", "idle 2", SubResource( 271 ), "idle 2", "health", SubResource( 272 ), "health", "idle", SubResource( 273 ), "idle", "health", SubResource( 274 ), "climb", "idle 2", SubResource( 277 ), "idle 2", "climb", SubResource( 278 ), "climb", "idle", SubResource( 279 ), "idle", "climb", SubResource( 280 ), "jump", "climb", SubResource( 281 ), "climb", "jump", SubResource( 282 ), "climb", "climb-pause", SubResource( 285 ), "climb-pause", "climb", SubResource( 286 ), "climb-pause", "jump", SubResource( 287 ), "walk", "death", SubResource( 288 ), "walk", "idle 2", SubResource( 289 ), "attack3", "idle 2", SubResource( 290 ), "attack", "idle 2", SubResource( 291 ), "hurt", "idle 2", SubResource( 292 ) ]
 start_node = "idle"
 end_node = "death"
-graph_offset = Vector2( -169.249, -231.122 )
+graph_offset = Vector2( -609.268, -326.324 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=197]
 
 [sub_resource type="RectangleShape2D" id=156]
-extents = Vector2( 14.5, 32.5 )
+extents = Vector2( 5, 32.5 )
 
 [node name="knight" type="KinematicBody2D" groups=["Player"]]
 collision_mask = 144
@@ -735,7 +726,7 @@ collision_mask = 512
 position = Vector2( 35, 37 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( 12, -35 )
+position = Vector2( 11.3828, -36.5625 )
 shape = SubResource( 93 )
 disabled = true
 
@@ -767,7 +758,7 @@ parameters/playback = SubResource( 197 )
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
-position = Vector2( 1.5, 3.5 )
+position = Vector2( 2, 3.5 )
 shape = SubResource( 156 )
 
 [node name="SoundWalk" type="AudioStreamPlayer" parent="."]

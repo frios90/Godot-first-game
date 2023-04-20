@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/UI.gd" type="Script" id=1]
 [ext_resource path="res://assets/statusesStack/pup-strength.png" type="Texture" id=2]
 [ext_resource path="res://assets/Items/gemsSpretsheet.png" type="Texture" id=3]
 [ext_resource path="res://assets/Gui/Barras/circle-bar.png" type="Texture" id=4]
 [ext_resource path="res://assets/Gui/box-highres.png" type="Texture" id=5]
+[ext_resource path="res://sfx/01 game-game_0.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/Gui/Barras/fill-stamina-02.png" type="Texture" id=8]
 [ext_resource path="res://assets/Gui/Barras/fonde-barra-02.png" type="Texture" id=9]
 [ext_resource path="res://assets/Gui/Barras/fill-health-02.png" type="Texture" id=10]
@@ -74,10 +75,10 @@ margin_right = 640.0
 margin_bottom = 160.0
 
 [node name="LabelTotalGems" type="Label" parent="PlayerBarControl"]
-margin_left = 176.0
-margin_top = 8.0
-margin_right = 384.0
-margin_bottom = 42.0
+margin_left = 160.0
+margin_top = 40.0
+margin_right = 368.0
+margin_bottom = 74.0
 custom_fonts/font = SubResource( 5 )
 text = "0"
 valign = 1
@@ -124,6 +125,7 @@ texture_progress = ExtResource( 8 )
 nine_patch_stretch = true
 
 [node name="MPbar" type="TextureProgress" parent="PlayerBarControl"]
+visible = false
 margin_left = 128.0
 margin_top = 48.0
 margin_right = 624.0
@@ -165,7 +167,8 @@ anims/RESET = SubResource( 3 )
 anims/gemIconAnimate = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="PlayerBarControl/IconGem"]
-position = Vector2( 152, 24 )
+position = Vector2( 144, 56 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 hframes = 5
 vframes = 7
@@ -247,4 +250,5 @@ texture_progress = ExtResource( 10 )
 nine_patch_stretch = true
 
 [node name="BackAudio" type="AudioStreamPlayer" parent="."]
-volume_db = -25.0
+stream = ExtResource( 6 )
+volume_db = -21.809

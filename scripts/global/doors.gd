@@ -10,6 +10,10 @@ var doors = [
 	}
 ]
 
+var portal = {
+	"activate" : false
+}
+
 func _get_door_by_code(code):
 	for i in range(len(self.doors)):
 		if self.doors[i].code == code :

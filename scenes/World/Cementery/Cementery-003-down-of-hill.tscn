@@ -1,11 +1,10 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://scenes/World/Cementery/ParallaxBackground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/Cementery/parche01.png" type="Texture" id=2]
 [ext_resource path="res://scripts/World/ScriptChangeScene.gd" type="Script" id=3]
 [ext_resource path="res://scenes/Players/Camera2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/tiles/Cementery/mountains.png" type="Texture" id=5]
-[ext_resource path="res://scenes/Elements/Traps/TrapB-002.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/tiles/Cementery/tileset.png" type="Texture" id=7]
 [ext_resource path="res://assets/tiles/Cementery/objects.png" type="Texture" id=8]
 [ext_resource path="res://assets/tiles/Cementery/oneWay.png" type="Texture" id=9]
@@ -15,8 +14,6 @@
 [ext_resource path="res://assets/tiles/Sipuelte-02.png" type="Texture" id=13]
 [ext_resource path="res://assets/tiles/Cementery/objects2.png" type="Texture" id=14]
 [ext_resource path="res://scenes/Elements/torch-big-01.tscn" type="PackedScene" id=15]
-[ext_resource path="res://scenes/Enemies/Flying-eye.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/Enemies/Skeleton-02.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/tiles/Mountain.png" type="Texture" id=18]
 [ext_resource path="res://scenes/Enemies/Boss/BringerOfDeath/BringerOfDeath.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/Elements/BossObelisk.tscn" type="PackedScene" id=20]
@@ -24,17 +21,14 @@
 [ext_resource path="res://assets/tiles/parche-fondo-montaña.png" type="Texture" id=22]
 [ext_resource path="res://assets/tiles/cave/tile_cave_platform.png" type="Texture" id=23]
 [ext_resource path="res://assets/tiles/cave/SismileBOnes.png" type="Texture" id=24]
-[ext_resource path="res://scenes/Npc/OldMan.tscn" type="PackedScene" id=25]
 [ext_resource path="res://assets/tiles/Seleccion-01/Props-Rocks.png" type="Texture" id=26]
 [ext_resource path="res://scripts/World/Levels/Cementery-003-down-of-hill.gd" type="Script" id=27]
 [ext_resource path="res://scenes/World/HandSave.tscn" type="PackedScene" id=28]
 [ext_resource path="res://assets/tiles/Buildings.png" type="Texture" id=29]
 [ext_resource path="res://assets/tiles/oak_woods_v1.0/decorations/sign.png" type="Texture" id=30]
-[ext_resource path="res://scenes/Elements/Traps/Trap001.tscn" type="PackedScene" id=31]
 [ext_resource path="res://scenes/World/Chest-A.tscn" type="PackedScene" id=32]
 [ext_resource path="res://assets/tiles/entradaCueva.png" type="Texture" id=33]
 [ext_resource path="res://assets/tiles/pngwing.com.png" type="Texture" id=34]
-[ext_resource path="res://scenes/GUI/backmusic001.tscn" type="PackedScene" id=35]
 
 [sub_resource type="TileSet" id=17]
 0/name = "mountains.png 0"
@@ -1571,7 +1565,7 @@ a = Vector2( 24, -464 )
 b = Vector2( 24, 560 )
 
 [sub_resource type="RectangleShape2D" id=24]
-extents = Vector2( 6, 447 )
+extents = Vector2( 23, 447 )
 
 [sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 10.5, 368.5 )
@@ -1886,11 +1880,15 @@ position = Vector2( 2928, -1000 )
 position = Vector2( 3656, -1000 )
 
 [node name="knight" parent="." instance=ExtResource( 11 )]
-position = Vector2( 73, 432 )
+position = Vector2( 104, 528 )
 
 [node name="Camera2D" parent="knight" instance=ExtResource( 4 )]
-position = Vector2( -24, -104 )
+position = Vector2( 72, -80 )
 limit_top = -10000022
+drag_margin_left = 0.05
+drag_margin_top = 0.34
+drag_margin_right = 0.38
+drag_margin_bottom = 0.15
 
 [node name="ParallaxBackground" parent="knight/Camera2D" instance=ExtResource( 1 )]
 
@@ -1929,9 +1927,6 @@ position = Vector2( 2063, -888 )
 
 [node name="HandSave" parent="." instance=ExtResource( 28 )]
 position = Vector2( 1608, 528 )
-
-[node name="OldMan" parent="." instance=ExtResource( 25 )]
-position = Vector2( 512, 536 )
 
 [node name="Chests" type="Node2D" parent="."]
 
@@ -1978,38 +1973,6 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -5046112, 536870915, 0, -4980578, 536870915, 0, -4980576, 536870915, 0, -4980575, 536870914, 0, -4915042, 536870915, 0, -4849506, -2147483645, 0, -4783969, -2147483645, 0, -4783968, -2147483645, 0, -4587366, 536870915, 0, -4587364, 536870915, 0, -4587352, 536870915, 0, -4521827, 536870915, 0, 1572915, -1610612733, 0, 1572916, -1610612733, 0, 1769517, 2, 0, 1835060, -1610612733, 0, 2031668, -1610612733, 0, 2031669, -1610612733, 0, 2228276, 3, 0 )
 
-[node name="Traps" type="Node2D" parent="."]
-
-[node name="TrapB-003" parent="Traps" instance=ExtResource( 6 )]
-position = Vector2( 1920, 104 )
-
-[node name="TrapB-004" parent="Traps" instance=ExtResource( 6 )]
-position = Vector2( 2048, 376 )
-
-[node name="Trap001" parent="Traps" instance=ExtResource( 31 )]
-position = Vector2( 976, 440 )
-
-[node name="Trap002" parent="Traps" instance=ExtResource( 31 )]
-position = Vector2( 1184, 440 )
-
-[node name="Trap003" parent="Traps" instance=ExtResource( 31 )]
-position = Vector2( 1696, 0 )
-
-[node name="Trap004" parent="Traps" instance=ExtResource( 31 )]
-position = Vector2( 1024, -288 )
-
-[node name="Trap005" parent="Traps" instance=ExtResource( 31 )]
-position = Vector2( 1632, -528 )
-
-[node name="TrapB-006" parent="Traps" instance=ExtResource( 6 )]
-position = Vector2( 2040, -1032 )
-
-[node name="Trap006" parent="Traps" instance=ExtResource( 31 )]
-position = Vector2( 2208, -1104 )
-
-[node name="TrapB-007" parent="Traps" instance=ExtResource( 6 )]
-position = Vector2( 2360, -1280 )
-
 [node name="Areas" type="Node2D" parent="."]
 position = Vector2( -31, 0 )
 
@@ -2025,11 +1988,11 @@ script = ExtResource( 3 )
 position = Vector2( 4183, -1240 )
 shape = SubResource( 23 )
 
-[node name="Rtn-002-003" type="Area2D" parent="Areas"]
+[node name="Rtn-001-from-003" type="Area2D" parent="Areas"]
 script = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Rtn-002-003"]
-position = Vector2( 4, 463 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Rtn-001-from-003"]
+position = Vector2( 56, 440 )
 shape = SubResource( 24 )
 
 [node name="EnterBattle" type="Area2D" parent="Areas" groups=["EnterBattle"]]
@@ -2038,66 +2001,6 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/EnterBattle"]
 position = Vector2( 3071, -1336 )
 shape = SubResource( 30 )
-
-[node name="FlayingEyes" type="Node2D" parent="."]
-position = Vector2( -31, 0 )
-
-[node name="Flying-eye" parent="FlayingEyes" instance=ExtResource( 16 )]
-position = Vector2( 1209, 377 )
-
-[node name="Flying-eye2" parent="FlayingEyes" instance=ExtResource( 16 )]
-position = Vector2( 2527, 448 )
-
-[node name="Flying-eye3" parent="FlayingEyes" instance=ExtResource( 16 )]
-position = Vector2( 1637, 309 )
-
-[node name="Flying-eye4" parent="FlayingEyes" instance=ExtResource( 16 )]
-position = Vector2( 2215, 208 )
-
-[node name="Flying-eye5" parent="FlayingEyes" instance=ExtResource( 16 )]
-position = Vector2( 1503, -88 )
-
-[node name="Flying-eye6" parent="FlayingEyes" instance=ExtResource( 16 )]
-position = Vector2( 751, -192 )
-
-[node name="Flying-eye8" parent="FlayingEyes" instance=ExtResource( 16 )]
-position = Vector2( 1319, -496 )
-
-[node name="Flying-eye9" parent="FlayingEyes" instance=ExtResource( 16 )]
-position = Vector2( 2095, -664 )
-
-[node name="Flying-eye11" parent="FlayingEyes" instance=ExtResource( 16 )]
-position = Vector2( 1567, -1032 )
-
-[node name="Flying-eye12" parent="FlayingEyes" instance=ExtResource( 16 )]
-position = Vector2( 1807, -896 )
-
-[node name="Skeletons002" type="Node2D" parent="."]
-position = Vector2( -31, 0 )
-
-[node name="Skeleton-03" parent="Skeletons002" instance=ExtResource( 17 )]
-position = Vector2( 1056, 400 )
-scale = Vector2( 1, 1 )
-
-[node name="Skeleton-04" parent="Skeletons002" instance=ExtResource( 17 )]
-position = Vector2( 1479, 373 )
-scale = Vector2( 1, 1 )
-
-[node name="Skeleton-05" parent="Skeletons002" instance=ExtResource( 17 )]
-position = Vector2( 2168, 96 )
-scale = Vector2( 1, 1 )
-
-[node name="Skeleton-06" parent="Skeletons002" instance=ExtResource( 17 )]
-position = Vector2( 1855, -16 )
-scale = Vector2( 1, 1 )
-
-[node name="Skeleton-10" parent="Skeletons002" instance=ExtResource( 17 )]
-position = Vector2( 1848, -560 )
-scale = Vector2( 1, 1 )
-
-[node name="Skeleton-11" parent="Skeletons002" instance=ExtResource( 17 )]
-position = Vector2( 2279, -1120 )
-scale = Vector2( 1, 1 )
 
 [node name="BringerOfDeath" parent="." instance=ExtResource( 19 )]
 position = Vector2( 3664, -1128 )
@@ -2114,13 +2017,13 @@ scale = Vector2( 1, 2.01752 )
 texture = ExtResource( 34 )
 
 [node name="InitArrow" type="Sprite" parent="."]
-position = Vector2( -32, 549.323 )
-scale = Vector2( -2, 1.33048 )
+position = Vector2( 40, 544 )
+scale = Vector2( -1.68182, 1.29822 )
 texture = ExtResource( 30 )
 
 [node name="Pngwingcom" type="Sprite" parent="InitArrow"]
-position = Vector2( 52, -388.824 )
-scale = Vector2( 0.327845, 1.10053 )
+position = Vector2( 57.0811, -338.925 )
+scale = Vector2( 0.148454, 1.10053 )
 texture = ExtResource( 34 )
 
 [node name="Front-002" type="TileMap" parent="."]
@@ -2131,8 +2034,6 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( -4456293, 536870915, 0, -4456290, 536870915, 0, -4456287, 536870915, 0, -4456284, 536870915, 0, 2162741, 536870913, 0, 2228266, 536870914, 0, 2228269, 536870914, 0, 2228271, 536870913, 0, 2228272, 536870914, 0, 2228274, 536870914, 0, 2228275, 536870913, 0, 2228276, 536870913, 0, 2228277, 536870913, 0, 2228278, 536870913, 0, 2293800, 536870913, 0, 2293801, 536870913, 0, 2293813, 536870913, 0, 2359337, 536870913, 0 )
 
-[node name="AudioStreamPlayer" parent="." instance=ExtResource( 35 )]
-
 [connection signal="body_entered" from="Areas/Goto-004-003" to="Areas/Goto-004-003" method="_on_Goto004003_body_entered"]
-[connection signal="body_entered" from="Areas/Rtn-002-003" to="Areas/Rtn-002-003" method="_on_Rtn002003_body_entered"]
+[connection signal="body_entered" from="Areas/Rtn-001-from-003" to="Areas/Rtn-001-from-003" method="_on_Rtn001from003_body_entered"]
 [connection signal="body_entered" from="Areas/EnterBattle" to="." method="_on_EnterBattle_body_entered"]

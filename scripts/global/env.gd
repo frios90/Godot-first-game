@@ -1,7 +1,14 @@
 extends Node
+var pn = "Gustavo"
+var player_name = "??????"
 var town_name = "Pueblo"
 var final_boss_name = "Nicromante"
-var name_other_world = "upDownSIde"
+var name_other_world = "Fuente"
+var name_old_man = "??????"
+var gus_init_year = '37xxx'
+var gus_dead_year = 37524
+var current_year = 38012
+
 var in_dialog = false
 
 var non_use

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scripts/MenuPause.gd" type="Script" id=1]
 [ext_resource path="res://assets/Gui/Stats/intelligence-stone.png" type="Texture" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://assets/Gui/Stats/bornRune.png" type="Texture" id=13]
 [ext_resource path="res://assets/Gui/Stats/sandRune.png" type="Texture" id=14]
 [ext_resource path="res://assets/Gui/Stats/windrune.png" type="Texture" id=15]
-[ext_resource path="res://assets/Gui/TexturaBlue/Base Bg 1.png" type="Texture" id=16]
 [ext_resource path="res://assets/Gui/TexturaBlue/Round Bg B.png" type="Texture" id=17]
 [ext_resource path="res://assets/Characters/2D_SL_Knight_v1.0/Idle.png" type="Texture" id=18]
 [ext_resource path="res://assets/Items/PotaMpL.png" type="Texture" id=19]
@@ -457,24 +456,8 @@ margin_bottom = 16.0
 texture = ExtResource( 20 )
 expand = true
 
-[node name="Weapon" type="Sprite" parent="Accessories"]
-position = Vector2( 96, 57 )
-scale = Vector2( 1.6, 1.6 )
-texture = ExtResource( 16 )
-
-[node name="input" type="Sprite" parent="Accessories/Weapon"]
-position = Vector2( -6.19888e-06, -0.937501 )
-
-[node name="Armory" type="Sprite" parent="Accessories"]
-position = Vector2( 288, 56 )
-scale = Vector2( 1.7, 1.675 )
-texture = ExtResource( 16 )
-
-[node name="input" type="Sprite" parent="Accessories/Armory"]
-position = Vector2( 0, 7.62939e-06 )
-
 [node name="RuneWeapon001" type="Sprite" parent="Accessories"]
-position = Vector2( 72, 105 )
+position = Vector2( 72, 64 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 17 )
 

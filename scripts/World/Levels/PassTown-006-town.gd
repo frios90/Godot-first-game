@@ -1,57 +1,25 @@
 extends Node2D
 
 var messages_battle_necromancer_001 = [
-	{
-		"issuing" : "necro",
-		"title"   : "Nigromante",
-		"message" : "..."
-	},
-	{
-		"issuing" : "necro",
-		"title"   : "Nigromante",
-		"message" : "Vaya... conozco ese aroma. Es el asqueroso incienso de los muertos. A que has venido hijo mio?"
-	},
-	{
-		"issuing" : "necro",
-		"title"   : "Nigromante",
-		"message" : "Aunque... no recuerdo haber traido a la vida a un ser tan ... fresco"
-	},
-	{
-		"issuing" : "player",
-		"title"   : "Gustavo",
-		"message" : "No soy creación tuya maldita sabandija!... he venido a buscar respuestas. Si tienes algo que ver con lo que esta pasando... es momento de que hables!"
-	},
-	{
-		"issuing" : "necro",
-		"title"   : "Nigromante",
-		"message" : "INSOLENTE... acaso no sabes a quien tienes en frente? ..."
-	},
-	{
-		"issuing" : "player",
-		"title"   : "Gustavo",
-		"message" : "[escupe]"
-	},
-	{
-		"issuing" : "player",
-		"title"   : "Gustavo",
-		"message" : "No eres más que otro parasito salido de su tumba..."
-	},
-	{
-		"issuing" : "necro",
-		"title"   : "Nigromante",
-		"message" : "INSECTO... como te atreves? ..."
-	},
-	{
-		"issuing" : "necro",
-		"title"   : "Nigromante",
-		"message" : "soy SOLOMON, el Nigromante..."
-	},
-	{
-		"issuing" : "necro",
-		"title"   : "Nigromante",
-		"message" : "Preparate, porque haré que te arrodilles ante mi como lo que eres... un sucio cadaver"
-	},
-]
+		{
+			"issuing" : "necro",
+			"title"   : "Nigromante",
+			"message" : "...",
+			"event"   : false
+		},
+		{
+			"issuing" : "necro",
+			"title"   : "Nigromante",
+			"message" : "Veo que la muerte te ha traido de vuelta...",
+			"event"   : false
+		},
+		{
+			"issuing" : "necro",
+			"title"   : "Nigromante",
+			"message" : "Aunque no podras vencerme",
+			"event"   : false
+		}	
+	]
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://scenes/Players/Camera2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/town/props/tileset.png" type="Texture" id=2]
@@ -493,12 +493,8 @@ points = PoolVector2Array( 5, 33, 18, 13, 59, 1, 79, 10, 91, 35, 87, 73, 24, 72,
 6/shapes = [  ]
 6/z_index = 0
 
-[sub_resource type="SegmentShape2D" id=46]
-a = Vector2( 24, -464 )
-b = Vector2( 24, 560 )
-
 [sub_resource type="RectangleShape2D" id=47]
-extents = Vector2( 6, 447 )
+extents = Vector2( 39, 447 )
 
 [sub_resource type="RectangleShape2D" id=54]
 extents = Vector2( 8.6875, 524.25 )
@@ -626,7 +622,7 @@ scale = Vector2( 1.45, 1.5 )
 tile_set = SubResource( 40 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 524360, 7, 0, 524409, 7, 0, 524410, 7, 0, 786447, 8, 0, 786471, 6, 0, 786491, 6, 0, 786579, 8, 0, 917601, 10, 0, 1048670, 13, 0, 1048689, 536870925, 0, 1310819, 536870923, 0, 1310825, 11, 0 )
+tile_data = PoolIntArray( 524328, 7, 0, 524409, 7, 0, 524410, 7, 0, 786447, 8, 0, 786462, 6, 0, 786486, 6, 0, 786511, 536870923, 0, 786579, 8, 0, 917580, 536870923, 0, 917584, 11, 0, 917586, 11, 0, 983123, 11, 0, 1048654, 536870923, 0, 1048656, 11, 0, 1048660, 11, 0, 1048672, 13, 0, 1048689, 536870925, 0, 1114186, 536870923, 0, 1114188, 536870923, 0, 1114189, 536870923, 0, 1114195, 11, 0, 1114198, 11, 0, 1179729, 11, 0, 1179732, 11, 0, 1245260, 536870923, 0, 1245262, 536870923, 0, 1245266, 11, 0, 1245270, 11, 0, 1310792, 536870923, 0, 1310794, 536870923, 0, 1310796, 536870923, 0, 1310797, 536870923, 0, 1310800, 11, 0, 1310804, 11, 0, 1310807, 11, 0, 1310809, 11, 0 )
 
 [node name="middle" type="TileMap" parent="."]
 position = Vector2( -1, 0 )
@@ -649,35 +645,31 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 528
 collision_mask = 3
 format = 1
-tile_data = PoolIntArray( 983292, 1, 0, 1114364, 1, 0, 1245436, 1, 0, 1376508, 1, 0, 1507580, 1, 0, 1638652, 1, 0, 1769724, 1, 0, 1835080, 4, 0, 1835115, 4, 0, 1835206, 4, 0, 1835250, 4, 0, 1900580, 6, 0, 1900614, 6, 0, 1900731, 6, 0, 1900779, 1, 0, 1900796, 1, 0, 2031671, 0, 0, 2031691, 2, 0, 2031700, 3, 0, 2031818, 2, 0, 2031850, 0, 0, 2031851, 1, 0, 2031868, 1, 0, 2162730, 5, 0, 2162745, 1, 0, 2162751, 5, 0, 2162785, 5, 0, 2162786, 5, 0, 2162787, 5, 0, 2162808, 5, 0, 2162923, 1, 0, 2162940, 1, 0 )
+tile_data = PoolIntArray( 983292, 1, 0, 1114364, 1, 0, 1245436, 1, 0, 1376508, 1, 0, 1507580, 1, 0, 1638652, 1, 0, 1769724, 1, 0, 1835080, 4, 0, 1835206, 4, 0, 1835250, 4, 0, 1900580, 6, 0, 1900614, 6, 0, 1900731, 6, 0, 1900779, 1, 0, 1900796, 1, 0, 2031671, 0, 0, 2031691, 2, 0, 2031700, 3, 0, 2031818, 2, 0, 2031850, 0, 0, 2031851, 1, 0, 2031868, 1, 0, 2162730, 5, 0, 2162745, 1, 0, 2162751, 5, 0, 2162923, 1, 0, 2162940, 1, 0 )
 
 [node name="Areas" type="Node2D" parent="."]
 
-[node name="Goto-007-006" type="Area2D" parent="Areas"]
-position = Vector2( 0, -16 )
+[node name="Rtn-004-from-006" type="Area2D" parent="Areas"]
 script = ExtResource( 8 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Goto-007-006"]
-position = Vector2( 7528, 304 )
-shape = SubResource( 46 )
-
-[node name="Rtn-005-006" type="Area2D" parent="Areas"]
-script = ExtResource( 8 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Rtn-005-006"]
-position = Vector2( 40, 464 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/Rtn-004-from-006"]
+position = Vector2( 7, 464 )
 shape = SubResource( 47 )
 
 [node name="EnterBattle" type="Area2D" parent="Areas" groups=["EnterBattle"]]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/EnterBattle"]
-position = Vector2( 2232, 232 )
+position = Vector2( 2320, 328 )
 shape = SubResource( 54 )
 
+[node name="BtnToPress" parent="Areas/EnterBattle/CollisionShape2D" instance=ExtResource( 15 )]
+visible = false
+position = Vector2( 8, 368 )
+
 [node name="InitArrow" type="Sprite" parent="."]
-position = Vector2( 40, 530.67 )
-scale = Vector2( -2.38041, 1.87467 )
+position = Vector2( 42.3784, 535.067 )
+scale = Vector2( -1.94797, 1.91396 )
 texture = ExtResource( 5 )
 
 [node name="EndArrow" type="Sprite" parent="."]
@@ -687,25 +679,25 @@ scale = Vector2( 0.046, 0.0266109 )
 [node name="Fires002" type="Node2D" parent="."]
 
 [node name="Fire" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1048, 416 )
+position = Vector2( 928, 496 )
 
 [node name="Fire2" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1472, 304 )
+position = Vector2( 1192, 400 )
 
 [node name="Fire3" parent="Fires002" instance=ExtResource( 17 )]
 position = Vector2( 1416, 352 )
 
 [node name="Fire4" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1584, 336 )
+position = Vector2( 1104, 440 )
 
 [node name="Fire5" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 976, 360 )
+position = Vector2( 864, 410 )
 
 [node name="Fire6" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 976, 440 )
+position = Vector2( 848, 416 )
 
 [node name="Fire7" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1136, 440 )
+position = Vector2( 1080, 398 )
 
 [node name="Fire8" parent="Fires002" instance=ExtResource( 17 )]
 position = Vector2( 576, 464 )
@@ -720,33 +712,33 @@ position = Vector2( 648, 408 )
 position = Vector2( 1264, 544 )
 
 [node name="Fire12" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1552, 528 )
+position = Vector2( 1424, 557 )
 
 [node name="Fire13" parent="Fires002" instance=ExtResource( 17 )]
 position = Vector2( 1504, 496 )
 
 [node name="Fire14" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1880, 488 )
+position = Vector2( 1432, 496 )
 
 [node name="Fire15" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1800, 536 )
+position = Vector2( 1072, 528 )
 
 [node name="Fire16" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1824, 504 )
+position = Vector2( 1144, 524 )
 
 [node name="Fire17" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1824, 544 )
+position = Vector2( 1399, 522 )
 
 [node name="Fires" type="Node2D" parent="."]
 
 [node name="Fire" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 1520, 408 )
+position = Vector2( 1411, 410 )
 
 [node name="Fire2" parent="Fires" instance=ExtResource( 9 )]
 position = Vector2( 1032, 552 )
 
 [node name="Fire3" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 1072, 408 )
+position = Vector2( 853, 480 )
 
 [node name="Fire4" parent="Fires" instance=ExtResource( 9 )]
 position = Vector2( 488, 384 )
@@ -788,43 +780,43 @@ position = Vector2( 520, 504 )
 position = Vector2( 632, 552 )
 
 [node name="Fire15" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 1824, 400 )
+position = Vector2( 1160, 524 )
 
 [node name="Fire16" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 1736, 208 )
+position = Vector2( 1092, 368 )
 
 [node name="Fire17" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 1904, 520 )
+position = Vector2( 1160, 504 )
 
 [node name="Fire18" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 1936, 552 )
+position = Vector2( 1104, 557 )
 
 [node name="Fire19" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 3048, 512 )
+position = Vector2( 1124, 544 )
 
 [node name="Fire20" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 3008, 480 )
+position = Vector2( 1084, 512 )
 
 [node name="Fire21" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 3560, 504 )
+position = Vector2( 1128, 486 )
 
 [node name="Fire22" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 3680, 528 )
+position = Vector2( 1248, 510 )
 
 [node name="Fire23" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 3776, 496 )
+position = Vector2( 1344, 478 )
 
 [node name="Fire24" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 3792, 528 )
+position = Vector2( 1360, 510 )
 
 [node name="Fire25" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 3752, 552 )
+position = Vector2( 1320, 534 )
 
 [node name="Fire26" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 2980, 396 )
+position = Vector2( 1056, 428 )
 
 [node name="Fire27" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 3088, 200 )
+position = Vector2( 1164, 232 )
 
 [node name="Fire28" parent="Fires" instance=ExtResource( 9 )]
 position = Vector2( 3288, 488 )
@@ -855,13 +847,13 @@ format = 1
 tile_data = PoolIntArray( -5046109, 5, 0, -4652893, 7, 0 )
 
 [node name="Necromancer" parent="." instance=ExtResource( 14 )]
-position = Vector2( 2432, 400 )
+position = Vector2( 2424, 410 )
 
 [node name="BossObelisk" parent="." instance=ExtResource( 18 )]
-position = Vector2( 1990, 648 )
+position = Vector2( 2112, 640 )
 
 [node name="BossObelisk2" parent="." instance=ExtResource( 18 )]
-position = Vector2( 2690, 648 )
+position = Vector2( 2640, 645 )
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource( 23 )]
 
@@ -875,7 +867,7 @@ item = 1040
 [node name="Dialog001Boss" type="Area2D" parent="Actions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actions/Dialog001Boss"]
-position = Vector2( 2220, 456 )
+position = Vector2( 2336, 442 )
 shape = SubResource( 58 )
 
 [node name="BtnToPress" parent="Actions/Dialog001Boss" instance=ExtResource( 15 )]
@@ -885,13 +877,12 @@ position = Vector2( 2220, 456 )
 [node name="Dialog002BossDead" type="Area2D" parent="Actions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actions/Dialog002BossDead"]
-position = Vector2( 2432, 454 )
+position = Vector2( 2316, 440 )
 shape = SubResource( 58 )
 
 [node name="BtnToPress" parent="Actions/Dialog002BossDead" instance=ExtResource( 15 )]
 visible = false
 position = Vector2( 2432, 454 )
 
-[connection signal="body_entered" from="Areas/Goto-007-006" to="Areas/Goto-007-006" method="_on_Goto007006_body_entered"]
-[connection signal="body_entered" from="Areas/Rtn-005-006" to="Areas/Rtn-005-006" method="_on_Rtn005006_body_entered"]
+[connection signal="body_entered" from="Areas/Rtn-004-from-006" to="Areas/Rtn-004-from-006" method="_on_Rtn004from006_body_entered"]
 [connection signal="body_entered" from="Areas/EnterBattle" to="." method="_on_EnterBattle_body_entered"]

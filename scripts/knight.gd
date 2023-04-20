@@ -24,6 +24,7 @@ var is_attacking           = false
 var is_dashing             = false
 var is_hurting             = false
 var is_climbing            = false
+var is_walking             = false
 var going_up               = false
 var going_down             = false
 var can_pray               = false
@@ -32,7 +33,9 @@ var in_hand_pray           = ""
 var can_open_chest         = false
 var in_front_of_the_chest  = ""
 var can_open_door         = false
+var can_validate_enter_portal = false
 var in_front_of_the_door  = ""
+
 var timer_not_take_damage     = 0
 var time_loop_not_take_damage = 60
 var timer_pray                = 500
@@ -50,9 +53,10 @@ var timer_disabled_collision_down_climb = 0
 var _delta = 0
 var state_machine
 func _ready():	
+
 	state_machine = $AnimationTree.get("parameters/playback")	
-	state_machine.start("idle")
-		
+#	state_machine.start("idle")
+	
 func _process(delta):	
 	_delta = delta
 	if not Players.selected.dead:
@@ -69,8 +73,8 @@ func _process(delta):
 				dash()
 				climb()
 				Env.non_use = move_and_slide(motion, up)
-		else:
-			state_machine.travel("idle")
+#		else:
+#			state_machine.travel("idle")
 	else:
 		timer_dead += 1
 		if timer_dead == time_lapsus_dead:
@@ -84,6 +88,8 @@ func _process(delta):
 			else:
 				Players.selected.change_scene_from_dead = true
 				Env.non_use = get_tree().change_scene(Players.selected.last_save_point.scene)
+func idle () :
+	state_machine.travel("idle")
 				
 func invulnerability ():
 	if timer_not_take_damage > 0:
@@ -133,23 +139,21 @@ func fall(delta):
 func move():	
 	if not is_attacking:
 		if Input.is_action_pressed("ui_right"):
-
 			if not is_jumping:
 				state_machine.travel("walk")
 			motion.x = Players.selected.stats.move_speed if not is_dashing else Players.selected.stats.dash_speed
 			$Sprite.flip_h = false
-			$AttackArea/CollisionShape2D.position.x = -8			
+			$AttackArea/CollisionShape2D.position.x = -8
 		elif Input.is_action_pressed("ui_left"):
-
 			if not is_jumping:
 				state_machine.travel("walk")
 			motion.x       = -Players.selected.stats.move_speed if not is_dashing else Players.selected.stats.dash_speed * -1
 			$Sprite.flip_h = true
-			$AttackArea/CollisionShape2D.position.x = -65	
-		else:  
-
-			state_machine.travel("idle")	
+			$AttackArea/CollisionShape2D.position.x = -65
+		elif Input.is_action_just_released("ui_right") or Input.is_action_just_released("ui_left"):
+			state_machine.travel("idle")
 			motion.x = 0
+
 
 func applyItem():
 	if Input.is_action_just_pressed("useItem") and not is_attacking and not is_jumping and not is_dashing:
@@ -171,6 +175,7 @@ func jump():
 		times_jump -= 1
 		state_machine.travel("jump")
 		motion.y = Players.selected.stats.jump_height
+
 	if Input.is_action_just_released("jump") and motion.y < 0:
 		motion.y = 0
 
@@ -195,6 +200,7 @@ func attack():
 		self.openChest(in_front_of_the_chest)
 	elif can_open_door:
 		self.openDoor(in_front_of_the_door)
+	
 
 func dash():	
 	if is_dashing == true and timer_dash > 0:
@@ -238,6 +244,8 @@ func _on_DeadArea_area_entered(area):
 		elif area.is_in_group("Doors"):
 			in_front_of_the_door = area.get_parent().code
 			can_open_door = true
+		elif area.is_in_group("Portal"):
+			can_validate_enter_portal = true
 
 func  openChest (chest):
 	if Input.is_action_just_pressed("attack") and can_open_chest:
@@ -246,8 +254,9 @@ func  openChest (chest):
 
 func  openDoor (door):
 	if Input.is_action_just_pressed("attack") and can_open_door:
-		var door_to_open      = Doors._get_door_by_code(door)
-		var has_key           = Players._get_player_item_by_code(door_to_open.for_open_key)
+		var door_to_open = Doors._get_door_by_code(door)
+		var has_key      = Players._get_player_item_by_code(door_to_open.for_open_key)
+		has_key          = true
 		if has_key:
 			Doors.doors[door_to_open.key].open = true
 		else:
@@ -267,8 +276,6 @@ func  openDoor (door):
 			else :
 				get_parent().get_node("MsgBoxA").queue_free()
 			
-
-
 func _on_DeadArea_area_exited(area):
 	if area.is_in_group("Ladder"):
 		is_climbing = false
@@ -326,6 +333,7 @@ func INIT_TRAVEL_DASH ():
 	$DeadArea/CollisionShape2D.position.y = 17
 	$DeadArea/CollisionShape2D.scale.x    = 5
 	$DeadArea/CollisionShape2D.scale.y    = 0.3	
+
 
 func END_ATTACK (to_attack = 0) :
 	is_attacking   = false
