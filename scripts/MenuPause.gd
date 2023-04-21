@@ -9,29 +9,25 @@ func _ready ():
 	
 func _load_accessories() :
 	
-	var wpn = ItemsGbl._get_item_by_code(Players.selected.weapon_selected) if Players.selected.weapon_selected else false 
-	if wpn:
-		$Accessories/Weapon/input.texture = load(wpn.icon) 
+	
 		
-	var arm = ItemsGbl._get_item_by_code(Players.selected.armory_selected) if Players.selected.armory_selected else false 
-	if arm :
-		$Accessories/Armory/input.texture = load(arm.icon) 
+
 		
 	var runes_attack = Players.selected.action_attack_runes
 	var rune_001     = ItemsGbl._get_item_by_code(runes_attack[0]) if runes_attack[0] else false
 	var rune_002     = ItemsGbl._get_item_by_code(runes_attack[1]) if runes_attack[1] else false
 	if rune_001:
-		$Accessories/RuneWeapon001/input.texture = load(rune_001.icon) 
+		$RuneWeapon001/input.texture = load(rune_001.icon) 
 	if rune_002:
-		$Accessories/RuneWeapon002/input.texture = load(rune_002.icon)
+		$RuneWeapon002/input.texture = load(rune_002.icon)
 		
 	var runes_defense = Players.selected.action_defense_runes
 	var rune_003     =  ItemsGbl._get_item_by_code(runes_defense[0]) if runes_defense[0] else false
 	var rune_004     =  ItemsGbl._get_item_by_code(runes_defense[1]) if runes_defense[1] else false
 	if rune_003:
-		$Accessories/RuneArmory001/input.texture = load(rune_003.icon) 
+		$RuneArmory001/input.texture = load(rune_003.icon) 
 	if rune_004:
-		$Accessories/RuneArmory002/input.texture = load(rune_004.icon)
+		$RuneArmory002/input.texture = load(rune_004.icon)
 	
 func initOrUpdateDataPlayer ():
 	var runes_attack  = Players._get_runes_attack()
@@ -188,22 +184,22 @@ func _count_runes_in_use_by_code (code):
 
 func _on_removeRuneDefense002_pressed():
 	Players.selected.action_defense_runes[1] = false
-	$Accessories/RuneArmory002/input.texture = null
+	$RuneArmory002/input.texture = null
 	self.initOrUpdateDataPlayer()
 
 func _on_removeRuneDefense001_pressed():
 	Players.selected.action_defense_runes[0] = false
-	$Accessories/RuneArmory001/input.texture = null
+	$RuneArmory001/input.texture = null
 	self.initOrUpdateDataPlayer()
 
 func _on_removeRuneAttack002_pressed():
 	Players.selected.action_attack_runes[1] = false
-	$Accessories/RuneWeapon002/input.texture = null
+	$RuneWeapon002/input.texture = null
 	self.initOrUpdateDataPlayer()
 
 func _on_removeRuneAttack001_pressed():
 	Players.selected.action_attack_runes[0] = false
-	$Accessories/RuneWeapon001/input.texture = null
+	$RuneWeapon001/input.texture = null
 	self.initOrUpdateDataPlayer()
 
 

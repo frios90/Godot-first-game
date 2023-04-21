@@ -64,7 +64,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="DynamicFont" id=7]
-size = 24
+size = 12
 font_data = ExtResource( 12 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
@@ -202,25 +202,26 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -600.0
-margin_top = -136.0
+margin_left = -304.0
+margin_top = -88.0
+margin_bottom = -16.0
 texture = ExtResource( 5 )
 expand = true
 
 [node name="LabelItem" type="Label" parent="PopUpItem"]
-margin_left = 40.0
-margin_top = 96.0
-margin_right = 315.0
-margin_bottom = 151.0
+margin_left = 288.0
+margin_top = 104.0
+margin_right = 563.0
+margin_bottom = 159.0
 custom_fonts/font = SubResource( 7 )
 text = "Cristal de vida
 "
 
 [node name="Label" type="Label" parent="PopUpItem"]
-margin_left = 40.0
-margin_top = 56.0
-margin_right = 315.0
-margin_bottom = 90.0
+margin_left = 288.0
+margin_top = 88.0
+margin_right = 563.0
+margin_bottom = 122.0
 custom_fonts/font = SubResource( 7 )
 text = "Encontraste:"
 
@@ -250,5 +251,6 @@ texture_progress = ExtResource( 10 )
 nine_patch_stretch = true
 
 [node name="BackAudio" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 6 )
 volume_db = -21.809

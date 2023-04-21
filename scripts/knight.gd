@@ -191,7 +191,8 @@ func attack():
 		if Input.is_action_just_pressed("attack") and not is_climbing and timer_attack == 0 and not is_attacking:
 			
 			if Players.selected.stats.current_stamine >= Players.selected.stats.stamine_cost:
-				motion.x = 0
+
+
 				if event_attack == 0:
 					INIT_TRAVEL_ATTACK("attack")
 				elif event_attack == 1:	

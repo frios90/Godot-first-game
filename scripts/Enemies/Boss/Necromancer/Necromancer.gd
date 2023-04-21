@@ -59,8 +59,6 @@ func init ():
 		$Rays/Init.enabled = false
 
 func castSpell ():
-
-
 	if self.cont_to_invoque_003 == 0 :		
 		self.cont_to_invoque_003 = self.reset_cont_invoque_003
 		self.state_machine.travel("castSpellA")
@@ -69,8 +67,6 @@ func castSpell ():
 		self.cont_to_invoque_001 = self.reset_cont_invoque_001
 		self.state_machine.travel("castSpell001")
 
-	
-				 
 	
 func spell_a_invoque001 ():
 
@@ -112,7 +108,7 @@ func _invoque_up_skull_purple():
 		var start = "init"
 		distance = 0
 		var motionX  = 900
-		for i in range(4):
+		for i in range(3):
 			motionX                  = 900 if start == "init" else -900
 			var p_skull              = load("res://scenes/Enemies/Boss/Necromancer/SkullPurple.tscn")
 			p_skull                  = p_skull.instance()

@@ -9,7 +9,6 @@ func _process(delta):
 	if not self.skeleton001_start:
 		self.skeleton001_start = true
 		var bloodI = load("res://scenes/Enemies/BloodInvoque.tscn")
-		self.create_blood_effect(bloodI,  $"Skeleton-003")
 		self.create_blood_effect(bloodI,  $"Skeleton-004")
 		self.create_blood_effect(bloodI,  $"Skeleton-005")
 		self.create_blood_effect(bloodI,  $"Skeleton-006")
@@ -17,6 +16,6 @@ func _process(delta):
 func create_blood_effect (bloodI, skeleton):
 	var blood = bloodI.instance()
 	blood.position.x = skeleton.position.x
-	blood.position.y = skeleton.position.y
+	blood.position.y = skeleton.position.y - 30
 	add_child(blood)
 	

@@ -15,7 +15,6 @@ length = 0.001
 
 [sub_resource type="Animation" id=3]
 resource_name = "attack"
-length = 1.0
 step = 0.0714286
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -178,6 +177,7 @@ scale = Vector2( 0.816667, 0.835417 )
 texture = ExtResource( 1 )
 hframes = 17
 vframes = 7
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
@@ -237,7 +237,6 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
 position = Vector2( 2.66667, -4.33333 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 24 )
 
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

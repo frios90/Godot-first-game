@@ -53,6 +53,7 @@ func _on_EnterBattle_body_entered(body):
 	if body.get_name() == 'knight':
 		if not DbBoss.necromancer_002.dead:
 			self.initDialog()
+			$knight.idle()
 
 func initDialog () :
 	$Actions/Dialog001Boss/BtnToPress.visible = true
@@ -63,6 +64,7 @@ func initDialogDead () :
 	$Actions/Dialog002BossDead/BtnToPress.visible = true
 	Msgs.in_dialog      = true
 	Msgs.dlg_004.active = true
+
 		
 func showMessages () :
 	if number_message_first_msg < messages_battle_necromancer_001.size():
@@ -94,6 +96,7 @@ func showDeadMessages () :
 		Msgs.in_dialog       = false				
 		Msgs.forgot          = false
 		Msgs.dlg_004.is_done = true
+		$knight.idle()
 		self.call_deferred("_cd_init_battle")
 		var item             = ItemsGbl._get_item_by_code(1003)
 		Players._add_item(item, 5)
@@ -103,17 +106,13 @@ func showDeadMessages () :
 func addChildBoxMsg():
 	var box        = load("res://scenes/GUI/MsgBoxA.tscn")
 	box            = box.instance()
-	box.position.x = $knight.position.x 
-	box.position.y = $knight.position.y + 20
+	box.position.x = $knight.position.x
+	box.position.y = $knight.position.y + 80	
 	self.add_child(box)
 	return box
 
 func _cd_init_battle ():
-
-#	$CanvasLayer/BackAudio.stop()
-#	$CanvasLayer/BackAudio.stream = load(DbBoss.bringer_of_deadth_001._battleAudio)
-#	$CanvasLayer/BackAudio.play()
-#	$Necromancer.motion.x = $Necromancer.maxSpeed
+	$CanvasLayer.changeBackMusic("res://sfx/12 final battle.ogg", -20)
 	$Actions/Dialog001Boss/BtnToPress.visible = false
 	$Areas/EnterBattle.queue_free()
 	$BossObelisk/CollisionShape2D.disabled = false
@@ -127,10 +126,7 @@ func _finish_battle () :
 	self.call_deferred("_cd_finish_battle")
 		
 func _cd_finish_battle () :
-#	$CanvasLayer/BackAudio.stop()
-#	$CanvasLayer/BackAudio.stream = load(DbBoss.winner_song)
-#	$CanvasLayer/BackAudio.play()	
-	
+	$CanvasLayer.changeBackMusic("res://sfx/01 game-game_0.ogg", -20)	
 	$BossObelisk/CollisionShape2D.disabled = true
 	$BossObelisk/AnimationPlayer.play("off")
 	$BossObelisk2/CollisionShape2D.disabled = true

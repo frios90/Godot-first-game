@@ -62,7 +62,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.062 ),
+"times": PoolRealArray( 0.03125 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -336,7 +336,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=150]
 resource_name = "hurt"
-length = 0.4
+length = 0.2
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -345,10 +345,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 76, 77, 84 ]
+"values": [ 76, 84 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -357,7 +357,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.3 ),
+"times": PoolRealArray( 0.1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -771,8 +771,8 @@ mix_target = 1
 
 [node name="SoundSword" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -20.0
-pitch_scale = 0.8
+volume_db = -13.817
+pitch_scale = 0.5
 
 [node name="SoundHurt" type="AudioStreamPlayer" parent="."]
 volume_db = -10.0

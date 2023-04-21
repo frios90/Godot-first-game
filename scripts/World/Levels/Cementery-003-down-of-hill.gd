@@ -18,9 +18,7 @@ func _on_EnterBattle_body_entered(body):
 			self.call_deferred("_cd_init_battle")
 		
 func _cd_init_battle ():
-#	$CanvasLayer/BackAudio.stop()
-#	$CanvasLayer/BackAudio.stream = load(DbBoss.bringer_of_deadth_001._battleAudio)
-#	$CanvasLayer/BackAudio.play()
+	$CanvasLayer.changeBackMusic("res://sfx/12 final battle.ogg", -20)
 	$BringerOfDeath.withMoveAndFlip = 1
 	$BringerOfDeath.motion.x = $BringerOfDeath.maxSpeed
 	$Areas/EnterBattle.queue_free()
@@ -34,10 +32,7 @@ func _finish_battle () :
 	self.call_deferred("_cd_finish_battle")
 		
 func _cd_finish_battle () :
-#	$CanvasLayer/BackAudio.stop()
-#	$CanvasLayer/BackAudio.stream = load(DbBoss.winner_song)
-#	$CanvasLayer/BackAudio.play()
-	
+	$CanvasLayer.changeBackMusic("res://sfx/01 game-game_0.ogg", -20)	
 	$BossObelisk/CollisionShape2D.disabled = true
 	$BossObelisk/AnimationPlayer.play("off")
 	$BossObelisk2/CollisionShape2D.disabled = true

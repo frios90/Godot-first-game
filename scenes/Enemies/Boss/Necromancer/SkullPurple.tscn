@@ -50,7 +50,8 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( -1, 1 )
+position = Vector2( 3, 2 )
+scale = Vector2( -1.85135, 1.62433 )
 texture = ExtResource( 1 )
 hframes = 4
 vframes = 4

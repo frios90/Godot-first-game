@@ -240,7 +240,7 @@ end_node = "dead"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
 [sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 16, 40 )
+extents = Vector2( 36, 40 )
 
 [sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 15, 25.5 )
@@ -281,7 +281,7 @@ parameters/playback = SubResource( 10 )
 [node name="AttackArea" type="Area2D" parent="." groups=["Enemies"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( -48, -8 )
+position = Vector2( -28, -8 )
 shape = SubResource( 11 )
 disabled = true
 
@@ -307,7 +307,7 @@ enabled = true
 cast_to = Vector2( -160, 0 )
 
 [node name="Flip" type="RayCast2D" parent="Rays"]
-position = Vector2( 0, 16 )
+position = Vector2( 16, 16 )
 enabled = true
 cast_to = Vector2( -48, 0 )
 collision_mask = 1040

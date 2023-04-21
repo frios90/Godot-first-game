@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://scenes/Players/Camera2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/town/props/tileset.png" type="Texture" id=2]
@@ -21,8 +21,12 @@
 [ext_resource path="res://scenes/World/Cementery/ParallaxBackground.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/CanvasLayer.tscn" type="PackedScene" id=20]
 [ext_resource path="res://assets/tiles/deathitch002.png" type="Texture" id=21]
-[ext_resource path="res://scenes/GUI/backmusic001.tscn" type="PackedScene" id=23]
+[ext_resource path="res://assets/tiles/pngwing.com.png" type="Texture" id=22]
+[ext_resource path="res://assets/tiles/LastTile/near.png" type="Texture" id=23]
+[ext_resource path="res://scenes/Enemies/burning-ghoul.tscn" type="PackedScene" id=24]
 [ext_resource path="res://scenes/World/Chest-A.tscn" type="PackedScene" id=25]
+[ext_resource path="res://scenes/Enemies/Boss/Necromancer/MiniNecromancer.tscn" type="PackedScene" id=26]
+[ext_resource path="res://scenes/Enemies/Skeleton-003.tscn" type="PackedScene" id=27]
 
 [sub_resource type="TileSet" id=39]
 0/name = "tileset.png 0"
@@ -647,6 +651,11 @@ collision_mask = 3
 format = 1
 tile_data = PoolIntArray( 983292, 1, 0, 1114364, 1, 0, 1245436, 1, 0, 1376508, 1, 0, 1507580, 1, 0, 1638652, 1, 0, 1769724, 1, 0, 1835080, 4, 0, 1835206, 4, 0, 1835250, 4, 0, 1900580, 6, 0, 1900614, 6, 0, 1900731, 6, 0, 1900779, 1, 0, 1900796, 1, 0, 2031671, 0, 0, 2031691, 2, 0, 2031700, 3, 0, 2031818, 2, 0, 2031850, 0, 0, 2031851, 1, 0, 2031868, 1, 0, 2162730, 5, 0, 2162745, 1, 0, 2162751, 5, 0, 2162923, 1, 0, 2162940, 1, 0 )
 
+[node name="Near" type="Sprite" parent="."]
+position = Vector2( 2600, 382 )
+scale = Vector2( 1.70312, 1.50833 )
+texture = ExtResource( 23 )
+
 [node name="Areas" type="Node2D" parent="."]
 
 [node name="Rtn-004-from-006" type="Area2D" parent="Areas"]
@@ -660,12 +669,31 @@ shape = SubResource( 47 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas/EnterBattle"]
-position = Vector2( 2320, 328 )
+position = Vector2( 2340, 328 )
 shape = SubResource( 54 )
 
 [node name="BtnToPress" parent="Areas/EnterBattle/CollisionShape2D" instance=ExtResource( 15 )]
 visible = false
 position = Vector2( 8, 368 )
+
+[node name="Pngwingcom3" type="Sprite" parent="Areas"]
+position = Vector2( -416, 1432 )
+scale = Vector2( -0.641217, 3.484 )
+texture = ExtResource( 22 )
+offset = Vector2( -418.216, -234.643 )
+
+[node name="Pngwingcom2" type="Sprite" parent="Areas"]
+position = Vector2( 1432, 928 )
+rotation = 1.5708
+scale = Vector2( 0.379447, 3.70308 )
+texture = ExtResource( 22 )
+offset = Vector2( -418.216, -234.643 )
+
+[node name="Pngwingcom" type="Sprite" parent="Areas"]
+position = Vector2( 4168, 560 )
+scale = Vector2( 0.286932, 1.86667 )
+texture = ExtResource( 22 )
+offset = Vector2( -418.216, -234.643 )
 
 [node name="InitArrow" type="Sprite" parent="."]
 position = Vector2( 42.3784, 535.067 )
@@ -711,23 +739,41 @@ position = Vector2( 648, 408 )
 [node name="Fire11" parent="Fires002" instance=ExtResource( 17 )]
 position = Vector2( 1264, 544 )
 
+[node name="Fire18" parent="Fires002" instance=ExtResource( 17 )]
+position = Vector2( 3560, 524 )
+
+[node name="Fire19" parent="Fires002" instance=ExtResource( 17 )]
+position = Vector2( 3584, 413 )
+
+[node name="Fire20" parent="Fires002" instance=ExtResource( 17 )]
+position = Vector2( 3568, 463 )
+
+[node name="Fire21" parent="Fires002" instance=ExtResource( 17 )]
+position = Vector2( 2976, 425 )
+
+[node name="Fire22" parent="Fires002" instance=ExtResource( 17 )]
+position = Vector2( 3048, 421 )
+
+[node name="Fire23" parent="Fires002" instance=ExtResource( 17 )]
+position = Vector2( 3535, 489 )
+
 [node name="Fire12" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1424, 557 )
+position = Vector2( 3065, 511 )
 
 [node name="Fire13" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1504, 496 )
+position = Vector2( 3089, 400 )
 
 [node name="Fire14" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1432, 496 )
+position = Vector2( 3073, 450 )
 
 [node name="Fire15" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1072, 528 )
+position = Vector2( 3584, 522 )
 
 [node name="Fire16" parent="Fires002" instance=ExtResource( 17 )]
 position = Vector2( 1144, 524 )
 
 [node name="Fire17" parent="Fires002" instance=ExtResource( 17 )]
-position = Vector2( 1399, 522 )
+position = Vector2( 3040, 476 )
 
 [node name="Fires" type="Node2D" parent="."]
 
@@ -792,13 +838,13 @@ position = Vector2( 1160, 504 )
 position = Vector2( 1104, 557 )
 
 [node name="Fire19" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 1124, 544 )
+position = Vector2( 3636, 538 )
 
 [node name="Fire20" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 1084, 512 )
+position = Vector2( 3596, 506 )
 
 [node name="Fire21" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 1128, 486 )
+position = Vector2( 3640, 480 )
 
 [node name="Fire22" parent="Fires" instance=ExtResource( 9 )]
 position = Vector2( 1248, 510 )
@@ -810,7 +856,7 @@ position = Vector2( 1344, 478 )
 position = Vector2( 1360, 510 )
 
 [node name="Fire25" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 1320, 534 )
+position = Vector2( 2976, 398 )
 
 [node name="Fire26" parent="Fires" instance=ExtResource( 9 )]
 position = Vector2( 1056, 428 )
@@ -819,7 +865,101 @@ position = Vector2( 1056, 428 )
 position = Vector2( 1164, 232 )
 
 [node name="Fire28" parent="Fires" instance=ExtResource( 9 )]
-position = Vector2( 3288, 488 )
+position = Vector2( 3056, 418 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="MiniNecros" type="Node2D" parent="Enemies"]
+
+[node name="MiniNecromancer" parent="Enemies/MiniNecros" instance=ExtResource( 26 )]
+position = Vector2( 368, 488 )
+
+[node name="MiniNecromancer2" parent="Enemies/MiniNecros" instance=ExtResource( 26 )]
+position = Vector2( 536, 440 )
+
+[node name="MiniNecromancer3" parent="Enemies/MiniNecros" instance=ExtResource( 26 )]
+position = Vector2( 696, 496 )
+
+[node name="MiniNecromancer4" parent="Enemies/MiniNecros" instance=ExtResource( 26 )]
+position = Vector2( 864, 432 )
+
+[node name="MiniNecromancer5" parent="Enemies/MiniNecros" instance=ExtResource( 26 )]
+position = Vector2( 1024, 480 )
+
+[node name="MiniNecromancer6" parent="Enemies/MiniNecros" instance=ExtResource( 26 )]
+position = Vector2( 1248, 448 )
+
+[node name="MiniNecromancer7" parent="Enemies/MiniNecros" instance=ExtResource( 26 )]
+position = Vector2( 1512, 480 )
+
+[node name="MiniNecromancer8" parent="Enemies/MiniNecros" instance=ExtResource( 26 )]
+position = Vector2( 1696, 448 )
+
+[node name="MiniNecromancer9" parent="Enemies/MiniNecros" instance=ExtResource( 26 )]
+position = Vector2( 1864, 480 )
+
+[node name="MiniNecromancer10" parent="Enemies/MiniNecros" instance=ExtResource( 26 )]
+position = Vector2( 2048, 400 )
+
+[node name="MiniNecromancer11" parent="Enemies/MiniNecros" instance=ExtResource( 26 )]
+position = Vector2( 3280, 456 )
+
+[node name="MiniNecromancer12" parent="Enemies/MiniNecros" instance=ExtResource( 26 )]
+position = Vector2( 3632, 448 )
+level = 5
+
+[node name="Burns" type="Node2D" parent="Enemies"]
+
+[node name="burning-ghoul" parent="Enemies/Burns" instance=ExtResource( 24 )]
+position = Vector2( 424, 520 )
+
+[node name="burning-ghoul2" parent="Enemies/Burns" instance=ExtResource( 24 )]
+position = Vector2( 568, 512 )
+
+[node name="burning-ghoul3" parent="Enemies/Burns" instance=ExtResource( 24 )]
+position = Vector2( 336, 528 )
+
+[node name="burning-ghoul4" parent="Enemies/Burns" instance=ExtResource( 24 )]
+position = Vector2( 816, 520 )
+
+[node name="burning-ghoul5" parent="Enemies/Burns" instance=ExtResource( 24 )]
+position = Vector2( 696, 512 )
+
+[node name="burning-ghoul6" parent="Enemies/Burns" instance=ExtResource( 24 )]
+position = Vector2( 1008, 512 )
+
+[node name="burning-ghoul7" parent="Enemies/Burns" instance=ExtResource( 24 )]
+position = Vector2( 1104, 512 )
+
+[node name="burning-ghoul8" parent="Enemies/Burns" instance=ExtResource( 24 )]
+position = Vector2( 1376, 475 )
+scale = Vector2( 3, 3 )
+level = 3
+
+[node name="burning-ghoul9" parent="Enemies/Burns" instance=ExtResource( 24 )]
+position = Vector2( 1552, 512 )
+
+[node name="burning-ghoul10" parent="Enemies/Burns" instance=ExtResource( 24 )]
+position = Vector2( 1792, 512 )
+
+[node name="SK003" type="Node2D" parent="Enemies"]
+
+[node name="Skeleton-003" parent="Enemies/SK003" instance=ExtResource( 27 )]
+position = Vector2( 3664, 520 )
+
+[node name="Skeleton-004" parent="Enemies/SK003" instance=ExtResource( 27 )]
+position = Vector2( 3520, 520 )
+
+[node name="Skeleton-005" parent="Enemies/SK003" instance=ExtResource( 27 )]
+position = Vector2( 3384, 486 )
+scale = Vector2( 4, 3 )
+can_back_flip = 6
+
+[node name="Skeleton-006" parent="Enemies/SK003" instance=ExtResource( 27 )]
+position = Vector2( 3160, 528 )
+
+[node name="Skeleton-007" parent="Enemies/SK003" instance=ExtResource( 27 )]
+position = Vector2( 3024, 512 )
 
 [node name="knight" parent="." instance=ExtResource( 4 )]
 position = Vector2( 144, 520 )
@@ -847,15 +987,13 @@ format = 1
 tile_data = PoolIntArray( -5046109, 5, 0, -4652893, 7, 0 )
 
 [node name="Necromancer" parent="." instance=ExtResource( 14 )]
-position = Vector2( 2424, 410 )
+position = Vector2( 2463, 418 )
 
 [node name="BossObelisk" parent="." instance=ExtResource( 18 )]
-position = Vector2( 2112, 640 )
+position = Vector2( 2208, 648 )
 
 [node name="BossObelisk2" parent="." instance=ExtResource( 18 )]
-position = Vector2( 2640, 645 )
-
-[node name="AudioStreamPlayer" parent="." instance=ExtResource( 23 )]
+position = Vector2( 2544, 640 )
 
 [node name="Chest-1017" parent="." instance=ExtResource( 25 )]
 position = Vector2( 4008, 550 )
@@ -866,23 +1004,13 @@ item = 1040
 
 [node name="Dialog001Boss" type="Area2D" parent="Actions"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Actions/Dialog001Boss"]
-position = Vector2( 2336, 442 )
-shape = SubResource( 58 )
-
 [node name="BtnToPress" parent="Actions/Dialog001Boss" instance=ExtResource( 15 )]
-visible = false
-position = Vector2( 2220, 456 )
+position = Vector2( 2359, 507 )
+scale = Vector2( 1, 1.016 )
 
-[node name="Dialog002BossDead" type="Area2D" parent="Actions"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Actions/Dialog002BossDead"]
-position = Vector2( 2316, 440 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actions/Dialog001Boss"]
+position = Vector2( 2359, 511 )
 shape = SubResource( 58 )
-
-[node name="BtnToPress" parent="Actions/Dialog002BossDead" instance=ExtResource( 15 )]
-visible = false
-position = Vector2( 2432, 454 )
 
 [connection signal="body_entered" from="Areas/Rtn-004-from-006" to="Areas/Rtn-004-from-006" method="_on_Rtn004from006_body_entered"]
 [connection signal="body_entered" from="Areas/EnterBattle" to="." method="_on_EnterBattle_body_entered"]
