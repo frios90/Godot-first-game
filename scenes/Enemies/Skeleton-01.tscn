@@ -136,12 +136,10 @@ anims/walk = SubResource( 4 )
 
 [node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -30.0
 pitch_scale = 2.0
 
 [node name="SwordHurt02" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -30.0
 pitch_scale = 2.0
 
 [node name="HPbar" type="TextureProgress" parent="."]
@@ -174,7 +172,7 @@ collision_mask = 16
 [node name="RayEnd" type="RayCast2D" parent="."]
 position = Vector2( -20.8333, 0 )
 enabled = true
-cast_to = Vector2( -3.24249e-05, 35.8333 )
+cast_to = Vector2( 0.2083, 31.25 )
 collision_mask = 16
 
 [node name="RayBackFlip" type="RayCast2D" parent="."]

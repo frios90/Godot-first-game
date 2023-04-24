@@ -84,7 +84,7 @@ func _process(_delta):
 		timer_to_dead += 1
 		move_and_slide(Vector2(0, 20), up)
 		if timer_to_dead == 100:
-			print(timer_to_dead)			
+
 			queue_free()		
 
 func invulnerability ():

@@ -29,7 +29,7 @@ func _set_message (message):
 	)
 	$Control/Tween.start()
 
-func _on_Tween_tween_completed(object, key):
+func _on_Tween_tween_completed(_object, _key):
 	Msgs.forgot = false
 
 

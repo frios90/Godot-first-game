@@ -336,7 +336,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=150]
 resource_name = "hurt"
-length = 0.2
+length = 0.1
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -345,10 +345,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 76, 84 ]
+"values": [ 76 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -763,7 +763,6 @@ shape = SubResource( 156 )
 
 [node name="SoundWalk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-volume_db = -25.787
 pitch_scale = 2.45
 mix_target = 1
 
@@ -771,21 +770,17 @@ mix_target = 1
 
 [node name="SoundSword" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -13.817
 pitch_scale = 0.5
 
 [node name="SoundHurt" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
 
 [node name="SoundHealth" type="AudioStreamPlayer" parent="."]
-volume_db = -20.0
 pitch_scale = 2.0
 
 [node name="SoundLvlUp" type="AudioStreamPlayer" parent="."]
 
 [node name="SoundPickAGem" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
-volume_db = -27.988
 
 [connection signal="area_entered" from="AttackArea" to="." method="_on_AttackArea_area_entered"]
 [connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

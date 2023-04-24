@@ -12,9 +12,9 @@ func _ready():
 	
 func _process(delta):	
 	motion.x = maxSpeed	
-	move_and_slide(motion, up)
+	Env.non_use = move_and_slide(motion, up)
 
 
-func _on_AttackArea_body_entered(body):
+func _on_AttackArea_body_entered(_body):
 	queue_free()
 

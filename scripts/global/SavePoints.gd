@@ -6,8 +6,8 @@ var points = [
 		"code" : 001,
 		"name" : "Pasaje de la cueva",
 		"scene" : "res://scenes/World/Cementery/Cementery-003-down-of-hill.tscn",
-		"x" : 1648,
-		"y" : 500,
+		"x" : 2112,
+		"y" : -1500,
 		"status" : false
 	},
 	{

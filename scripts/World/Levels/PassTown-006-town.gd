@@ -10,18 +10,22 @@ var messages_battle_necromancer_001 = [
 		{
 			"issuing" : "necro",
 			"title"   : "Nigromante",
-			"message" : "Veo que la muerte te ha traido de vuelta...",
+			"message" : "Muerte perdio su tiempo trayendote nuevamente a la vida...",
 			"event"   : false
 		},
 		{
 			"issuing" : "necro",
 			"title"   : "Nigromante",
-			"message" : "Aunque no podras vencerme",
+			"message" : "Los Espiritus Elementales ya estan bajo mi control",
+			"event"   : false
+		},
+		{
+			"issuing" : "necro",
+			"title"   : "Nigromante",
+			"message" : "Y no hay nada que puedas hacer",
 			"event"   : false
 		}	
 	]
-
-
 
 var dead_last_invoque = false
 
@@ -33,6 +37,8 @@ var end_first_msg = false
 var box_msg  
 
 func _ready():
+	$CanvasLayer.changeBackMusic2("res://sfx/background_wind_chimes_loop.wav", -10)
+	$CanvasLayer.changeBackMusic("res://sfx/05 gaseous tethanus.ogg", 0)
 	if Env.player_origin_position == "init":
 		$knight.position.x = $InitArrow.position.x + 100
 		$knight.position.y = $InitArrow.position.y
@@ -45,11 +51,10 @@ func _process(delta):
 		if Input.is_action_just_pressed("attack") and not Msgs.dlg_003.is_done:
 			self.showMessages()
 			Msgs.forgot = true
-		elif Input.is_action_just_pressed("attack") and not Msgs.dlg_004.is_done:
-			self.showDeadMessages()
-			Msgs.forgot = true
 
 func _on_EnterBattle_body_entered(body):
+	Msgs.forgot = false
+	self.box_msg = null
 	if body.get_name() == 'knight':
 		if not DbBoss.necromancer_002.dead:
 			self.initDialog()
@@ -60,12 +65,6 @@ func initDialog () :
 	Msgs.in_dialog      = true
 	Msgs.dlg_003.active = true
 
-func initDialogDead () :
-	$Actions/Dialog002BossDead/BtnToPress.visible = true
-	Msgs.in_dialog      = true
-	Msgs.dlg_004.active = true
-
-		
 func showMessages () :
 	if number_message_first_msg < messages_battle_necromancer_001.size():
 		if self.box_msg:
@@ -83,36 +82,18 @@ func showMessages () :
 #		Players._add_item(item, 1)
 
 	number_message_first_msg += 1
-	
-func showDeadMessages () :
-	if number_message_second_msg < messages_battle_necromancer_001.size():
-		if self.box_msg:
-			self.box_msg.queue_free()
-		self.box_msg  = self.addChildBoxMsg()
-		self.box_msg._set_message(messages_battle_necromancer_001[number_message_second_msg])
-		
-	else:
-		self.box_msg.queue_free()
-		Msgs.in_dialog       = false				
-		Msgs.forgot          = false
-		Msgs.dlg_004.is_done = true
-		$knight.idle()
-		self.call_deferred("_cd_init_battle")
-		var item             = ItemsGbl._get_item_by_code(1003)
-		Players._add_item(item, 5)
-
-	number_message_second_msg += 1
 
 func addChildBoxMsg():
 	var box        = load("res://scenes/GUI/MsgBoxA.tscn")
 	box            = box.instance()
-	box.position.x = $knight.position.x
+	box.position.x = $knight.position.x +20
 	box.position.y = $knight.position.y + 80	
 	self.add_child(box)
 	return box
 
 func _cd_init_battle ():
-	$CanvasLayer.changeBackMusic("res://sfx/12 final battle.ogg", -20)
+	
+	$CanvasLayer.changeBackMusic("res://sfx/12 final battle.ogg", 0)
 	$Actions/Dialog001Boss/BtnToPress.visible = false
 	$Areas/EnterBattle.queue_free()
 	$BossObelisk/CollisionShape2D.disabled = false
@@ -126,7 +107,8 @@ func _finish_battle () :
 	self.call_deferred("_cd_finish_battle")
 		
 func _cd_finish_battle () :
-	$CanvasLayer.changeBackMusic("res://sfx/01 game-game_0.ogg", -20)	
+	$CanvasLayer.changeBackMusic2("res://sfx/background_wind_chimes_loop.wav", -10)
+	$CanvasLayer.changeBackMusic("res://sfx/05 gaseous tethanus.ogg", 0)
 	$BossObelisk/CollisionShape2D.disabled = true
 	$BossObelisk/AnimationPlayer.play("off")
 	$BossObelisk2/CollisionShape2D.disabled = true

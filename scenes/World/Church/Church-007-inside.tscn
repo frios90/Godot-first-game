@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://assets/tiles/tile-church/tileset.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Players/Knight.tscn" type="PackedScene" id=2]
@@ -24,11 +24,15 @@
 [ext_resource path="res://scenes/Enemies/Boss/WindSpirit.tscn" type="PackedScene" id=22]
 [ext_resource path="res://assets/tiles/Terrain_and_Props.png" type="Texture" id=23]
 [ext_resource path="res://scenes/Elements/Traps/Trap-003.tscn" type="PackedScene" id=24]
+[ext_resource path="res://scenes/World/Chest-A.tscn" type="PackedScene" id=25]
+[ext_resource path="res://scenes/Enemies/Archer.tscn" type="PackedScene" id=26]
 [ext_resource path="res://scenes/Npc/OldMan.tscn" type="PackedScene" id=27]
 [ext_resource path="res://scenes/Enemies/Boss/Death.tscn" type="PackedScene" id=28]
 [ext_resource path="res://scenes/Elements/Traps/TrapB-002.tscn" type="PackedScene" id=29]
 [ext_resource path="res://scenes/Elements/Traps/Trap001.tscn" type="PackedScene" id=30]
 [ext_resource path="res://scenes/GUI/btns/BtnToPress.tscn" type="PackedScene" id=31]
+[ext_resource path="res://scenes/Enemies/NigthBorne.tscn" type="PackedScene" id=32]
+[ext_resource path="res://scenes/Enemies/Rogue.tscn" type="PackedScene" id=33]
 
 [sub_resource type="TileSet" id=10]
 1/name = "tileset.png 1"
@@ -879,7 +883,7 @@ shape = SubResource( 18 )
 position = Vector2( 6636, 1384 )
 
 [node name="WindSpirit" parent="." instance=ExtResource( 22 )]
-position = Vector2( 4226, -1008 )
+position = Vector2( 4112, -1000 )
 
 [node name="ObeliskWindSpirit" parent="." instance=ExtResource( 18 )]
 position = Vector2( 4380, -816 )
@@ -888,7 +892,7 @@ position = Vector2( 4380, -816 )
 position = Vector2( 4416, -976 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InitBattleWindSpirit"]
-position = Vector2( -120, -65 )
+position = Vector2( -64, -80 )
 shape = SubResource( 31 )
 
 [node name="BtnToPress" parent="InitBattleWindSpirit/CollisionShape2D" instance=ExtResource( 31 )]
@@ -910,13 +914,13 @@ position = Vector2( 6200, 1528 )
 position = Vector2( 6648, 1304 )
 
 [node name="Trap001" parent="Traps" instance=ExtResource( 30 )]
-position = Vector2( 792, 96 )
+position = Vector2( 928, 104 )
 
 [node name="TrapB-002" parent="Traps" instance=ExtResource( 29 )]
-position = Vector2( 480, -32 )
+position = Vector2( 608, -40 )
 
 [node name="TrapB-003" parent="Traps" instance=ExtResource( 29 )]
-position = Vector2( 1632, -32 )
+position = Vector2( 1744, -32 )
 
 [node name="TrapB-004" parent="Traps" instance=ExtResource( 29 )]
 position = Vector2( 4104, -384 )
@@ -929,11 +933,180 @@ position = Vector2( 4184, 904 )
 scale = Vector2( -1, 1 )
 dir_projectile = 1
 
+[node name="OldMan" parent="." instance=ExtResource( 27 )]
+position = Vector2( 1048, 502 )
+
+[node name="Chests" type="Node2D" parent="."]
+
+[node name="1018" parent="Chests" instance=ExtResource( 25 )]
+position = Vector2( 328, 96 )
+scale = Vector2( -1.5, 1.5 )
+code = 1018
+qty = 10
+
+[node name="1019" parent="Chests" instance=ExtResource( 25 )]
+position = Vector2( 1592, 492 )
+scale = Vector2( -1.5, 1.5 )
+code = 1019
+item = 1009
+qty = 5
+
+[node name="1020" parent="Chests" instance=ExtResource( 25 )]
+position = Vector2( 4592, -248 )
+code = 1020
+item = 1012
+qty = 5
+
+[node name="1021" parent="Chests" instance=ExtResource( 25 )]
+position = Vector2( 4896, 936 )
+code = 1021
+item = 1016
+qty = 2
+
+[node name="1022" parent="Chests" instance=ExtResource( 25 )]
+position = Vector2( 4088, 936 )
+scale = Vector2( -1.5, 1.5 )
+code = 1022
+item = 1030
+
+[node name="1023" parent="Chests" instance=ExtResource( 25 )]
+position = Vector2( 3984, 1416 )
+code = 1023
+item = 1001
+qty = 10
+
+[node name="1024" parent="Chests" instance=ExtResource( 25 )]
+position = Vector2( 4328, 1480 )
+scale = Vector2( -1.5, 1.5 )
+code = 1024
+item = 1003
+qty = 5
+
+[node name="1025" parent="Chests" instance=ExtResource( 25 )]
+position = Vector2( 2768, 2320 )
+scale = Vector2( -1.5, 1.5 )
+code = 1025
+item = 1019
+qty = 2
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="NB" type="Node2D" parent="Enemies"]
+
+[node name="NightBorne" parent="Enemies/NB" instance=ExtResource( 32 )]
+position = Vector2( 536, 88 )
+
+[node name="NightBorne2" parent="Enemies/NB" instance=ExtResource( 32 )]
+position = Vector2( 688, 96 )
+
+[node name="NightBorne3" parent="Enemies/NB" instance=ExtResource( 32 )]
+position = Vector2( 1432, 88 )
+
+[node name="NightBorne4" parent="Enemies/NB" instance=ExtResource( 32 )]
+position = Vector2( 1736, 88 )
+
+[node name="NightBorne5" parent="Enemies/NB" instance=ExtResource( 32 )]
+position = Vector2( 2080, 96 )
+
+[node name="NightBorne6" parent="Enemies/NB" instance=ExtResource( 32 )]
+position = Vector2( 2504, 96 )
+
+[node name="NightBorne7" parent="Enemies/NB" instance=ExtResource( 32 )]
+position = Vector2( 2000, 512 )
+
+[node name="NightBorne8" parent="Enemies/NB" instance=ExtResource( 32 )]
+position = Vector2( 2176, 520 )
+
+[node name="NightBorne9" parent="Enemies/NB" instance=ExtResource( 32 )]
+position = Vector2( 2416, 520 )
+
+[node name="NightBorne10" parent="Enemies/NB" instance=ExtResource( 32 )]
+position = Vector2( 2624, 512 )
+
+[node name="NightBorne11" parent="Enemies/NB" instance=ExtResource( 32 )]
+position = Vector2( 3336, 512 )
+
+[node name="NightBorne12" parent="Enemies/NB" instance=ExtResource( 32 )]
+position = Vector2( 3520, 520 )
+
+[node name="ROUGE" type="Node2D" parent="Enemies"]
+
+[node name="Rogue" parent="Enemies/ROUGE" instance=ExtResource( 33 )]
+position = Vector2( 3728, 1640 )
+
+[node name="Rogue2" parent="Enemies/ROUGE" instance=ExtResource( 33 )]
+position = Vector2( 4208, 1648 )
+
+[node name="Rogue3" parent="Enemies/ROUGE" instance=ExtResource( 33 )]
+position = Vector2( 4400, 1648 )
+
+[node name="Rogue4" parent="Enemies/ROUGE" instance=ExtResource( 33 )]
+position = Vector2( 4840, 1640 )
+
+[node name="Rogue5" parent="Enemies/ROUGE" instance=ExtResource( 33 )]
+position = Vector2( 5168, 1640 )
+
+[node name="Rogue6" parent="Enemies/ROUGE" instance=ExtResource( 33 )]
+position = Vector2( 5720, 1544 )
+
+[node name="Rogue7" parent="Enemies/ROUGE" instance=ExtResource( 33 )]
+position = Vector2( 6056, 1552 )
+
+[node name="Rogue8" parent="Enemies/ROUGE" instance=ExtResource( 33 )]
+position = Vector2( 4424, 928 )
+
+[node name="Rogue9" parent="Enemies/ROUGE" instance=ExtResource( 33 )]
+position = Vector2( 2896, 2288 )
+
+[node name="Rogue10" parent="Enemies/ROUGE" instance=ExtResource( 33 )]
+position = Vector2( 3216, 2296 )
+
+[node name="Rogue11" parent="Enemies/ROUGE" instance=ExtResource( 33 )]
+position = Vector2( 2728, -144 )
+
+[node name="ARCHER" type="Node2D" parent="Enemies"]
+
+[node name="Archer" parent="Enemies/ARCHER" instance=ExtResource( 26 )]
+position = Vector2( 3752, 1472 )
+
+[node name="Archer2" parent="Enemies/ARCHER" instance=ExtResource( 26 )]
+position = Vector2( 3456, 1584 )
+
+[node name="Archer3" parent="Enemies/ARCHER" instance=ExtResource( 26 )]
+position = Vector2( 4568, 1440 )
+
+[node name="Archer4" parent="Enemies/ARCHER" instance=ExtResource( 26 )]
+position = Vector2( 5800, 1536 )
+
+[node name="Archer5" parent="Enemies/ARCHER" instance=ExtResource( 26 )]
+position = Vector2( 4176, 896 )
+
+[node name="Archer6" parent="Enemies/ARCHER" instance=ExtResource( 26 )]
+position = Vector2( 4248, 896 )
+
+[node name="Archer7" parent="Enemies/ARCHER" instance=ExtResource( 26 )]
+position = Vector2( 4824, 928 )
+
+[node name="Archer8" parent="Enemies/ARCHER" instance=ExtResource( 26 )]
+position = Vector2( 4280, -256 )
+
+[node name="Archer9" parent="Enemies/ARCHER" instance=ExtResource( 26 )]
+position = Vector2( 3912, -256 )
+
+[node name="Archer10" parent="Enemies/ARCHER" instance=ExtResource( 26 )]
+position = Vector2( 2168, -176 )
+
+[node name="Archer11" parent="Enemies/ARCHER" instance=ExtResource( 26 )]
+position = Vector2( 2448, -152 )
+
+[node name="Archer12" parent="Enemies/ARCHER" instance=ExtResource( 26 )]
+position = Vector2( 2968, -152 )
+
 [node name="knight" parent="." instance=ExtResource( 2 )]
 position = Vector2( 216, 480 )
 
 [node name="Camera2D" parent="knight" instance=ExtResource( 3 )]
-position = Vector2( 88, -96 )
+position = Vector2( 90, -96 )
 limit_top = -10000022
 
 [node name="ParallaxBackground" parent="knight/Camera2D" instance=ExtResource( 15 )]
@@ -959,7 +1132,7 @@ texture = ExtResource( 4 )
 [node name="Candles" type="Node2D" parent="."]
 
 [node name="camdel00A5" parent="Candles" instance=ExtResource( 10 )]
-position = Vector2( 4472, 1368 )
+position = Vector2( 4384, 1352 )
 
 [node name="camdel00A" parent="Candles" instance=ExtResource( 10 )]
 position = Vector2( 840, 272 )
@@ -974,7 +1147,7 @@ position = Vector2( 1664, 272 )
 position = Vector2( 2112, 272 )
 
 [node name="camdel00A6" parent="Candles" instance=ExtResource( 10 )]
-position = Vector2( 3904, 1360 )
+position = Vector2( 3896, 1336 )
 
 [node name="camdel00A7" parent="Candles" instance=ExtResource( 10 )]
 position = Vector2( 5184, 1376 )
@@ -1012,9 +1185,6 @@ scale = Vector2( 0.4, 1 )
 [node name="SpikesDead5" parent="Spikes" instance=ExtResource( 12 )]
 position = Vector2( 2792, -236 )
 scale = Vector2( 2.18, 1 )
-
-[node name="OldMan" parent="." instance=ExtResource( 27 )]
-position = Vector2( 1048, 502 )
 
 [node name="Death" parent="." instance=ExtResource( 28 )]
 position = Vector2( 1088, 466 )

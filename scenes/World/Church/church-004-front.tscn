@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://scripts/World/ScriptChangeScene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Players/Knight.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://scenes/Players/Camera2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/tiles/cave/SismileBOnes.png" type="Texture" id=5]
 [ext_resource path="res://assets/MapElements/iglesia2.png" type="Texture" id=6]
-[ext_resource path="res://scenes/Enemies/NigthBorne.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/tiles/Seleccion-01/Props-Rocks.png" type="Texture" id=8]
 [ext_resource path="res://assets/tiles/Mountain.png" type="Texture" id=9]
 [ext_resource path="res://scenes/World/Cementery/ParallaxBackground.tscn" type="PackedScene" id=10]
@@ -25,10 +24,7 @@
 [ext_resource path="res://assets/tiles/oak_woods_v1.0/oak_woods_tileset.png" type="Texture" id=23]
 [ext_resource path="res://assets/tiles/Cementery/objectsObscure.png" type="Texture" id=24]
 [ext_resource path="res://assets/tiles/town/layers/middleground.png" type="Texture" id=25]
-[ext_resource path="res://scenes/Enemies/HellDog.tscn" type="PackedScene" id=26]
 [ext_resource path="res://scenes/GUI/btns/BtnToPress.tscn" type="PackedScene" id=27]
-[ext_resource path="res://scenes/Enemies/Flying-eye.tscn" type="PackedScene" id=28]
-[ext_resource path="res://scenes/Enemies/Rogue.tscn" type="PackedScene" id=29]
 
 [sub_resource type="TileSet" id=29]
 0/name = "mountains.png 0"
@@ -1041,50 +1037,6 @@ scale = Vector2( 0.221667, 1 )
 texture = ExtResource( 21 )
 
 [node name="Enemies" type="Node2D" parent="."]
-
-[node name="Random" type="Node2D" parent="Enemies"]
-
-[node name="HellDog" parent="Enemies/Random" instance=ExtResource( 26 )]
-position = Vector2( 472, 544 )
-
-[node name="HellDog2" parent="Enemies/Random" instance=ExtResource( 26 )]
-position = Vector2( 920, 536 )
-
-[node name="HellDog3" parent="Enemies/Random" instance=ExtResource( 26 )]
-position = Vector2( 1296, 536 )
-
-[node name="HellDog4" parent="Enemies/Random" instance=ExtResource( 26 )]
-position = Vector2( 1648, 536 )
-
-[node name="NightBorne" parent="Enemies/Random" instance=ExtResource( 7 )]
-position = Vector2( 328, 544 )
-
-[node name="NightBorne2" parent="Enemies/Random" instance=ExtResource( 7 )]
-position = Vector2( 608, 536 )
-
-[node name="NightBorne3" parent="Enemies/Random" instance=ExtResource( 7 )]
-position = Vector2( 1096, 536 )
-
-[node name="NightBorne4" parent="Enemies/Random" instance=ExtResource( 7 )]
-position = Vector2( 1472, 536 )
-
-[node name="Flying-eye" parent="Enemies/Random" instance=ExtResource( 28 )]
-position = Vector2( 280, 456 )
-
-[node name="Flying-eye2" parent="Enemies/Random" instance=ExtResource( 28 )]
-position = Vector2( 512, 480 )
-
-[node name="Flying-eye3" parent="Enemies/Random" instance=ExtResource( 28 )]
-position = Vector2( 928, 464 )
-
-[node name="Flying-eye4" parent="Enemies/Random" instance=ExtResource( 28 )]
-position = Vector2( 1352, 464 )
-
-[node name="Rogue" parent="Enemies/Random" instance=ExtResource( 29 )]
-position = Vector2( 856, 536 )
-
-[node name="Rogue2" parent="Enemies/Random" instance=ExtResource( 29 )]
-position = Vector2( 1552, 528 )
 
 [node name="knight" parent="." instance=ExtResource( 2 )]
 position = Vector2( 88, 528 )

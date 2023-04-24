@@ -13,9 +13,9 @@ export (int) var maxSpeed        = 50
 const gravity                    = 1600
 const up                         = Vector2(0, -1)
 
-const ptsDead                    = 90
+const ptsDead                    = 60
 var dead                         = false 
-var life                         = 100
+var life                         = 45
 var base_attack                  = 40
 var base_defense                 = 15
 var motion                       = Vector2(0, 0)
@@ -46,7 +46,7 @@ func _process(delta):
 		self.motion.y += self.gravity * delta
 		self.flip()
 		self.detect()
-		self.attack()
+		self.goAttack()
 		if is_on_floor():
 			motion.y = 0
 	else:
@@ -64,7 +64,7 @@ func detect ():
 		state_machine.travel("detect")
 		motion.x = 0
 
-func attack ():
+func goAttack ():
 	if $RayAttack.is_colliding() :	
 		is_attacking = true	
 		$AttackArea/CollisionShape2D.disabled = false

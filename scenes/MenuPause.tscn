@@ -1,9 +1,8 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/MenuPause.gd" type="Script" id=1]
 [ext_resource path="res://assets/Gui/Stats/intelligence-stone.png" type="Texture" id=2]
 [ext_resource path="res://fonts/DePixelBreit.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/Gui/Stats/mp-stone.png" type="Texture" id=4]
 [ext_resource path="res://assets/Gui/TexturaBlue/Icons/remove.png" type="Texture" id=5]
 [ext_resource path="res://assets/Gui/Stats/strength-stone.png" type="Texture" id=6]
 [ext_resource path="res://assets/Gui/Stats/speed-stone.png" type="Texture" id=7]
@@ -72,27 +71,22 @@ expand = true
 position = Vector2( 0, -8 )
 
 [node name="Strength-stone" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 40, 136 )
+position = Vector2( 40, 113 )
 scale = Vector2( 0.12, 0.12 )
 texture = ExtResource( 6 )
 
 [node name="Stamine-stone" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 40, 112 )
+position = Vector2( 40, 89 )
 scale = Vector2( 0.12, 0.12 )
 texture = ExtResource( 10 )
 
-[node name="Mp-stone" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 40, 88 )
-scale = Vector2( 0.12, 0.12 )
-texture = ExtResource( 4 )
-
 [node name="Luckstone" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 40, 208 )
+position = Vector2( 40, 185 )
 scale = Vector2( 0.12, 0.12 )
 texture = ExtResource( 9 )
 
 [node name="Speed-stone" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 40, 184 )
+position = Vector2( 40, 161 )
 scale = Vector2( 0.12, 0.12 )
 texture = ExtResource( 7 )
 
@@ -102,32 +96,32 @@ scale = Vector2( 0.12, 0.12 )
 texture = ExtResource( 8 )
 
 [node name="BornRune" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 163, 236.25 )
+position = Vector2( 163, 213.25 )
 scale = Vector2( 0.712121, 0.742424 )
 texture = ExtResource( 13 )
 
 [node name="SandRune" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 246, 236.25 )
+position = Vector2( 246, 213.25 )
 scale = Vector2( 0.712121, 0.742424 )
 texture = ExtResource( 14 )
 
 [node name="Waterrune" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 285, 236.25 )
+position = Vector2( 285, 213.25 )
 scale = Vector2( 0.712121, 0.742424 )
 texture = ExtResource( 11 )
 
 [node name="Windrune" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 325, 236.25 )
+position = Vector2( 325, 213.25 )
 scale = Vector2( 0.712121, 0.742424 )
 texture = ExtResource( 15 )
 
 [node name="FlameRune" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 205, 236.25 )
+position = Vector2( 205, 213.25 )
 scale = Vector2( 0.712121, 0.742424 )
 texture = ExtResource( 12 )
 
 [node name="Intelligence-stone" type="Sprite" parent="Stats/Icons"]
-position = Vector2( 40, 160 )
+position = Vector2( 40, 137 )
 scale = Vector2( 0.12, 0.12 )
 texture = ExtResource( 2 )
 
@@ -143,21 +137,11 @@ custom_fonts/font = SubResource( 1 )
 text = "puntos de vida"
 valign = 1
 
-[node name="mp" type="Label" parent="Stats/Labels"]
-margin_left = 57.0
-margin_top = 72.0
-margin_right = 245.0
-margin_bottom = 94.0
-rect_pivot_offset = Vector2( 56, 16 )
-custom_fonts/font = SubResource( 1 )
-text = "puntos de mágia"
-valign = 1
-
 [node name="stamine" type="Label" parent="Stats/Labels"]
 margin_left = 57.0
-margin_top = 96.0
+margin_top = 73.0
 margin_right = 174.0
-margin_bottom = 118.0
+margin_bottom = 95.0
 rect_pivot_offset = Vector2( 56, 16 )
 custom_fonts/font = SubResource( 1 )
 text = "aguante"
@@ -165,9 +149,9 @@ valign = 1
 
 [node name="strength" type="Label" parent="Stats/Labels"]
 margin_left = 57.0
-margin_top = 120.0
+margin_top = 97.0
 margin_right = 174.0
-margin_bottom = 142.0
+margin_bottom = 119.0
 rect_pivot_offset = Vector2( 56, 16 )
 custom_fonts/font = SubResource( 1 )
 text = "fuerza"
@@ -176,45 +160,45 @@ autowrap = true
 
 [node name="intelligence" type="Label" parent="Stats/Labels"]
 margin_left = 57.0
-margin_top = 144.0
+margin_top = 121.0
 margin_right = 241.0
-margin_bottom = 168.0
+margin_bottom = 145.0
 custom_fonts/font = SubResource( 2 )
 text = "inteligencia"
 valign = 1
 
 [node name="speed" type="Label" parent="Stats/Labels"]
 margin_left = 57.0
-margin_top = 168.0
+margin_top = 145.0
 margin_right = 241.0
-margin_bottom = 192.0
+margin_bottom = 169.0
 custom_fonts/font = SubResource( 2 )
 text = "agilidad"
 valign = 1
 
 [node name="luck" type="Label" parent="Stats/Labels"]
 margin_left = 57.0
-margin_top = 192.0
+margin_top = 169.0
 margin_right = 241.0
-margin_bottom = 216.0
+margin_bottom = 193.0
 custom_fonts/font = SubResource( 2 )
 text = "suerte"
 valign = 1
 
 [node name="titleAttack" type="Label" parent="Stats/Labels"]
 margin_left = 46.0
-margin_top = 244.25
+margin_top = 221.25
 margin_right = 230.0
-margin_bottom = 268.25
+margin_bottom = 245.25
 custom_fonts/font = SubResource( 2 )
 text = "ataque"
 valign = 1
 
 [node name="titleDefense" type="Label" parent="Stats/Labels"]
 margin_left = 46.0
-margin_top = 268.25
+margin_top = 245.25
 margin_right = 230.0
-margin_bottom = 292.25
+margin_bottom = 269.25
 custom_fonts/font = SubResource( 2 )
 text = "defensa"
 valign = 1
@@ -232,22 +216,11 @@ text = "0"
 align = 2
 valign = 1
 
-[node name="mp" type="Label" parent="Stats/Values"]
-margin_left = 257.0
-margin_top = 72.0
-margin_right = 425.0
-margin_bottom = 94.0
-rect_pivot_offset = Vector2( 56, 16 )
-custom_fonts/font = SubResource( 1 )
-text = "0"
-align = 2
-valign = 1
-
 [node name="stamine" type="Label" parent="Stats/Values"]
 margin_left = 241.0
-margin_top = 96.0
+margin_top = 73.0
 margin_right = 425.0
-margin_bottom = 118.0
+margin_bottom = 95.0
 rect_pivot_offset = Vector2( 56, 16 )
 custom_fonts/font = SubResource( 1 )
 text = "0"
@@ -256,9 +229,9 @@ valign = 1
 
 [node name="strength" type="Label" parent="Stats/Values"]
 margin_left = 241.0
-margin_top = 120.0
+margin_top = 97.0
 margin_right = 425.0
-margin_bottom = 142.0
+margin_bottom = 119.0
 rect_pivot_offset = Vector2( 56, 16 )
 custom_fonts/font = SubResource( 1 )
 text = "0"
@@ -268,9 +241,9 @@ autowrap = true
 
 [node name="intelligence" type="Label" parent="Stats/Values"]
 margin_left = 241.0
-margin_top = 144.0
+margin_top = 121.0
 margin_right = 425.0
-margin_bottom = 168.0
+margin_bottom = 145.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
@@ -278,9 +251,9 @@ valign = 1
 
 [node name="speed" type="Label" parent="Stats/Values"]
 margin_left = 241.0
-margin_top = 168.0
+margin_top = 145.0
 margin_right = 425.0
-margin_bottom = 192.0
+margin_bottom = 169.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
@@ -288,9 +261,9 @@ valign = 1
 
 [node name="luck" type="Label" parent="Stats/Values"]
 margin_left = 241.0
-margin_top = 192.0
+margin_top = 169.0
 margin_right = 425.0
-margin_bottom = 216.0
+margin_bottom = 193.0
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
@@ -298,9 +271,9 @@ valign = 1
 
 [node name="defensewind" type="Label" parent="Stats/Values"]
 margin_left = 301.0
-margin_top = 268.25
+margin_top = 245.25
 margin_right = 334.0
-margin_bottom = 292.25
+margin_bottom = 269.25
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
@@ -308,9 +281,9 @@ valign = 1
 
 [node name="defenseliquid" type="Label" parent="Stats/Values"]
 margin_left = 261.0
-margin_top = 268.25
+margin_top = 245.25
 margin_right = 294.0
-margin_bottom = 292.25
+margin_bottom = 269.25
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
@@ -318,9 +291,9 @@ valign = 1
 
 [node name="defensesand" type="Label" parent="Stats/Values"]
 margin_left = 221.0
-margin_top = 268.25
+margin_top = 245.25
 margin_right = 254.0
-margin_bottom = 292.25
+margin_bottom = 269.25
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
@@ -328,9 +301,9 @@ valign = 1
 
 [node name="defenseflame" type="Label" parent="Stats/Values"]
 margin_left = 181.0
-margin_top = 268.25
+margin_top = 245.25
 margin_right = 213.0
-margin_bottom = 292.25
+margin_bottom = 269.25
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
@@ -338,9 +311,9 @@ valign = 1
 
 [node name="defensenatural" type="Label" parent="Stats/Values"]
 margin_left = 141.0
-margin_top = 268.25
+margin_top = 245.25
 margin_right = 173.0
-margin_bottom = 292.25
+margin_bottom = 269.25
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
@@ -348,9 +321,9 @@ valign = 1
 
 [node name="attackwind" type="Label" parent="Stats/Values"]
 margin_left = 301.0
-margin_top = 244.25
+margin_top = 221.25
 margin_right = 334.0
-margin_bottom = 268.25
+margin_bottom = 245.25
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
@@ -358,9 +331,9 @@ valign = 1
 
 [node name="attackliquid" type="Label" parent="Stats/Values"]
 margin_left = 261.0
-margin_top = 244.25
+margin_top = 221.25
 margin_right = 294.0
-margin_bottom = 268.25
+margin_bottom = 245.25
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
@@ -368,9 +341,9 @@ valign = 1
 
 [node name="attacksand" type="Label" parent="Stats/Values"]
 margin_left = 221.0
-margin_top = 244.25
+margin_top = 221.25
 margin_right = 253.0
-margin_bottom = 268.25
+margin_bottom = 245.25
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
@@ -378,9 +351,9 @@ valign = 1
 
 [node name="attackflame" type="Label" parent="Stats/Values"]
 margin_left = 181.0
-margin_top = 244.25
+margin_top = 221.25
 margin_right = 213.0
-margin_bottom = 268.25
+margin_bottom = 245.25
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
@@ -388,9 +361,9 @@ valign = 1
 
 [node name="attacknatural" type="Label" parent="Stats/Values"]
 margin_left = 141.0
-margin_top = 244.25
+margin_top = 221.25
 margin_right = 173.0
-margin_bottom = 268.25
+margin_bottom = 245.25
 custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
@@ -398,9 +371,9 @@ valign = 1
 
 [node name="totalattack" type="Label" parent="Stats/Values"]
 margin_left = 365.0
-margin_top = 244.25
+margin_top = 221.25
 margin_right = 414.0
-margin_bottom = 261.25
+margin_bottom = 238.25
 custom_fonts/font = SubResource( 6 )
 text = "0"
 align = 2
@@ -408,9 +381,9 @@ valign = 1
 
 [node name="totaldefense" type="Label" parent="Stats/Values"]
 margin_left = 373.0
-margin_top = 268.25
+margin_top = 245.25
 margin_right = 413.0
-margin_bottom = 285.25
+margin_bottom = 262.25
 custom_fonts/font = SubResource( 7 )
 text = "0"
 align = 2

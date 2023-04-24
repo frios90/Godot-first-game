@@ -11,7 +11,7 @@ func _ready ():
 		self.procc = false 
 		$AnimationPlayer.play("open-001")		
 
-func _process(delta):
+func _process(_delta):
 
 	if self.procc:
 		var chest = Chests._get_chest_by_code(code)

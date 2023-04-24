@@ -3,7 +3,7 @@
 [ext_resource path="res://scripts/CameraEffects.gd" type="Script" id=1]
 
 [node name="Camera2D" type="Camera2D"]
-position = Vector2( -8, -80 )
+position = Vector2( -8, -60 )
 current = true
 zoom = Vector2( 0.4, 0.6 )
 limit_left = 1

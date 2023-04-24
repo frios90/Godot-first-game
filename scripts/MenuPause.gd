@@ -7,12 +7,7 @@ var info_item_selected
 func _ready ():
 	self.initOrUpdateDataPlayer()
 	
-func _load_accessories() :
-	
-	
-		
-
-		
+func _load_accessories() :			
 	var runes_attack = Players.selected.action_attack_runes
 	var rune_001     = ItemsGbl._get_item_by_code(runes_attack[0]) if runes_attack[0] else false
 	var rune_002     = ItemsGbl._get_item_by_code(runes_attack[1]) if runes_attack[1] else false
@@ -35,7 +30,6 @@ func initOrUpdateDataPlayer ():
 	self._load_items()
 	self._load_accessories()
 	$Stats/Values/hp.text            = str(str(int(Players.selected.stats.current_hp)), " / ", str(Players.selected.stats.health_points))
-	$Stats/Values/mp.text            = str(str(int(Players.selected.stats.current_mp)), " / ", str(Players.selected.stats.magic_points))
 	$Stats/Values/stamine.text       = str(int(Players.selected.stats.stamine))
 	$Stats/Values/strength.text      = str(int(Players.selected.stats.strength))
 	$Stats/Values/intelligence.text  = str(int(Players.selected.stats.intelligence))
@@ -87,7 +81,7 @@ func _process(delta):
 		
 	
 func setActionItems () :
-	var empty_icon = "res://assets/Gui/TexturaBlue/Scroll Button.png"
+
 	if Players.selected.action_items[0]:
 		var item1 =  Players._get_player_item_by_code(Players.selected.action_items[0])
 		$ItemsSelected/IconItem001.texture = load(item1.data.icon)
@@ -107,9 +101,9 @@ func setActionItems () :
 
 func _load_items () :
 	var lenInIventory = len($Items/ScrollContainer/VBoxContainer.get_children())
-	for e in range(lenInIventory):
+	for _e in range(lenInIventory):
 		$Items/ScrollContainer/VBoxContainer.remove_child($Items/ScrollContainer/VBoxContainer.get_children()[0])
-	var pre_y = false
+
 	for i in range (len(Players.selected.items)):
 		var row = row_list_item.instance()		
 		var img = load(Players.selected.items[i].data.icon)
@@ -132,6 +126,7 @@ func _on_ButtonContinue_pressed():
 
 
 func _on_BtnSelect_pressed():
+	$InfoItem.visible = false
 	Players._add_action_item(self.info_item_selected)
 
 func _on_RemoveItem001_pressed():

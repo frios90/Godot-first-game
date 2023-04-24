@@ -91,7 +91,7 @@ func attacking () :
 func castSpell (collider):
 	is_attacking     = true
 	get_tree().create_timer(1).connect("timeout", self, "_timeout_finish_attach")	
-	var spell        = load("res://scenes/Spells/Spell-001-spark.tscn")
+	var spell        = load("res://scenes/Spells/Spell-002-gosth.tscn")
 	spell            = spell.instance()
 	spell.position.x = collider.position[0]
 	spell.position.y = collider.position[1]

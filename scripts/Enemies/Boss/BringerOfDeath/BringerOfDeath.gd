@@ -9,10 +9,10 @@ export (int) var withMoveAndFlip = 0
 var maxSpeed                     = 120
 const gravity                    = 1600
 const up                         = Vector2(0, -1)
-const ptsDead                    = 4000
+const ptsDead                    = 3000
 var dead                         = false 
 
-var life                         = 5000
+var life                         = 9000
 var base_attack                  = 65
 var base_defense                 = 32
 

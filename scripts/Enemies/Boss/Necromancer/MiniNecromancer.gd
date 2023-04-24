@@ -13,7 +13,7 @@ const ptsDead            = 350
 
 var dead                 = false
 
-var life                 = 80
+var life                 = 60
 onready var current_life = life if level == 1 else life * (level * 0.77)
 
 var base_attack     = 60
@@ -100,8 +100,7 @@ func attacking () :
 			self.is_attacking = true
 			
 	else :
-		get_tree().create_timer(1).connect("timeout", self, "_cm_finish_attack")
-	
+		Env.non_use = get_tree().create_timer(1).connect("timeout", self, "_cm_finish_attack")
 			
 func _cm_cast_spell ():	
 	var spell        = load("res://scenes/Spells/Spell-001-spark.tscn")

@@ -8,17 +8,13 @@ var attack = 0
 
 func _ready():	
 	pass
-
 	
-func _process(delta):	
+func _process(_delta):	
 	motion.x = maxSpeed	
 	if $RayBoom.is_colliding():
 		self.motion.x = 0		
 		$AnimationPlayer.play("boom")
-	move_and_slide(motion, up)
-
+	Env.non_use = move_and_slide(motion, up)
 
 func _call_boom ():	
 	queue_free()
-
-

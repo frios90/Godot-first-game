@@ -31,8 +31,6 @@ var state_machine
 func _ready():		
 	self.state_machine = $AnimationTree.get("parameters/playback")
 	self.state_machine.start("idle")
-	$AttackArea/CollisionShape2D.disabled = true
-	$ChargeArea/CollisionShape2D.disabled = true
 
 func _process(delta):
 	self._delta = delta
@@ -43,8 +41,6 @@ func _process(delta):
 		if is_on_floor():
 			self.motion.y = 0
 	else:
-		$ChargeArea/CollisionShape2D.disabled = true
-		$DeadArea/CollisionShape2D.disabled   = true
 		self.state_machine.travel("dead")
 		self.motion = Vector2(0, 0)	
 		
@@ -66,10 +62,6 @@ func _dead():
 		DbBoss.wind_spirit.dead = true
 		self.state_machine.travel("dead")
 
-func applySwordEffecs ():
-	Util.get_an_script("Camera2D").trauma = true
-	$SwordHurt01.playing  = true
-	
 func _cd_magic_circle_death ():
 	var circle = load("res://scenes/Enemies/Boss/MagicCircleFinalBoss.tscn")
 	circle            = circle.instance()

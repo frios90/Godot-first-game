@@ -1,6 +1,8 @@
 extends Node2D
 
 func _ready():
+	$CanvasLayer.changeBackMusic2("res://sfx/background_wind_chimes_loop.wav", -10)
+	$CanvasLayer.changeBackMusic("res://sfx/05 gaseous tethanus.ogg", 0)
 	if Players.selected.change_scene_from_dead :
 		$knight.position.x = Players.selected.last_save_point.x
 		$knight.position.y = Players.selected.last_save_point.y
@@ -18,7 +20,7 @@ func _on_EnterBattle_body_entered(body):
 			self.call_deferred("_cd_init_battle")
 		
 func _cd_init_battle ():
-	$CanvasLayer.changeBackMusic("res://sfx/12 final battle.ogg", -20)
+	$CanvasLayer.changeBackMusic("res://sfx/12 final battle.ogg", 0)
 	$BringerOfDeath.withMoveAndFlip = 1
 	$BringerOfDeath.motion.x = $BringerOfDeath.maxSpeed
 	$Areas/EnterBattle.queue_free()
@@ -32,7 +34,7 @@ func _finish_battle () :
 	self.call_deferred("_cd_finish_battle")
 		
 func _cd_finish_battle () :
-	$CanvasLayer.changeBackMusic("res://sfx/01 game-game_0.ogg", -20)	
+	$CanvasLayer.changeBackMusic("res://sfx/05 gaseous tethanus.ogg", 0)	
 	$BossObelisk/CollisionShape2D.disabled = true
 	$BossObelisk/AnimationPlayer.play("off")
 	$BossObelisk2/CollisionShape2D.disabled = true

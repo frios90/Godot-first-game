@@ -1,10 +1,10 @@
 extends CanvasLayer
 
 var screenPause : String = "res://scenes/MenuPause.tscn" 
-var paused      : Object = null
+var in_paused   : Object = null
+
 
 func _ready () :	
-	$BackAudio.play()	
 	$PopUpItem.visible    = false
 	$PlayerBarControl/LabelTotalGems.text  = String(Players.selected.gems)
 	$PlayerBarControl/HPbar.value          = (float(100) / float(Players.selected.stats.health_points)) * float(Players.selected.stats.current_hp)
@@ -23,13 +23,13 @@ func _process(delta):
 	
 func paused ():
 	if Input.is_action_just_pressed("pause"):
-		paused = load(screenPause).instance()
-		add_child(paused)
-		Env.non_use = paused		
+		in_paused = load(screenPause).instance()
+		add_child(in_paused)
+		Env.non_use = in_paused		
 		get_tree().paused = true
 
 func on_paused_quit() -> void:
-	paused = null
+	in_paused = null
 	
 func handleUpdateHpBarBoss (max_life, current_life):
 	$BossBarControl/HPBarBoss.value = (float(100) / float(max_life)) * float(current_life)
@@ -75,3 +75,9 @@ func changeBackMusic (to_load, volume) :
 	$BackAudio.stream = load(to_load)
 	$BackAudio.volume_db = volume
 	$BackAudio.play()
+
+func changeBackMusic2 (to_load, volume) :
+	$BackAudio2.stop()
+	$BackAudio2.stream = load(to_load)
+	$BackAudio2.volume_db = volume
+	$BackAudio2.play()

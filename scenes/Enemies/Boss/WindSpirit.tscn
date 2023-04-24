@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/Characters/Enemies/Bosses/WindSpirit.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Enemies/Boss/WindSpirit.gd" type="Script" id=2]
@@ -228,15 +228,6 @@ graph_offset = Vector2( 0, 52.4387 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
-[sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 28, 36 )
-
-[sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 24, 40 )
-
-[sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 43.5834, 44 )
-
 [node name="WindSpirit" type="KinematicBody2D" groups=["Enemies"]]
 collision_layer = 2
 collision_mask = 528
@@ -252,7 +243,7 @@ scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 6
-frame = 46
+frame = 40
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 4 )
@@ -268,27 +259,6 @@ tree_root = SubResource( 2 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 3 )
-
-[node name="ChargeArea" type="Area2D" parent="." groups=["Enemies"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeArea"]
-position = Vector2( -16, 8 )
-shape = SubResource( 33 )
-
-[node name="DeadArea" type="Area2D" parent="." groups=["EnemiesDefense"]]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeadArea"]
-position = Vector2( -32, -16 )
-shape = SubResource( 11 )
-
-[node name="AttackArea" type="Area2D" parent="." groups=["Enemies"]]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( 44.4166, -8 )
-shape = SubResource( 12 )
-disabled = true
 
 [node name="SwordHurt01" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
@@ -309,10 +279,3 @@ position = Vector2( 0, 32 )
 enabled = true
 cast_to = Vector2( 80, 0 )
 collision_mask = 528
-
-[node name="RayFireball" type="RayCast2D" parent="."]
-position = Vector2( 128, 0 )
-enabled = true
-cast_to = Vector2( 408, 0 )
-
-[connection signal="area_entered" from="DeadArea" to="." method="_on_DeadArea_area_entered"]

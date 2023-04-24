@@ -1,6 +1,8 @@
 extends Node2D
 var code = 001
 func _ready():
+	$CanvasLayer.changeBackMusic2("res://sfx/background_wind_chimes_loop.wav", -10)
+	$CanvasLayer.changeBackMusic("res://sfx/05 gaseous tethanus.ogg", 0)
 	if Env.player_origin_position == "init":
 		$knight.position.x = $InitArrow.position.x + 100
 		$knight.position.y = $InitArrow.position.y

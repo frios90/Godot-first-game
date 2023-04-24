@@ -9,96 +9,43 @@ var dlg_001 = {
 	"is_done"    : false,
 	"description" : "Dialogo con oldman. se conocen",
 	"msgs"        : [
-	{
-		"issuing" : "old-man",
-		"title"   : "Viejo",
-		"message" : "( ... )",
-		"event"   : false
-	},
-	{
-		"issuing" : "old-man",
-		"title"   : "Viejo",
-		"message" : "Has revivido",
-		"event"   : false
-	},
-	{
-		"issuing" : "old-man",
-		"title"   : "Viejo",
-		"message" : "Te hemos estado esperando hace bastante",
-		"event"   : false
-	},
-	{
-		"issuing" : "old-man",
-		"title"   : "Viejo",
-		"message" : "Ya era hora.",
-		"event"   : false
-	},
-	{
-		"issuing" : "player",
-		"title"   : "Gustavo",
-		"message" : "que es lo que pasa?",
-		"event"   : false
-	},
-	
-	{
-		"issuing" : "old-man",
-		"title"   : "Viejo",
-		"message" : "Este no es un buen lugar para explicar.",
-		"event"   : false
-	},
-	{
-		"issuing" : "old-man",
-		"title"   : "Viejo",
-		"message" : "Ve al pueblo",
-		"event"   : false
-	},
-
-	]
-}
-
-var dlg_002 = {
-	"active"     : false,
-	"can_repeat" : false,
-	"is_done"    : false,
-	"description" : "Dialogo con oldman en la entrada de la cueva",
-	"msgs" : [
 		{
 			"issuing" : "old-man",
 			"title"   : "Viejo",
+			"message" : "( ... )",
+			"event"   : false
+		},
+		{
+			"issuing" : "old-man",
+			"title"   : "Viejo",
+			"message" : "Te estaba esperando",
+			"event"   : false
+		},
+		{
+			"issuing" : "player",
+			"title"   : "Gustavo",
 			"message" : "...",
 			"event"   : false
 		},
 		{
 			"issuing" : "old-man",
 			"title"   : "Viejo",
-			"message" : "Hola, ya estas avanzando",
+			"message" : "Nigromante quiere destruir todo",
 			"event"   : false
 		},
 		{
 			"issuing" : "old-man",
 			"title"   : "Viejo",
-			"message" : "Necesito llegar a la iglesia pero algo esta haciendo guardia en el puente",
+			"message" : "Eres nuestra última esperanza.",
 			"event"   : false
 		},
 		{
 			"issuing" : "old-man",
 			"title"   : "Viejo",
-			"message" : "Ten esto y ayudame",
+			"message" : "Ve al pueblo y enfrentalo para así vengar a todos los que ha matado.",
 			"event"   : false
-		},
-		{
-			"issuing" : "system",
-			"title"   : "Sistema",
-			"message" : "Has recibido una runa",
-			"event"   : false
-		},
-		{
-			"issuing" : "system",
-			"title"   : "Sistema",
-			"message" : "Suerte",
-			"event"   : false
-		}	
-	]	
+		}
+	]
 }
 
 var dlg_003 = {
@@ -116,23 +63,22 @@ var dlg_003 = {
 		{
 			"issuing" : "necro",
 			"title"   : "Nigromante",
-			"message" : "Veo que la muerte te ha traido de vuelta...",
+			"message" : "Muerte perdio su tiempo trayendote nuevamente a la vida...",
 			"event"   : false
 		},
 		{
 			"issuing" : "necro",
 			"title"   : "Nigromante",
-			"message" : "Aunque no podras vencerme",
+			"message" : "Los Espiritus Elementales ya estan bajo mi control",
+			"event"   : false
+		},
+		{
+			"issuing" : "necro",
+			"title"   : "Nigromante",
+			"message" : "Y no hay nada que puedas hacer",
 			"event"   : false
 		}	
 	]
-}
-
-var dlg_004 = {
-	"active"      : false,
-	"can_repeat"  : false,
-	"is_done"     : false,
-	"description" : "Dialogo con el nigromante solomon al morir"
 }
 
 var dlg_005 = {

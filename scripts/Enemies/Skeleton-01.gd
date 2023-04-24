@@ -9,7 +9,7 @@ export (int) var withMoveAndFlip = 0
 export (int) var maxSpeed        = 60
 const gravity                    = 1600
 const up                         = Vector2(0, -1)
-const ptsDead                    = 25
+const ptsDead                    = 50
 var dead                         = false
 var life                         = 30
 var base_attack                  = 30
@@ -55,7 +55,9 @@ func _process(delta):
 		current_life = life
 		$AnimationPlayer.play("raise")
 		
-	move_and_slide(motion, up)
+	Env.non_use = move_and_slide(motion, up)
+	
+	
 
 func _desactivate_event (desactivate) :	
 	if desactivate:
@@ -84,8 +86,6 @@ func _on_DeadArea_area_entered(area):
 		applySoundSword()
 		Util.get_an_script("Camera2D").trauma = true
 		if not dead:
-			print("atacke con resusteni aplicado")
-			print(Players._get_attack(self.defense, self.resistance))
 			current_life = current_life - Players._get_attack(self.defense, self.resistance)
 			$HPbar.value = current_life
 			floatDamageCount()	
@@ -122,5 +122,7 @@ func floatDamageCount () :
 	ftd.amount              = int(Players._get_attack(defense))
 	add_child(ftd)
 		
-func _on_AttackArea_area_entered(area):
+
+func _on_AttackArea_area_entered(_area):
+	
 	pass # Replace with function body.

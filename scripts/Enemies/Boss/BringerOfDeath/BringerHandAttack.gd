@@ -12,11 +12,11 @@ func _ready():
 	motion.x = speed
 	get_parent().get_node("BringerOfDeath").is_cast_spell = true
 
-func _process(delta):
-			
-	flip()
-	attack()
-	move_and_slide(motion, up)
+func _process(_delta):
+	if self:
+		flip()
+		attack()
+		move_and_slide(motion, up)
 	
 func flip ():
 	if $FrontFlip.is_colliding():

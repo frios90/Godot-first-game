@@ -21,23 +21,23 @@ var gustaph = {
 	"stats" : {
 		"level"           : 1,
 		"experience"      : 0,
-		"health_points"   : 130,
+		"health_points"   : 1500,
 		"magic_points"    : 90,
 		"stamine"         : 100,
-		"strength"        : 200,
+		"strength"        : 1500,
 		"intelligence"    : 12,
 		"speed"           : 17,
 		"luck"            : 1,
 		"next_level"      : 900,
-		"current_hp"      : 130,
-		"current_mp"      : 1,
+		"current_hp"      : 1500,
+		"current_mp"      : 1500,
 		"current_stamine" : 100,
 		"dash_speed"      : 600,
 		"move_speed"      : 17 * 10,
-		"jump_height"     : -420,
+		"jump_height"     : -450,
 		"gravity"         : 600,
 		"mase"            : 1.9,
-		"stamine_cost"    : 15,
+		"stamine_cost"    : 14,
 		"stamine_recovery": 0.4,
 	},	
 	"weapon_selected" : 1031, #por defecto
@@ -170,9 +170,10 @@ func _add_item (item, qty):
 	}		
 	var validate_item_in_inventory_player = self._validate_exist_item_in_inventory(item)
 	if validate_item_in_inventory_player:
-		self._add_item_qty(new_item_to_add)
+		self._add_item_qty(new_item_to_add)		
 	else:
 		self._create_item_in_inventory(new_item_to_add)
+	
 
 func _validate_exist_item_in_inventory (item):
 	for i in range(len(self.selected.items)):
@@ -184,9 +185,11 @@ func _add_item_qty (item) -> void:
 	for i in range(len(self.selected.items)):
 		if self.selected.items[i].data.code == item.data.code:
 			self.selected.items[i].qty += item.qty
+			self._add_action_item(item)
 
 func _create_item_in_inventory (item) -> void:	
 	self.selected.items.append(item)
+	self._add_action_item(item)
 
 func _get_player_item_by_code (code):
 	for i in range(len(self.selected.items)):
@@ -217,6 +220,8 @@ func _erase_item (item):
 			self.selected.items[i].qty -= 1
 			if self.selected.items[i].qty == 0:
 				self.selected.items.remove(i)
+				if Util.get_an_script("MenuPause"):					
+					Util.get_an_script("MenuPause").get_node("InfoItem").visible = false
 				for j in range(len(self.selected.action_items)):
 					if self.selected.action_items[j]:
 						if self.selected.action_items[j] == item.data.code:
@@ -228,7 +233,7 @@ func _set_aura_use_item (position):
 	var aura        = load("res://scenes/Players/AuraHeal.tscn")
 	aura            = aura.instance()
 	aura.position.x = position.x
-	aura.position.y = position.y
+	aura.position.y = position.y	
 	get_parent().add_child(aura)
 	
 func _use_item_in_pause_menu (item):	
@@ -236,9 +241,7 @@ func _use_item_in_pause_menu (item):
 		self._use_hp_item(item)
 		self._use_mp_item(item)
 		self._use_cristal(item)
-		self._use_tonic(item)
-		#to-do el resto de la aplicacion de items (stamna, agilidad, fuerza, gemas... ...)
-		
+		self._use_tonic(item)	
 		Util.get_an_script("MenuPause").initOrUpdateDataPlayer()
 
 func _use_hp_item (item) :
@@ -297,19 +300,22 @@ func _use_tonic (item):
 		self.selected.statuses_stack.stamine.time = item.data.duration
 		self.selected.statuses_stack.stamine.up   = item.data.percentage		
 		self._erase_item(item)
-		get_tree().create_timer(item.data.duration).connect("timeout", self, "__finish_effect_tonic_stamine")	
+		Env.non_use = get_tree().create_timer(item.data.duration).connect("timeout", self, "__finish_effect_tonic_stamine")	
+
 		
 	if (item.data.code == 1010 or item.data.code == 1011 or item.data.code == 1012) and self.selected.statuses_stack.strength.up == 0:
 		self.selected.statuses_stack.strength.time = item.data.duration
 		self.selected.statuses_stack.strength.up   = item.data.percentage
 		self._erase_item(item)
-		get_tree().create_timer(item.data.duration).connect("timeout", self, "__finish_effect_tonic_strength")	
+		Env.non_use = get_tree().create_timer(item.data.duration).connect("timeout", self, "__finish_effect_tonic_strength")	
+
 		
 	if item.data.code == 1013 and self.selected.statuses_stack.speed.up == 0:
 		self.selected.statuses_stack.speed.time = item.data.duration
 		self.selected.statuses_stack.speed.up   = item.data.percentage
 		self._erase_item(item)
-		get_tree().create_timer(item.data.duration).connect("timeout", self, "__finish_effect_tonic_speed")	
+		Env.non_use = get_tree().create_timer(item.data.duration).connect("timeout", self, "__finish_effect_tonic_speed")	
+
 
 func __finish_effect_tonic_stamine ():
 	self.selected.statuses_stack.stamine.time = 0

@@ -82,4 +82,5 @@ anims/idle = SubResource( 3 )
 position = Vector2( 3.8147e-06, 7.99999 )
 scale = Vector2( 0.09375, 0.125 )
 texture = ExtResource( 2 )
+texture_scale = 2.16
 color = Color( 0.866667, 0.576471, 0.290196, 1 )

@@ -52,16 +52,16 @@ var timer_disabled_collision_down_climb = 0
 
 var _delta = 0
 var state_machine
-func _ready():	
-
+func _ready():
+	print(Players.selected.stats.next_level + (Players.selected.stats.next_level * 1.1) )
 	state_machine = $AnimationTree.get("parameters/playback")	
-#	state_machine.start("idle")
+
 	
 func _process(delta):	
 	_delta = delta
 	if not Players.selected.dead:
 		if not Msgs.in_dialog:
-			motion.x = 0
+#			motion.x = 0
 			applyItem()
 			prayToSave()
 			invulnerability()
@@ -153,6 +153,9 @@ func move():
 		elif Input.is_action_just_released("ui_right") or Input.is_action_just_released("ui_left"):
 			state_machine.travel("idle")
 			motion.x = 0
+		else:
+			state_machine.travel("idle")
+			motion.x = 0
 
 
 func applyItem():
@@ -163,6 +166,10 @@ func applyItem():
 		if item and item.data and item.qty > 0:
 			state_machine.travel("health")
 			is_healing = true
+			$SoundHealth.stop()
+			$SoundHealth.stream = load("res://sfx/bottle.wav")
+			$SoundHealth.volume_db = -10
+			$SoundHealth.play()
 			Players._set_aura_use_item(self.position)
 			Players._use_hp_item(item)
 			Players._use_mp_item(item)
@@ -257,7 +264,7 @@ func  openDoor (door):
 	if Input.is_action_just_pressed("attack") and can_open_door:
 		var door_to_open = Doors._get_door_by_code(door)
 		var has_key      = Players._get_player_item_by_code(door_to_open.for_open_key)
-		has_key          = true
+
 		if has_key:
 			Doors.doors[door_to_open.key].open = true
 		else:
@@ -283,10 +290,14 @@ func _on_DeadArea_area_exited(area):
 		going_down  = false
 		going_up    = false
 		motion.y += Players.selected.stats.gravity * Players.selected.stats.mase * _delta
+		state_machine.travel("idle")
 	elif area.is_in_group("Save"):
 		can_pray = false
+		state_machine.travel("idle")
 	elif area.is_in_group("Chests"):
 		can_open_chest = false
+		state_machine.travel("idle")
+		
 	elif area.is_in_group("Doors"):
 		can_open_door = false
 
@@ -376,10 +387,13 @@ func INSTANT_DEAD ():
 
 func _increment_exp_player(points):
 	Players.selected.stats.experience += points
-	while  Players.selected.stats.experience >=  Players.selected.stats.next_level:
-		Players.selected.stats.level     += 1
-		Players.selected.stats.next_level =  Players.selected.stats.next_level *  Players.selected.stats.level * Players.selected.increase_level
-		Players.selected.stats.strength   =  Players.selected.stats.strength + ( Players.selected.stats.level *  Players.selected.increase_stats)
+	
+	if  Players.selected.stats.experience >=  Players.selected.stats.next_level:
+		print("subio de nivle")
+		Players.selected.stats.level      += 1
+		Players.selected.stats.next_level = Players.selected.stats.next_level + (Players.selected.stats.next_level * 1.1)  
+		print(Players.selected.stats.next_level)
+		Players.selected.stats.strength   *= 1.2
 		var lvlUP = load("res://scenes/Players/LevelUp.tscn")		
 		lvlUP = lvlUP.instance()
 		lvlUP.position.y = lvlUP.position.y -2

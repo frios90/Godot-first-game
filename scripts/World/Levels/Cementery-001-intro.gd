@@ -3,10 +3,11 @@ extends Node2D
 var number_message = 1
 var msg_box  
 
-func _ready():	
-
+func _ready():
 	if Msgs.dlg_001.is_done:
-		$OldMan.queue_free()	
+		$OldMan.queue_free()
+	$CanvasLayer.changeBackMusic2("res://sfx/background_wind_chimes_loop.wav", -10)
+	$CanvasLayer.changeBackMusic("res://sfx/05 gaseous tethanus.ogg", 0)
 	if Players.selected.change_scene_from_dead :
 		$knight.position.x = Players.selected.last_save_point.x
 		$knight.position.y = Players.selected.last_save_point.y
@@ -18,7 +19,7 @@ func _ready():
 		$knight.position.x = $EndArrow.position.x - 100
 		$knight.position.y = $EndArrow.position.y
 
-func _process(delta):
+func _process(_delta):
 	if Msgs.dlg_001.is_done :
 		Msgs.forgot    = false
 		Msgs.in_dialog = false
@@ -31,6 +32,7 @@ func _process(delta):
 func initDialog () :
 		Msgs.in_dialog      = true
 		Msgs.dlg_001.active = true	
+		$knight/Camera2D.position.x += 50
 		
 func showMessages () :
 	if number_message < Msgs.dlg_001.msgs.size():
@@ -39,20 +41,22 @@ func showMessages () :
 		self.msg_box  = self.addChildPlayerMsgBox()
 		self.msg_box._set_message(Msgs.dlg_001.msgs[number_message])		
 	else:
-		self.msg_box.queue_free()
-		Msgs.in_dialog       = false
-		Msgs.dlg_001.is_done = true
-		var item = ItemsGbl._get_item_by_code(1001)
-		Players._add_item(item, 1)
-		$Areas/InitDialogOldMan/CollisionShape2D/BtnToPress.visible = false
-		$OldMan.go_on("R")
+		if not Msgs.dlg_001.is_done:
+			$knight/Camera2D.position.x -= 50
+			self.msg_box.queue_free()
+			Msgs.in_dialog       = false
+			Msgs.dlg_001.is_done = true
+			var item = ItemsGbl._get_item_by_code(1001)
+			Players._add_item(item, 10)
+			$Areas/InitDialogOldMan/CollisionShape2D/BtnToPress.visible = false
+			$OldMan.go_on("R")
 	number_message += 1
 	
 func addChildPlayerMsgBox():
 	var box = load("res://scenes/GUI/MsgBoxA.tscn")
 	box = box.instance()
-	box.position.x = $knight.position.x
-	box.position.y = $knight.position.y + 85
+	box.position.x = $knight.position.x + 55
+	box.position.y = $knight.position.y + 70
 	
 	self.add_child(box)
 	return box
