@@ -1831,8 +1831,7 @@ qty = 10
 [node name="1004" parent="Chests" instance=ExtResource( 29 )]
 position = Vector2( 3368, -552 )
 code = 1004
-item = 1001
-qty = 20
+item = 1016
 
 [node name="1005" parent="Chests" instance=ExtResource( 29 )]
 position = Vector2( 3352, -376 )

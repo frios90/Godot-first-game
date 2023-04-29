@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://scripts/World/ScriptChangeScene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Players/Knight.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/Players/Camera2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/tiles/cave/SismileBOnes.png" type="Texture" id=5]
 [ext_resource path="res://assets/MapElements/iglesia2.png" type="Texture" id=6]
+[ext_resource path="res://scenes/Enemies/Flying-eye.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/tiles/Seleccion-01/Props-Rocks.png" type="Texture" id=8]
 [ext_resource path="res://assets/tiles/Mountain.png" type="Texture" id=9]
 [ext_resource path="res://scenes/World/Cementery/ParallaxBackground.tscn" type="PackedScene" id=10]
@@ -1037,6 +1038,30 @@ scale = Vector2( 0.221667, 1 )
 texture = ExtResource( 21 )
 
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="Flying-eye" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 312, 440 )
+
+[node name="Flying-eye2" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 528, 432 )
+
+[node name="Flying-eye3" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 992, 440 )
+
+[node name="Flying-eye4" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 1184, 440 )
+
+[node name="Flying-eye5" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 1376, 448 )
+
+[node name="Flying-eye6" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 1568, 448 )
+
+[node name="Flying-eye7" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 1712, 448 )
+
+[node name="Flying-eye8" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 144, 448 )
 
 [node name="knight" parent="." instance=ExtResource( 2 )]
 position = Vector2( 88, 528 )

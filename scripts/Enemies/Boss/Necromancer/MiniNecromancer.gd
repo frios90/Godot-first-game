@@ -16,7 +16,7 @@ var dead                 = false
 var life                 = 60
 onready var current_life = life if level == 1 else life * (level * 0.77)
 
-var base_attack     = 60
+export (int) var base_attack           = 60
 var base_defense    = 25
 onready var attack  = base_attack if level == 1 else base_attack * (level * 0.77)
 onready var defense = base_defense if level == 1 else base_defense * (level * 0.55)

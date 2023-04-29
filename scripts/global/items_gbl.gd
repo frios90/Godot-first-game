@@ -6,7 +6,7 @@ var list_items = [
 		"code"        : 1001,
 		"name"        : "Posión de vida S",
 		"on"          : "hp",
-		"percentage"  : 40,
+		"percentage"  : 15,
 		"duration"    : false,
 		"icon"        : "res://assets/Items/PotaHpS.png",
 		"description" : "Recupera el 40% de los puntos de vida",

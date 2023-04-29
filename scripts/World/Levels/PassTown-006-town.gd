@@ -45,6 +45,9 @@ func _ready():
 	if Env.player_origin_position == "return":
 		$knight.position.x = $EndArrow.position.x - 100
 		$knight.position.y = $EndArrow.position.y
+	
+	if Msgs.dlg_003.is_done:
+		$Actions.queue_free()
 
 func _process(_delta):
 	if not Msgs.forgot and Msgs.in_dialog:		
@@ -61,9 +64,10 @@ func _on_EnterBattle_body_entered(body):
 			$knight.idle()
 
 func initDialog () :
-	$Actions/Dialog001Boss/BtnToPress.visible = true
-	Msgs.in_dialog      = true
-	Msgs.dlg_003.active = true
+	if not Msgs.dlg_003.is_done:
+		$Actions/Dialog001Boss/BtnToPress.visible = true
+		Msgs.in_dialog      = true
+		Msgs.dlg_003.active = true
 
 func showMessages () :
 	if number_message_first_msg < messages_battle_necromancer_001.size():

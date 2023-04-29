@@ -394,7 +394,7 @@ func _increment_exp_player(points):
 	if  Players.selected.stats.experience >=  Players.selected.stats.next_level:
 		print("subio de nivle")
 		Players.selected.stats.level      += 1
-		Players.selected.stats.next_level = Players.selected.stats.next_level + (Players.selected.stats.next_level * 1.1)  
+		Players.selected.stats.next_level = Players.selected.stats.next_level + (Players.selected.stats.next_level * 1.05)
 		print(Players.selected.stats.next_level)
 		Players.selected.stats.strength   *= 1.2
 		var lvlUP = load("res://scenes/Players/LevelUp.tscn")		

@@ -173,7 +173,7 @@ var dlg_006 = {
 		{
 			"issuing" : "old-man",
 			"title"   : "Viejo",
-			"message" : "ofreciendole mi vida y la de mi familia",
+			"message" : "ofreciendos mi vida y la de mi familia",
 			"event"   : "false"
 		},
 		{

@@ -31,6 +31,8 @@ func initOrUpdateDataPlayer ():
 	self._load_accessories()
 	$Stats/Values/hp.text            = str(str(int(Players.selected.stats.current_hp)), " / ", str(Players.selected.stats.health_points))
 	$Stats/Values/stamine.text       = str(int(Players.selected.stats.stamine))
+	$Stats/Values/exp.text           = str(int(Players.selected.stats.experience))
+	$Stats/Values/nextexp.text       = str(int(Players.selected.stats.next_level)) 
 	$Stats/Values/strength.text      = str(int(Players.selected.stats.strength))
 	$Stats/Values/intelligence.text  = str(int(Players.selected.stats.intelligence))
 	$Stats/Values/speed.text         = str(int(Players.selected.stats.speed)) 

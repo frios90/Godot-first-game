@@ -84,4 +84,5 @@ func createGem (color, gems, position,  qty) :
 		drop_gem.qty            = qty
 
 		yield(get_tree().create_timer(0.05), "timeout")	
+
 		get_parent().add_child(drop_gem)

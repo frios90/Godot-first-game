@@ -243,7 +243,7 @@ func _on_DeadArea_area_entered(area):
 					DbBoss.water_spirit.dead =  true
 					Util.get_an_script("knight")._increment_exp_player(DbBoss.water_spirit.ptsDead)
 					Env._dropGems(self.position, DbBoss.water_spirit.drop_gems)
-					var item             = ItemsGbl._get_item_by_code(1024)
+					var item             = ItemsGbl._get_item_by_code(1025)
 					Players._add_item(item, 1)
 
 func applySwordEffecs ():	

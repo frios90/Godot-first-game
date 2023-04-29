@@ -8,8 +8,10 @@ position = Vector2( 8, 152 )
 script = ExtResource( 2 )
 
 [node name="MiniNecromancer" parent="." instance=ExtResource( 1 )]
-position = Vector2( -224, -8 )
+position = Vector2( -152, -80 )
+base_attack = 80
 
 [node name="MiniNecromancer2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 248, -16 )
-scale = Vector2( -1.5, 1.2 )
+position = Vector2( 176, -80 )
+scale = Vector2( -2, 2 )
+base_attack = 80

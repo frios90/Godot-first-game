@@ -71,6 +71,7 @@ func _cd_init_battle_flame_spirit ():
 	$InitBattelFlameSpirit.queue_free()
 	$ObeliskFlameSpirit/CollisionShape2D.disabled = false
 	$ObeliskFlameSpirit/AnimationPlayer.play("action")
+	$CanvasLayer.handleUpdateHpBarBoss(DbBoss.flame_spirit.life, DbBoss.flame_spirit.life)
 	$CanvasLayer/BossBarControl.visible  = true
 
 func _finish_battle_flame_spirit () :
@@ -81,6 +82,7 @@ func _cd_finish_battle_flame_spirit () :
 	$ObeliskFlameSpirit/CollisionShape2D.disabled = true
 	$ObeliskFlameSpirit/AnimationPlayer.play("off")
 	$CanvasLayer/BossBarControl.visible  = false
+
 	var item             = ItemsGbl._get_item_by_code(1023)
 	Players._add_item(item, 1)
 	item             = ItemsGbl._get_item_by_code(1001)
@@ -97,6 +99,7 @@ func _cd_init_battle_sand_spirit ():
 	$InitBattleSandSpirit.queue_free()
 	$ObeliskSandSpirit/CollisionShape2D.disabled = false
 	$ObeliskSandSpirit/AnimationPlayer.play("action")
+	$CanvasLayer.handleUpdateHpBarBoss(DbBoss.sand_spirit.life, DbBoss.sand_spirit.life)
 	$CanvasLayer/BossBarControl.visible  = true
 
 func _finish_battle_sand_spirit () :

@@ -203,6 +203,24 @@ custom_fonts/font = SubResource( 2 )
 text = "defensa"
 valign = 1
 
+[node name="titleExp" type="Label" parent="Stats/Labels"]
+margin_left = 46.0
+margin_top = 264.0
+margin_right = 230.0
+margin_bottom = 288.0
+custom_fonts/font = SubResource( 2 )
+text = "Exp."
+valign = 1
+
+[node name="titleNextExp" type="Label" parent="Stats/Labels"]
+margin_left = 234.0
+margin_top = 264.0
+margin_right = 418.0
+margin_bottom = 288.0
+custom_fonts/font = SubResource( 2 )
+text = "Sig.nvl"
+valign = 1
+
 [node name="Values" type="Node2D" parent="Stats"]
 
 [node name="hp" type="Label" parent="Stats/Values"]
@@ -384,6 +402,26 @@ margin_left = 373.0
 margin_top = 245.25
 margin_right = 413.0
 margin_bottom = 262.25
+custom_fonts/font = SubResource( 7 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="exp" type="Label" parent="Stats/Values"]
+margin_left = 118.0
+margin_top = 269.0
+margin_right = 222.0
+margin_bottom = 286.0
+custom_fonts/font = SubResource( 7 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="nextexp" type="Label" parent="Stats/Values"]
+margin_left = 313.0
+margin_top = 269.0
+margin_right = 417.0
+margin_bottom = 286.0
 custom_fonts/font = SubResource( 7 )
 text = "0"
 align = 2

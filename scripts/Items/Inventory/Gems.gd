@@ -12,7 +12,9 @@ func _ready():
 	timer_gem.connect("timeout", self, "_end_gems")	
 	
 func _process(delta):
-	motion.y += 75 * delta
+	
+	motion.y += 10 * delta
+	Env.non_use = move_and_slide(motion, up)
 	
 func _gems_pick_up ():
 	Util.get_an_script("CanvasLayer").handleGemCollected(qty)
