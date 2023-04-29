@@ -70,9 +70,14 @@ func _process(delta):
 	if self.info_item_selected and not self.info_item_selected.data.is_rune:
 		$InfoItem/BtnEquipAttack.visible = false 
 		$InfoItem/BtnEquipDefense.visible = false 
+		$InfoItem/BtnUse.visible = true
+		$InfoItem/BtnSelect.visible = true
 	else:
 		$InfoItem/BtnEquipAttack.visible = true 
 		$InfoItem/BtnEquipDefense.visible = true 
+		$InfoItem/BtnSelect.visible = false 
+		$InfoItem/BtnUse.visible = false 
+		
 		
 	if self.info_item_selected and not (self.info_item_selected.data.is_weapon or self.info_item_selected.data.is_weapon):
 		$InfoItem/Equipar.visible = false 

@@ -30,13 +30,13 @@ func go_on (side) :
 		self.call_deferred("call_defered_bay")
 
 func call_defered_bay () :
-
 	self.queue_free()	
 
 func dead ():
 	var blood = load("res://scenes/Spells/Blood.tscn")
 	blood = blood.instance()
 	add_child(blood)
+	DbBoss.old_man.dead = true
 
 
 	var blood3 = load("res://scenes/Spells/Blood.tscn")

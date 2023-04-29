@@ -106,6 +106,11 @@ func _on_DeadArea_area_entered(area):
 				dead =  true
 				Util.get_an_script("knight")._increment_exp_player(ptsDead)
 				Env._dropGems(self.position, 12)
+				randomize()
+				var drop_item_probability = randi() % 20
+				if drop_item_probability == 1:
+					var item = ItemsGbl._get_item_by_code(1016)
+					Players._add_item(item, 1)
 
 func applySoundSword ():
 	if useRandSound == 0:

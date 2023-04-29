@@ -10,7 +10,7 @@ func _ready():
 	pass
 
 	
-func _process(delta):	
+func _process(_delta):	
 	motion.x = maxSpeed	
 	Env.non_use = move_and_slide(motion, up)
 

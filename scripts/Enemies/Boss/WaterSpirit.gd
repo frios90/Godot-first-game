@@ -66,27 +66,27 @@ func _ready():
 	$AttackArea/CollisionShape2D.disabled = true
 	$ChargeArea/CollisionShape2D.disabled = true
 
-func _process(delta):
-	self._delta = delta
-	if not DbBoss.water_spirit.dead:	
-		self.motion.y += gravity * delta		
-		charge()
-		flip()
-		if not self.in_jump and not self.in_dive:
-			moveOrIdle()
-			dive()
-			attacking()
-#			waterShot()
-		if is_on_floor():
-			self.motion.y = 0
-	else:
-		$ChargeArea/CollisionShape2D.disabled = true
-		$DeadArea/CollisionShape2D.disabled   = true
-		$AttackArea/CollisionShape2D.disabled = true
-		self.state_machine.travel("dead")
-		self.motion = Vector2(0, 0)	
-		
-	Env.non_use = move_and_slide(motion, up)
+#func _process(delta):
+#	self._delta = delta
+#	if not DbBoss.water_spirit.dead:	
+#		self.motion.y += gravity * delta		
+#		charge()
+#		flip()
+#		if not self.in_jump and not self.in_dive:
+#			moveOrIdle()
+#			dive()
+#			attacking()
+##			waterShot()
+#		if is_on_floor():
+#			self.motion.y = 0
+#	else:
+#		$ChargeArea/CollisionShape2D.disabled = true
+#		$DeadArea/CollisionShape2D.disabled   = true
+#		$AttackArea/CollisionShape2D.disabled = true
+#		self.state_machine.travel("dead")
+#		self.motion = Vector2(0, 0)	
+#
+#	Env.non_use = move_and_slide(motion, up)
 		
 func moveOrIdle():
 	if withMoveAndFlip == 1:
@@ -243,8 +243,7 @@ func _on_DeadArea_area_entered(area):
 					DbBoss.water_spirit.dead =  true
 					Util.get_an_script("knight")._increment_exp_player(DbBoss.water_spirit.ptsDead)
 					Env._dropGems(self.position, DbBoss.water_spirit.drop_gems)
-					get_parent()._finish_battle_water_spirit()
-					var item = ItemsGbl._get_item_by_code(1025)
+					var item             = ItemsGbl._get_item_by_code(1024)
 					Players._add_item(item, 1)
 
 func applySwordEffecs ():	

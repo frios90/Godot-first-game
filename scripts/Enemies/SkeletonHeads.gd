@@ -3,8 +3,8 @@ const true_positon_sprite        = false
 var floating_text                = preload("res://scenes/FloatingText.tscn")
 var ftd                          = 0
 export (int) var level           = 1
-export (int) var scaleX          = 1.3
-export (int) var scaleY          = 1.3
+export (float) var scaleX          = 1.3
+export (float) var scaleY          = 1.3
 export (int) var maxSpeed        = -30
 export (int) var ptsDead         = 100
 export (int) var dropGem         = 200
@@ -67,7 +67,7 @@ func attacking () :
 		self.state_machine.travel("attack")		
 		self.motion.x = 0
 		self.is_attacking = true	
-		get_tree().create_timer(2).connect("timeout", self, "_finish_attack")
+		Env.non_use =  get_tree().create_timer(2).connect("timeout", self, "_finish_attack")
 
 func _cm_enabled_Attack ():
 	$AttackArea/CollisionShape2D.disabled = false

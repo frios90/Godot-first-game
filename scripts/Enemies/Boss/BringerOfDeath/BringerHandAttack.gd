@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 const up         = Vector2(0, -1)
-var attack       = 80
+var attack       = 200
 var speed        = 250
 var motion       = Vector2(0, 0)
 var is_attacking = false
@@ -23,7 +23,8 @@ func flip ():
 		motion.x *= -1
 
 func attack () :
-	self.call_deferred("_call_deferred_attack")
+	if self:
+		self.call_deferred("_call_deferred_attack")
 	
 func _call_deferred_attack ():
 	randomize()

@@ -7,7 +7,7 @@ func _ready():
 	$MagicCircle.scale.x = 0.01
 	$MagicCircle.scale.y = 0.01
 
-func _process(delta):	
+func _process(_delta):	
 	if grow > 0 and speed > 0:
 		$MagicCircle.scale.x = 	$MagicCircle.scale.x + grow
 		$MagicCircle.scale.y = 	$MagicCircle.scale.y + grow

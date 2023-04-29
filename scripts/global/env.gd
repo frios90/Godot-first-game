@@ -10,7 +10,7 @@ var gus_dead_year = 37524
 var current_year = 38012
 
 var in_dialog = false
-
+var end_game = false
 var non_use
 var list_gems = [
 	{
@@ -58,9 +58,8 @@ var points      = 0
 	
 
 func _dropGems (position, max_gem_drop):
-	randomize()
-	var random_max_gem = randi() % max_gem_drop 
-	selectDropGem(random_max_gem, position)
+	
+	selectDropGem(max_gem_drop, position)
 		
 func selectDropGem (gems, position) :
 

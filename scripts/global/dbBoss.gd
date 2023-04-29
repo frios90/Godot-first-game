@@ -7,9 +7,9 @@ var bringer_of_deadth_001 = {
 	"level" : 1,
 	"maxSpeed" : 145,
 	"ptsDead" : 6000,
-	"life"    : 6000,
-	"base_attack" : 65,
-	"base_defense" : 20,
+	"life"    : 24000,
+	"base_attack" : 250,
+	"base_defense" : 50,
 	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"	
 }
 
@@ -19,8 +19,8 @@ var necromancer_002 = {
 	"dead"  : false,
 	"level" : 1,
 	"maxSpeed"     : 145,
-	"ptsDead"      : 8500,
-	"life"         : 8500,
+	"ptsDead"      : 30000,
+	"life"         : 30000,
 	"base_attack"  : 65,
 	"base_defense" : 25,
 	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"
@@ -46,12 +46,12 @@ var flame_spirit = {
 	"name"  : "Espíritu de Fuego",
 	"dead"  : false,
 	"level" : 1,
-	"maxSpeed"     : 145,
+	"maxSpeed"     : 160,
 	"ptsDead"      : 8500,
 	"life"         : 8500,
-	"drop_gems"    : 100000,
-	"base_attack"  : 65,
-	"base_defense" : 25,
+	"drop_gems"    : 10000,
+	"base_attack"  : 200,
+	"base_defense" : 50,
 	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"	
 }
 
@@ -64,8 +64,8 @@ var sand_spirit = {
 	"ptsDead"      : 12000,
 	"life"         : 12000,
 	"drop_gems"    : 12000,
-	"base_attack"  : 55,
-	"base_defense" : 50,
+	"base_attack"  : 350,
+	"base_defense" : 100,
 	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"	
 }
 
@@ -76,9 +76,9 @@ var water_spirit = {
 	"level" : 1,
 	"maxSpeed"     : 300,
 	"ptsDead"      : 13000,
-	"life"         : 13000,
+	"life"         : 1,
 	"drop_gems"    : 13000,
-	"base_attack"  : 35,
+	"base_attack"  : 80,
 	"base_defense" : 20,
 	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"	
 }

@@ -69,7 +69,7 @@ func _turnBack():
 	
 func _process(_delta):	
 	_turnBack()
-	_incrementSize()
+
 	invulnerability()	
 	if not dead:	
 		state_machine.travel("idle")	
@@ -97,29 +97,7 @@ func invulnerability ():
 	
 		timer_not_take_damage = 0	
 	
-func _incrementSize () :
-	if cont_hit_damage == 7:
-		cont_hit_damage += 1
-		incrementSize = true
-	elif cont_hit_damage == 14:
-		cont_hit_damage += 1
-		incrementSize = true
-	elif cont_hit_damage == 21:
-		cont_hit_damage += 1
-		incrementSize = true
-	elif cont_hit_damage == 28:
-		cont_hit_damage += 1
-		incrementSize = true
-	elif cont_hit_damage == 35:
-		cont_hit_damage += 1
-		incrementSize = true
-	else:
-		incrementSize = false
-	
-	if incrementSize == true:
-		$Sprite.scale.x *= 1.1
-		$Sprite.scale.y *= 1.1
-		incrementSize = false
+
 
 func applySoundSword ():
 	if useRandSound == 0:
@@ -138,10 +116,6 @@ func _on_DeadArea_area_entered(area):
 			$CollisionShape2D.disabled =true
 			$Sprite/DeadArea.visible = false
 			$Sprite/DeadArea/CollisionShape2D.disabled = true
-			
-			current_life = current_life - Env.attack
-			var canvasLayer = get_tree().get_root().find_node("CanvasLayer", true,false)	
-			canvasLayer.handleUpdateHpBarBoss()
 			
 		if current_life <= 0:
 			if not dead:	

@@ -90,7 +90,7 @@ func attacking () :
 			
 func castSpell (collider):
 	is_attacking     = true
-	get_tree().create_timer(1).connect("timeout", self, "_timeout_finish_attach")	
+	Env.non_use =  get_tree().create_timer(1).connect("timeout", self, "_timeout_finish_attach")	
 	var spell        = load("res://scenes/Spells/Spell-002-gosth.tscn")
 	spell            = spell.instance()
 	spell.position.x = collider.position[0]
@@ -126,6 +126,11 @@ func _on_DeadArea_area_entered(area):
 				state_machine.travel("dead")
 				Util.get_an_script("knight")._increment_exp_player(ptsDead)
 				Env._dropGems(self.position, 12)
+				randomize()
+				var drop_item_probability = randi() % 4
+				if drop_item_probability == 1:
+					var item = ItemsGbl._get_item_by_code(1012)
+					Players._add_item(item, 1)
 
 func applySoundSword ():
 	if useRandSound == 0:

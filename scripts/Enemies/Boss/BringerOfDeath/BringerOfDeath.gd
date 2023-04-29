@@ -13,8 +13,8 @@ const ptsDead                    = 3000
 var dead                         = false 
 
 var life                         = 9000
-var base_attack                  = 65
-var base_defense                 = 32
+var base_attack                  = 160
+var base_defense                 = 50
 
 var is_attacking                 = false
 var is_teletransport             = false

@@ -209,8 +209,6 @@ func _on_DeadArea_area_entered(area):
 				Util.get_an_script("knight")._increment_exp_player(DbBoss.sand_spirit.ptsDead)
 				Env._dropGems(self.position, DbBoss.sand_spirit.drop_gems)
 				get_parent()._finish_battle_sand_spirit()
-				var item = ItemsGbl._get_item_by_code(1024)
-				Players._add_item(item, 1)
 
 func applySwordEffecs ():	
 	print("aqui esta esto")

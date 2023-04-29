@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://assets/tiles/tile-church/tileset.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Players/Knight.tscn" type="PackedScene" id=2]
@@ -33,6 +33,13 @@
 [ext_resource path="res://scenes/GUI/btns/BtnToPress.tscn" type="PackedScene" id=31]
 [ext_resource path="res://scenes/Enemies/NigthBorne.tscn" type="PackedScene" id=32]
 [ext_resource path="res://scenes/Enemies/Rogue.tscn" type="PackedScene" id=33]
+[ext_resource path="res://scenes/Enemies/Skeleton-01.tscn" type="PackedScene" id=34]
+[ext_resource path="res://scenes/Enemies/Orc-001.tscn" type="PackedScene" id=35]
+[ext_resource path="res://scenes/Enemies/Skeleton-02.tscn" type="PackedScene" id=36]
+[ext_resource path="res://scenes/Enemies/Skeleton-003.tscn" type="PackedScene" id=37]
+[ext_resource path="res://scenes/Enemies/Boss/Necromancer/MiniNecromancer.tscn" type="PackedScene" id=38]
+[ext_resource path="res://scenes/Enemies/SkeletonHeads.tscn" type="PackedScene" id=39]
+[ext_resource path="res://scenes/Enemies/Flying-eye.tscn" type="PackedScene" id=40]
 
 [sub_resource type="TileSet" id=10]
 1/name = "tileset.png 1"
@@ -592,9 +599,6 @@ extents = Vector2( 15, 148.25 )
 [sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 13.625, 244 )
 
-[sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 8.125, 396.75 )
-
 [sub_resource type="RectangleShape2D" id=31]
 extents = Vector2( 16, 148 )
 
@@ -868,19 +872,7 @@ position = Vector2( 2565.62, 2108 )
 shape = SubResource( 17 )
 
 [node name="ObeliskSandSpirit" parent="." instance=ExtResource( 18 )]
-position = Vector2( 2536, 2424 )
-
-[node name="WaterSpirit" parent="." instance=ExtResource( 20 )]
-position = Vector2( 6840, 1488 )
-
-[node name="InitBattleWaterSpirit" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InitBattleWaterSpirit"]
-position = Vector2( 7080, 1256 )
-shape = SubResource( 18 )
-
-[node name="ObeliskWaterSpirit" parent="." instance=ExtResource( 18 )]
-position = Vector2( 6636, 1384 )
+position = Vector2( 2524, 2416 )
 
 [node name="WindSpirit" parent="." instance=ExtResource( 22 )]
 position = Vector2( 4112, -1000 )
@@ -898,6 +890,9 @@ shape = SubResource( 31 )
 [node name="BtnToPress" parent="InitBattleWindSpirit/CollisionShape2D" instance=ExtResource( 31 )]
 visible = false
 position = Vector2( -0.75, 48 )
+
+[node name="WaterSpirit" parent="." instance=ExtResource( 20 )]
+position = Vector2( 7048, 1251 )
 
 [node name="Traps" type="Node2D" parent="."]
 
@@ -926,7 +921,7 @@ position = Vector2( 1744, -32 )
 position = Vector2( 4104, -384 )
 
 [node name="Trap002" parent="Traps" instance=ExtResource( 30 )]
-position = Vector2( 4584, 936 )
+position = Vector2( 4328, 938 )
 
 [node name="Trap-007" parent="Traps" instance=ExtResource( 24 )]
 position = Vector2( 4184, 904 )
@@ -939,7 +934,7 @@ position = Vector2( 1048, 502 )
 [node name="Chests" type="Node2D" parent="."]
 
 [node name="1018" parent="Chests" instance=ExtResource( 25 )]
-position = Vector2( 328, 96 )
+position = Vector2( 328, 107 )
 scale = Vector2( -1.5, 1.5 )
 code = 1018
 qty = 10
@@ -1001,6 +996,7 @@ position = Vector2( 688, 96 )
 
 [node name="NightBorne3" parent="Enemies/NB" instance=ExtResource( 32 )]
 position = Vector2( 1432, 88 )
+can_back_flip = 8
 
 [node name="NightBorne4" parent="Enemies/NB" instance=ExtResource( 32 )]
 position = Vector2( 1736, 88 )
@@ -1015,7 +1011,9 @@ position = Vector2( 2504, 96 )
 position = Vector2( 2000, 512 )
 
 [node name="NightBorne8" parent="Enemies/NB" instance=ExtResource( 32 )]
-position = Vector2( 2176, 520 )
+position = Vector2( 2160, 478 )
+scale = Vector2( 3, 3 )
+can_back_flip = 15
 
 [node name="NightBorne9" parent="Enemies/NB" instance=ExtResource( 32 )]
 position = Vector2( 2416, 520 )
@@ -1102,8 +1100,212 @@ position = Vector2( 2448, -152 )
 [node name="Archer12" parent="Enemies/ARCHER" instance=ExtResource( 26 )]
 position = Vector2( 2968, -152 )
 
+[node name="SK001" type="Node2D" parent="Enemies"]
+
+[node name="Skeleton-01" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 512, 72 )
+
+[node name="Skeleton-02" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 616, 72 )
+
+[node name="Skeleton-03" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 1568, 80 )
+
+[node name="Skeleton-04" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 1904, 72 )
+
+[node name="Skeleton-05" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 1760, 80 )
+
+[node name="Skeleton-06" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 2096, 488 )
+
+[node name="Skeleton-07" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 2304, 488 )
+
+[node name="Skeleton-08" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 3472, 496 )
+
+[node name="Skeleton-09" parent="Enemies/SK001" instance=ExtResource( 36 )]
+position = Vector2( 3600, 504 )
+
+[node name="Skeleton-10" parent="Enemies/SK001" instance=ExtResource( 36 )]
+position = Vector2( 3216, -168 )
+
+[node name="Skeleton-11" parent="Enemies/SK001" instance=ExtResource( 36 )]
+position = Vector2( 3056, -176 )
+
+[node name="Skeleton-12" parent="Enemies/SK001" instance=ExtResource( 36 )]
+position = Vector2( 2304, -168 )
+
+[node name="Rogue" parent="Enemies/SK001" instance=ExtResource( 33 )]
+position = Vector2( 2600, -152 )
+
+[node name="Orc-00A" parent="Enemies/SK001" instance=ExtResource( 35 )]
+position = Vector2( 4456, -241 )
+scale = Vector2( 2, 1.9 )
+level = 10
+
+[node name="Skeleton-003" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 3060, 2284 )
+scale = Vector2( 3, 2 )
+can_back_flip = 15
+
+[node name="MiniNecromancer" parent="Enemies/SK001" instance=ExtResource( 38 )]
+position = Vector2( 3160, 400 )
+
+[node name="MiniNecromancer2" parent="Enemies/SK001" instance=ExtResource( 38 )]
+position = Vector2( 2552, 416 )
+
+[node name="SkeletonGranInvoque" parent="Enemies/SK001" instance=ExtResource( 39 )]
+position = Vector2( 2672, 504 )
+
+[node name="SkeletonGranInvoque2" parent="Enemies/SK001" instance=ExtResource( 39 )]
+position = Vector2( 1744, 496 )
+
+[node name="SkeletonGranInvoque3" parent="Enemies/SK001" instance=ExtResource( 39 )]
+position = Vector2( 2016, 88 )
+
+[node name="SkeletonGranInvoque4" parent="Enemies/SK001" instance=ExtResource( 39 )]
+position = Vector2( 4096, -240 )
+
+[node name="SkeletonGranInvoque5" parent="Enemies/SK001" instance=ExtResource( 39 )]
+position = Vector2( 5072, 1602 )
+scale = Vector2( 3, 2 )
+level = 20
+
+[node name="SkeletonGranInvoque6" parent="Enemies/SK001" instance=ExtResource( 39 )]
+position = Vector2( 3864, 1640 )
+
+[node name="Skeleton-004" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 3784, 1648 )
+
+[node name="Skeleton-005" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 3672, 1464 )
+
+[node name="Skeleton-006" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 4288, 1632 )
+
+[node name="Skeleton-007" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 5312, 1632 )
+
+[node name="Skeleton-008" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 5208, 1632 )
+
+[node name="Skeleton-13" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 4960, 1624 )
+
+[node name="Skeleton-14" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 4776, 1640 )
+
+[node name="Skeleton-15" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 4792, 1456 )
+
+[node name="Skeleton-009" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 5664, 1544 )
+
+[node name="SkeletonGranInvoque7" parent="Enemies/SK001" instance=ExtResource( 39 )]
+position = Vector2( 6056, 1544 )
+
+[node name="Flying-eye" parent="Enemies/SK001" instance=ExtResource( 40 )]
+position = Vector2( 3816, -304 )
+
+[node name="Flying-eye2" parent="Enemies/SK001" instance=ExtResource( 40 )]
+position = Vector2( 1424, -24 )
+scale = Vector2( 3, 3 )
+level = 5
+
+[node name="Flying-eye3" parent="Enemies/SK001" instance=ExtResource( 40 )]
+position = Vector2( 2176, 8 )
+
+[node name="Flying-eye4" parent="Enemies/SK001" instance=ExtResource( 40 )]
+position = Vector2( 1968, 0 )
+
+[node name="Flying-eye5" parent="Enemies/SK001" instance=ExtResource( 40 )]
+position = Vector2( 2576, 8 )
+
+[node name="Skeleton-16" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 2600, 40 )
+scale = Vector2( 3, 3 )
+level = 5
+maxSpeed = 100
+
+[node name="Skeleton-17" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 872, 80 )
+
+[node name="Skeleton-18" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 968, 35 )
+scale = Vector2( 3.3, 3.3 )
+level = 15
+
+[node name="Skeleton-19" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 1088, 80 )
+
+[node name="Orc-00A2" parent="Enemies/SK001" instance=ExtResource( 35 )]
+position = Vector2( 1024, 88 )
+
+[node name="Orc-00A3" parent="Enemies/SK001" instance=ExtResource( 35 )]
+position = Vector2( 1608, 88 )
+
+[node name="Orc-00A4" parent="Enemies/SK001" instance=ExtResource( 35 )]
+position = Vector2( 1696, 512 )
+
+[node name="Orc-00A5" parent="Enemies/SK001" instance=ExtResource( 35 )]
+position = Vector2( 2504, 520 )
+
+[node name="Orc-00A6" parent="Enemies/SK001" instance=ExtResource( 35 )]
+position = Vector2( 2560, 312 )
+
+[node name="Orc-00A7" parent="Enemies/SK001" instance=ExtResource( 35 )]
+position = Vector2( 2696, 304 )
+
+[node name="Orc-00A8" parent="Enemies/SK001" instance=ExtResource( 35 )]
+position = Vector2( 3424, 504 )
+
+[node name="Orc-00A2" parent="Enemies/SK001/Orc-00A8" instance=ExtResource( 35 )]
+position = Vector2( 1320, 424 )
+
+[node name="Orc-00A3" parent="Enemies/SK001/Orc-00A8" instance=ExtResource( 35 )]
+position = Vector2( 936, 416 )
+
+[node name="Skeleton-20" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 4192, 1608 )
+
+[node name="Skeleton-010" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 4256, 1584 )
+
+[node name="Skeleton-21" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 4480, 1600 )
+
+[node name="Skeleton-22" parent="Enemies/SK001" instance=ExtResource( 36 )]
+position = Vector2( 4888, 1616 )
+
+[node name="Skeleton-23" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 1568, -184 )
+
+[node name="Skeleton-24" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 1768, -176 )
+
+[node name="Skeleton-25" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 1960, -176 )
+
+[node name="Skeleton-26" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 1424, -184 )
+
+[node name="Skeleton-27" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 1920, 2288 )
+
+[node name="Skeleton-28" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 2072, 2304 )
+
+[node name="Skeleton-29" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 2376, 2304 )
+
+[node name="Skeleton-30" parent="Enemies/SK001" instance=ExtResource( 34 )]
+position = Vector2( 2208, 2296 )
+
 [node name="knight" parent="." instance=ExtResource( 2 )]
-position = Vector2( 216, 480 )
+position = Vector2( 240, 504 )
 
 [node name="Camera2D" parent="knight" instance=ExtResource( 3 )]
 position = Vector2( 90, -96 )
@@ -1207,9 +1409,53 @@ script = ExtResource( 16 )
 position = Vector2( -40, 192 )
 shape = SubResource( 33 )
 
+[node name="Skeleton-003" parent="." instance=ExtResource( 37 )]
+position = Vector2( 3160, 2320 )
+
+[node name="Skeleton-004" parent="." instance=ExtResource( 37 )]
+position = Vector2( 2888, 2320 )
+
+[node name="Skeleton-005" parent="." instance=ExtResource( 37 )]
+position = Vector2( 2984, 2320 )
+
+[node name="Skeleton-006" parent="." instance=ExtResource( 37 )]
+position = Vector2( 3384, 2320 )
+
+[node name="NightBorne" parent="." instance=ExtResource( 32 )]
+position = Vector2( 3288, 2320 )
+
+[node name="Flying-eye" parent="." instance=ExtResource( 40 )]
+position = Vector2( 2792, 2216 )
+
+[node name="Flying-eye2" parent="." instance=ExtResource( 40 )]
+position = Vector2( 2960, 2176 )
+
+[node name="Flying-eye3" parent="." instance=ExtResource( 40 )]
+position = Vector2( 3144, 2232 )
+
+[node name="Flying-eye4" parent="." instance=ExtResource( 40 )]
+position = Vector2( 3544, 1520 )
+
+[node name="Flying-eye5" parent="." instance=ExtResource( 40 )]
+position = Vector2( 4912, 1552 )
+
+[node name="Flying-eye6" parent="." instance=ExtResource( 40 )]
+position = Vector2( 5128, 1472 )
+
+[node name="Flying-eye7" parent="." instance=ExtResource( 40 )]
+position = Vector2( 5272, 1576 )
+
+[node name="Flying-eye8" parent="." instance=ExtResource( 40 )]
+position = Vector2( 5608, 1432 )
+
+[node name="Flying-eye9" parent="." instance=ExtResource( 40 )]
+position = Vector2( 6232, 1384 )
+
+[node name="Flying-eye10" parent="." instance=ExtResource( 40 )]
+position = Vector2( 6488, 1256 )
+
 [connection signal="body_entered" from="InitBattelFlameSpirit" to="." method="_on_InitBattelFlameSpirit_body_entered"]
 [connection signal="body_entered" from="InitBattleSandSpirit" to="." method="_on_InitBattleSandSpirit_body_entered"]
-[connection signal="body_entered" from="InitBattleWaterSpirit" to="." method="_on_InitBattleWaterSpirit_body_entered"]
 [connection signal="body_entered" from="InitBattleWindSpirit" to="." method="_on_InitBattleWindSpirit_body_entered"]
 [connection signal="body_entered" from="InitOldManDialogArea" to="." method="_on_InitOldManDialogArea_body_entered"]
 [connection signal="body_entered" from="Rtn-004-from-007" to="Rtn-004-from-007" method="_on_Rtn004from007_body_entered"]

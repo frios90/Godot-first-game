@@ -64,7 +64,7 @@ func attacking () :
 		self.state_machine.travel("attack")		
 		self.motion.x = 0
 		self.is_attacking = true	
-		get_tree().create_timer(2).connect("timeout", self, "_finish_attack")
+		Env.non_use = get_tree().create_timer(2).connect("timeout", self, "_finish_attack")
 
 func _cm_enabled_Attack ():
 	$AttackArea/CollisionShape2D.disabled = false
@@ -113,7 +113,10 @@ func _dead_last_invoque () :
 	circle            = circle.instance()
 	circle.position.x = 2432
 	circle.position.y = 384
-	get_parent().add_child(circle)
+	call_deferred("_call_def_add_last_invoque", circle)
+
+func _call_def_add_last_invoque (circle):
+	get_parent().add_child(circle)	
 
 func applySoundSword ():
 	if useRandSound == 0:

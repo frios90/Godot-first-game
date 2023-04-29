@@ -30,7 +30,7 @@ var dlg_001 = {
 		{
 			"issuing" : "old-man",
 			"title"   : "Viejo",
-			"message" : "Nigromante quiere destruir todo",
+			"message" : "Nigromante lo ha destruido todo",
 			"event"   : false
 		},
 		{
@@ -42,7 +42,7 @@ var dlg_001 = {
 		{
 			"issuing" : "old-man",
 			"title"   : "Viejo",
-			"message" : "Ve al pueblo y enfrentalo para así vengar a todos los que ha matado.",
+			"message" : "Ve al pueblo y salva lo que queda de este mundo.",
 			"event"   : false
 		}
 	]
@@ -63,7 +63,7 @@ var dlg_003 = {
 		{
 			"issuing" : "necro",
 			"title"   : "Nigromante",
-			"message" : "Muerte perdio su tiempo trayendote nuevamente a la vida...",
+			"message" : "Pierdes tu tiempo intentando derrotarme",
 			"event"   : false
 		},
 		{
@@ -107,31 +107,41 @@ var dlg_005 = {
 			"title"   : "Espiritu del Aire",
 			"message" : "No obstante he de morir para poder ayudarte"
 		},
+		
 		{
 			"issuing" : "Wind",
 			"title"   : "Espiritu del Aire",
-			"message" : "Y hacerlo me complace"
+			"message" : "Con esto recuperar la paz en el mundo"
 		},
 		{
 			"issuing" : "Wind",
 			"title"   : "Espiritu del Aire",
-			"message" : "Con esto te ayudo a recuperar la paz en el mundo"
+			"message" : "Suerte con los otros espiritus"
 		},
 		{
 			"issuing" : "Wind",
 			"title"   : "Espiritu del Aire",
-			"message" : "Suerto con los otros espiritus"
+			"message" : "Espiritu de viento ya no podrá hacerte frente"
+		},
+		{
+			"issuing" : "Wind",
+			"title"   : "Espiritu del Aire",
+			"message" : "Nigromante agoto toda su vitalidad"
+		},
+		{
+			"issuing" : "Wind",
+			"title"   : "Espiritu del Aire",
+			"message" : "y prentendia hacer lo mismo con el resto"
 		},
 		{
 			"issuing" : "Wind",
 			"title"   : "Espiritu del Aire",
 			"message" : "Recupera los 4 Cristirales."
-		},
-		
+		},		
 		{
 			"issuing" : "Wind",
 			"title"   : "Espiritu del Aire",
-			"message" : "Adios Gustavo. Ya es hora de que descanse"
+			"message" : "Adios Gustavo."
 		},
 	]  
 }
@@ -151,19 +161,19 @@ var dlg_006 = {
 		{
 			"issuing" : "old-man",
 			"title"   : "Viejo",
-			"message" : "Gustavo, por fin llegaste",
+			"message" : "Gustavo, debo despedirme",
 			"event"   : "false"
 		},
 		{
 			"issuing" : "old-man",
 			"title"   : "Viejo",
-			"message" : "Para poder traerte a la vida, tuve que sacrificar la mía",
+			"message" : "Para poder traerte a la vida hice un pacto con la Muerte",
 			"event"   : "false"
 		},
 		{
 			"issuing" : "old-man",
 			"title"   : "Viejo",
-			"message" : "Pacte con la muerte para poder hacerlo",
+			"message" : "ofreciendole mi vida y la de mi familia",
 			"event"   : "false"
 		},
 		{
@@ -175,7 +185,7 @@ var dlg_006 = {
 		{
 			"issuing" : "old-man",
 			"title"   : "Viejo",
-			"message" : "Adios Gustavo, salvanos!",
+			"message" : "Por favor, haz que nuestras muertes no sean en vano",
 			"event"   : "false"
 		},	
 		{
@@ -187,20 +197,20 @@ var dlg_006 = {
 		{
 			"issuing" : "old-man",
 			"title"   : "Viejo",
-			"message" : "Adios Viejo, tu sacrificio no será en vano",
+			"message" : "Viejo...",
 			"event"   : "false"
 		},
 
 		{
 			"issuing" : "old-man",
 			"title"   : "Viejo",
-			"message" : "...",
+			"message" : "Adios Gustavo...",
 			"event"   : "dead"
 		},
 		{
 			"issuing" : "Death",
 			"title"   : "Muerte",
-			"message" : "Hasta tu muerte...",
+			"message" : "De cualquier forma moriras. Nos vemos pronto, ja, ja, ja",
 			"event"   : "end-dialig"
 		}		
 	]  

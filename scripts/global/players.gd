@@ -3,8 +3,6 @@ var floating_text = preload("res://scenes/FloatingText.tscn")
 var ftd           = 0
 onready var selected = gustaph
 var sound
-
-	
 	
 var gustaph = {
 	"change_scene_from_dead" : false,
@@ -21,19 +19,19 @@ var gustaph = {
 	"stats" : {
 		"level"           : 1,
 		"experience"      : 0,
-		"health_points"   : 1500,
+		"health_points"   : 200,
 		"magic_points"    : 90,
 		"stamine"         : 100,
-		"strength"        : 1500,
+		"strength"        : 60,
 		"intelligence"    : 12,
 		"speed"           : 17,
 		"luck"            : 1,
 		"next_level"      : 900,
-		"current_hp"      : 1500,
-		"current_mp"      : 1500,
+		"current_hp"      : 200,
+		"current_mp"      : 0,
 		"current_stamine" : 100,
 		"dash_speed"      : 600,
-		"move_speed"      : 17 * 10,
+		"move_speed"      : 170,
 		"jump_height"     : -450,
 		"gravity"         : 600,
 		"mase"            : 1.9,
@@ -62,13 +60,31 @@ var gustaph = {
 		}
 	}
 }
+var coins       = 0
+var points      = 0
 
 func _ready ():
 	selected = gustaph	
 	
-var coins       = 0
-var points      = 0
+func _process (_delta) :	
+	if self.selected.statuses_stack.speed.up > 0:
+		self.selected.stats.move_speed = 220
+		
+	if not Env.end_game:
+		var has_item_1 = self._get_player_item_by_code(1023)
+		var has_item_2 = self._get_player_item_by_code(1024)
+		var has_item_3 = self._get_player_item_by_code(1025)
+		var has_item_4 = self._get_player_item_by_code(1026)
 
+		if has_item_1 and has_item_2 and has_item_3 and has_item_4:
+			Env.end_game = true
+			call_deferred("_call_def_end_game_animation")
+	
+func _call_def_end_game_animation ():
+	yield(get_tree().create_timer(2), "timeout")	
+
+	Env.non_use =  get_tree().change_scene("res://scenes/World/PassTown/Last.tscn")
+	
 func _get_attack (enemy_defense = false, resistance = false):
 	var weapon_attack    = ItemsGbl._get_item_by_code(self.selected.weapon_selected).attack if self.selected.weapon_selected else 0	
 	var effective_attack = self.selected.stats.strength	
@@ -146,7 +162,7 @@ func _get_runes_defense():
 		"wind"             : 0,
 		"liquid"           : 0 
 	}
-	
+		
 	var base_calculate_defense = self.selected.stats.strength
 
 	for i in range(len(self.selected.action_defense_runes)):
@@ -312,7 +328,7 @@ func _use_tonic (item):
 		
 	if item.data.code == 1013 and self.selected.statuses_stack.speed.up == 0:
 		self.selected.statuses_stack.speed.time = item.data.duration
-		self.selected.statuses_stack.speed.up   = item.data.percentage
+		self.selected.statuses_stack.speed.up   = 1
 		self._erase_item(item)
 		Env.non_use = get_tree().create_timer(item.data.duration).connect("timeout", self, "__finish_effect_tonic_speed")	
 
@@ -328,3 +344,4 @@ func __finish_effect_tonic_strength ():
 func __finish_effect_tonic_speed ():
 	self.selected.statuses_stack.speed.time = 0
 	self.selected.statuses_stack.speed.up   = 0
+	self.selected.stats.move_speed = 170

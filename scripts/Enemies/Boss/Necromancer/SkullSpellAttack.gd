@@ -16,7 +16,7 @@ func _ready():
 	pass
 #	$AnimationPlayer.play("action")
 
-func _process(delta):
+func _process(_delta):
 	if self.start:
 		self.lap()
 

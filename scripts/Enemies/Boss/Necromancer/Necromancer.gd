@@ -9,10 +9,10 @@ export (int) var maxSpeed        = -26
 const gravity                    = 50
 const up                         = Vector2(0, -1)
 const ptsDead                    = 9000
-var life                         = 1000
+var life                         = 30000
 onready var current_life         = life if level == 1 else life * (level * 0.77)
-var base_attack                  = 70
-var base_defense                 = 20
+var base_attack                  = 200
+var base_defense                 = 60
 onready var attack               = base_attack if level == 1 else base_attack * (level * 0.77)
 onready var defense              = base_defense if level == 1 else base_defense * (level * 0.55)
 var motion                       = Vector2(0, 0)
@@ -87,12 +87,12 @@ func spell_a_invoque003 ():
 func createShield ():
 	if not get_parent().has_node("ShieldSkull") and not self.has_shield :
 		self.has_shield   = true		
-		get_tree().create_timer(2).connect("timeout", self, "spell_c")	
+		Env.non_use = get_tree().create_timer(2).connect("timeout", self, "spell_c")	
 	
 func _invoque_up_skull_purple():
 	if not $Rays/Init.enabled:		
 		var distance = 200;
-		for i in range(6):
+		for _i in range(6):
 			var p_skull              = load("res://scenes/Enemies/Boss/Necromancer/SkullPurple.tscn")
 			p_skull                  = p_skull.instance()
 			p_skull.position.x       = 1990 + distance
@@ -103,12 +103,12 @@ func _invoque_up_skull_purple():
 			$TweenPurpleSkull.stop(p_skull)
 			$TweenPurpleSkull.interpolate_property(p_skull, "global_position", p_skull.global_position, p_skull.global_position + Vector2(0, 900), 4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			$TweenPurpleSkull.start()
-			get_tree().create_timer(2).connect("timeout", p_skull, "queue_free")
+			Env.non_use = get_tree().create_timer(2).connect("timeout", p_skull, "queue_free")
 			
 		var start = "init"
 		distance = 0
 		var motionX  = 900
-		for i in range(3):
+		for _i in range(3):
 			motionX                  = 900 if start == "init" else -900
 			var p_skull              = load("res://scenes/Enemies/Boss/Necromancer/SkullPurple.tscn")
 			p_skull                  = p_skull.instance()
@@ -121,7 +121,7 @@ func _invoque_up_skull_purple():
 			$TweenPurpleSkull.stop(p_skull)
 			$TweenPurpleSkull.interpolate_property(p_skull, "global_position", p_skull.global_position, p_skull.global_position + Vector2(motionX, 0), 4, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			$TweenPurpleSkull.start()
-			get_tree().create_timer(3).connect("timeout", p_skull, "queue_free")	
+			Env.non_use = get_tree().create_timer(3).connect("timeout", p_skull, "queue_free")	
 
 func spell_c ():
 	state_machine.travel("castSpellC")
@@ -181,7 +181,7 @@ func _recive_hurt () :
 		if DbBoss.necromancer_002.dead == false:
 			self.state_machine.travel("dead")
 			Util.get_an_script("knight")._increment_exp_player(self.ptsDead)
-			get_tree().create_timer(2).connect("timeout", self, "_last_invoque")
+			Env.non_use = get_tree().create_timer(2).connect("timeout", self, "_last_invoque")
 
 func floatDamageCount () :
 	self.ftd                     = self.floating_text.instance()

@@ -13,7 +13,7 @@ func _ready():
 		$knight.position.x = 624
 		$knight.position.y = 520
 
-func _process(delta):	
+func _process(_delta):	
 	var door_in_open = Doors._get_door_by_code(self.code)
 	if door_in_open.open:
 		Doors.doors[door_in_open.key].open = false

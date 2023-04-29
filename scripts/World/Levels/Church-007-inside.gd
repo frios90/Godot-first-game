@@ -6,6 +6,9 @@ var speed_text      = 0.08
 var box_msg  
 
 func _ready():
+	if DbBoss.old_man.dead:
+		print("olda mann")
+		$OldMan.visible = false
 	$CanvasLayer.changeBackMusic("res://sfx/05 gaseous tethanus.ogg", 0)
 	pass 
 
@@ -78,10 +81,10 @@ func _cd_finish_battle_flame_spirit () :
 	$ObeliskFlameSpirit/CollisionShape2D.disabled = true
 	$ObeliskFlameSpirit/AnimationPlayer.play("off")
 	$CanvasLayer/BossBarControl.visible  = false
-	var item             = ItemsGbl._get_item_by_code(1024)
+	var item             = ItemsGbl._get_item_by_code(1023)
 	Players._add_item(item, 1)
 	item             = ItemsGbl._get_item_by_code(1001)
-	Players._add_item(item, 10)
+	Players._add_item(item, 15)
 
 ##SAND BATTLE
 func _on_InitBattleSandSpirit_body_entered(body):
@@ -107,34 +110,7 @@ func _cd_finish_battle_sand_spirit () :
 	var item             = ItemsGbl._get_item_by_code(1024)
 	Players._add_item(item, 1)
 	item             = ItemsGbl._get_item_by_code(1001)
-	Players._add_item(item, 10)
-
-## WATER BATTLE
-func _on_InitBattleWaterSpirit_body_entered(body):
-	if body.get_name() == 'knight':			
-		if not DbBoss.water_spirit.dead:
-			self.call_deferred("_cd_init_battle_water_spirit")
-
-func _cd_init_battle_water_spirit ():
-	$CanvasLayer.changeBackMusic("res://sfx/12 final battle.ogg", 0)		
-	$InitBattleWaterSpirit.queue_free()
-	$ObeliskWaterSpirit/CollisionShape2D.disabled = false
-	$ObeliskWaterSpirit/AnimationPlayer.play("action")
-	$CanvasLayer/BossBarControl.visible  = true
-	$WaterSpirit.jump()
-
-func _finish_battle_water_spirit () :
-	self.call_deferred("_cd_finish_battle_water_spirit")
-
-func _cd_finish_battle_water_spirit () :
-	$CanvasLayer.changeBackMusic("res://sfx/05 gaseous tethanus.ogg", 0)
-	$ObeliskWaterSpirit/CollisionShape2D.disabled = true
-	$ObeliskWaterSpirit/AnimationPlayer.play("off")
-	$CanvasLayer/BossBarControl.visible  = false
-	var item             = ItemsGbl._get_item_by_code(1025)
-	Players._add_item(item, 1)
-	item             = ItemsGbl._get_item_by_code(1001)
-	Players._add_item(item, 10)
+	Players._add_item(item, 15)
 
 #Wind spirit
 func _on_InitBattleWindSpirit_body_entered(body):

@@ -1814,8 +1814,7 @@ position = Vector2( 280, 936 )
 
 [node name="1001" parent="Chests" instance=ExtResource( 29 )]
 position = Vector2( 64, 8 )
-item = 1001
-qty = 10
+item = 1013
 
 [node name="1002" parent="Chests" instance=ExtResource( 29 )]
 position = Vector2( 1936, -376 )
@@ -1827,23 +1826,28 @@ qty = 5
 position = Vector2( 2640, -520 )
 code = 1003
 item = 1009
-qty = 2
+qty = 10
 
 [node name="1004" parent="Chests" instance=ExtResource( 29 )]
 position = Vector2( 3368, -552 )
 code = 1004
-item = 1010
-qty = 3
+item = 1001
+qty = 20
 
 [node name="1005" parent="Chests" instance=ExtResource( 29 )]
 position = Vector2( 3352, -376 )
 code = 1005
 item = 1012
+qty = 10
 
 [node name="1006" parent="Chests" instance=ExtResource( 29 )]
 position = Vector2( 4632, -576 )
 code = 1006
 item = 1016
+qty = 3
+
+[node name="Skeleton-01" parent="Chests" instance=ExtResource( 37 )]
+position = Vector2( -32, -32 )
 
 [node name="collision" type="TileMap" parent="."]
 position = Vector2( -10, 22 )
@@ -1937,6 +1941,36 @@ position = Vector2( 2016, 552 )
 [node name="HellDog6" parent="Enemies/Dogs" instance=ExtResource( 6 )]
 position = Vector2( 1088, 552 )
 
+[node name="HellDog7" parent="Enemies/Dogs" instance=ExtResource( 6 )]
+position = Vector2( 3472, 552 )
+
+[node name="HellDog8" parent="Enemies/Dogs" instance=ExtResource( 6 )]
+position = Vector2( 4448, 544 )
+
+[node name="HellDog9" parent="Enemies/Dogs" instance=ExtResource( 6 )]
+position = Vector2( 4088, 536 )
+
+[node name="HellDog10" parent="Enemies/Dogs" instance=ExtResource( 6 )]
+position = Vector2( 5040, 552 )
+
+[node name="HellDog11" parent="Enemies/Dogs" instance=ExtResource( 6 )]
+position = Vector2( 6528, 544 )
+
+[node name="HellDog12" parent="Enemies/Dogs" instance=ExtResource( 6 )]
+position = Vector2( 6040, 552 )
+
+[node name="HellDog13" parent="Enemies/Dogs" instance=ExtResource( 6 )]
+position = Vector2( 6344, 544 )
+
+[node name="HellDog14" parent="Enemies/Dogs" instance=ExtResource( 6 )]
+position = Vector2( 1656, 552 )
+
+[node name="HellDog15" parent="Enemies/Dogs" instance=ExtResource( 6 )]
+position = Vector2( 1856, 552 )
+
+[node name="HellDog16" parent="Enemies/Dogs" instance=ExtResource( 6 )]
+position = Vector2( 936, 552 )
+
 [node name="SK001" type="Node2D" parent="Enemies"]
 
 [node name="Skeleton-02" parent="Enemies/SK001" instance=ExtResource( 37 )]
@@ -1994,6 +2028,24 @@ position = Vector2( 1008, 528 )
 
 [node name="Skeleton-22" parent="Enemies/SK001" instance=ExtResource( 37 )]
 position = Vector2( 1120, 520 )
+
+[node name="Skeleton-01" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 3080, 504 )
+
+[node name="Skeleton-03" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 3056, 528 )
+
+[node name="Skeleton-11" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 3496, 520 )
+
+[node name="Skeleton-15" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 4240, 528 )
+
+[node name="Skeleton-23" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 3920, 528 )
+
+[node name="Skeleton-24" parent="Enemies/SK001" instance=ExtResource( 37 )]
+position = Vector2( 2896, 528 )
 
 [node name="SK002" type="Node2D" parent="Enemies"]
 

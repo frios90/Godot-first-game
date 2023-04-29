@@ -59,35 +59,38 @@ func _ready():
 	
 func _process(delta):	
 	_delta = delta
-	if not Players.selected.dead:
-		if not Msgs.in_dialog:
-#			motion.x = 0
-			applyItem()
-			prayToSave()
-			invulnerability()
-			if not is_praying and not is_hurting:
-				move()
-				fall(delta)
-				jump()
-				attack()
-				dash()
-				climb()
-				Env.non_use = move_and_slide(motion, up)
-#		else:
-#			state_machine.travel("idle")
+	if not Env.end_game:
+		if not Players.selected.dead:
+			if not Msgs.in_dialog:
+	#			motion.x = 0
+				applyItem()
+				prayToSave()
+				invulnerability()
+				if not is_praying and not is_hurting:
+					move()
+					fall(delta)
+					jump()
+					attack()
+					dash()
+					climb()
+					Env.non_use = move_and_slide(motion, up)
+	
+		else:
+			timer_dead += 1
+			if timer_dead == time_lapsus_dead:
+				Players.selected.stats.current_hp = Players.selected.stats.health_points
+				Players.selected.stats.current_mp = Players.selected.stats.magic_points
+				Players.selected.dead             = false
+				if not Players.selected.last_save_point:
+					Env.init_position_stage.x = 224
+					Env.init_position_stage.y = 904
+					Env.non_use               = get_tree().change_scene("res://scenes/World/Cementery/Cementery-001-intro.tscn")
+				else:
+					Players.selected.change_scene_from_dead = true
+					Env.non_use = get_tree().change_scene(Players.selected.last_save_point.scene)
 	else:
-		timer_dead += 1
-		if timer_dead == time_lapsus_dead:
-			Players.selected.stats.current_hp = Players.selected.stats.health_points
-			Players.selected.stats.current_mp = Players.selected.stats.magic_points
-			Players.selected.dead             = false
-			if not Players.selected.last_save_point:
-				Env.init_position_stage.x = 224
-				Env.init_position_stage.y = 904
-				Env.non_use               = get_tree().change_scene("res://scenes/World/Cementery/Cementery-001-intro.tscn")
-			else:
-				Players.selected.change_scene_from_dead = true
-				Env.non_use = get_tree().change_scene(Players.selected.last_save_point.scene)
+		motion.y = -5
+		Env.non_use = move_and_slide(motion, up)
 func idle () :
 	state_machine.travel("idle")
 				

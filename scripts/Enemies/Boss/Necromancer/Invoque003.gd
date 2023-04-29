@@ -2,7 +2,7 @@ extends Node2D
 
 var skeleton001_start = false
 
-func _process(delta):
+func _process(_delta):
 	if self.get_child_count() == 0:
 		self.queue_free()
 	

@@ -10,7 +10,7 @@ var messages_battle_necromancer_001 = [
 		{
 			"issuing" : "necro",
 			"title"   : "Nigromante",
-			"message" : "Muerte perdio su tiempo trayendote nuevamente a la vida...",
+			"message" : "Pierdes tu tiempo intentando derrotarme",
 			"event"   : false
 		},
 		{
@@ -46,7 +46,7 @@ func _ready():
 		$knight.position.x = $EndArrow.position.x - 100
 		$knight.position.y = $EndArrow.position.y
 
-func _process(delta):
+func _process(_delta):
 	if not Msgs.forgot and Msgs.in_dialog:		
 		if Input.is_action_just_pressed("attack") and not Msgs.dlg_003.is_done:
 			self.showMessages()

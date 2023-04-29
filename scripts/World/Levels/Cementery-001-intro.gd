@@ -47,7 +47,7 @@ func showMessages () :
 			Msgs.in_dialog       = false
 			Msgs.dlg_001.is_done = true
 			var item = ItemsGbl._get_item_by_code(1001)
-			Players._add_item(item, 10)
+			Players._add_item(item, 5)
 			$Areas/InitDialogOldMan/CollisionShape2D/BtnToPress.visible = false
 			$OldMan.go_on("R")
 	number_message += 1

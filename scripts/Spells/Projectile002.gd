@@ -10,9 +10,9 @@ var limit_end = 150
 func _ready():	
 	pass
 	
-func _process(delta):	
+func _process(_delta):	
 	motion.x = maxSpeed	
-	move_and_slide(motion, up)
+	Env.non_use = move_and_slide(motion, up)
 	timer_end +=1
 	if timer_end == limit_end :
 		queue_free()
