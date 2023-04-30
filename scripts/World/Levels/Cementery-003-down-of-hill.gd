@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready():
-	$CanvasLayer.changeBackMusic2("res://sfx/background_wind_chimes_loop.wav", -10)
+
 	$CanvasLayer.changeBackMusic("res://sfx/05 gaseous tethanus.ogg", 0)
 	if Players.selected.change_scene_from_dead :
 		$knight.position.x = Players.selected.last_save_point.x

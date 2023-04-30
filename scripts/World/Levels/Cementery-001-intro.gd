@@ -6,7 +6,7 @@ var msg_box
 func _ready():
 	if Msgs.dlg_001.is_done:
 		$OldMan.queue_free()
-	$CanvasLayer.changeBackMusic2("res://sfx/background_wind_chimes_loop.wav", -10)
+
 	$CanvasLayer.changeBackMusic("res://sfx/05 gaseous tethanus.ogg", 0)
 	if Players.selected.change_scene_from_dead :
 		$knight.position.x = Players.selected.last_save_point.x

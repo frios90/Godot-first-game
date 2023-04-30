@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://scripts/World/ScriptChangeScene.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Players/Knight.tscn" type="PackedScene" id=2]
@@ -24,7 +24,6 @@
 [ext_resource path="res://scripts/World/Levels/church-004-front.gd" type="Script" id=22]
 [ext_resource path="res://assets/tiles/oak_woods_v1.0/oak_woods_tileset.png" type="Texture" id=23]
 [ext_resource path="res://assets/tiles/Cementery/objectsObscure.png" type="Texture" id=24]
-[ext_resource path="res://assets/tiles/town/layers/middleground.png" type="Texture" id=25]
 [ext_resource path="res://scenes/GUI/btns/BtnToPress.tscn" type="PackedScene" id=27]
 
 [sub_resource type="TileSet" id=29]
@@ -56,20 +55,6 @@
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
-2/name = "middleground.png 2"
-2/texture = ExtResource( 25 )
-2/tex_offset = Vector2( 0, 0 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 0, 128, 960, 576 )
-2/tile_mode = 0
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
-2/z_index = 0
 
 [sub_resource type="TileSet" id=30]
 0/name = "objects.png 0"

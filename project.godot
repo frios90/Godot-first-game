@@ -10,7 +10,7 @@ config_version=4
 
 [application]
 
-config/name="Anothergame"
+config/name="Gusvania"
 config/description="Este es mi jeugo de p"
 run/main_scene="res://scenes/Menu.tscn"
 config/custom_user_dir_name="mygame"

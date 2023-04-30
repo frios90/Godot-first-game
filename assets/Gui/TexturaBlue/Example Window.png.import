@@ -14,13 +14,13 @@ dest_files=[ "res://.import/Example Window.png-3fd4f5eb8ab244b54f61f0a9e06c6c1a.
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

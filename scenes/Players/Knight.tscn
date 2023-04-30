@@ -307,25 +307,13 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 12, 13, 20, 21, 28, 29, 36, 37 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("SoundHealth:playing")
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.0833333 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0.291667 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -766,18 +754,9 @@ stream = ExtResource( 2 )
 pitch_scale = 2.45
 mix_target = 1
 
-[node name="SoundDead" type="AudioStreamPlayer" parent="."]
-
 [node name="SoundSword" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 pitch_scale = 0.5
-
-[node name="SoundHurt" type="AudioStreamPlayer" parent="."]
-
-[node name="SoundHealth" type="AudioStreamPlayer" parent="."]
-pitch_scale = 2.0
-
-[node name="SoundLvlUp" type="AudioStreamPlayer" parent="."]
 
 [node name="SoundPickAGem" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )

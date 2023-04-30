@@ -168,11 +168,7 @@ func applyItem():
 		item     = Players._get_player_item_by_code(item)
 		if item and item.data and item.qty > 0:
 			state_machine.travel("health")
-			is_healing = true
-			$SoundHealth.stop()
-			$SoundHealth.stream = load("res://sfx/bottle.wav")
-			$SoundHealth.volume_db = -10
-			$SoundHealth.play()
+			is_healing = true			
 			Players._set_aura_use_item(self.position)
 			Players._use_hp_item(item)
 			Players._use_mp_item(item)
@@ -371,20 +367,17 @@ func END_DASH ():
 		
 func RECIVE_HURT (area):	
 	state_machine.travel("hurt")
-	$SoundHurt.play()
 	is_hurting            = true	
 	timer_not_take_damage = 1
 	Players.selected.stats.current_hp -= Util.apply_damage_body(area.get_parent().attack, Players._get_defense())	
 	Util.get_an_script("CanvasLayer").handleSetHpBar()					
 	if Players.selected.stats.current_hp <= 0:
-		$SoundDead.playing = true
 		state_machine.travel("death")
 		Players.selected.dead = true
 
 func INSTANT_DEAD ():	
 	Players.selected.stats.current_hp -= Players.selected.stats.current_hp	
 	Util.get_an_script("CanvasLayer").handleSetHpBar()
-	$SoundDead.playing = true
 	state_machine.travel("death")
 	Players.selected.dead = true	
 

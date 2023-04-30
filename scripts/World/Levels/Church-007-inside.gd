@@ -29,7 +29,6 @@ func _on_InitOldManDialogArea_body_entered(body):
 func  init_old_man_dialog() :
 	Msgs.forgot = false
 	self.box_msg = null
-	$CanvasLayer.changeBackMusic("res://sfx/09 green forest.ogg", 0)
 	$InitOldManDialogArea/CollisionShape2D/BtnToPress.visible = true
 	$knight.idle()
 	Msgs.in_dialog      = true
@@ -124,7 +123,6 @@ func _on_InitBattleWindSpirit_body_entered(body):
 func _cd_init_battle_wind_spirit ():	
 	Msgs.forgot = false
 	self.box_msg = null
-	$CanvasLayer.changeBackMusic("res://sfx/10 running wild.ogg", 0)	
 	$knight/Camera2D.position.x = -80
 	$ObeliskWindSpirit/CollisionShape2D.disabled = false
 	$ObeliskWindSpirit/AnimationPlayer.play("action")
@@ -136,7 +134,6 @@ func _cd_init_battle_wind_spirit ():
 func _cd_finish_battle_wind_spirit () :
 	$InitBattleWindSpirit.queue_free()
 	$knight/Camera2D.position.x = 90
-	$CanvasLayer.changeBackMusic("res://sfx/05 gaseous tethanus.ogg", 0)
 	$ObeliskWindSpirit/CollisionShape2D.disabled = true
 	$ObeliskWindSpirit/AnimationPlayer.play("off")
 	var item             = ItemsGbl._get_item_by_code(1026)

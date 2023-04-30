@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://scenes/Players/Camera2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/town/props/tileset.png" type="Texture" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://assets/MapElements/greentileset-lowpixel.png" type="Texture" id=7]
 [ext_resource path="res://scripts/World/ScriptChangeScene.gd" type="Script" id=8]
 [ext_resource path="res://scenes/Elements/Fire.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/MapElements/Trees/pinos oscuros.png" type="Texture" id=10]
 [ext_resource path="res://assets/tiles/Cementery/objects2.png" type="Texture" id=11]
 [ext_resource path="res://assets/tiles/deathitch.png" type="Texture" id=12]
 [ext_resource path="res://assets/tiles/Cementery/tileset.png" type="Texture" id=13]
@@ -328,19 +327,6 @@
 9/shape_one_way_margin = 0.0
 9/shapes = [  ]
 9/z_index = 0
-10/name = "Cave - SmallRocks.png 10"
-10/tex_offset = Vector2( 0, 0 )
-10/modulate = Color( 1, 1, 1, 1 )
-10/region = Rect2( 96, 64, 160, 160 )
-10/tile_mode = 0
-10/occluder_offset = Vector2( 0, 0 )
-10/navigation_offset = Vector2( 0, 0 )
-10/shape_offset = Vector2( 0, 0 )
-10/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-10/shape_one_way = false
-10/shape_one_way_margin = 0.0
-10/shapes = [  ]
-10/z_index = 0
 
 [sub_resource type="ConvexPolygonShape2D" id=53]
 points = PoolVector2Array( 32, 30.25, 0, 28.25, 0, 12.2969, 32, 12.3022 )
@@ -564,7 +550,6 @@ extents = Vector2( 8.6875, 524.25 )
 
 [sub_resource type="TileSet" id=44]
 0/name = "pinos oscuros.png 0"
-0/texture = ExtResource( 10 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 19, 27, 319, 308 )
@@ -578,7 +563,6 @@ extents = Vector2( 8.6875, 524.25 )
 0/shapes = [  ]
 0/z_index = 0
 1/name = "pinos oscuros.png 1"
-1/texture = ExtResource( 10 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 338, 29, 273, 300 )
@@ -592,7 +576,6 @@ extents = Vector2( 8.6875, 524.25 )
 1/shapes = [  ]
 1/z_index = 0
 2/name = "pinos oscuros.png 2"
-2/texture = ExtResource( 10 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 598, 13, 263, 317 )

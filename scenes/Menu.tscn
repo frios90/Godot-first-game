@@ -1,14 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://fonts/DePixelBreit.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/CanvasLayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Menu.gd" type="Script" id=3]
-[ext_resource path="res://assets/tiles/Mountain/sky.png" type="Texture" id=4]
-[ext_resource path="res://assets/tiles/Mountain/trees.png" type="Texture" id=5]
-[ext_resource path="res://assets/tiles/Mountain/near-clouds.png" type="Texture" id=6]
-[ext_resource path="res://assets/tiles/Mountain/mountains.png" type="Texture" id=7]
-[ext_resource path="res://assets/tiles/Mountain/far-mountains.png" type="Texture" id=8]
-[ext_resource path="res://assets/tiles/Mountain/far-clouds.png" type="Texture" id=9]
 [ext_resource path="res://scenes/World/Cementery/ParallaxBackground.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
@@ -26,48 +20,6 @@ current = true
 zoom = Vector2( 0.5, 0.6 )
 
 [node name="ParallaxBackground" parent="Camera2D" instance=ExtResource( 10 )]
-
-[node name="Sky" type="Sprite" parent="."]
-visible = false
-position = Vector2( 504, 344 )
-scale = Vector2( 6.69375, 5.01458 )
-texture = ExtResource( 4 )
-
-[node name="Far-clouds" type="Sprite" parent="Sky"]
-position = Vector2( -95.6116, -7.62939e-06 )
-texture = ExtResource( 9 )
-
-[node name="Far-clouds2" type="Sprite" parent="Sky"]
-position = Vector2( 54.9767, 30.3116 )
-texture = ExtResource( 9 )
-
-[node name="Near-clouds" type="Sprite" parent="Sky"]
-position = Vector2( -87.2456, 23.9302 )
-texture = ExtResource( 6 )
-
-[node name="Near-clouds2" type="Sprite" parent="Sky"]
-position = Vector2( 88.4407, 11.1674 )
-texture = ExtResource( 6 )
-
-[node name="Far-mountains" type="Sprite" parent="Sky"]
-position = Vector2( -130.271, 1.59533 )
-texture = ExtResource( 8 )
-
-[node name="Far-mountains2" type="Sprite" parent="Sky"]
-position = Vector2( 100.392, 38.2883 )
-texture = ExtResource( 8 )
-
-[node name="Mountains" type="Sprite" parent="Sky"]
-position = Vector2( 7.17087, -6.38139 )
-texture = ExtResource( 7 )
-
-[node name="Trees" type="Sprite" parent="Sky"]
-position = Vector2( -59.7572, 19.1442 )
-texture = ExtResource( 5 )
-
-[node name="Trees2" type="Sprite" parent="Sky"]
-position = Vector2( 138.637, 49.4557 )
-texture = ExtResource( 5 )
 
 [node name="InitButtom" type="Button" parent="."]
 margin_left = 304.0

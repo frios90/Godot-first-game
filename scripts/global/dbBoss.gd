@@ -10,7 +10,7 @@ var bringer_of_deadth_001 = {
 	"life"    : 24000,
 	"base_attack" : 250,
 	"base_defense" : 50,
-	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"	
+
 }
 
 var necromancer_002 = {
@@ -20,10 +20,10 @@ var necromancer_002 = {
 	"level" : 1,
 	"maxSpeed"     : 145,
 	"ptsDead"      : 30000,
-	"life"         : 30000,
-	"base_attack"  : 65,
-	"base_defense" : 25,
-	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"
+	"life"         : 22000,
+	"base_attack"  : 200,
+	"base_defense" : 60,
+
 	
 }
 
@@ -37,7 +37,7 @@ var priest_001 = {
 	"life"         : 8500,
 	"base_attack"  : 65,
 	"base_defense" : 25,
-	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"
+
 	
 }
 
@@ -52,7 +52,7 @@ var flame_spirit = {
 	"drop_gems"    : 10000,
 	"base_attack"  : 200,
 	"base_defense" : 50,
-	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"	
+
 }
 
 var sand_spirit = {
@@ -66,7 +66,7 @@ var sand_spirit = {
 	"drop_gems"    : 12000,
 	"base_attack"  : 350,
 	"base_defense" : 100,
-	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"	
+
 }
 
 var water_spirit = {
@@ -80,7 +80,7 @@ var water_spirit = {
 	"drop_gems"    : 13000,
 	"base_attack"  : 80,
 	"base_defense" : 20,
-	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"	
+
 }
 
 var wind_spirit = {
@@ -94,7 +94,7 @@ var wind_spirit = {
 	"drop_gems"    : 0,
 	"base_attack"  : 999999,
 	"base_defense" : 999999,
-	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"	
+
 }
 
 var old_man = {
@@ -108,6 +108,6 @@ var old_man = {
 	"drop_gems"    : 0,
 	"base_attack"  : 999999,
 	"base_defense" : 999999,
-	"_battleAudio" : "res://assets/Sounds/BackSongBoss/dova_Die Letzte Revolution_master.mp3"	
+
 }
 
