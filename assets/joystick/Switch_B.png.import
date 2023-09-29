@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/terrain.png-3ace876311363dfcc8a9fee4d121b8c3.stex"
+path="res://.import/Switch_B.png-d4ee878db7b2c851206e387555971c53.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/Pixel2DCastle1.1/terrain.png"
-dest_files=[ "res://.import/terrain.png-3ace876311363dfcc8a9fee4d121b8c3.stex" ]
+source_file="res://assets/joystick/Switch_B.png"
+dest_files=[ "res://.import/Switch_B.png-d4ee878db7b2c851206e387555971c53.stex" ]
 
 [params]
 

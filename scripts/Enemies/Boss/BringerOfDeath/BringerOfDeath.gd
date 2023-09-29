@@ -12,7 +12,7 @@ const up                         = Vector2(0, -1)
 const ptsDead                    = 3000
 var dead                         = false 
 
-var life                         = 9000
+var life                         = 15000
 var base_attack                  = 160
 var base_defense                 = 50
 

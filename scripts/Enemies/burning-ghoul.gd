@@ -9,7 +9,7 @@ export (int) var withMoveAndFlip = 0
 export (int) var maxSpeed        = 120
 const gravity                    = 1600
 const up                         = Vector2(0, -1)
-const ptsDead                    = 150
+const ptsDead                    = 90
 var dead                         = false 
 var life                         = 50
 var base_attack                  = 60
@@ -67,8 +67,7 @@ func _on_DeadArea_area_entered(area):
 			if (dead == false):
 				dead =  true
 				$AnimationPlayer.play("dead")
-				Util.get_an_script("knight")._increment_exp_player(ptsDead)
-				Env._dropGems(self.position, 20)
+				Env._dropGems(self.position, ptsDead)
 				
 func applySoundSword ():
 	if useRandSound == 0:

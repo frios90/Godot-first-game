@@ -39,7 +39,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 6, 4 )
+extents = Vector2( 13.5, 14 )
 
 [node name="SkullPurple" type="KinematicBody2D"]
 collision_layer = 2
@@ -65,7 +65,7 @@ anims/idle = SubResource( 3 )
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( 2, 0 )
+position = Vector2( 3, -1 )
 shape = SubResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]

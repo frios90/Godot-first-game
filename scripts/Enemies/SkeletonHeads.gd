@@ -6,7 +6,7 @@ export (int) var level           = 1
 export (float) var scaleX          = 1.3
 export (float) var scaleY          = 1.3
 export (int) var maxSpeed        = -30
-export (int) var ptsDead         = 100
+export (int) var ptsDead         = 200
 export (int) var dropGem         = 200
 export (int) var life            = 120
 export (int) var base_attack     = 50
@@ -106,8 +106,7 @@ func _on_DeadArea_area_entered(area):
 			if (dead == false):
 				state_machine.travel("dead")
 				dead =  true
-				Util.get_an_script("knight")._increment_exp_player(ptsDead)
-				Env._dropGems(self.position, dropGem)
+				Env._dropGems(self.position, ptsDead)
 
 func applySoundSword ():
 	if useRandSound == 0:

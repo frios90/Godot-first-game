@@ -162,10 +162,27 @@ func move():
 
 
 func applyItem():
-	if Input.is_action_just_pressed("useItem") and not is_attacking and not is_jumping and not is_dashing:
-		var item = Players.selected.selected_item
-		item     = Players.selected.action_items[item]
-		item     = Players._get_player_item_by_code(item)
+	if (
+		Input.is_action_just_pressed("useItem") or
+		Input.is_action_just_pressed("itemSlot1") or
+		Input.is_action_just_pressed("itemSlot2") or
+		Input.is_action_just_pressed("itemSlot3")
+	) and not is_attacking and not is_jumping and not is_dashing:
+		var item = ""
+		if Input.is_action_just_pressed("useItem"):
+			item = Players.selected.selected_item
+			item = Players.selected.action_items[item]
+			
+		elif Input.is_action_just_pressed("itemSlot1"):
+			item = Players.selected.action_items[0]
+
+		elif Input.is_action_just_pressed("itemSlot2"):
+			item = Players.selected.action_items[1]
+			
+		elif Input.is_action_just_pressed("itemSlot3"):
+			item = Players.selected.action_items[2]
+			
+		item = Players._get_player_item_by_code(item)
 		if item and item.data and item.qty > 0:
 			state_machine.travel("health")
 			is_healing = true			
@@ -323,8 +340,7 @@ func _callMethodFinishHeath () :
 func _callMethodFinishHurt () :
 	is_hurting = false
 	
-func INIT_TRAVEL_ATTACK (travel_to = "attack"):
-	
+func INIT_TRAVEL_ATTACK (travel_to = "attack"):	
 	is_attacking = true		
 	timer_attack = 1
 	state_machine.travel(travel_to)
@@ -333,17 +349,20 @@ func INIT_TRAVEL_ATTACK (travel_to = "attack"):
 	$AttackArea/CollisionShape2D.disabled = false
 
 func INIT_TRAVEL_DASH ():
-	is_dashing = true	
-	timer_dash = 1	
-	state_machine.travel("dash")
-	$CollisionShape2D.position.x          = 0
-	$CollisionShape2D.position.y          = 26
-	$CollisionShape2D.scale.x             = 2
-	$CollisionShape2D.scale.y             = 0.15	
-	$DeadArea/CollisionShape2D.position.x = 3
-	$DeadArea/CollisionShape2D.position.y = 17
-	$DeadArea/CollisionShape2D.scale.x    = 5
-	$DeadArea/CollisionShape2D.scale.y    = 0.3	
+	if Players.selected.stats.current_stamine > 0:
+		is_dashing = true	
+		timer_dash = 1	
+		state_machine.travel("dash")
+		Players.selected.stats.current_stamine = Players.selected.stats.current_stamine - Players.selected.stats.stamine_cost
+		Util.get_an_script("CanvasLayer").handleSetStamineBar()
+		$CollisionShape2D.position.x          = 0
+		$CollisionShape2D.position.y          = 26
+		$CollisionShape2D.scale.x             = 2
+		$CollisionShape2D.scale.y             = 0.15	
+		$DeadArea/CollisionShape2D.position.x = 3
+		$DeadArea/CollisionShape2D.position.y = 17
+		$DeadArea/CollisionShape2D.scale.x    = 5
+		$DeadArea/CollisionShape2D.scale.y    = 0.3	
 
 
 func END_ATTACK (to_attack = 0) :
@@ -381,19 +400,21 @@ func INSTANT_DEAD ():
 	state_machine.travel("death")
 	Players.selected.dead = true	
 
-func _increment_exp_player(points):
-	Players.selected.stats.experience += points
-	
-	if  Players.selected.stats.experience >=  Players.selected.stats.next_level:
-		print("subio de nivle")
-		Players.selected.stats.level      += 1
-		Players.selected.stats.next_level = Players.selected.stats.next_level + (Players.selected.stats.next_level * 1.05)
-		print(Players.selected.stats.next_level)
-		Players.selected.stats.strength   *= 1.2
-		var lvlUP = load("res://scenes/Players/LevelUp.tscn")		
-		lvlUP = lvlUP.instance()
-		lvlUP.position.y = lvlUP.position.y -2
-		self.get_node("Sprite").call_deferred("add_child",lvlUP)
-		yield(get_tree().create_timer(1), "timeout")	
-		lvlUP.queue_free()
-		Util.get_an_script("CanvasLayer").handleSetLevelInUiPlayer()
+func _increment_exp_player(_points):
+	##ya no hace nada desde aqui, si no que lo hace al comer las gemas
+	pass
+#	Players.selected.stats.experience += points
+#
+#	if  Players.selected.stats.experience >=  Players.selected.stats.next_level:
+#
+#		Players.selected.stats.level      += 1
+#		Players.selected.stats.next_level = Players.selected.stats.next_level + (Players.selected.stats.next_level * 0.8)
+#
+#		Players.selected.stats.strength   *= 1.2
+#		var lvlUP = load("res://scenes/Players/LevelUp.tscn")		
+#		lvlUP = lvlUP.instance()
+#		lvlUP.position.y = lvlUP.position.y -2
+#		self.get_node("Sprite").call_deferred("add_child",lvlUP)
+#		yield(get_tree().create_timer(1), "timeout")	
+#		lvlUP.queue_free()
+#		Util.get_an_script("CanvasLayer").handleSetLevelInUiPlayer()

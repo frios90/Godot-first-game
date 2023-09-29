@@ -104,8 +104,7 @@ func _on_DeadArea_area_entered(area):
 			if (dead == false):
 				state_machine.travel("dead")
 				dead =  true
-				Util.get_an_script("knight")._increment_exp_player(ptsDead)
-				Env._dropGems(self.position, 12)
+				Env._dropGems(self.position, ptsDead)
 				randomize()
 				var drop_item_probability = randi() % 20
 				if drop_item_probability == 1:

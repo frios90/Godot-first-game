@@ -51,7 +51,6 @@ func show_msgs_old_man() :
 			if Msgs.dlg_006.msgs[self.num_msg_old_man].event == "dead":
 				$OldMan.dead()
 	else:
-		$CanvasLayer.changeBackMusic("res://sfx/05 gaseous tethanus.ogg", 0)
 		$InitOldManDialogArea/CollisionShape2D.queue_free()
 		self.box_msg.queue_free()
 		Msgs.in_dialog       = false

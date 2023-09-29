@@ -13,9 +13,10 @@ config_version=4
 config/name="Gusvania"
 config/description="Este es mi jeugo de p"
 run/main_scene="res://scenes/Menu.tscn"
+run/disable_stderr=true
 config/custom_user_dir_name="mygame"
 config/project_settings_override="mygamess"
-config/icon="res://icon.png"
+config/icon="res://Captura desde 2023-05-01 05-10-01.png"
 config/macos_native_icon="res://TonicStrengthM.ico"
 config/windows_native_icon="res://TonicStrengthM.ico"
 
@@ -137,6 +138,25 @@ changeItemLeft={
 "events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
+itemSlot1={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":49,"unicode":0,"echo":false,"script":null)
+ ]
+}
+itemSlot2={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":50,"unicode":0,"echo":false,"script":null)
+ ]
+}
+itemSlot3={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":51,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 

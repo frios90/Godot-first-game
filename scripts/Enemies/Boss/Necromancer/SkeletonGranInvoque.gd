@@ -6,9 +6,8 @@ export (int) var level           = 1
 export (int) var scaleX          = 2
 export (int) var scaleY          = 2
 export (int) var maxSpeed        = -30
-export (int) var ptsDead         = 3000
-export (int) var dropGem         = 3000
-export (int) var life            = 3000
+export (int) var ptsDead         = 10000
+export (int) var life            = 500
 export (int) var base_attack     = 65
 export (int) var base_defense    = 35
 const gravity                    = 1600
@@ -105,8 +104,8 @@ func _on_DeadArea_area_entered(area):
 				self._dead_last_invoque()
 				self.state_machine.travel("dead")
 				self.dead =  true
-				Util.get_an_script("knight")._increment_exp_player(ptsDead)
-				Env._dropGems(self.position, self.dropGem)
+				Env._dropGems(self.position, self.ptsDead)
+				Msgs.dlg_003.is_done = true
 
 func _dead_last_invoque () :
 	var circle = load("res://scenes/Enemies/Boss/MagicCircleFinalBoss.tscn")

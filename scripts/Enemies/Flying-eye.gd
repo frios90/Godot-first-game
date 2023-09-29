@@ -10,7 +10,7 @@ export (int) var maxSpeed = 26
 
 const gravity            = 50
 const up                 = Vector2(0, -1)
-const ptsDead            = 150
+const ptsDead            = 100
 
 var dead                 = false
 
@@ -124,8 +124,7 @@ func _on_DeadArea_area_entered(area):
 			if (dead == false):
 				dead =  true			
 				state_machine.travel("dead")
-				Util.get_an_script("knight")._increment_exp_player(ptsDead)
-				Env._dropGems(self.position, 12)
+				Env._dropGems(self.position, ptsDead)
 				randomize()
 				var drop_item_probability = randi() % 4
 				if drop_item_probability == 1:

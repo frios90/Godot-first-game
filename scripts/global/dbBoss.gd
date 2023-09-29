@@ -6,8 +6,8 @@ var bringer_of_deadth_001 = {
 	"dead"  : false,
 	"level" : 1,
 	"maxSpeed" : 145,
-	"ptsDead" : 6000,
-	"life"    : 24000,
+	"ptsDead" : 16000,
+	"life"    : 16000,
 	"base_attack" : 250,
 	"base_defense" : 50,
 
@@ -19,10 +19,10 @@ var necromancer_002 = {
 	"dead"  : false,
 	"level" : 1,
 	"maxSpeed"     : 145,
-	"ptsDead"      : 30000,
-	"life"         : 22000,
-	"base_attack"  : 200,
-	"base_defense" : 60,
+	"ptsDead"      : 9000,
+	"life"         : 9000,
+	"base_attack"  : 300,
+	"base_defense" : 80,
 
 	
 }
@@ -50,8 +50,8 @@ var flame_spirit = {
 	"ptsDead"      : 8500,
 	"life"         : 8500,
 	"drop_gems"    : 10000,
-	"base_attack"  : 200,
-	"base_defense" : 50,
+	"base_attack"  : 600,
+	"base_defense" : 300,
 
 }
 
@@ -64,8 +64,8 @@ var sand_spirit = {
 	"ptsDead"      : 12000,
 	"life"         : 12000,
 	"drop_gems"    : 12000,
-	"base_attack"  : 350,
-	"base_defense" : 100,
+	"base_attack"  : 800,
+	"base_defense" : 400,
 
 }
 

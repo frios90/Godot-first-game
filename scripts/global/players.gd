@@ -19,7 +19,7 @@ var gustaph = {
 	"stats" : {
 		"level"           : 1,
 		"experience"      : 0,
-		"health_points"   : 200,
+		"health_points"   : 250,
 		"magic_points"    : 90,
 		"stamine"         : 100,
 		"strength"        : 70,
@@ -27,10 +27,10 @@ var gustaph = {
 		"speed"           : 17,
 		"luck"            : 1,
 		"next_level"      : 900,
-		"current_hp"      : 200,
+		"current_hp"      : 250,
 		"current_mp"      : 0,
 		"current_stamine" : 100,
-		"dash_speed"      : 600,
+		"dash_speed"      : 300,
 		"move_speed"      : 170,
 		"jump_height"     : -450,
 		"gravity"         : 600,
@@ -261,7 +261,7 @@ func _use_item_in_pause_menu (item):
 		Util.get_an_script("MenuPause").initOrUpdateDataPlayer()
 
 func _use_hp_item (item) :
-	if item.data.on == "hp":		
+	if item.data.on == "hp" and not item.data.code == 1016:		
 		var recovery = float(float(self.selected.stats.health_points) / 100) * item.data.percentage
 		ftd          = floating_text.instance()
 		ftd.type     = "heal"

@@ -9,7 +9,7 @@ export (int) var withMoveAndFlip = 0
 export (int) var maxSpeed        = 60
 const gravity                    = 1600
 const up                         = Vector2(0, -1)
-const ptsDead                    = 50
+const ptsDead                    = 75
 var dead                         = false
 var life                         = 30
 var base_attack                  = 30
@@ -93,10 +93,9 @@ func _on_DeadArea_area_entered(area):
 			if (dead == false):
 				$AnimationPlayer.play("dead")
 				dead =  true	
-				Util.get_an_script("knight")._increment_exp_player(ptsDead)	
-				Env._dropGems(self.position, 20)
+				Env._dropGems(self.position, ptsDead)
 				randomize()
-				var drop_item_probability = randi() % 4
+				var drop_item_probability = randi() % 3
 				if drop_item_probability == 1:
 					var item = ItemsGbl._get_item_by_code(1001)
 					Players._add_item(item, 1)

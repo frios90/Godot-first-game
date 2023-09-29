@@ -177,7 +177,7 @@ scale = Vector2( 0.816667, 0.835417 )
 texture = ExtResource( 1 )
 hframes = 17
 vframes = 7
-frame = 4
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )

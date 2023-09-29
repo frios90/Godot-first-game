@@ -58,10 +58,9 @@ func _process(_delta):
 func _on_EnterBattle_body_entered(body):
 	Msgs.forgot = false
 	self.box_msg = null
-	if body.get_name() == 'knight':
-		if not DbBoss.necromancer_002.dead:
-			self.initDialog()
-			$knight.idle()
+	if body.get_name() == 'knight':		
+		self.initDialog()
+		$knight.idle()
 
 func initDialog () :
 	if not Msgs.dlg_003.is_done:
@@ -80,10 +79,7 @@ func showMessages () :
 		self.box_msg.queue_free()
 		Msgs.in_dialog       = false				
 		Msgs.forgot          = false
-		Msgs.dlg_003.is_done = true
 		self.call_deferred("_cd_init_battle")
-#		var item             = ItemsGbl._get_item_by_code(1027)
-#		Players._add_item(item, 1)
 
 	number_message_first_msg += 1
 
@@ -95,8 +91,7 @@ func addChildBoxMsg():
 	self.add_child(box)
 	return box
 
-func _cd_init_battle ():
-	
+func _cd_init_battle ():	
 	$CanvasLayer.changeBackMusic("res://sfx/12 final battle.ogg", 0)
 	$Actions/Dialog001Boss/BtnToPress.visible = false
 	$Areas/EnterBattle.queue_free()

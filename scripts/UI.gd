@@ -3,6 +3,8 @@ extends CanvasLayer
 var screenPause : String = "res://scenes/MenuPause.tscn" 
 var in_paused   : Object = null
 
+var pressed_x = false
+var use_joystick = false
 
 func _ready () :	
 	$PopUpItem.visible    = false
@@ -12,15 +14,62 @@ func _ready () :
 	$PlayerBarControl/StamineBar.value     = (float(100) / float(Players.selected.stats.stamine)) * float(Players.selected.stats.current_stamine)	
 	$PlayerBarControl/GuiLvlLabel.text     = String(Players.selected.stats.level)
 	$BossBarControl.visible                = false
+	$Pad.visible                           = use_joystick
 	
 func _process(delta):
+	$Pad.visible                           = use_joystick
 	Env.non_use = delta
 	self.paused()		
 	self.setCurrentSelectedItem()
 	$PlayerBarControl/StrengthUp.visible = true if Players.selected.statuses_stack.strength.up > 0 else false
 	$PlayerBarControl/SpeedUp.visible    = true if Players.selected.statuses_stack.speed.up > 0 else false
 	$PlayerBarControl/StamineUp.visible  = true if Players.selected.statuses_stack.stamine.up > 0 else false
+	$PlayerBarControl/nextexp.text       = str(int(Players.selected.stats.next_level)) 
+	$PlayerBarControl/exp.text           = str(int(Players.selected.stats.experience))
+	self.loadSpeedSelectorItem()
 	
+func loadSpeedSelectorItem ():
+		
+	if Players.selected.action_items[0] :
+		var slot_1 = Players._get_player_item_by_code(Players.selected.action_items[0])
+		$ItemsSelector/slot_1/item.texture = load(slot_1.data.icon)
+		$ItemsSelector/slot_1/item.visible = true
+		$ItemsSelector/slot_1/item/qty.text = str(slot_1.qty)
+
+		if Players.selected.selected_item == 0:
+			$ItemsSelector/slot_1/item/frame.visible = true
+		else:
+			$ItemsSelector/slot_1/item/frame.visible = false
+	else:
+		$ItemsSelector/slot_1/item.texture = load("res://assets/Gui/Barras/circle-bar.png")
+		$ItemsSelector/slot_1/item.visible = false
+
+	if Players.selected.action_items[1] :
+		var slot_2 = Players._get_player_item_by_code(Players.selected.action_items[1])
+		$ItemsSelector/slot_2/item.texture = load(slot_2.data.icon)
+		$ItemsSelector/slot_2/item.visible = true
+		$ItemsSelector/slot_2/item/qty.text = str(slot_2.qty)
+		if Players.selected.selected_item == 1:
+			$ItemsSelector/slot_2/item/frame.visible = true
+		else:
+			$ItemsSelector/slot_2/item/frame.visible = false
+	else:
+		$ItemsSelector/slot_2/item.texture = load("res://assets/Gui/Barras/circle-bar.png")
+		$ItemsSelector/slot_2/item.visible = false
+	
+	if Players.selected.action_items[2] :
+		var slot_3 = Players._get_player_item_by_code(Players.selected.action_items[2])
+		$ItemsSelector/slot_3/item.texture = load(slot_3.data.icon)
+		$ItemsSelector/slot_3/item.visible = true
+		$ItemsSelector/slot_3/item/qty.text = str(slot_3.qty)
+		if Players.selected.selected_item == 2:
+			$ItemsSelector/slot_3/item/frame.visible = true
+		else:
+			$ItemsSelector/slot_3/item/frame.visible = false
+	else:
+		$ItemsSelector/slot_3/item.texture = load("res://assets/Gui/Barras/circle-bar.png")
+		$ItemsSelector/slot_3/item.visible = false
+		
 func paused ():
 	if Input.is_action_just_pressed("pause"):
 		in_paused = load(screenPause).instance()
@@ -81,3 +130,9 @@ func changeBackMusic2 (to_load, volume) :
 	$BackAudio2.stream = load(to_load)
 	$BackAudio2.volume_db = volume
 	$BackAudio2.play()
+	
+func touchX () :
+	print("tocando la x")
+
+func _on_usejoystick_pressed():
+	self.use_joystick = false if use_joystick else true
